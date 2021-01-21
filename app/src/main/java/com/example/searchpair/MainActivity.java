@@ -7,9 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.ImageButton;
 import android.widget.ImageView;
-import java.util.Iterator;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -22,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
     private ImageView image1, image2, image3, image4;
     Animation animation1 = null;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,7 +29,6 @@ public class MainActivity extends AppCompatActivity {
         init();
         generateRandom();
         print();
-        clickImage();
         imagesOnClickListener();
 
 
@@ -74,27 +72,46 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     map1.get(pair.getKey()).setImageResource(R.drawable.ic_launcher_foreground);
+                    map1.get(pair.getKey()).startAnimation(animation1);
+                    animation1.setAnimationListener(new Animation.AnimationListener() {
+                        @Override
+                        public void onAnimationStart(Animation animation) {
+                            map1.get(pair.getKey()).setImageResource(R.drawable.ic_launcher_background);
+                        }
+
+                        @Override
+                        public void onAnimationEnd(Animation animation) {
+                            map1.get(pair.getKey()).setImageResource(R.drawable.ic_launcher_foreground);
+                        }
+
+                        @Override
+                        public void onAnimationRepeat(Animation animation) {
+
+                        }
+                    });
                 }
             });
         }
-        // Добавляем значение
-//        map1.get(1).setImageResource(R.drawable.ic_launcher_background);
-//        map1.get(1).setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                //запустить анимацию
-//                map1.get(1).setImageResource(R.drawable.ic_launcher_foreground);
-//                //запустить метод
-//            }
-//        });
-    }
 
-    public void clickImage(){
-        image1.setOnClickListener(new View.OnClickListener() {
+    }
+    private void animationListener(){
+        animation1.setAnimationListener(new Animation.AnimationListener() {
             @Override
-            public void onClick(View v) {
+            public void onAnimationStart(Animation animation) {
+                image1.setImageResource(R.drawable.ic_launcher_background);
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
 
             }
         });
     }
+
+
 }
