@@ -19,8 +19,8 @@ public class MainActivity extends AppCompatActivity {
 
     private ImageView image1, image2, image3, image4,
             image5, image6, image7, image8,
-            image9, image10, image11, image12,
-            image13, image14, image15, image16;
+            image9, image10, image11, image12;
+
     Animation animation1 = null;
 
 
@@ -44,10 +44,26 @@ public class MainActivity extends AppCompatActivity {
         image2 = findViewById(R.id.imageView2);
         image3 = findViewById(R.id.imageView3);
         image4 = findViewById(R.id.imageView4);
+        image5 = findViewById(R.id.imageView5);
+        image6 = findViewById(R.id.imageView6);
+        image7 = findViewById(R.id.imageView7);
+        image8 = findViewById(R.id.imageView8);
+        image9 = findViewById(R.id.imageView9);
+        image10 = findViewById(R.id.imageView10);
+        image11 = findViewById(R.id.imageView11);
+        image12 = findViewById(R.id.imageView12);
         map1.put(1, image1);
         map1.put(2, image2);
         map1.put(3, image3);
         map1.put(4, image4);
+        map1.put(5, image5);
+        map1.put(6, image6);
+        map1.put(7, image7);
+        map1.put(8, image8);
+        map1.put(9, image9);
+        map1.put(10, image10);
+        map1.put(11, image11);
+        map1.put(12, image12);
 
 
     }
