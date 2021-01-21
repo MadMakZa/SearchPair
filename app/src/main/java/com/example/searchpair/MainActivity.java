@@ -19,7 +19,7 @@ import java.util.Set;
 
 public class MainActivity extends AppCompatActivity {
 
-    int[] array = new int[16];
+
     List<ImageView> listImageView = new ArrayList<>();
     Map<Integer, ImageView> map1 = new HashMap<>();
 
@@ -104,13 +104,6 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-    }
-    //random res
-    private void randomRes() {
-        int i = (int) (3 * Math.random() + 1);
-        String RandomS = "token" + i;
-        int resID = getResources().getIdentifier(RandomS, "drawable", getApplicationContext().getPackageName());
-        image12.setImageResource(resID);
     }
 
 
