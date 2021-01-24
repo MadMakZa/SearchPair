@@ -34,8 +34,8 @@ public class MainActivity extends AppCompatActivity {
         init();
 
 
-
     }
+
     //инициализация
     private void init() {
         //анимация
@@ -60,18 +60,20 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
     //заполнить лист со значениями
-    private void fillInTheList(ArrayList<Integer> arr){
+    private void fillInTheList(ArrayList<Integer> arr) {
         //заполнить лист значениями
-        int i = 0;
-        for (i = 0; i < 12 ; i++){
-            arr.add(i);
+        int index = 0;
+        for (int i = 0; i < 12; i++) {
+            index++;
+            arr.add(index);
         }
         //перемешать
         Collections.shuffle(arrayValues);
     }
 
-    private void fillInTheImageList(){
+    private void fillInTheImageList() {
         arrayImages.add(image1);
         arrayImages.add(image2);
         arrayImages.add(image3);
@@ -85,65 +87,495 @@ public class MainActivity extends AppCompatActivity {
         arrayImages.add(image11);
         arrayImages.add(image12);
         //определить слушатель нажатий для каждой имаджвью
-        for (ImageView img : arrayImages){
+        for (final ImageView img : arrayImages) {
             img.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     //проверить какая кнопка по Таг нажата была
                     //запуск метода открыть ячейку
-                    openTheImage();
+                    switch (arrayImages.indexOf(img)) {
+                        case 0:
+                            //если индекс перемешанного массива равен 1, то красим кнопку в 5ку
+                            if (arrayValues.get(0) == 1)
+                                img.setImageResource(R.drawable.token5);
+                            if (arrayValues.get(0) == 2)
+                                img.setImageResource(R.drawable.token10);
+                            if (arrayValues.get(0) == 3)
+                                img.setImageResource(R.drawable.token25);
+                            if (arrayValues.get(0) == 4)
+                                img.setImageResource(R.drawable.token50);
+                            if (arrayValues.get(0) == 5)
+                                img.setImageResource(R.drawable.token100);
+                            if (arrayValues.get(0) == 6)
+                                img.setImageResource(R.drawable.token250);
+                            if (arrayValues.get(0) == 7)
+                                img.setImageResource(R.drawable.token5);
+                            if (arrayValues.get(0) == 8)
+                                img.setImageResource(R.drawable.token10);
+                            if (arrayValues.get(0) == 9)
+                                img.setImageResource(R.drawable.token25);
+                            if (arrayValues.get(0) == 10)
+                                img.setImageResource(R.drawable.token50);
+                            if (arrayValues.get(0) == 11)
+                                img.setImageResource(R.drawable.token100);
+                            if (arrayValues.get(0) == 12)
+                                img.setImageResource(R.drawable.token250);
+                            break;
+                        case 1:
+                            switch (arrayValues.get(1)){
+                                case 1:
+                                    img.setImageResource(R.drawable.token5);
+                                    break;
+                                case 2:
+                                    img.setImageResource(R.drawable.token10);
+                                    break;
+                                case 3:
+                                    img.setImageResource(R.drawable.token25);
+                                    break;
+                                case 4:
+                                    img.setImageResource(R.drawable.token50);
+                                    break;
+                                case 5:
+                                    img.setImageResource(R.drawable.token100);
+                                    break;
+                                case 6:
+                                    img.setImageResource(R.drawable.token250);
+                                    break;
+                                case 7:
+                                    img.setImageResource(R.drawable.token5);
+                                    break;
+                                case 8:
+                                    img.setImageResource(R.drawable.token10);
+                                    break;
+                                case 9:
+                                    img.setImageResource(R.drawable.token25);
+                                    break;
+                                case 10:
+                                    img.setImageResource(R.drawable.token50);
+                                    break;
+                                case 11:
+                                    img.setImageResource(R.drawable.token100);
+                                    break;
+                                case 12:
+                                    img.setImageResource(R.drawable.token250);
+                                    break;
+                            }
+                            break;
+
+                        case 2:
+                            switch (arrayValues.get(2)) {
+                                case 1:
+                                    img.setImageResource(R.drawable.token5);
+                                    break;
+                                case 2:
+                                    img.setImageResource(R.drawable.token10);
+                                    break;
+                                case 3:
+                                    img.setImageResource(R.drawable.token25);
+                                    break;
+                                case 4:
+                                    img.setImageResource(R.drawable.token50);
+                                    break;
+                                case 5:
+                                    img.setImageResource(R.drawable.token100);
+                                    break;
+                                case 6:
+                                    img.setImageResource(R.drawable.token250);
+                                    break;
+                                case 7:
+                                    img.setImageResource(R.drawable.token5);
+                                    break;
+                                case 8:
+                                    img.setImageResource(R.drawable.token10);
+                                    break;
+                                case 9:
+                                    img.setImageResource(R.drawable.token25);
+                                    break;
+                                case 10:
+                                    img.setImageResource(R.drawable.token50);
+                                    break;
+                                case 11:
+                                    img.setImageResource(R.drawable.token100);
+                                    break;
+                                case 12:
+                                    img.setImageResource(R.drawable.token250);
+                                    break;
+                            }
+                            break;
+                        case 3:
+                            switch (arrayValues.get(3)) {
+                                case 1:
+                                    img.setImageResource(R.drawable.token5);
+                                    break;
+                                case 2:
+                                    img.setImageResource(R.drawable.token10);
+                                    break;
+                                case 3:
+                                    img.setImageResource(R.drawable.token25);
+                                    break;
+                                case 4:
+                                    img.setImageResource(R.drawable.token50);
+                                    break;
+                                case 5:
+                                    img.setImageResource(R.drawable.token100);
+                                    break;
+                                case 6:
+                                    img.setImageResource(R.drawable.token250);
+                                    break;
+                                case 7:
+                                    img.setImageResource(R.drawable.token5);
+                                    break;
+                                case 8:
+                                    img.setImageResource(R.drawable.token10);
+                                    break;
+                                case 9:
+                                    img.setImageResource(R.drawable.token25);
+                                    break;
+                                case 10:
+                                    img.setImageResource(R.drawable.token50);
+                                    break;
+                                case 11:
+                                    img.setImageResource(R.drawable.token100);
+                                    break;
+                                case 12:
+                                    img.setImageResource(R.drawable.token250);
+                                    break;
+                            }
+                            break;
+
+                        case 4:
+                            switch (arrayValues.get(4)) {
+                                case 1:
+                                    img.setImageResource(R.drawable.token5);
+                                    break;
+                                case 2:
+                                    img.setImageResource(R.drawable.token10);
+                                    break;
+                                case 3:
+                                    img.setImageResource(R.drawable.token25);
+                                    break;
+                                case 4:
+                                    img.setImageResource(R.drawable.token50);
+                                    break;
+                                case 5:
+                                    img.setImageResource(R.drawable.token100);
+                                    break;
+                                case 6:
+                                    img.setImageResource(R.drawable.token250);
+                                    break;
+                                case 7:
+                                    img.setImageResource(R.drawable.token5);
+                                    break;
+                                case 8:
+                                    img.setImageResource(R.drawable.token10);
+                                    break;
+                                case 9:
+                                    img.setImageResource(R.drawable.token25);
+                                    break;
+                                case 10:
+                                    img.setImageResource(R.drawable.token50);
+                                    break;
+                                case 11:
+                                    img.setImageResource(R.drawable.token100);
+                                    break;
+                                case 12:
+                                    img.setImageResource(R.drawable.token250);
+                                    break;
+                            }
+                            break;
+                        case 5:
+                            switch (arrayValues.get(5)) {
+                                case 1:
+                                    img.setImageResource(R.drawable.token5);
+                                    break;
+                                case 2:
+                                    img.setImageResource(R.drawable.token10);
+                                    break;
+                                case 3:
+                                    img.setImageResource(R.drawable.token25);
+                                    break;
+                                case 4:
+                                    img.setImageResource(R.drawable.token50);
+                                    break;
+                                case 5:
+                                    img.setImageResource(R.drawable.token100);
+                                    break;
+                                case 6:
+                                    img.setImageResource(R.drawable.token250);
+                                    break;
+                                case 7:
+                                    img.setImageResource(R.drawable.token5);
+                                    break;
+                                case 8:
+                                    img.setImageResource(R.drawable.token10);
+                                    break;
+                                case 9:
+                                    img.setImageResource(R.drawable.token25);
+                                    break;
+                                case 10:
+                                    img.setImageResource(R.drawable.token50);
+                                    break;
+                                case 11:
+                                    img.setImageResource(R.drawable.token100);
+                                    break;
+                                case 12:
+                                    img.setImageResource(R.drawable.token250);
+                                    break;
+                            }
+                            break;
+                        case 6:
+                            switch (arrayValues.get(6)) {
+                                case 1:
+                                    img.setImageResource(R.drawable.token5);
+                                    break;
+                                case 2:
+                                    img.setImageResource(R.drawable.token10);
+                                    break;
+                                case 3:
+                                    img.setImageResource(R.drawable.token25);
+                                    break;
+                                case 4:
+                                    img.setImageResource(R.drawable.token50);
+                                    break;
+                                case 5:
+                                    img.setImageResource(R.drawable.token100);
+                                    break;
+                                case 6:
+                                    img.setImageResource(R.drawable.token250);
+                                    break;
+                                case 7:
+                                    img.setImageResource(R.drawable.token5);
+                                    break;
+                                case 8:
+                                    img.setImageResource(R.drawable.token10);
+                                    break;
+                                case 9:
+                                    img.setImageResource(R.drawable.token25);
+                                    break;
+                                case 10:
+                                    img.setImageResource(R.drawable.token50);
+                                    break;
+                                case 11:
+                                    img.setImageResource(R.drawable.token100);
+                                    break;
+                                case 12:
+                                    img.setImageResource(R.drawable.token250);
+                                    break;
+                            }
+                            break;
+                        case 7:
+                            switch (arrayValues.get(7)) {
+                                case 1:
+                                    img.setImageResource(R.drawable.token5);
+                                    break;
+                                case 2:
+                                    img.setImageResource(R.drawable.token10);
+                                    break;
+                                case 3:
+                                    img.setImageResource(R.drawable.token25);
+                                    break;
+                                case 4:
+                                    img.setImageResource(R.drawable.token50);
+                                    break;
+                                case 5:
+                                    img.setImageResource(R.drawable.token100);
+                                    break;
+                                case 6:
+                                    img.setImageResource(R.drawable.token250);
+                                    break;
+                                case 7:
+                                    img.setImageResource(R.drawable.token5);
+                                    break;
+                                case 8:
+                                    img.setImageResource(R.drawable.token10);
+                                    break;
+                                case 9:
+                                    img.setImageResource(R.drawable.token25);
+                                    break;
+                                case 10:
+                                    img.setImageResource(R.drawable.token50);
+                                    break;
+                                case 11:
+                                    img.setImageResource(R.drawable.token100);
+                                    break;
+                                case 12:
+                                    img.setImageResource(R.drawable.token250);
+                                    break;
+                            }
+                            break;
+                        case 8:
+                            switch (arrayValues.get(8)) {
+                                case 1:
+                                    img.setImageResource(R.drawable.token5);
+                                    break;
+                                case 2:
+                                    img.setImageResource(R.drawable.token10);
+                                    break;
+                                case 3:
+                                    img.setImageResource(R.drawable.token25);
+                                    break;
+                                case 4:
+                                    img.setImageResource(R.drawable.token50);
+                                    break;
+                                case 5:
+                                    img.setImageResource(R.drawable.token100);
+                                    break;
+                                case 6:
+                                    img.setImageResource(R.drawable.token250);
+                                    break;
+                                case 7:
+                                    img.setImageResource(R.drawable.token5);
+                                    break;
+                                case 8:
+                                    img.setImageResource(R.drawable.token10);
+                                    break;
+                                case 9:
+                                    img.setImageResource(R.drawable.token25);
+                                    break;
+                                case 10:
+                                    img.setImageResource(R.drawable.token50);
+                                    break;
+                                case 11:
+                                    img.setImageResource(R.drawable.token100);
+                                    break;
+                                case 12:
+                                    img.setImageResource(R.drawable.token250);
+                                    break;
+                            }
+                            break;
+                        case 9:
+                            switch (arrayValues.get(9)) {
+                                case 1:
+                                    img.setImageResource(R.drawable.token5);
+                                    break;
+                                case 2:
+                                    img.setImageResource(R.drawable.token10);
+                                    break;
+                                case 3:
+                                    img.setImageResource(R.drawable.token25);
+                                    break;
+                                case 4:
+                                    img.setImageResource(R.drawable.token50);
+                                    break;
+                                case 5:
+                                    img.setImageResource(R.drawable.token100);
+                                    break;
+                                case 6:
+                                    img.setImageResource(R.drawable.token250);
+                                    break;
+                                case 7:
+                                    img.setImageResource(R.drawable.token5);
+                                    break;
+                                case 8:
+                                    img.setImageResource(R.drawable.token10);
+                                    break;
+                                case 9:
+                                    img.setImageResource(R.drawable.token25);
+                                    break;
+                                case 10:
+                                    img.setImageResource(R.drawable.token50);
+                                    break;
+                                case 11:
+                                    img.setImageResource(R.drawable.token100);
+                                    break;
+                                case 12:
+                                    img.setImageResource(R.drawable.token250);
+                                    break;
+                            }
+                            break;
+                        case 10:
+                            switch (arrayValues.get(10)) {
+                                case 1:
+                                    img.setImageResource(R.drawable.token5);
+                                    break;
+                                case 2:
+                                    img.setImageResource(R.drawable.token10);
+                                    break;
+                                case 3:
+                                    img.setImageResource(R.drawable.token25);
+                                    break;
+                                case 4:
+                                    img.setImageResource(R.drawable.token50);
+                                    break;
+                                case 5:
+                                    img.setImageResource(R.drawable.token100);
+                                    break;
+                                case 6:
+                                    img.setImageResource(R.drawable.token250);
+                                    break;
+                                case 7:
+                                    img.setImageResource(R.drawable.token5);
+                                    break;
+                                case 8:
+                                    img.setImageResource(R.drawable.token10);
+                                    break;
+                                case 9:
+                                    img.setImageResource(R.drawable.token25);
+                                    break;
+                                case 10:
+                                    img.setImageResource(R.drawable.token50);
+                                    break;
+                                case 11:
+                                    img.setImageResource(R.drawable.token100);
+                                    break;
+                                case 12:
+                                    img.setImageResource(R.drawable.token250);
+                                    break;
+                            }
+                            break;
+                        case 11:
+                            switch (arrayValues.get(11)) {
+                                case 1:
+                                    img.setImageResource(R.drawable.token5);
+                                    break;
+                                case 2:
+                                    img.setImageResource(R.drawable.token10);
+                                    break;
+                                case 3:
+                                    img.setImageResource(R.drawable.token25);
+                                    break;
+                                case 4:
+                                    img.setImageResource(R.drawable.token50);
+                                    break;
+                                case 5:
+                                    img.setImageResource(R.drawable.token100);
+                                    break;
+                                case 6:
+                                    img.setImageResource(R.drawable.token250);
+                                    break;
+                                case 7:
+                                    img.setImageResource(R.drawable.token5);
+                                    break;
+                                case 8:
+                                    img.setImageResource(R.drawable.token10);
+                                    break;
+                                case 9:
+                                    img.setImageResource(R.drawable.token25);
+                                    break;
+                                case 10:
+                                    img.setImageResource(R.drawable.token50);
+                                    break;
+                                case 11:
+                                    img.setImageResource(R.drawable.token100);
+                                    break;
+                                case 12:
+                                    img.setImageResource(R.drawable.token250);
+                                    break;
+                            }
+                            break;
+                    }
+
                 }
             });
         }
     }
-
-    //метод открыть ячейку
-    private void openTheImage(){
-        switch (arrayValues.get(0)){
-            case 1:
-                image1.setImageResource(R.drawable.token5);
-                break;
-            case 2:
-                image1.setImageResource(R.drawable.token10);
-                break;
-            case 3:
-                image1.setImageResource(R.drawable.token25);
-                break;
-            case 4:
-                image1.setImageResource(R.drawable.token50);
-                break;
-            case 5:
-                image1.setImageResource(R.drawable.token100);
-                break;
-            case 6:
-                image1.setImageResource(R.drawable.token250);
-                break;
-            case 7:
-                image1.setImageResource(R.drawable.token5);
-                break;
-            case 8:
-                image1.setImageResource(R.drawable.token10);
-                break;
-            case 9:
-                image1.setImageResource(R.drawable.token25);
-                break;
-            case 10:
-                image1.setImageResource(R.drawable.token50);
-                break;
-            case 11:
-                image1.setImageResource(R.drawable.token100);
-                break;
-            case 12:
-                image1.setImageResource(R.drawable.token250);
-                break;
-        }
-    }
-
-
-
-
-
 }
+
+
+
+
+
+
 
 
 
