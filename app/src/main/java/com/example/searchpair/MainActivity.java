@@ -34,7 +34,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         init();
-        Collections.shuffle(arrayResourcesImages);
+//        Collections.shuffle(arrayResourcesImages);
+        Collections.shuffle(arrayCards);
 
     }
     //инициализации блок
@@ -58,8 +59,11 @@ public class MainActivity extends AppCompatActivity {
         imageView14 = findViewById(R.id.idImage14);
         imageView15 = findViewById(R.id.idImage15);
         imageView16 = findViewById(R.id.idImage16);
+        imageViewFirstCard = findViewById(R.id.idImageFirstCard);
+        imageViewTwoCard = findViewById(R.id.idImageTwoCard);
 
-        addResourcesImagesToArray();
+        addToArrayCards();
+//        addResourcesImagesToArray();
         addToArrayImageViews();
         onClickImageViews();
     }
@@ -82,11 +86,25 @@ public class MainActivity extends AppCompatActivity {
         arrayResourcesImages.add(R.drawable.image7);
         arrayResourcesImages.add(R.drawable.image8);
     }
+
     //Создание экземпляров карточек
     private void addToArrayCards(){
-        for (int counter = 1; counter < 16; counter++) {
-            arrayCards.add(new Card(R.drawable.imageshirt));
-        }
+        arrayCards.add(new Card(R.drawable.image1, "1"));
+        arrayCards.add(new Card(R.drawable.image2, "2"));
+        arrayCards.add(new Card(R.drawable.image3, "3"));
+        arrayCards.add(new Card(R.drawable.image4, "4"));
+        arrayCards.add(new Card(R.drawable.image5, "5"));
+        arrayCards.add(new Card(R.drawable.image6, "6"));
+        arrayCards.add(new Card(R.drawable.image7, "7"));
+        arrayCards.add(new Card(R.drawable.image8, "8"));
+        arrayCards.add(new Card(R.drawable.image1, "1"));
+        arrayCards.add(new Card(R.drawable.image2, "2"));
+        arrayCards.add(new Card(R.drawable.image3, "3"));
+        arrayCards.add(new Card(R.drawable.image4, "4"));
+        arrayCards.add(new Card(R.drawable.image5, "5"));
+        arrayCards.add(new Card(R.drawable.image6, "6"));
+        arrayCards.add(new Card(R.drawable.image7, "7"));
+        arrayCards.add(new Card(R.drawable.image8, "8"));
     }
     //Заполнение массива с кнопками (для присвоения слушателей нажатий через цикл for-each)
     private void addToArrayImageViews(){
@@ -113,52 +131,54 @@ public class MainActivity extends AppCompatActivity {
         //установить ресурс для этой вью из списка в зависимости от индекса
         switch (img.getTag().toString()) {
             case "1":
-                img.setImageResource(arrayResourcesImages.get(0));
+                img.setImageResource(arrayCards.get(0).getImageResource());
+                //поработать над этим (вынести в отдельный метод)
+                imageViewFirstCard.setTag(arrayCards.get(0).getTagImage());
                 break;
             case "2":
-                img.setImageResource(arrayResourcesImages.get(1));
+                img.setImageResource(arrayCards.get(1).getImageResource());
                 break;
             case "3":
-                img.setImageResource(arrayResourcesImages.get(2));
+                img.setImageResource(arrayCards.get(2).getImageResource());
                 break;
             case "4":
-                img.setImageResource(arrayResourcesImages.get(3));
+                img.setImageResource(arrayCards.get(3).getImageResource());
                 break;
             case "5":
-                img.setImageResource(arrayResourcesImages.get(4));
+                img.setImageResource(arrayCards.get(4).getImageResource());
                 break;
             case "6":
-                img.setImageResource(arrayResourcesImages.get(5));
+                img.setImageResource(arrayCards.get(5).getImageResource());
                 break;
             case "7":
-                img.setImageResource(arrayResourcesImages.get(6));
+                img.setImageResource(arrayCards.get(6).getImageResource());
                 break;
             case "8":
-                img.setImageResource(arrayResourcesImages.get(7));
+                img.setImageResource(arrayCards.get(7).getImageResource());
                 break;
             case "9":
-                img.setImageResource(arrayResourcesImages.get(8));
+                img.setImageResource(arrayCards.get(8).getImageResource());
                 break;
             case "10":
-                img.setImageResource(arrayResourcesImages.get(9));
+                img.setImageResource(arrayCards.get(9).getImageResource());
                 break;
             case "11":
-                img.setImageResource(arrayResourcesImages.get(10));
+                img.setImageResource(arrayCards.get(10).getImageResource());
                 break;
             case "12":
-                img.setImageResource(arrayResourcesImages.get(11));
+                img.setImageResource(arrayCards.get(11).getImageResource());
                 break;
             case "13":
-                img.setImageResource(arrayResourcesImages.get(12));
+                img.setImageResource(arrayCards.get(12).getImageResource());
                 break;
             case "14":
-                img.setImageResource(arrayResourcesImages.get(13));
+                img.setImageResource(arrayCards.get(13).getImageResource());
                 break;
             case "15":
-                img.setImageResource(arrayResourcesImages.get(14));
+                img.setImageResource(arrayCards.get(14).getImageResource());
                 break;
             case "16":
-                img.setImageResource(arrayResourcesImages.get(15));
+                img.setImageResource(arrayCards.get(15).getImageResource());
                 break;
 
         }
@@ -172,11 +192,23 @@ public class MainActivity extends AppCompatActivity {
                     if (counterOpenedImages != 2) {
                         openCard(img);
                         counterOpenedImages++;
+
+                        if(counterOpenedImages == 1){
+                            imageViewFirstCard.setTag(img.getTag());
+                        }
+                        if(counterOpenedImages == 2){
+                            imageViewTwoCard.setTag(img.getTag());
+                        }
                     }else {
                         //закрыть все карты
                         closeAllImages();
                         counterOpenedImages = 0;
+                        imageViewFirstCard.setTag("0");
+                        imageViewTwoCard.setTag("0");
                     }
+                    System.out.println("clicked images:  " + img.getDrawable());
+                    System.out.println("first card:  " + imageViewFirstCard.getTag());
+                    System.out.println("two card:  " + imageViewTwoCard.getTag());
 
                 }
             });
@@ -186,13 +218,7 @@ public class MainActivity extends AppCompatActivity {
     //сравнить открытые картинки
     private void checkCards(){
         if (imageViewFirstCard.getTag().equals(imageViewTwoCard.getTag())) {
-            imageViewFirstCard.setVisibility(View.INVISIBLE);
-            imageViewTwoCard.setVisibility(View.INVISIBLE);
-            imageViewFirstCard.setImageResource(0);
-            imageViewTwoCard.setImageResource(0);
-        }else{
-            imageViewFirstCard = null;
-            imageViewTwoCard = null;
+            System.out.println("Cards equals");
         }
     }
 

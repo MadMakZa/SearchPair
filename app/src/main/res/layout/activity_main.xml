@@ -214,6 +214,14 @@
             android:src="@drawable/imageshirt"
             android:tag="16" />
 
+        <ImageView
+            android:id="@+id/idImageFirstCard"
+            android:tag="0" />
+
+        <ImageView
+            android:id="@+id/idImageTwoCard"
+            android:tag="0" />
+
 
     </GridLayout>
 
