@@ -22,9 +22,11 @@ public class MainActivity extends AppCompatActivity {
     private ImageView imageView1, imageView2, imageView3, imageView4,
             imageView5, imageView6, imageView7, imageView8,
             imageView9, imageView10, imageView11, imageView12,
-            imageView13, imageView14, imageView15, imageView16;
+            imageView13, imageView14, imageView15, imageView16,
+            imageViewFirstCard, imageViewTwoCard;
     Animation animation1 = null;
     Animation animation2 = null;
+    private int counterOpenedImages = 0;
 
 
     @Override
@@ -167,10 +169,39 @@ public class MainActivity extends AppCompatActivity {
             img.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    openCard(img);
+                    if (counterOpenedImages != 2) {
+                        openCard(img);
+                        counterOpenedImages++;
+                    }else {
+                        //закрыть все карты
+                        closeAllImages();
+                        counterOpenedImages = 0;
+                    }
+
                 }
             });
         }
+    }
+
+    //сравнить открытые картинки
+    private void checkCards(){
+        if (imageViewFirstCard.getTag().equals(imageViewTwoCard.getTag())) {
+            imageViewFirstCard.setVisibility(View.INVISIBLE);
+            imageViewTwoCard.setVisibility(View.INVISIBLE);
+            imageViewFirstCard.setImageResource(0);
+            imageViewTwoCard.setImageResource(0);
+        }else{
+            imageViewFirstCard = null;
+            imageViewTwoCard = null;
+        }
+    }
+
+    //закрыть все карты
+    private void closeAllImages(){
+        for (ImageView img : arrayImageViewsButtons){
+            img.setImageResource(R.drawable.imageshirt);
+        }
+
     }
 
 }
