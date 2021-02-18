@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         init();
+        Collections.shuffle(arrayResourcesImages);
 
     }
     //инициализации блок
@@ -55,6 +56,10 @@ public class MainActivity extends AppCompatActivity {
         imageView14 = findViewById(R.id.idImage14);
         imageView15 = findViewById(R.id.idImage15);
         imageView16 = findViewById(R.id.idImage16);
+
+        addResourcesImagesToArray();
+        addToArrayImageViews();
+        onClickImageViews();
     }
     //заполнить лист картинок из drawable
     private void addResourcesImagesToArray(){
@@ -75,6 +80,99 @@ public class MainActivity extends AppCompatActivity {
         arrayResourcesImages.add(R.drawable.image7);
         arrayResourcesImages.add(R.drawable.image8);
     }
+    //Создание экземпляров карточек
+    private void addToArrayCards(){
+        for (int counter = 1; counter < 16; counter++) {
+            arrayCards.add(new Card(R.drawable.imageshirt));
+        }
+    }
+    //Заполнение массива с кнопками (для присвоения слушателей нажатий через цикл for-each)
+    private void addToArrayImageViews(){
+        arrayImageViewsButtons.add(imageView1);
+        arrayImageViewsButtons.add(imageView2);
+        arrayImageViewsButtons.add(imageView3);
+        arrayImageViewsButtons.add(imageView4);
+        arrayImageViewsButtons.add(imageView5);
+        arrayImageViewsButtons.add(imageView6);
+        arrayImageViewsButtons.add(imageView7);
+        arrayImageViewsButtons.add(imageView8);
+        arrayImageViewsButtons.add(imageView9);
+        arrayImageViewsButtons.add(imageView10);
+        arrayImageViewsButtons.add(imageView11);
+        arrayImageViewsButtons.add(imageView12);
+        arrayImageViewsButtons.add(imageView13);
+        arrayImageViewsButtons.add(imageView14);
+        arrayImageViewsButtons.add(imageView15);
+        arrayImageViewsButtons.add(imageView16);
+    }
+
+    //открыть карту
+    private void openCard(ImageView img) {
+        //установить ресурс для этой вью из списка в зависимости от индекса
+        switch (img.getTag().toString()) {
+            case "1":
+                img.setImageResource(arrayResourcesImages.get(0));
+                break;
+            case "2":
+                img.setImageResource(arrayResourcesImages.get(1));
+                break;
+            case "3":
+                img.setImageResource(arrayResourcesImages.get(2));
+                break;
+            case "4":
+                img.setImageResource(arrayResourcesImages.get(3));
+                break;
+            case "5":
+                img.setImageResource(arrayResourcesImages.get(4));
+                break;
+            case "6":
+                img.setImageResource(arrayResourcesImages.get(5));
+                break;
+            case "7":
+                img.setImageResource(arrayResourcesImages.get(6));
+                break;
+            case "8":
+                img.setImageResource(arrayResourcesImages.get(7));
+                break;
+            case "9":
+                img.setImageResource(arrayResourcesImages.get(8));
+                break;
+            case "10":
+                img.setImageResource(arrayResourcesImages.get(9));
+                break;
+            case "11":
+                img.setImageResource(arrayResourcesImages.get(10));
+                break;
+            case "12":
+                img.setImageResource(arrayResourcesImages.get(11));
+                break;
+            case "13":
+                img.setImageResource(arrayResourcesImages.get(12));
+                break;
+            case "14":
+                img.setImageResource(arrayResourcesImages.get(13));
+                break;
+            case "15":
+                img.setImageResource(arrayResourcesImages.get(14));
+                break;
+            case "16":
+                img.setImageResource(arrayResourcesImages.get(15));
+                break;
+
+        }
+    }
+    //слушатель нажатий для картинок
+    private void onClickImageViews(){
+        for(final ImageView img : arrayImageViewsButtons){
+            img.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    openCard(img);
+                }
+            });
+        }
+    }
+
 }
 
 
