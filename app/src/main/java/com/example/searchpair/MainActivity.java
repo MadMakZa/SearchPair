@@ -15,7 +15,6 @@ import java.util.Collections;
 
 public class MainActivity extends AppCompatActivity {
 
-    ArrayList<Integer> arrayResourcesImages = new ArrayList<>(); //лист с картинками (будут перемешиваться)
     ArrayList<ImageView> arrayImageViewsButtons = new ArrayList<>(); //лист с кнопками
     ArrayList<Card> arrayCards = new ArrayList<>(); //лист с экземплярами карточек
 
@@ -24,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
             imageView9, imageView10, imageView11, imageView12,
             imageView13, imageView14, imageView15, imageView16,
             imageViewFirstCard, imageViewTwoCard;
+
     Animation animation1 = null;
     Animation animation2 = null;
     private int counterOpenedImages = 0;
@@ -34,7 +34,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         init();
-//        Collections.shuffle(arrayResourcesImages);
         Collections.shuffle(arrayCards);
 
     }
@@ -63,28 +62,8 @@ public class MainActivity extends AppCompatActivity {
         imageViewTwoCard = findViewById(R.id.idImageTwoCard);
 
         addToArrayCards();
-//        addResourcesImagesToArray();
         addToArrayImageViews();
         onClickImageViews();
-    }
-    //заполнить лист картинок из drawable
-    private void addResourcesImagesToArray(){
-        arrayResourcesImages.add(R.drawable.image1);
-        arrayResourcesImages.add(R.drawable.image2);
-        arrayResourcesImages.add(R.drawable.image3);
-        arrayResourcesImages.add(R.drawable.image4);
-        arrayResourcesImages.add(R.drawable.image5);
-        arrayResourcesImages.add(R.drawable.image6);
-        arrayResourcesImages.add(R.drawable.image7);
-        arrayResourcesImages.add(R.drawable.image8);
-        arrayResourcesImages.add(R.drawable.image1);
-        arrayResourcesImages.add(R.drawable.image2);
-        arrayResourcesImages.add(R.drawable.image3);
-        arrayResourcesImages.add(R.drawable.image4);
-        arrayResourcesImages.add(R.drawable.image5);
-        arrayResourcesImages.add(R.drawable.image6);
-        arrayResourcesImages.add(R.drawable.image7);
-        arrayResourcesImages.add(R.drawable.image8);
     }
 
     //Создание экземпляров карточек
@@ -132,53 +111,147 @@ public class MainActivity extends AppCompatActivity {
         switch (img.getTag().toString()) {
             case "1":
                 img.setImageResource(arrayCards.get(0).getImageResource());
-                //поработать над этим (вынести в отдельный метод)
-                imageViewFirstCard.setTag(arrayCards.get(0).getTagImage());
+                if(counterOpenedImages == 0){
+                    imageViewFirstCard.setTag(arrayCards.get(0).getTagImage());
+                }
+                if(counterOpenedImages == 1) {
+                    imageViewTwoCard.setTag(arrayCards.get(0).getTagImage());
+                }
                 break;
             case "2":
                 img.setImageResource(arrayCards.get(1).getImageResource());
+                if(counterOpenedImages == 0){
+                    imageViewFirstCard.setTag(arrayCards.get(1).getTagImage());
+                }
+                if(counterOpenedImages == 1) {
+                    imageViewTwoCard.setTag(arrayCards.get(1).getTagImage());
+                }
                 break;
             case "3":
                 img.setImageResource(arrayCards.get(2).getImageResource());
+                if(counterOpenedImages == 0){
+                    imageViewFirstCard.setTag(arrayCards.get(2).getTagImage());
+                }
+                if(counterOpenedImages == 1) {
+                    imageViewTwoCard.setTag(arrayCards.get(2).getTagImage());
+                }
                 break;
             case "4":
                 img.setImageResource(arrayCards.get(3).getImageResource());
+                if(counterOpenedImages == 0){
+                    imageViewFirstCard.setTag(arrayCards.get(3).getTagImage());
+                }
+                if(counterOpenedImages == 1) {
+                    imageViewTwoCard.setTag(arrayCards.get(3).getTagImage());
+                }
                 break;
             case "5":
                 img.setImageResource(arrayCards.get(4).getImageResource());
+                if(counterOpenedImages == 0){
+                    imageViewFirstCard.setTag(arrayCards.get(4).getTagImage());
+                }
+                if(counterOpenedImages == 1) {
+                    imageViewTwoCard.setTag(arrayCards.get(4).getTagImage());
+                }
                 break;
             case "6":
                 img.setImageResource(arrayCards.get(5).getImageResource());
+                if(counterOpenedImages == 0){
+                    imageViewFirstCard.setTag(arrayCards.get(5).getTagImage());
+                }
+                if(counterOpenedImages == 1) {
+                    imageViewTwoCard.setTag(arrayCards.get(5).getTagImage());
+                }
                 break;
             case "7":
                 img.setImageResource(arrayCards.get(6).getImageResource());
+                if(counterOpenedImages == 0){
+                    imageViewFirstCard.setTag(arrayCards.get(6).getTagImage());
+                }
+                if(counterOpenedImages == 1) {
+                    imageViewTwoCard.setTag(arrayCards.get(6).getTagImage());
+                }
                 break;
             case "8":
                 img.setImageResource(arrayCards.get(7).getImageResource());
+                if(counterOpenedImages == 0){
+                    imageViewFirstCard.setTag(arrayCards.get(7).getTagImage());
+                }
+                if(counterOpenedImages == 1) {
+                    imageViewTwoCard.setTag(arrayCards.get(7).getTagImage());
+                }
                 break;
             case "9":
                 img.setImageResource(arrayCards.get(8).getImageResource());
+                if(counterOpenedImages == 0){
+                    imageViewFirstCard.setTag(arrayCards.get(8).getTagImage());
+                }
+                if(counterOpenedImages == 1) {
+                    imageViewTwoCard.setTag(arrayCards.get(8).getTagImage());
+                }
                 break;
             case "10":
                 img.setImageResource(arrayCards.get(9).getImageResource());
+                if(counterOpenedImages == 0){
+                    imageViewFirstCard.setTag(arrayCards.get(9).getTagImage());
+                }
+                if(counterOpenedImages == 1) {
+                    imageViewTwoCard.setTag(arrayCards.get(9).getTagImage());
+                }
                 break;
             case "11":
                 img.setImageResource(arrayCards.get(10).getImageResource());
+                if(counterOpenedImages == 0){
+                    imageViewFirstCard.setTag(arrayCards.get(10).getTagImage());
+                }
+                if(counterOpenedImages == 1) {
+                    imageViewTwoCard.setTag(arrayCards.get(10).getTagImage());
+                }
                 break;
             case "12":
                 img.setImageResource(arrayCards.get(11).getImageResource());
+                if(counterOpenedImages == 0){
+                    imageViewFirstCard.setTag(arrayCards.get(11).getTagImage());
+                }
+                if(counterOpenedImages == 1) {
+                    imageViewTwoCard.setTag(arrayCards.get(11).getTagImage());
+                }
                 break;
             case "13":
                 img.setImageResource(arrayCards.get(12).getImageResource());
+                if(counterOpenedImages == 0){
+                    imageViewFirstCard.setTag(arrayCards.get(12).getTagImage());
+                }
+                if(counterOpenedImages == 1) {
+                    imageViewTwoCard.setTag(arrayCards.get(12).getTagImage());
+                }
                 break;
             case "14":
                 img.setImageResource(arrayCards.get(13).getImageResource());
+                if(counterOpenedImages == 0){
+                    imageViewFirstCard.setTag(arrayCards.get(13).getTagImage());
+                }
+                if(counterOpenedImages == 1) {
+                    imageViewTwoCard.setTag(arrayCards.get(13).getTagImage());
+                }
                 break;
             case "15":
                 img.setImageResource(arrayCards.get(14).getImageResource());
+                if(counterOpenedImages == 0){
+                    imageViewFirstCard.setTag(arrayCards.get(14).getTagImage());
+                }
+                if(counterOpenedImages == 1) {
+                    imageViewTwoCard.setTag(arrayCards.get(14).getTagImage());
+                }
                 break;
             case "16":
                 img.setImageResource(arrayCards.get(15).getImageResource());
+                if(counterOpenedImages == 0){
+                    imageViewFirstCard.setTag(arrayCards.get(15).getTagImage());
+                }
+                if(counterOpenedImages == 1) {
+                    imageViewTwoCard.setTag(arrayCards.get(15).getTagImage());
+                }
                 break;
 
         }
@@ -192,21 +265,13 @@ public class MainActivity extends AppCompatActivity {
                     if (counterOpenedImages != 2) {
                         openCard(img);
                         counterOpenedImages++;
-
-                        if(counterOpenedImages == 1){
-                            imageViewFirstCard.setTag(img.getTag());
-                        }
-                        if(counterOpenedImages == 2){
-                            imageViewTwoCard.setTag(img.getTag());
-                        }
+                        checkCards();
                     }else {
                         //закрыть все карты
                         closeAllImages();
                         counterOpenedImages = 0;
                         imageViewFirstCard.setTag("0");
-                        imageViewTwoCard.setTag("0");
                     }
-                    System.out.println("clicked images:  " + img.getDrawable());
                     System.out.println("first card:  " + imageViewFirstCard.getTag());
                     System.out.println("two card:  " + imageViewTwoCard.getTag());
 
@@ -219,6 +284,8 @@ public class MainActivity extends AppCompatActivity {
     private void checkCards(){
         if (imageViewFirstCard.getTag().equals(imageViewTwoCard.getTag())) {
             System.out.println("Cards equals");
+            imageViewFirstCard.setVisibility(View.INVISIBLE);
+            imageViewTwoCard.setVisibility(View.INVISIBLE);
         }
     }
 
