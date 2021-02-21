@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
         init();
         Collections.shuffle(arrayCards);
 
+
     }
     //инициализации блок
     private void init() {
@@ -264,12 +265,7 @@ public class MainActivity extends AppCompatActivity {
                 public void onClick(View v) {
                     if (counterOpenedImages != 2) {
                         openCard(img);
-                        if(counterOpenedImages == 0){
-                            imageViewFirstCard = img;
-                        }
-                        if(counterOpenedImages == 1) {
-                            imageViewTwoCard = img;
-                        }
+
                         counterOpenedImages++;
                         checkCards();
                     }else {
