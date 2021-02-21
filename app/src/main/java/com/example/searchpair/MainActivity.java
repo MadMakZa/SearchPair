@@ -16,7 +16,7 @@ import java.util.Collections;
 public class MainActivity extends AppCompatActivity {
 
     ArrayList<ImageView> arrayImageViewsButtons = new ArrayList<>(); //лист с кнопками
-    ArrayList<Card> arrayCards = new ArrayList<>(); //лист с экземплярами карточек
+    ArrayList<String> arrayTags = new ArrayList<>(); //лист с тагами (за конкретным тагом закреплена конкретная картинка)
 
     private ImageView imageView1, imageView2, imageView3, imageView4,
             imageView5, imageView6, imageView7, imageView8,
@@ -34,7 +34,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         init();
-        Collections.shuffle(arrayCards);
+
+        for (String str : arrayTags) {
+            System.out.println(str);
+        }
 
 
     }
@@ -62,29 +65,20 @@ public class MainActivity extends AppCompatActivity {
         imageViewFirstCard = findViewById(R.id.idImageFirstCard);
         imageViewTwoCard = findViewById(R.id.idImageTwoCard);
 
-        addToArrayCards();
+        addTagsToList();
+        Collections.shuffle(arrayTags);
         addToArrayImageViews();
         onClickImageViews();
+        createTagsForImageViews();
     }
-
-    //Создание экземпляров карточек
-    private void addToArrayCards(){
-        arrayCards.add(new Card(R.drawable.image1, "1"));
-        arrayCards.add(new Card(R.drawable.image2, "2"));
-        arrayCards.add(new Card(R.drawable.image3, "3"));
-        arrayCards.add(new Card(R.drawable.image4, "4"));
-        arrayCards.add(new Card(R.drawable.image5, "5"));
-        arrayCards.add(new Card(R.drawable.image6, "6"));
-        arrayCards.add(new Card(R.drawable.image7, "7"));
-        arrayCards.add(new Card(R.drawable.image8, "8"));
-        arrayCards.add(new Card(R.drawable.image1, "1"));
-        arrayCards.add(new Card(R.drawable.image2, "2"));
-        arrayCards.add(new Card(R.drawable.image3, "3"));
-        arrayCards.add(new Card(R.drawable.image4, "4"));
-        arrayCards.add(new Card(R.drawable.image5, "5"));
-        arrayCards.add(new Card(R.drawable.image6, "6"));
-        arrayCards.add(new Card(R.drawable.image7, "7"));
-        arrayCards.add(new Card(R.drawable.image8, "8"));
+    //заполнить лист тагов
+    private void addTagsToList(){
+        for (int i = 1; i < 9; i++){
+            arrayTags.add(String.valueOf(i));
+        }
+        for (int i = 1; i < 9; i++){
+            arrayTags.add(String.valueOf(i));
+        }
     }
     //Заполнение массива с кнопками (для присвоения слушателей нажатий через цикл for-each)
     private void addToArrayImageViews(){
@@ -106,155 +100,53 @@ public class MainActivity extends AppCompatActivity {
         arrayImageViewsButtons.add(imageView16);
     }
 
+    //присвоить таги для ImageViews
+    private void createTagsForImageViews(){
+        arrayImageViewsButtons.get(0).setTag(arrayTags.get(0));
+        arrayImageViewsButtons.get(1).setTag(arrayTags.get(1));
+        arrayImageViewsButtons.get(2).setTag(arrayTags.get(2));
+        arrayImageViewsButtons.get(3).setTag(arrayTags.get(3));
+        arrayImageViewsButtons.get(4).setTag(arrayTags.get(4));
+        arrayImageViewsButtons.get(5).setTag(arrayTags.get(5));
+        arrayImageViewsButtons.get(6).setTag(arrayTags.get(6));
+        arrayImageViewsButtons.get(7).setTag(arrayTags.get(7));
+        arrayImageViewsButtons.get(8).setTag(arrayTags.get(8));
+        arrayImageViewsButtons.get(9).setTag(arrayTags.get(9));
+        arrayImageViewsButtons.get(10).setTag(arrayTags.get(10));
+        arrayImageViewsButtons.get(11).setTag(arrayTags.get(11));
+        arrayImageViewsButtons.get(12).setTag(arrayTags.get(12));
+        arrayImageViewsButtons.get(13).setTag(arrayTags.get(13));
+        arrayImageViewsButtons.get(14).setTag(arrayTags.get(14));
+        arrayImageViewsButtons.get(15).setTag(arrayTags.get(15));
+    }
     //открыть карту
     private void openCard(ImageView img) {
         //установить ресурс для этой вью из списка в зависимости от индекса
         switch (img.getTag().toString()) {
             case "1":
-                img.setImageResource(arrayCards.get(0).getImageResource());
-                if(counterOpenedImages == 0){
-                    imageViewFirstCard.setTag(arrayCards.get(0).getTagImage());
-                }
-                if(counterOpenedImages == 1) {
-                    imageViewTwoCard.setTag(arrayCards.get(0).getTagImage());
-                }
+                img.setImageResource(R.drawable.image1);
                 break;
             case "2":
-                img.setImageResource(arrayCards.get(1).getImageResource());
-                if(counterOpenedImages == 0){
-                    imageViewFirstCard.setTag(arrayCards.get(1).getTagImage());
-                }
-                if(counterOpenedImages == 1) {
-                    imageViewTwoCard.setTag(arrayCards.get(1).getTagImage());
-                }
+                img.setImageResource(R.drawable.image2);
                 break;
             case "3":
-                img.setImageResource(arrayCards.get(2).getImageResource());
-                if(counterOpenedImages == 0){
-                    imageViewFirstCard.setTag(arrayCards.get(2).getTagImage());
-                }
-                if(counterOpenedImages == 1) {
-                    imageViewTwoCard.setTag(arrayCards.get(2).getTagImage());
-                }
+                img.setImageResource(R.drawable.image3);
                 break;
             case "4":
-                img.setImageResource(arrayCards.get(3).getImageResource());
-                if(counterOpenedImages == 0){
-                    imageViewFirstCard.setTag(arrayCards.get(3).getTagImage());
-                }
-                if(counterOpenedImages == 1) {
-                    imageViewTwoCard.setTag(arrayCards.get(3).getTagImage());
-                }
+                img.setImageResource(R.drawable.image4);
                 break;
             case "5":
-                img.setImageResource(arrayCards.get(4).getImageResource());
-                if(counterOpenedImages == 0){
-                    imageViewFirstCard.setTag(arrayCards.get(4).getTagImage());
-                }
-                if(counterOpenedImages == 1) {
-                    imageViewTwoCard.setTag(arrayCards.get(4).getTagImage());
-                }
+                img.setImageResource(R.drawable.image5);
                 break;
             case "6":
-                img.setImageResource(arrayCards.get(5).getImageResource());
-                if(counterOpenedImages == 0){
-                    imageViewFirstCard.setTag(arrayCards.get(5).getTagImage());
-                }
-                if(counterOpenedImages == 1) {
-                    imageViewTwoCard.setTag(arrayCards.get(5).getTagImage());
-                }
+                img.setImageResource(R.drawable.image6);
                 break;
             case "7":
-                img.setImageResource(arrayCards.get(6).getImageResource());
-                if(counterOpenedImages == 0){
-                    imageViewFirstCard.setTag(arrayCards.get(6).getTagImage());
-                }
-                if(counterOpenedImages == 1) {
-                    imageViewTwoCard.setTag(arrayCards.get(6).getTagImage());
-                }
+                img.setImageResource(R.drawable.image7);
                 break;
             case "8":
-                img.setImageResource(arrayCards.get(7).getImageResource());
-                if(counterOpenedImages == 0){
-                    imageViewFirstCard.setTag(arrayCards.get(7).getTagImage());
-                }
-                if(counterOpenedImages == 1) {
-                    imageViewTwoCard.setTag(arrayCards.get(7).getTagImage());
-                }
+                img.setImageResource(R.drawable.image8);
                 break;
-            case "9":
-                img.setImageResource(arrayCards.get(8).getImageResource());
-                if(counterOpenedImages == 0){
-                    imageViewFirstCard.setTag(arrayCards.get(8).getTagImage());
-                }
-                if(counterOpenedImages == 1) {
-                    imageViewTwoCard.setTag(arrayCards.get(8).getTagImage());
-                }
-                break;
-            case "10":
-                img.setImageResource(arrayCards.get(9).getImageResource());
-                if(counterOpenedImages == 0){
-                    imageViewFirstCard.setTag(arrayCards.get(9).getTagImage());
-                }
-                if(counterOpenedImages == 1) {
-                    imageViewTwoCard.setTag(arrayCards.get(9).getTagImage());
-                }
-                break;
-            case "11":
-                img.setImageResource(arrayCards.get(10).getImageResource());
-                if(counterOpenedImages == 0){
-                    imageViewFirstCard.setTag(arrayCards.get(10).getTagImage());
-                }
-                if(counterOpenedImages == 1) {
-                    imageViewTwoCard.setTag(arrayCards.get(10).getTagImage());
-                }
-                break;
-            case "12":
-                img.setImageResource(arrayCards.get(11).getImageResource());
-                if(counterOpenedImages == 0){
-                    imageViewFirstCard.setTag(arrayCards.get(11).getTagImage());
-                }
-                if(counterOpenedImages == 1) {
-                    imageViewTwoCard.setTag(arrayCards.get(11).getTagImage());
-                }
-                break;
-            case "13":
-                img.setImageResource(arrayCards.get(12).getImageResource());
-                if(counterOpenedImages == 0){
-                    imageViewFirstCard.setTag(arrayCards.get(12).getTagImage());
-                }
-                if(counterOpenedImages == 1) {
-                    imageViewTwoCard.setTag(arrayCards.get(12).getTagImage());
-                }
-                break;
-            case "14":
-                img.setImageResource(arrayCards.get(13).getImageResource());
-                if(counterOpenedImages == 0){
-                    imageViewFirstCard.setTag(arrayCards.get(13).getTagImage());
-                }
-                if(counterOpenedImages == 1) {
-                    imageViewTwoCard.setTag(arrayCards.get(13).getTagImage());
-                }
-                break;
-            case "15":
-                img.setImageResource(arrayCards.get(14).getImageResource());
-                if(counterOpenedImages == 0){
-                    imageViewFirstCard.setTag(arrayCards.get(14).getTagImage());
-                }
-                if(counterOpenedImages == 1) {
-                    imageViewTwoCard.setTag(arrayCards.get(14).getTagImage());
-                }
-                break;
-            case "16":
-                img.setImageResource(arrayCards.get(15).getImageResource());
-                if(counterOpenedImages == 0){
-                    imageViewFirstCard.setTag(arrayCards.get(15).getTagImage());
-                }
-                if(counterOpenedImages == 1) {
-                    imageViewTwoCard.setTag(arrayCards.get(15).getTagImage());
-                }
-                break;
-
         }
     }
     //слушатель нажатий для картинок
@@ -265,6 +157,13 @@ public class MainActivity extends AppCompatActivity {
                 public void onClick(View v) {
                     if (counterOpenedImages != 2) {
                         openCard(img);
+                        //присваивание
+//                        if(counterOpenedImages == 0){
+//                            imageViewFirstCard = img;
+//                        }
+//                        if(counterOpenedImages == 1){
+//                            imageViewTwoCard = img;
+//                        }
 
                         counterOpenedImages++;
                         checkCards();
@@ -274,6 +173,7 @@ public class MainActivity extends AppCompatActivity {
                         counterOpenedImages = 0;
 
                     }
+                    System.out.println("Clicked ImageView Tag:  " + img.getTag());
                     System.out.println("first card:  " + imageViewFirstCard.getTag());
                     System.out.println("two card:  " + imageViewTwoCard.getTag());
 
@@ -282,7 +182,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    //сравнить открытые картинки
+    //сравнить открытые картинки (идея поделить таг на 2 и сравнить, но для начала привести его к инту)
     private void checkCards(){
         if (imageViewFirstCard.getTag().equals(imageViewTwoCard.getTag())) {
             System.out.println("Cards equals");
