@@ -158,12 +158,14 @@ public class MainActivity extends AppCompatActivity {
                     if (counterOpenedImages != 2) {
                         openCard(img);
                         //присваивание
-//                        if(counterOpenedImages == 0){
-//                            imageViewFirstCard = img;
-//                        }
-//                        if(counterOpenedImages == 1){
-//                            imageViewTwoCard = img;
-//                        }
+                        if(counterOpenedImages == 0){
+                            imageViewFirstCard = img;
+                            imageViewFirstCard.setClickable(false);
+                        }
+                        if(counterOpenedImages == 1){
+                            imageViewTwoCard = img;
+                            imageViewTwoCard.setClickable(false);
+                        }
 
                         counterOpenedImages++;
                         checkCards();
@@ -171,6 +173,8 @@ public class MainActivity extends AppCompatActivity {
                         //закрыть все карты
                         closeAllImages();
                         counterOpenedImages = 0;
+                        imageViewFirstCard.setClickable(true);
+                        imageViewTwoCard.setClickable(true);
 
                     }
                     System.out.println("Clicked ImageView Tag:  " + img.getTag());
