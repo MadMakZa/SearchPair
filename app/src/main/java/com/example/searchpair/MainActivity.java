@@ -156,19 +156,36 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     if (counterOpenedImages != 2) {
-                        openCard(img);
-                        //присваивание
-                        if(counterOpenedImages == 0){
-                            imageViewFirstCard = img;
-                            imageViewFirstCard.setClickable(false);
-                        }
-                        if(counterOpenedImages == 1){
-                            imageViewTwoCard = img;
-                            imageViewTwoCard.setClickable(false);
-                        }
+                        img.startAnimation(animation1);
+                        animation1.setAnimationListener(new Animation.AnimationListener() {
+                            @Override
+                            public void onAnimationStart(Animation animation) {
+                                //присваивание
+                                if(counterOpenedImages == 0){
+                                    imageViewFirstCard = img;
+                                    imageViewFirstCard.setClickable(false);
+                                }
+                                if(counterOpenedImages == 1){
+                                    imageViewTwoCard = img;
+                                    imageViewTwoCard.setClickable(false);
+                                }
+                                counterOpenedImages++;
+                            }
 
-                        counterOpenedImages++;
-                        checkCards();
+                            @Override
+                            public void onAnimationEnd(Animation animation) {
+                                openCard(img);
+                                checkCards();
+                            }
+
+                            @Override
+                            public void onAnimationRepeat(Animation animation) {
+
+                            }
+                        });
+
+
+
                     }else {
                         //закрыть все карты
                         closeAllImages();
