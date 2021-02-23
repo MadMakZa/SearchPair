@@ -156,6 +156,7 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     if (counterOpenedImages != 2) {
+                        //запуск первой половины анимации
                         img.startAnimation(animation1);
                         animation1.setAnimationListener(new Animation.AnimationListener() {
                             @Override
@@ -174,8 +175,25 @@ public class MainActivity extends AppCompatActivity {
 
                             @Override
                             public void onAnimationEnd(Animation animation) {
-                                openCard(img);
-                                checkCards();
+                                //запуск второй половины анимации
+                                img.startAnimation(animation2);
+                                animation2.setAnimationListener(new Animation.AnimationListener() {
+                                    @Override
+                                    public void onAnimationStart(Animation animation) {
+                                        openCard(img);
+                                    }
+
+                                    @Override
+                                    public void onAnimationEnd(Animation animation) {
+                                        checkCards();
+                                    }
+
+                                    @Override
+                                    public void onAnimationRepeat(Animation animation) {
+
+                                    }
+                                });
+
                             }
 
                             @Override
