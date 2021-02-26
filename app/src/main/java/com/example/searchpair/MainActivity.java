@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
             imageView5, imageView6, imageView7, imageView8,
             imageView9, imageView10, imageView11, imageView12,
             imageView13, imageView14, imageView15, imageView16,
-            imageViewFirstCard, imageViewTwoCard;
+            imageViewFirstCard, imageViewTwoCard, logoImage;
 
     Animation animation1 = null;
     Animation animation2 = null;
@@ -46,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
         animation1 = AnimationUtils.loadAnimation(this, R.anim.flip_to_middle);
         animation2 = AnimationUtils.loadAnimation(this, R.anim.flip_from_middle);
 
+        logoImage = findViewById(R.id.idImageLogo);
         imageView1 = findViewById(R.id.idImage1);
         imageView2 = findViewById(R.id.idImage2);
         imageView3 = findViewById(R.id.idImage3);
@@ -65,11 +66,33 @@ public class MainActivity extends AppCompatActivity {
         imageViewFirstCard = findViewById(R.id.idImageFirstCard);
         imageViewTwoCard = findViewById(R.id.idImageTwoCard);
 
-        addTagsToList();
-        Collections.shuffle(arrayTags);
+
         addToArrayImageViews();
         onClickImageViews();
+        newGame();
+        startNewGame();
+    }
+    //генерация игрового поля (новая игра)
+    private void newGame(){
+        addTagsToList();
+        Collections.shuffle(arrayTags);
         createTagsForImageViews();
+        for (ImageView img : arrayImageViewsButtons){
+            img.setImageResource(R.drawable.imageshirt);
+            img.setVisibility(View.VISIBLE);
+        }
+        closeAllImages();
+
+
+    }
+    //начать новую игру
+    private void startNewGame(){
+        logoImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                newGame();
+            }
+        });
     }
     //заполнить лист тагов
     private void addTagsToList(){
@@ -239,6 +262,7 @@ public class MainActivity extends AppCompatActivity {
 
         imageViewFirstCard.setClickable(true);
         imageViewTwoCard.setClickable(true);
+        //присвоить ресы по умолчанию
         imageViewFirstCard = findViewById(R.id.idImageFirstCard);
         imageViewTwoCard = findViewById(R.id.idImageTwoCard);
 

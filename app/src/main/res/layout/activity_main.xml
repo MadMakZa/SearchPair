@@ -226,7 +226,7 @@
     </GridLayout>
 
     <ImageView
-        android:id="@+id/imageLogo"
+        android:id="@+id/idImageLogo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="onClickLogo"
