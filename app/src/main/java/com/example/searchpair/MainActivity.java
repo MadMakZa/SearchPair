@@ -204,13 +204,6 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-                    }else {
-                        //закрыть все карты
-                        closeAllImages();
-                        counterOpenedImages = 0;
-                        imageViewFirstCard.setClickable(true);
-                        imageViewTwoCard.setClickable(true);
-
                     }
                     System.out.println("Clicked ImageView Tag:  " + img.getTag());
                     System.out.println("first card:  " + imageViewFirstCard.getTag());
@@ -227,6 +220,14 @@ public class MainActivity extends AppCompatActivity {
             System.out.println("Cards equals");
             imageViewFirstCard.setVisibility(View.INVISIBLE);
             imageViewTwoCard.setVisibility(View.INVISIBLE);
+            counterOpenedImages = 0;
+        }else {
+            //закрыть все карты
+            if(counterOpenedImages == 2) {
+                closeAllImages();
+                counterOpenedImages = 0;
+
+            }
         }
     }
 
@@ -235,6 +236,11 @@ public class MainActivity extends AppCompatActivity {
         for (ImageView img : arrayImageViewsButtons){
             img.setImageResource(R.drawable.imageshirt);
         }
+
+        imageViewFirstCard.setClickable(true);
+        imageViewTwoCard.setClickable(true);
+        imageViewFirstCard = findViewById(R.id.idImageFirstCard);
+        imageViewTwoCard = findViewById(R.id.idImageTwoCard);
 
     }
 
