@@ -193,7 +193,6 @@ public class MainActivity extends AppCompatActivity {
                                     imageViewTwoCard = img;
                                     imageViewTwoCard.setClickable(false);
                                 }
-                                counterOpenedImages++;
                             }
 
                             @Override
@@ -203,6 +202,7 @@ public class MainActivity extends AppCompatActivity {
                                 animation2.setAnimationListener(new Animation.AnimationListener() {
                                     @Override
                                     public void onAnimationStart(Animation animation) {
+                                        counterOpenedImages++;
                                         openCard(img);
                                     }
 
@@ -258,6 +258,7 @@ public class MainActivity extends AppCompatActivity {
     private void closeAllImages(){
         for (ImageView img : arrayImageViewsButtons){
             img.setImageResource(R.drawable.imageshirt);
+            img.setClickable(true);
         }
 
         imageViewFirstCard.setClickable(true);
