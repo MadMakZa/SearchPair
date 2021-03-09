@@ -237,7 +237,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    //сравнить открытые картинки (идея поделить таг на 2 и сравнить, но для начала привести его к инту)
+    //сравнить открытые картинки
     private void checkCards(){
         if (imageViewFirstCard.getTag().equals(imageViewTwoCard.getTag())) {
             System.out.println("Cards equals");
