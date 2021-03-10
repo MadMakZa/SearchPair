@@ -1,281 +1,232 @@
-package com.example.searchpair;
+package com.example.searchpair
 
-import androidx.appcompat.app.AppCompatActivity;
+import android.os.Bundle
+import android.view.View
+import android.view.animation.Animation
+import android.view.animation.Animation.AnimationListener
+import android.view.animation.AnimationUtils
+import android.widget.ImageView
+import androidx.appcompat.app.AppCompatActivity
+import java.util.*
 
-import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.widget.ImageView;
-
-import java.util.ArrayList;
-import java.util.Collections;
-
-
-public class MainActivity extends AppCompatActivity {
-
-    ArrayList<ImageView> arrayImageViewsButtons = new ArrayList<>(); //лист с кнопками
-    ArrayList<String> arrayTags = new ArrayList<>(); //лист с тагами (за конкретным тагом закреплена конкретная картинка)
-
-    private ImageView imageView1, imageView2, imageView3, imageView4,
-            imageView5, imageView6, imageView7, imageView8,
-            imageView9, imageView10, imageView11, imageView12,
-            imageView13, imageView14, imageView15, imageView16,
-            imageViewFirstCard, imageViewTwoCard, logoImage;
-
-    Animation animation1 = null;
-    Animation animation2 = null;
-    private int counterOpenedImages = 0;
-
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        init();
-
-        for (String str : arrayTags) {
-            System.out.println(str);
+class MainActivity : AppCompatActivity() {
+    var arrayImageViewsButtons = ArrayList<ImageView?>() //лист с кнопками
+    var arrayTags = ArrayList<String?>() //лист с тагами (за конкретным тагом закреплена конкретная картинка)
+    private var imageView1: ImageView? = null
+    private var imageView2: ImageView? = null
+    private var imageView3: ImageView? = null
+    private var imageView4: ImageView? = null
+    private var imageView5: ImageView? = null
+    private var imageView6: ImageView? = null
+    private var imageView7: ImageView? = null
+    private var imageView8: ImageView? = null
+    private var imageView9: ImageView? = null
+    private var imageView10: ImageView? = null
+    private var imageView11: ImageView? = null
+    private var imageView12: ImageView? = null
+    private var imageView13: ImageView? = null
+    private var imageView14: ImageView? = null
+    private var imageView15: ImageView? = null
+    private var imageView16: ImageView? = null
+    private var imageViewFirstCard: ImageView? = null
+    private var imageViewTwoCard: ImageView? = null
+    private var logoImage: ImageView? = null
+    var animation1: Animation? = null
+    var animation2: Animation? = null
+    private var counterOpenedImages = 0
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+        init()
+        for (str in arrayTags) {
+            println(str)
         }
-
-
     }
+
     //инициализации блок
-    private void init() {
-        animation1 = AnimationUtils.loadAnimation(this, R.anim.flip_to_middle);
-        animation2 = AnimationUtils.loadAnimation(this, R.anim.flip_from_middle);
-
-        logoImage = findViewById(R.id.idImageLogo);
-        imageView1 = findViewById(R.id.idImage1);
-        imageView2 = findViewById(R.id.idImage2);
-        imageView3 = findViewById(R.id.idImage3);
-        imageView4 = findViewById(R.id.idImage4);
-        imageView5 = findViewById(R.id.idImage5);
-        imageView6 = findViewById(R.id.idImage6);
-        imageView7 = findViewById(R.id.idImage7);
-        imageView8 = findViewById(R.id.idImage8);
-        imageView9 = findViewById(R.id.idImage9);
-        imageView10 = findViewById(R.id.idImage10);
-        imageView11 = findViewById(R.id.idImage11);
-        imageView12 = findViewById(R.id.idImage12);
-        imageView13 = findViewById(R.id.idImage13);
-        imageView14 = findViewById(R.id.idImage14);
-        imageView15 = findViewById(R.id.idImage15);
-        imageView16 = findViewById(R.id.idImage16);
-        imageViewFirstCard = findViewById(R.id.idImageFirstCard);
-        imageViewTwoCard = findViewById(R.id.idImageTwoCard);
-
-
-        addToArrayImageViews();
-        onClickImageViews();
-        newGame();
-        startNewGame();
+    private fun init() {
+        animation1 = AnimationUtils.loadAnimation(this, R.anim.flip_to_middle)
+        animation2 = AnimationUtils.loadAnimation(this, R.anim.flip_from_middle)
+        logoImage = findViewById(R.id.idImageLogo)
+        imageView1 = findViewById(R.id.idImage1)
+        imageView2 = findViewById(R.id.idImage2)
+        imageView3 = findViewById(R.id.idImage3)
+        imageView4 = findViewById(R.id.idImage4)
+        imageView5 = findViewById(R.id.idImage5)
+        imageView6 = findViewById(R.id.idImage6)
+        imageView7 = findViewById(R.id.idImage7)
+        imageView8 = findViewById(R.id.idImage8)
+        imageView9 = findViewById(R.id.idImage9)
+        imageView10 = findViewById(R.id.idImage10)
+        imageView11 = findViewById(R.id.idImage11)
+        imageView12 = findViewById(R.id.idImage12)
+        imageView13 = findViewById(R.id.idImage13)
+        imageView14 = findViewById(R.id.idImage14)
+        imageView15 = findViewById(R.id.idImage15)
+        imageView16 = findViewById(R.id.idImage16)
+        imageViewFirstCard = findViewById(R.id.idImageFirstCard)
+        imageViewTwoCard = findViewById(R.id.idImageTwoCard)
+        addToArrayImageViews()
+        onClickImageViews()
+        newGame()
+        startNewGame()
     }
+
     //генерация игрового поля (новая игра)
-    private void newGame(){
-        addTagsToList();
-        Collections.shuffle(arrayTags);
-        createTagsForImageViews();
-        for (ImageView img : arrayImageViewsButtons){
-            img.setImageResource(R.drawable.imageshirt);
-            img.setVisibility(View.VISIBLE);
+    private fun newGame() {
+        addTagsToList()
+        arrayTags.shuffle()
+        createTagsForImageViews()
+        for (img in arrayImageViewsButtons) {
+            img!!.setImageResource(R.drawable.imageshirt)
+            img.visibility = View.VISIBLE
         }
-        closeAllImages();
-
-
+        closeAllImages()
     }
+
     //начать новую игру
-    private void startNewGame(){
-        logoImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                newGame();
-            }
-        });
+    private fun startNewGame() {
+        logoImage!!.setOnClickListener { newGame() }
     }
+
     //заполнить лист тагов
-    private void addTagsToList(){
-        for (int i = 1; i < 9; i++){
-            arrayTags.add(String.valueOf(i));
+    private fun addTagsToList() {
+        for (i in 1..8) {
+            arrayTags.add(i.toString())
         }
-        for (int i = 1; i < 9; i++){
-            arrayTags.add(String.valueOf(i));
+        for (i in 1..8) {
+            arrayTags.add(i.toString())
         }
     }
+
     //Заполнение массива с кнопками (для присвоения слушателей нажатий через цикл for-each)
-    private void addToArrayImageViews(){
-        arrayImageViewsButtons.add(imageView1);
-        arrayImageViewsButtons.add(imageView2);
-        arrayImageViewsButtons.add(imageView3);
-        arrayImageViewsButtons.add(imageView4);
-        arrayImageViewsButtons.add(imageView5);
-        arrayImageViewsButtons.add(imageView6);
-        arrayImageViewsButtons.add(imageView7);
-        arrayImageViewsButtons.add(imageView8);
-        arrayImageViewsButtons.add(imageView9);
-        arrayImageViewsButtons.add(imageView10);
-        arrayImageViewsButtons.add(imageView11);
-        arrayImageViewsButtons.add(imageView12);
-        arrayImageViewsButtons.add(imageView13);
-        arrayImageViewsButtons.add(imageView14);
-        arrayImageViewsButtons.add(imageView15);
-        arrayImageViewsButtons.add(imageView16);
+    private fun addToArrayImageViews() {
+        arrayImageViewsButtons.add(imageView1)
+        arrayImageViewsButtons.add(imageView2)
+        arrayImageViewsButtons.add(imageView3)
+        arrayImageViewsButtons.add(imageView4)
+        arrayImageViewsButtons.add(imageView5)
+        arrayImageViewsButtons.add(imageView6)
+        arrayImageViewsButtons.add(imageView7)
+        arrayImageViewsButtons.add(imageView8)
+        arrayImageViewsButtons.add(imageView9)
+        arrayImageViewsButtons.add(imageView10)
+        arrayImageViewsButtons.add(imageView11)
+        arrayImageViewsButtons.add(imageView12)
+        arrayImageViewsButtons.add(imageView13)
+        arrayImageViewsButtons.add(imageView14)
+        arrayImageViewsButtons.add(imageView15)
+        arrayImageViewsButtons.add(imageView16)
     }
 
     //присвоить таги для ImageViews
-    private void createTagsForImageViews(){
-        arrayImageViewsButtons.get(0).setTag(arrayTags.get(0));
-        arrayImageViewsButtons.get(1).setTag(arrayTags.get(1));
-        arrayImageViewsButtons.get(2).setTag(arrayTags.get(2));
-        arrayImageViewsButtons.get(3).setTag(arrayTags.get(3));
-        arrayImageViewsButtons.get(4).setTag(arrayTags.get(4));
-        arrayImageViewsButtons.get(5).setTag(arrayTags.get(5));
-        arrayImageViewsButtons.get(6).setTag(arrayTags.get(6));
-        arrayImageViewsButtons.get(7).setTag(arrayTags.get(7));
-        arrayImageViewsButtons.get(8).setTag(arrayTags.get(8));
-        arrayImageViewsButtons.get(9).setTag(arrayTags.get(9));
-        arrayImageViewsButtons.get(10).setTag(arrayTags.get(10));
-        arrayImageViewsButtons.get(11).setTag(arrayTags.get(11));
-        arrayImageViewsButtons.get(12).setTag(arrayTags.get(12));
-        arrayImageViewsButtons.get(13).setTag(arrayTags.get(13));
-        arrayImageViewsButtons.get(14).setTag(arrayTags.get(14));
-        arrayImageViewsButtons.get(15).setTag(arrayTags.get(15));
+    private fun createTagsForImageViews() {
+        arrayImageViewsButtons[0]!!.tag = arrayTags[0]
+        arrayImageViewsButtons[1]!!.tag = arrayTags[1]
+        arrayImageViewsButtons[2]!!.tag = arrayTags[2]
+        arrayImageViewsButtons[3]!!.tag = arrayTags[3]
+        arrayImageViewsButtons[4]!!.tag = arrayTags[4]
+        arrayImageViewsButtons[5]!!.tag = arrayTags[5]
+        arrayImageViewsButtons[6]!!.tag = arrayTags[6]
+        arrayImageViewsButtons[7]!!.tag = arrayTags[7]
+        arrayImageViewsButtons[8]!!.tag = arrayTags[8]
+        arrayImageViewsButtons[9]!!.tag = arrayTags[9]
+        arrayImageViewsButtons[10]!!.tag = arrayTags[10]
+        arrayImageViewsButtons[11]!!.tag = arrayTags[11]
+        arrayImageViewsButtons[12]!!.tag = arrayTags[12]
+        arrayImageViewsButtons[13]!!.tag = arrayTags[13]
+        arrayImageViewsButtons[14]!!.tag = arrayTags[14]
+        arrayImageViewsButtons[15]!!.tag = arrayTags[15]
     }
+
     //открыть карту
-    private void openCard(ImageView img) {
+    private fun openCard(img: ImageView?) {
         //установить ресурс для этой вью из списка в зависимости от индекса
-        switch (img.getTag().toString()) {
-            case "1":
-                img.setImageResource(R.drawable.image1);
-                break;
-            case "2":
-                img.setImageResource(R.drawable.image2);
-                break;
-            case "3":
-                img.setImageResource(R.drawable.image3);
-                break;
-            case "4":
-                img.setImageResource(R.drawable.image4);
-                break;
-            case "5":
-                img.setImageResource(R.drawable.image5);
-                break;
-            case "6":
-                img.setImageResource(R.drawable.image6);
-                break;
-            case "7":
-                img.setImageResource(R.drawable.image7);
-                break;
-            case "8":
-                img.setImageResource(R.drawable.image8);
-                break;
+        when (img!!.tag.toString()) {
+            "1" -> img.setImageResource(R.drawable.image1)
+            "2" -> img.setImageResource(R.drawable.image2)
+            "3" -> img.setImageResource(R.drawable.image3)
+            "4" -> img.setImageResource(R.drawable.image4)
+            "5" -> img.setImageResource(R.drawable.image5)
+            "6" -> img.setImageResource(R.drawable.image6)
+            "7" -> img.setImageResource(R.drawable.image7)
+            "8" -> img.setImageResource(R.drawable.image8)
         }
     }
+
     //слушатель нажатий для картинок
-    private void onClickImageViews(){
-        for(final ImageView img : arrayImageViewsButtons){
-            img.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (counterOpenedImages != 2) {
-                        //запуск первой половины анимации
-                        img.startAnimation(animation1);
-                        animation1.setAnimationListener(new Animation.AnimationListener() {
-                            @Override
-                            public void onAnimationStart(Animation animation) {
-                                //присваивание
-                                if(counterOpenedImages == 0){
-                                    imageViewFirstCard = img;
-                                    imageViewFirstCard.setClickable(false);
+    private fun onClickImageViews() {
+        for (img in arrayImageViewsButtons) {
+            img!!.setOnClickListener {
+                if (counterOpenedImages != 2) {
+                    //запуск первой половины анимации
+                    img.startAnimation(animation1)
+                    animation1!!.setAnimationListener(object : AnimationListener {
+                        override fun onAnimationStart(animation: Animation) {
+                            //присваивание
+                            if (counterOpenedImages == 0) {
+                                imageViewFirstCard = img
+                                imageViewFirstCard!!.isClickable = false
+                            }
+                            if (counterOpenedImages == 1) {
+                                imageViewTwoCard = img
+                                imageViewTwoCard!!.isClickable = false
+                            }
+                        }
+
+                        override fun onAnimationEnd(animation: Animation) {
+                            //запуск второй половины анимации
+                            img.startAnimation(animation2)
+                            animation2!!.setAnimationListener(object : AnimationListener {
+                                override fun onAnimationStart(animation: Animation) {
+                                    counterOpenedImages++
+                                    openCard(img)
                                 }
-                                if(counterOpenedImages == 1){
-                                    imageViewTwoCard = img;
-                                    imageViewTwoCard.setClickable(false);
+
+                                override fun onAnimationEnd(animation: Animation) {
+                                    checkCards()
                                 }
-                            }
 
-                            @Override
-                            public void onAnimationEnd(Animation animation) {
-                                //запуск второй половины анимации
-                                img.startAnimation(animation2);
-                                animation2.setAnimationListener(new Animation.AnimationListener() {
-                                    @Override
-                                    public void onAnimationStart(Animation animation) {
-                                        counterOpenedImages++;
-                                        openCard(img);
-                                    }
+                                override fun onAnimationRepeat(animation: Animation) {}
+                            })
+                        }
 
-                                    @Override
-                                    public void onAnimationEnd(Animation animation) {
-                                        checkCards();
-                                    }
-
-                                    @Override
-                                    public void onAnimationRepeat(Animation animation) {
-
-                                    }
-                                });
-
-                            }
-
-                            @Override
-                            public void onAnimationRepeat(Animation animation) {
-
-                            }
-                        });
-
-
-
-                    }
-                    System.out.println("Clicked ImageView Tag:  " + img.getTag());
-                    System.out.println("first card:  " + imageViewFirstCard.getTag());
-                    System.out.println("two card:  " + imageViewTwoCard.getTag());
-
+                        override fun onAnimationRepeat(animation: Animation) {}
+                    })
                 }
-            });
+                println("Clicked ImageView Tag:  " + img.tag)
+                println("first card:  " + imageViewFirstCard!!.tag)
+                println("two card:  " + imageViewTwoCard!!.tag)
+            }
         }
     }
 
     //сравнить открытые картинки
-    private void checkCards(){
-        if (imageViewFirstCard.getTag().equals(imageViewTwoCard.getTag())) {
-            System.out.println("Cards equals");
-            imageViewFirstCard.setVisibility(View.INVISIBLE);
-            imageViewTwoCard.setVisibility(View.INVISIBLE);
-            counterOpenedImages = 0;
-        }else {
+    private fun checkCards() {
+        if (imageViewFirstCard!!.tag == imageViewTwoCard!!.tag) {
+            println("Cards equals")
+            imageViewFirstCard!!.visibility = View.INVISIBLE
+            imageViewTwoCard!!.visibility = View.INVISIBLE
+            counterOpenedImages = 0
+        } else {
             //закрыть все карты
-            if(counterOpenedImages == 2) {
-                closeAllImages();
-                counterOpenedImages = 0;
-
+            if (counterOpenedImages == 2) {
+                closeAllImages()
+                counterOpenedImages = 0
             }
         }
     }
 
     //закрыть все карты
-    private void closeAllImages(){
-        for (ImageView img : arrayImageViewsButtons){
-            img.setImageResource(R.drawable.imageshirt);
-            img.setClickable(true);
+    private fun closeAllImages() {
+        for (img in arrayImageViewsButtons) {
+            img!!.setImageResource(R.drawable.imageshirt)
+            img.isClickable = true
         }
-
-        imageViewFirstCard.setClickable(true);
-        imageViewTwoCard.setClickable(true);
+        imageViewFirstCard!!.isClickable = true
+        imageViewTwoCard!!.isClickable = true
         //присвоить ресы по умолчанию
-        imageViewFirstCard = findViewById(R.id.idImageFirstCard);
-        imageViewTwoCard = findViewById(R.id.idImageTwoCard);
-
+        imageViewFirstCard = findViewById(R.id.idImageFirstCard)
+        imageViewTwoCard = findViewById(R.id.idImageTwoCard)
     }
-
 }
-
-
-
-
-
-
-
-
-
