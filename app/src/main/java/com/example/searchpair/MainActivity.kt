@@ -162,47 +162,41 @@ class MainActivity : AppCompatActivity() {
     private fun onClickImageViews() {
         for (img in arrayImageViewsButtons) {
             img!!.setOnClickListener {
-                blockAllButtons(true)
-                GlobalScope.launch {
                     //запуск первой половины анимации
                     img.startAnimation(animation1)
                     animation1!!.setAnimationListener(object : AnimationListener {
                         override fun onAnimationStart(animation: Animation) {
-
+                            blockAllButtons(true)
                         }
-
                         override fun onAnimationEnd(animation: Animation) {
                             //запуск второй половины анимации
                             img.startAnimation(animation2)
                             animation2!!.setAnimationListener(object : AnimationListener {
                                 override fun onAnimationStart(animation: Animation) {
-                                    counterOpenedImages++
                                     openCard(img)
                                 }
-
                                 override fun onAnimationEnd(animation: Animation) {
-                                    blockAllButtons(false)
                                     //присваивание
                                     if (counterOpenedImages == 0) {
                                         imageViewFirstCard = img
+                                        blockAllButtons(false)
                                         imageViewFirstCard!!.isClickable = false
                                     }
                                     if (counterOpenedImages == 1) {
                                         imageViewTwoCard = img
+                                        blockAllButtons(false)
                                         imageViewTwoCard!!.isClickable = false
                                     }
+                                    counterOpenedImages++
                                     checkCards()
-
 
                                 }
 
                                 override fun onAnimationRepeat(animation: Animation) {}
                             })
                         }
-
                         override fun onAnimationRepeat(animation: Animation) {}
                     })
-                }
 
                 println("Clicked ImageView Tag:  " + img.tag)
                 println("first card:  " + imageViewFirstCard!!.tag)
