@@ -7,9 +7,12 @@ import android.view.animation.Animation.AnimationListener
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
+
     var arrayImageViewsButtons = ArrayList<ImageView?>() //лист с кнопками
     var arrayTags = ArrayList<String?>() //лист с тагами (за конкретным тагом закреплена конкретная картинка)
     private var imageView1: ImageView? = null
@@ -34,6 +37,8 @@ class MainActivity : AppCompatActivity() {
     var animation1: Animation? = null
     var animation2: Animation? = null
     private var counterOpenedImages = 0
+    private var buttonsLocked = false;
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -158,7 +163,8 @@ class MainActivity : AppCompatActivity() {
     private fun onClickImageViews() {
         for (img in arrayImageViewsButtons) {
             img!!.setOnClickListener {
-                if (counterOpenedImages != 2) {
+                blockAllButtons()
+                GlobalScope.launch {
                     //запуск первой половины анимации
                     img.startAnimation(animation1)
                     animation1!!.setAnimationListener(object : AnimationListener {
@@ -185,6 +191,8 @@ class MainActivity : AppCompatActivity() {
 
                                 override fun onAnimationEnd(animation: Animation) {
                                     checkCards()
+                                    blockAllButtons()
+
                                 }
 
                                 override fun onAnimationRepeat(animation: Animation) {}
@@ -194,6 +202,7 @@ class MainActivity : AppCompatActivity() {
                         override fun onAnimationRepeat(animation: Animation) {}
                     })
                 }
+
                 println("Clicked ImageView Tag:  " + img.tag)
                 println("first card:  " + imageViewFirstCard!!.tag)
                 println("two card:  " + imageViewTwoCard!!.tag)
@@ -216,7 +225,19 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
-
+    //блокировка и разблокировка кнопок
+    private fun blockAllButtons() {
+        when (!buttonsLocked) {
+            false -> for (img in arrayImageViewsButtons) {
+                img!!.isClickable = true
+                buttonsLocked = false
+            }
+            true -> for (img in arrayImageViewsButtons) {
+                img!!.isClickable = false
+                buttonsLocked = true
+            }
+        }
+    }
     //закрыть все карты
     private fun closeAllImages() {
         for (img in arrayImageViewsButtons) {
