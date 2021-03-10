@@ -37,7 +37,6 @@ class MainActivity : AppCompatActivity() {
     var animation1: Animation? = null
     var animation2: Animation? = null
     private var counterOpenedImages = 0
-    private var buttonsLocked = false;
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -163,21 +162,13 @@ class MainActivity : AppCompatActivity() {
     private fun onClickImageViews() {
         for (img in arrayImageViewsButtons) {
             img!!.setOnClickListener {
-                blockAllButtons()
+                blockAllButtons(true)
                 GlobalScope.launch {
                     //запуск первой половины анимации
                     img.startAnimation(animation1)
                     animation1!!.setAnimationListener(object : AnimationListener {
                         override fun onAnimationStart(animation: Animation) {
-                            //присваивание
-                            if (counterOpenedImages == 0) {
-                                imageViewFirstCard = img
-                                imageViewFirstCard!!.isClickable = false
-                            }
-                            if (counterOpenedImages == 1) {
-                                imageViewTwoCard = img
-                                imageViewTwoCard!!.isClickable = false
-                            }
+
                         }
 
                         override fun onAnimationEnd(animation: Animation) {
@@ -190,8 +181,18 @@ class MainActivity : AppCompatActivity() {
                                 }
 
                                 override fun onAnimationEnd(animation: Animation) {
+                                    blockAllButtons(false)
+                                    //присваивание
+                                    if (counterOpenedImages == 0) {
+                                        imageViewFirstCard = img
+                                        imageViewFirstCard!!.isClickable = false
+                                    }
+                                    if (counterOpenedImages == 1) {
+                                        imageViewTwoCard = img
+                                        imageViewTwoCard!!.isClickable = false
+                                    }
                                     checkCards()
-                                    blockAllButtons()
+
 
                                 }
 
@@ -226,15 +227,13 @@ class MainActivity : AppCompatActivity() {
         }
     }
     //блокировка и разблокировка кнопок
-    private fun blockAllButtons() {
-        when (!buttonsLocked) {
+    private fun blockAllButtons(bol: Boolean) {
+        when (bol) {
             false -> for (img in arrayImageViewsButtons) {
                 img!!.isClickable = true
-                buttonsLocked = false
             }
             true -> for (img in arrayImageViewsButtons) {
                 img!!.isClickable = false
-                buttonsLocked = true
             }
         }
     }
