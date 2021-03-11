@@ -6,6 +6,7 @@ import android.view.View
 import android.view.animation.Animation
 import android.view.animation.Animation.AnimationListener
 import android.view.animation.AnimationUtils
+import android.webkit.RenderProcessGoneDetail
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.searchpair.databinding.ActivityMainBinding
@@ -15,26 +16,11 @@ import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
-    private final lateinit var bindingClass: ActivityMainBinding
+    private lateinit var bindingClass: ActivityMainBinding
 
     var arrayImageViewsButtons = ArrayList<ImageView?>() //лист с кнопками
     var arrayTags = ArrayList<String?>() //лист с тагами (за конкретным тагом закреплена конкретная картинка)
-    private var imageView1: ImageView? = null
-    private var imageView2: ImageView? = null
-    private var imageView3: ImageView? = null
-    private var imageView4: ImageView? = null
-    private var imageView5: ImageView? = null
-    private var imageView6: ImageView? = null
-    private var imageView7: ImageView? = null
-    private var imageView8: ImageView? = null
-    private var imageView9: ImageView? = null
-    private var imageView10: ImageView? = null
-    private var imageView11: ImageView? = null
-    private var imageView12: ImageView? = null
-    private var imageView13: ImageView? = null
-    private var imageView14: ImageView? = null
-    private var imageView15: ImageView? = null
-    private var imageView16: ImageView? = null
+
     private var imageViewFirstCard: ImageView? = null
     private var imageViewTwoCard: ImageView? = null
     private var logoImage: ImageView? = null
@@ -59,22 +45,7 @@ class MainActivity : AppCompatActivity() {
         animation3 = AnimationUtils.loadAnimation(this, R.anim.flip_to_middle)
         animation4 = AnimationUtils.loadAnimation(this, R.anim.flip_from_middle)
         logoImage = findViewById(R.id.idImageLogo)
-//        imageView1 = findViewById(R.id.idImage1)
-//        imageView2 = findViewById(R.id.idImage2)
-//        imageView3 = findViewById(R.id.idImage3)
-//        imageView4 = findViewById(R.id.idImage4)
-//        imageView5 = findViewById(R.id.idImage5)
-//        imageView6 = findViewById(R.id.idImage6)
-//        imageView7 = findViewById(R.id.idImage7)
-//        imageView8 = findViewById(R.id.idImage8)
-//        imageView9 = findViewById(R.id.idImage9)
-//        imageView10 = findViewById(R.id.idImage10)
-//        imageView11 = findViewById(R.id.idImage11)
-//        imageView12 = findViewById(R.id.idImage12)
-//        imageView13 = findViewById(R.id.idImage13)
-//        imageView14 = findViewById(R.id.idImage14)
-//        imageView15 = findViewById(R.id.idImage15)
-//        imageView16 = findViewById(R.id.idImage16)
+
         imageViewFirstCard = findViewById(R.id.idImageFirstCard)
         imageViewTwoCard = findViewById(R.id.idImageTwoCard)
         addToArrayImageViews()
@@ -224,14 +195,38 @@ class MainActivity : AppCompatActivity() {
             if (counterOpenedImages == 2) {
                 imageViewFirstCard!!.startAnimation(animation3)
                 imageViewTwoCard!!.startAnimation(animation3)
-                imageViewFirstCard!!.setImageResource(R.drawable.imageshirt)
-                imageViewTwoCard!!.setImageResource(R.drawable.imageshirt)
+                animation3!!.setAnimationListener(object : AnimationListener {
+                    override fun onAnimationStart(animation: Animation) {
+                        blockAllButtons(true)
+                    }
+                    override fun onAnimationEnd(animation: Animation) {
+                        //запуск второй половины анимации
+                        imageViewFirstCard!!.startAnimation(animation4)
+                        imageViewTwoCard!!.startAnimation(animation4)
+                        animation4!!.setAnimationListener(object : AnimationListener {
+                            override fun onAnimationStart(animation: Animation) {
+                                imageViewFirstCard!!.setImageResource(R.drawable.imageshirt)
+                                imageViewTwoCard!!.setImageResource(R.drawable.imageshirt)
+                            }
+                            override fun onAnimationEnd(animation: Animation) {
+                                blockAllButtons(false)
+                                //присвоить ресы по умолчанию
+                                imageViewFirstCard = findViewById(R.id.idImageFirstCard)
+                                imageViewTwoCard = findViewById(R.id.idImageTwoCard)
+                                imageViewFirstCard!!.visibility = View.GONE
+                                imageViewTwoCard!!.visibility = View.GONE
+                            }
+
+                            override fun onAnimationRepeat(animation: Animation) {}
+                        })
+                    }
+                    override fun onAnimationRepeat(animation: Animation) {}
+                })
+
                 counterOpenedImages = 0
                 imageViewFirstCard!!.isClickable = true
                 imageViewTwoCard!!.isClickable = true
-                //присвоить ресы по умолчанию
-                imageViewFirstCard = findViewById(R.id.idImageFirstCard)
-                imageViewTwoCard = findViewById(R.id.idImageTwoCard)
+
             }
         }
     }
