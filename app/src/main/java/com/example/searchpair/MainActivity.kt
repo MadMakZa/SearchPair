@@ -1,17 +1,21 @@
 package com.example.searchpair
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
 import android.view.animation.Animation
 import android.view.animation.Animation.AnimationListener
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
+import com.example.searchpair.databinding.ActivityMainBinding
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
+
+    private final lateinit var bindingClass: ActivityMainBinding
 
     var arrayImageViewsButtons = ArrayList<ImageView?>() //лист с кнопками
     var arrayTags = ArrayList<String?>() //лист с тагами (за конкретным тагом закреплена конкретная картинка)
@@ -36,38 +40,41 @@ class MainActivity : AppCompatActivity() {
     private var logoImage: ImageView? = null
     var animation1: Animation? = null
     var animation2: Animation? = null
+    var animation3: Animation? = null
+    var animation4: Animation? = null
     private var counterOpenedImages = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        bindingClass = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(bindingClass.root)
         init()
-        for (str in arrayTags) {
-            println(str)
-        }
+
     }
 
     //инициализации блок
     private fun init() {
         animation1 = AnimationUtils.loadAnimation(this, R.anim.flip_to_middle)
         animation2 = AnimationUtils.loadAnimation(this, R.anim.flip_from_middle)
+        animation3 = AnimationUtils.loadAnimation(this, R.anim.flip_to_middle)
+        animation4 = AnimationUtils.loadAnimation(this, R.anim.flip_from_middle)
         logoImage = findViewById(R.id.idImageLogo)
-        imageView1 = findViewById(R.id.idImage1)
-        imageView2 = findViewById(R.id.idImage2)
-        imageView3 = findViewById(R.id.idImage3)
-        imageView4 = findViewById(R.id.idImage4)
-        imageView5 = findViewById(R.id.idImage5)
-        imageView6 = findViewById(R.id.idImage6)
-        imageView7 = findViewById(R.id.idImage7)
-        imageView8 = findViewById(R.id.idImage8)
-        imageView9 = findViewById(R.id.idImage9)
-        imageView10 = findViewById(R.id.idImage10)
-        imageView11 = findViewById(R.id.idImage11)
-        imageView12 = findViewById(R.id.idImage12)
-        imageView13 = findViewById(R.id.idImage13)
-        imageView14 = findViewById(R.id.idImage14)
-        imageView15 = findViewById(R.id.idImage15)
-        imageView16 = findViewById(R.id.idImage16)
+//        imageView1 = findViewById(R.id.idImage1)
+//        imageView2 = findViewById(R.id.idImage2)
+//        imageView3 = findViewById(R.id.idImage3)
+//        imageView4 = findViewById(R.id.idImage4)
+//        imageView5 = findViewById(R.id.idImage5)
+//        imageView6 = findViewById(R.id.idImage6)
+//        imageView7 = findViewById(R.id.idImage7)
+//        imageView8 = findViewById(R.id.idImage8)
+//        imageView9 = findViewById(R.id.idImage9)
+//        imageView10 = findViewById(R.id.idImage10)
+//        imageView11 = findViewById(R.id.idImage11)
+//        imageView12 = findViewById(R.id.idImage12)
+//        imageView13 = findViewById(R.id.idImage13)
+//        imageView14 = findViewById(R.id.idImage14)
+//        imageView15 = findViewById(R.id.idImage15)
+//        imageView16 = findViewById(R.id.idImage16)
         imageViewFirstCard = findViewById(R.id.idImageFirstCard)
         imageViewTwoCard = findViewById(R.id.idImageTwoCard)
         addToArrayImageViews()
@@ -105,22 +112,22 @@ class MainActivity : AppCompatActivity() {
 
     //Заполнение массива с кнопками (для присвоения слушателей нажатий через цикл for-each)
     private fun addToArrayImageViews() {
-        arrayImageViewsButtons.add(imageView1)
-        arrayImageViewsButtons.add(imageView2)
-        arrayImageViewsButtons.add(imageView3)
-        arrayImageViewsButtons.add(imageView4)
-        arrayImageViewsButtons.add(imageView5)
-        arrayImageViewsButtons.add(imageView6)
-        arrayImageViewsButtons.add(imageView7)
-        arrayImageViewsButtons.add(imageView8)
-        arrayImageViewsButtons.add(imageView9)
-        arrayImageViewsButtons.add(imageView10)
-        arrayImageViewsButtons.add(imageView11)
-        arrayImageViewsButtons.add(imageView12)
-        arrayImageViewsButtons.add(imageView13)
-        arrayImageViewsButtons.add(imageView14)
-        arrayImageViewsButtons.add(imageView15)
-        arrayImageViewsButtons.add(imageView16)
+        arrayImageViewsButtons.add(bindingClass.idImage1)
+        arrayImageViewsButtons.add(bindingClass.idImage2)
+        arrayImageViewsButtons.add(bindingClass.idImage3)
+        arrayImageViewsButtons.add(bindingClass.idImage4)
+        arrayImageViewsButtons.add(bindingClass.idImage5)
+        arrayImageViewsButtons.add(bindingClass.idImage6)
+        arrayImageViewsButtons.add(bindingClass.idImage7)
+        arrayImageViewsButtons.add(bindingClass.idImage8)
+        arrayImageViewsButtons.add(bindingClass.idImage9)
+        arrayImageViewsButtons.add(bindingClass.idImage10)
+        arrayImageViewsButtons.add(bindingClass.idImage11)
+        arrayImageViewsButtons.add(bindingClass.idImage12)
+        arrayImageViewsButtons.add(bindingClass.idImage13)
+        arrayImageViewsButtons.add(bindingClass.idImage14)
+        arrayImageViewsButtons.add(bindingClass.idImage15)
+        arrayImageViewsButtons.add(bindingClass.idImage16)
     }
 
     //присвоить таги для ImageViews
@@ -215,8 +222,16 @@ class MainActivity : AppCompatActivity() {
         } else {
             //закрыть все карты
             if (counterOpenedImages == 2) {
-                closeAllImages()
+                imageViewFirstCard!!.startAnimation(animation3)
+                imageViewTwoCard!!.startAnimation(animation3)
+                imageViewFirstCard!!.setImageResource(R.drawable.imageshirt)
+                imageViewTwoCard!!.setImageResource(R.drawable.imageshirt)
                 counterOpenedImages = 0
+                imageViewFirstCard!!.isClickable = true
+                imageViewTwoCard!!.isClickable = true
+                //присвоить ресы по умолчанию
+                imageViewFirstCard = findViewById(R.id.idImageFirstCard)
+                imageViewTwoCard = findViewById(R.id.idImageTwoCard)
             }
         }
     }
@@ -234,7 +249,8 @@ class MainActivity : AppCompatActivity() {
     //закрыть все карты
     private fun closeAllImages() {
         for (img in arrayImageViewsButtons) {
-            img!!.setImageResource(R.drawable.imageshirt)
+            img!!.startAnimation(animation3)
+            img.setImageResource(R.drawable.imageshirt)
             img.isClickable = true
         }
         imageViewFirstCard!!.isClickable = true
