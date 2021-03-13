@@ -99,22 +99,25 @@ class MainActivity : AppCompatActivity() {
 
     //присвоить таги для ImageViews
     private fun createTagsForImageViews() {
-        arrayImageViewsButtons[0]!!.tag = arrayTags[0]
-        arrayImageViewsButtons[1]!!.tag = arrayTags[1]
-        arrayImageViewsButtons[2]!!.tag = arrayTags[2]
-        arrayImageViewsButtons[3]!!.tag = arrayTags[3]
-        arrayImageViewsButtons[4]!!.tag = arrayTags[4]
-        arrayImageViewsButtons[5]!!.tag = arrayTags[5]
-        arrayImageViewsButtons[6]!!.tag = arrayTags[6]
-        arrayImageViewsButtons[7]!!.tag = arrayTags[7]
-        arrayImageViewsButtons[8]!!.tag = arrayTags[8]
-        arrayImageViewsButtons[9]!!.tag = arrayTags[9]
-        arrayImageViewsButtons[10]!!.tag = arrayTags[10]
-        arrayImageViewsButtons[11]!!.tag = arrayTags[11]
-        arrayImageViewsButtons[12]!!.tag = arrayTags[12]
-        arrayImageViewsButtons[13]!!.tag = arrayTags[13]
-        arrayImageViewsButtons[14]!!.tag = arrayTags[14]
-        arrayImageViewsButtons[15]!!.tag = arrayTags[15]
+        for (i in 0..15){
+            arrayImageViewsButtons[i]!!.tag = arrayTags[i]
+        }
+//        arrayImageViewsButtons[0]!!.tag = arrayTags[0]
+//        arrayImageViewsButtons[1]!!.tag = arrayTags[1]
+//        arrayImageViewsButtons[2]!!.tag = arrayTags[2]
+//        arrayImageViewsButtons[3]!!.tag = arrayTags[3]
+//        arrayImageViewsButtons[4]!!.tag = arrayTags[4]
+//        arrayImageViewsButtons[5]!!.tag = arrayTags[5]
+//        arrayImageViewsButtons[6]!!.tag = arrayTags[6]
+//        arrayImageViewsButtons[7]!!.tag = arrayTags[7]
+//        arrayImageViewsButtons[8]!!.tag = arrayTags[8]
+//        arrayImageViewsButtons[9]!!.tag = arrayTags[9]
+//        arrayImageViewsButtons[10]!!.tag = arrayTags[10]
+//        arrayImageViewsButtons[11]!!.tag = arrayTags[11]
+//        arrayImageViewsButtons[12]!!.tag = arrayTags[12]
+//        arrayImageViewsButtons[13]!!.tag = arrayTags[13]
+//        arrayImageViewsButtons[14]!!.tag = arrayTags[14]
+//        arrayImageViewsButtons[15]!!.tag = arrayTags[15]
     }
 
     //открыть карту
