@@ -1,5 +1,6 @@
 package com.example.searchpair
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.view.animation.Animation
@@ -32,6 +33,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(bindingClass.root)
         init()
 
+
     }
 
     //инициализации блок
@@ -41,13 +43,15 @@ class MainActivity : AppCompatActivity() {
         animation3 = AnimationUtils.loadAnimation(this, R.anim.flip_to_middle)
         animation4 = AnimationUtils.loadAnimation(this, R.anim.flip_from_middle)
         logoImage = findViewById(R.id.idImageLogo)
-
         imageViewFirstCard = findViewById(R.id.idImageFirstCard)
         imageViewTwoCard = findViewById(R.id.idImageTwoCard)
+        //заполнение массива + слушатели нажатий
         addToArrayImageViews()
         onClickImageViews()
-        newGame()
         startNewGame()
+
+        newGame()
+
     }
 
     //генерация игрового поля (новая игра)
@@ -56,15 +60,18 @@ class MainActivity : AppCompatActivity() {
         arrayTags.shuffle()
         createTagsForImageViews()
         for (img in arrayImageViewsButtons) {
-            img!!.setImageResource(R.drawable.imageshirt)
-            img.visibility = View.VISIBLE
+            img!!.visibility = View.VISIBLE
         }
         closeAllImages()
     }
 
     //начать новую игру
     private fun startNewGame() {
-        logoImage!!.setOnClickListener { newGame() }
+        logoImage!!.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
     }
 
     //заполнить лист тагов
