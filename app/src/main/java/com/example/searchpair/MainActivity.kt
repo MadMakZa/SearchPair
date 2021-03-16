@@ -70,6 +70,7 @@ class MainActivity : AppCompatActivity() {
         logoImage!!.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
+            overridePendingTransition(R.anim.open_activity, R.anim.close_activity)
             finish()
         }
     }
