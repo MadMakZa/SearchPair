@@ -1,6 +1,7 @@
 package com.example.searchpair
 
 import android.content.Intent
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.view.View
 import android.view.animation.Animation
@@ -26,6 +27,9 @@ class MainActivity : AppCompatActivity() {
     var animation3: Animation? = null
     var animation4: Animation? = null
     private var counterOpenedImages = 0
+    private lateinit var soundOpen: MediaPlayer
+    private lateinit var soundClose: MediaPlayer
+    private lateinit var soundDrop: MediaPlayer
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,6 +49,9 @@ class MainActivity : AppCompatActivity() {
         logoImage = findViewById(R.id.idImageLogo)
         imageViewFirstCard = findViewById(R.id.idImageFirstCard)
         imageViewTwoCard = findViewById(R.id.idImageTwoCard)
+        soundOpen = MediaPlayer.create(this, R.raw.stone_open)
+        soundClose = MediaPlayer.create(this, R.raw.stone_close)
+        soundDrop = MediaPlayer.create(this, R.raw.stone_drop)
         //заполнение массива + слушатели нажатий
         addToArrayImageViews()
         onClickImageViews()
@@ -52,6 +59,10 @@ class MainActivity : AppCompatActivity() {
 
         newGame()
 
+    }
+    //воспроизведение звука
+    private fun soundPlay(sound: MediaPlayer){
+        sound.start()
     }
 
     //генерация игрового поля (новая игра)
@@ -68,6 +79,7 @@ class MainActivity : AppCompatActivity() {
     //начать новую игру
     private fun startNewGame() {
         logoImage!!.setOnClickListener {
+            soundPlay(soundDrop)
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
             overridePendingTransition(R.anim.open_activity, R.anim.close_activity)
@@ -110,22 +122,6 @@ class MainActivity : AppCompatActivity() {
         for (i in 0..15){
             arrayImageViewsButtons[i]!!.tag = arrayTags[i]
         }
-//        arrayImageViewsButtons[0]!!.tag = arrayTags[0]
-//        arrayImageViewsButtons[1]!!.tag = arrayTags[1]
-//        arrayImageViewsButtons[2]!!.tag = arrayTags[2]
-//        arrayImageViewsButtons[3]!!.tag = arrayTags[3]
-//        arrayImageViewsButtons[4]!!.tag = arrayTags[4]
-//        arrayImageViewsButtons[5]!!.tag = arrayTags[5]
-//        arrayImageViewsButtons[6]!!.tag = arrayTags[6]
-//        arrayImageViewsButtons[7]!!.tag = arrayTags[7]
-//        arrayImageViewsButtons[8]!!.tag = arrayTags[8]
-//        arrayImageViewsButtons[9]!!.tag = arrayTags[9]
-//        arrayImageViewsButtons[10]!!.tag = arrayTags[10]
-//        arrayImageViewsButtons[11]!!.tag = arrayTags[11]
-//        arrayImageViewsButtons[12]!!.tag = arrayTags[12]
-//        arrayImageViewsButtons[13]!!.tag = arrayTags[13]
-//        arrayImageViewsButtons[14]!!.tag = arrayTags[14]
-//        arrayImageViewsButtons[15]!!.tag = arrayTags[15]
     }
 
     //открыть карту
@@ -151,6 +147,7 @@ class MainActivity : AppCompatActivity() {
                     img.startAnimation(animation1)
                     animation1!!.setAnimationListener(object : AnimationListener {
                         override fun onAnimationStart(animation: Animation) {
+                            soundPlay(soundOpen)
                             blockAllButtons(true)
                         }
                         override fun onAnimationEnd(animation: Animation) {
@@ -204,6 +201,7 @@ class MainActivity : AppCompatActivity() {
                 imageViewTwoCard!!.startAnimation(animation3)
                 animation3!!.setAnimationListener(object : AnimationListener {
                     override fun onAnimationStart(animation: Animation) {
+                        soundPlay(soundClose)
                         blockAllButtons(true)
                     }
                     override fun onAnimationEnd(animation: Animation) {
