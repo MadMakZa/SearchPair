@@ -10,6 +10,9 @@ import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.searchpair.databinding.ActivityMainBinding
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
@@ -28,6 +31,7 @@ class MainActivity : AppCompatActivity() {
     var animation4: Animation? = null
     var animation5: Animation? = null
     private var counterOpenedImages = 0
+    private var counterPairs = 0;
     private lateinit var soundOpen: MediaPlayer
     private lateinit var soundClose: MediaPlayer
     private lateinit var soundDrop: MediaPlayer
@@ -78,9 +82,10 @@ class MainActivity : AppCompatActivity() {
             img!!.visibility = View.VISIBLE
         }
         closeAllImages()
+        counterPairs = 0
     }
 
-    //начать новую игру
+    //начать новую игру по нажатию на лого
     private fun startNewGame() {
         logoImage!!.setOnClickListener {
             soundPlay(soundDrop)
@@ -90,6 +95,17 @@ class MainActivity : AppCompatActivity() {
             finish()
         }
     }
+
+    //начать новую игру если поле пустое
+    private fun startNewGameIfFieldEmpty() {
+            soundPlay(soundDrop)
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+            overridePendingTransition(R.anim.open_activity, R.anim.close_activity)
+            finish()
+    }
+
+
 
     //заполнить лист тагов
     private fun addTagsToList() {
@@ -184,9 +200,6 @@ class MainActivity : AppCompatActivity() {
                         override fun onAnimationRepeat(animation: Animation) {}
                     })
 
-                println("Clicked ImageView Tag:  " + img.tag)
-                println("first card:  " + imageViewFirstCard!!.tag)
-                println("two card:  " + imageViewTwoCard!!.tag)
             }
         }
     }
@@ -201,6 +214,14 @@ class MainActivity : AppCompatActivity() {
             imageViewFirstCard!!.visibility = View.INVISIBLE
             imageViewTwoCard!!.visibility = View.INVISIBLE
             counterOpenedImages = 0
+            counterPairs++
+            println("counter pairs = $counterPairs")
+            if (counterPairs == 8){
+                GlobalScope.launch {
+                    delay(500)
+                    startNewGameIfFieldEmpty()
+                }
+            }
         } else {
             //закрыть все карты
             if (counterOpenedImages == 2) {
