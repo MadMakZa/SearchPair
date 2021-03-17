@@ -26,10 +26,12 @@ class MainActivity : AppCompatActivity() {
     var animation2: Animation? = null
     var animation3: Animation? = null
     var animation4: Animation? = null
+    var animation5: Animation? = null
     private var counterOpenedImages = 0
     private lateinit var soundOpen: MediaPlayer
     private lateinit var soundClose: MediaPlayer
     private lateinit var soundDrop: MediaPlayer
+    private lateinit var soundCrash: MediaPlayer
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,12 +48,14 @@ class MainActivity : AppCompatActivity() {
         animation2 = AnimationUtils.loadAnimation(this, R.anim.flip_from_middle)
         animation3 = AnimationUtils.loadAnimation(this, R.anim.flip_to_middle)
         animation4 = AnimationUtils.loadAnimation(this, R.anim.flip_from_middle)
+        animation5 = AnimationUtils.loadAnimation(this, R.anim.anim_scale)
         logoImage = findViewById(R.id.idImageLogo)
         imageViewFirstCard = findViewById(R.id.idImageFirstCard)
         imageViewTwoCard = findViewById(R.id.idImageTwoCard)
         soundOpen = MediaPlayer.create(this, R.raw.stone_open)
         soundClose = MediaPlayer.create(this, R.raw.stone_close)
         soundDrop = MediaPlayer.create(this, R.raw.stone_drop)
+        soundCrash = MediaPlayer.create(this, R.raw.stone_crash)
         //заполнение массива + слушатели нажатий
         addToArrayImageViews()
         onClickImageViews()
@@ -190,6 +194,9 @@ class MainActivity : AppCompatActivity() {
     //сравнить открытые картинки
     private fun checkCards() {
         if (imageViewFirstCard!!.tag == imageViewTwoCard!!.tag) {
+            soundPlay(soundCrash)
+            imageViewFirstCard!!.startAnimation(animation5)
+            imageViewTwoCard!!.startAnimation(animation5)
             println("Cards equals")
             imageViewFirstCard!!.visibility = View.INVISIBLE
             imageViewTwoCard!!.visibility = View.INVISIBLE
