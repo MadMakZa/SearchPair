@@ -83,6 +83,7 @@ class MainActivity : AppCompatActivity() {
         }
         closeAllImages()
         counterPairs = 0
+        logoImage!!.visibility = View.INVISIBLE
     }
 
     //начать новую игру по нажатию на лого
@@ -95,17 +96,6 @@ class MainActivity : AppCompatActivity() {
             finish()
         }
     }
-
-    //начать новую игру если поле пустое
-    private fun startNewGameIfFieldEmpty() {
-            soundPlay(soundDrop)
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
-            overridePendingTransition(R.anim.open_activity, R.anim.close_activity)
-            finish()
-    }
-
-
 
     //заполнить лист тагов
     private fun addTagsToList() {
@@ -216,11 +206,11 @@ class MainActivity : AppCompatActivity() {
             counterOpenedImages = 0
             counterPairs++
             println("counter pairs = $counterPairs")
+            //если поле пустое
             if (counterPairs == 8){
-                GlobalScope.launch {
-                    delay(500)
-                    startNewGameIfFieldEmpty()
-                }
+                    //показать кнопку новой игры
+                logoImage!!.visibility = View.VISIBLE
+
             }
         } else {
             //закрыть все карты
