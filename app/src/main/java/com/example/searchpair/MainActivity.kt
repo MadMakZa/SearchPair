@@ -99,10 +99,10 @@ class MainActivity : AppCompatActivity() {
 
     //заполнить лист тагов
     private fun addTagsToList() {
-        for (i in 1..8) {
+        for (i in 1..12) {
             arrayTags.add(i.toString())
         }
-        for (i in 1..8) {
+        for (i in 1..12) {
             arrayTags.add(i.toString())
         }
     }
@@ -125,11 +125,19 @@ class MainActivity : AppCompatActivity() {
         arrayImageViewsButtons.add(bindingClass.idImage14)
         arrayImageViewsButtons.add(bindingClass.idImage15)
         arrayImageViewsButtons.add(bindingClass.idImage16)
+        arrayImageViewsButtons.add(bindingClass.idImage17)
+        arrayImageViewsButtons.add(bindingClass.idImage18)
+        arrayImageViewsButtons.add(bindingClass.idImage19)
+        arrayImageViewsButtons.add(bindingClass.idImage20)
+        arrayImageViewsButtons.add(bindingClass.idImage21)
+        arrayImageViewsButtons.add(bindingClass.idImage22)
+        arrayImageViewsButtons.add(bindingClass.idImage23)
+        arrayImageViewsButtons.add(bindingClass.idImage24)
     }
 
     //присвоить таги для ImageViews
     private fun createTagsForImageViews() {
-        for (i in 0..15){
+        for (i in 0..23){
             arrayImageViewsButtons[i]!!.tag = arrayTags[i]
         }
     }
@@ -146,6 +154,10 @@ class MainActivity : AppCompatActivity() {
             "6" -> img.setImageResource(R.drawable.image6)
             "7" -> img.setImageResource(R.drawable.image7)
             "8" -> img.setImageResource(R.drawable.image8)
+            "9" -> img.setImageResource(R.drawable.image9)
+            "10" -> img.setImageResource(R.drawable.image10)
+            "11" -> img.setImageResource(R.drawable.image11)
+            "12" -> img.setImageResource(R.drawable.image12)
         }
     }
 
@@ -207,7 +219,7 @@ class MainActivity : AppCompatActivity() {
             counterPairs++
             println("counter pairs = $counterPairs")
             //если поле пустое
-            if (counterPairs == 8){
+            if (counterPairs == 12){
                     //показать кнопку новой игры
                 logoImage!!.visibility = View.VISIBLE
 

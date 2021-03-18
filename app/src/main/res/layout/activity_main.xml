@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:columnCount="5"
-        android:rowCount="6">
+        android:rowCount="8">
 
 
         <ImageView
@@ -213,6 +213,104 @@
             android:layout_margin="5dp"
             android:src="@drawable/imageshirt"
             android:tag="16" />
+
+        <!-- 5 column -->
+        <ImageView
+            android:id="@+id/idImage17"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_row="5"
+            android:layout_rowSpan="1"
+            android:layout_column="0"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="5dp"
+            android:src="@drawable/imageshirt"
+            android:tag="17" />
+
+        <ImageView
+            android:id="@+id/idImage18"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_row="5"
+            android:layout_rowSpan="1"
+            android:layout_column="1"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="5dp"
+            android:src="@drawable/imageshirt"
+            android:tag="18" />
+
+        <ImageView
+            android:id="@+id/idImage19"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_row="5"
+            android:layout_rowSpan="1"
+            android:layout_column="2"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="5dp"
+            android:src="@drawable/imageshirt"
+            android:tag="19" />
+
+        <ImageView
+            android:id="@+id/idImage20"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_row="5"
+            android:layout_rowSpan="1"
+            android:layout_column="3"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="5dp"
+            android:src="@drawable/imageshirt"
+            android:tag="20" />
+
+        <!-- 6 column -->
+        <ImageView
+            android:id="@+id/idImage21"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_row="6"
+            android:layout_rowSpan="1"
+            android:layout_column="0"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="5dp"
+            android:src="@drawable/imageshirt"
+            android:tag="21" />
+
+        <ImageView
+            android:id="@+id/idImage22"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_row="6"
+            android:layout_rowSpan="1"
+            android:layout_column="1"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="5dp"
+            android:src="@drawable/imageshirt"
+            android:tag="22" />
+
+        <ImageView
+            android:id="@+id/idImage23"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_row="6"
+            android:layout_rowSpan="1"
+            android:layout_column="2"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="5dp"
+            android:src="@drawable/imageshirt"
+            android:tag="23" />
+
+        <ImageView
+            android:id="@+id/idImage24"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_row="6"
+            android:layout_rowSpan="1"
+            android:layout_column="3"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="5dp"
+            android:src="@drawable/imageshirt"
+            android:tag="24" />
 
         <ImageView
             android:id="@+id/idImageFirstCard"
