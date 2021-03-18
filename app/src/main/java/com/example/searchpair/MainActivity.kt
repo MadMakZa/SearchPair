@@ -7,12 +7,10 @@ import android.view.View
 import android.view.animation.Animation
 import android.view.animation.Animation.AnimationListener
 import android.view.animation.AnimationUtils
+import android.widget.ImageButton
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.searchpair.databinding.ActivityMainBinding
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
@@ -24,7 +22,7 @@ class MainActivity : AppCompatActivity() {
 
     private var imageViewFirstCard: ImageView? = null
     private var imageViewTwoCard: ImageView? = null
-    private var logoImage: ImageView? = null
+    private lateinit var btnNewGame: ImageButton
     var animation1: Animation? = null
     var animation2: Animation? = null
     var animation3: Animation? = null
@@ -53,7 +51,7 @@ class MainActivity : AppCompatActivity() {
         animation3 = AnimationUtils.loadAnimation(this, R.anim.flip_to_middle)
         animation4 = AnimationUtils.loadAnimation(this, R.anim.flip_from_middle)
         animation5 = AnimationUtils.loadAnimation(this, R.anim.anim_scale)
-        logoImage = findViewById(R.id.idImageLogo)
+        btnNewGame = findViewById(R.id.btn_new_game)
         imageViewFirstCard = findViewById(R.id.idImageFirstCard)
         imageViewTwoCard = findViewById(R.id.idImageTwoCard)
         soundOpen = MediaPlayer.create(this, R.raw.stone_open)
@@ -83,12 +81,12 @@ class MainActivity : AppCompatActivity() {
         }
         closeAllImages()
         counterPairs = 0
-        logoImage!!.visibility = View.INVISIBLE
+        btnNewGame!!.visibility = View.INVISIBLE
     }
 
     //начать новую игру по нажатию на лого
     private fun startNewGame() {
-        logoImage!!.setOnClickListener {
+        btnNewGame!!.setOnClickListener {
             soundPlay(soundDrop)
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
@@ -221,7 +219,7 @@ class MainActivity : AppCompatActivity() {
             //если поле пустое
             if (counterPairs == 12){
                     //показать кнопку новой игры
-                logoImage!!.visibility = View.VISIBLE
+                btnNewGame!!.visibility = View.VISIBLE
 
             }
         } else {
