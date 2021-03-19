@@ -39,56 +39,56 @@
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:visibility="gone"
-                android:background="@drawable/imageshirt" />
+                 />
 
             <ImageView
                 android:id="@+id/id_Column1_Image2"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:visibility="gone"
-                android:background="@drawable/imageshirt" />
+                 />
 
             <ImageView
                 android:id="@+id/id_Column1_Image3"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:visibility="gone"
-                android:background="@drawable/imageshirt" />
+                 />
 
             <ImageView
                 android:id="@+id/id_Column1_Image4"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:visibility="gone"
-                android:background="@drawable/imageshirt" />
+                 />
 
             <ImageView
                 android:id="@+id/id_Column1_Image5"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:visibility="gone"
-                android:background="@drawable/imageshirt" />
+                 />
 
             <ImageView
                 android:id="@+id/id_Column1_Image6"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:visibility="gone"
-                android:background="@drawable/imageshirt" />
+                 />
 
             <ImageView
                 android:id="@+id/id_Column1_Image7"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:visibility="gone"
-                android:background="@drawable/imageshirt" />
+                />
 
             <ImageView
                 android:id="@+id/id_Column1_Image8"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:visibility="gone"
-                android:background="@drawable/imageshirt" />
+                 />
 
         </LinearLayout>
 

@@ -10,12 +10,12 @@ import android.view.animation.AnimationUtils
 import android.widget.ImageButton
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
-import com.example.searchpair.databinding.ActivityMainBinding
+import com.example.searchpair.databinding.ActivityGameFieldBinding
 import java.util.*
 
 class Level1 : AppCompatActivity() {
 
-    private lateinit var bindingClass: ActivityMainBinding
+    private lateinit var bindingClass: ActivityGameFieldBinding
 
     var arrayImageViewsButtons = ArrayList<ImageView?>() //лист с кнопками
     var arrayTags = ArrayList<String?>() //лист с тагами (за конкретным тагом закреплена конкретная картинка)
@@ -37,7 +37,7 @@ class Level1 : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        bindingClass = ActivityMainBinding.inflate(layoutInflater)
+        bindingClass = ActivityGameFieldBinding.inflate(layoutInflater)
         setContentView(bindingClass.root)
         init()
 
@@ -83,7 +83,7 @@ class Level1 : AppCompatActivity() {
         btnNewGame!!.visibility = View.INVISIBLE
     }
 
-    //начать новую игру по нажатию на лого
+    //начать новую игру по нажатию на кнопку
     private fun startNewGame() {
         btnNewGame!!.setOnClickListener {
             soundPlay(soundDrop)
