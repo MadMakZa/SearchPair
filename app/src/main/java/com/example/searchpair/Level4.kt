@@ -13,7 +13,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.searchpair.databinding.ActivityGameFieldBinding
 import java.util.*
 
-class MainActivity : AppCompatActivity() {
+class Level4 : AppCompatActivity() {
 
     private lateinit var bindingClass: ActivityGameFieldBinding
 
@@ -87,7 +87,7 @@ class MainActivity : AppCompatActivity() {
     private fun startNewGame() {
         btnNewGame!!.setOnClickListener {
             soundPlay(soundDrop)
-            val intent = Intent(this, MainActivity::class.java)
+            val intent = Intent(this, Level4::class.java)
             startActivity(intent)
             overridePendingTransition(R.anim.open_activity, R.anim.close_activity)
             finish()
@@ -114,6 +114,7 @@ class MainActivity : AppCompatActivity() {
         arrayImageViewsButtons.add(bindingClass.idColumn1Image6)
         arrayImageViewsButtons.add(bindingClass.idColumn1Image7)
         arrayImageViewsButtons.add(bindingClass.idColumn1Image8)
+
         arrayImageViewsButtons.add(bindingClass.idColumn2Image1)
         arrayImageViewsButtons.add(bindingClass.idColumn2Image2)
         arrayImageViewsButtons.add(bindingClass.idColumn2Image3)
@@ -122,6 +123,7 @@ class MainActivity : AppCompatActivity() {
         arrayImageViewsButtons.add(bindingClass.idColumn2Image6)
         arrayImageViewsButtons.add(bindingClass.idColumn2Image7)
         arrayImageViewsButtons.add(bindingClass.idColumn2Image8)
+
         arrayImageViewsButtons.add(bindingClass.idColumn3Image1)
         arrayImageViewsButtons.add(bindingClass.idColumn3Image2)
         arrayImageViewsButtons.add(bindingClass.idColumn3Image3)
