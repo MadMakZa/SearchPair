@@ -13,7 +13,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.searchpair.databinding.ActivityMainBinding
 import java.util.*
 
-class MainActivity : AppCompatActivity() {
+class Level1 : AppCompatActivity() {
 
     private lateinit var bindingClass: ActivityMainBinding
 
@@ -87,7 +87,7 @@ class MainActivity : AppCompatActivity() {
     private fun startNewGame() {
         btnNewGame!!.setOnClickListener {
             soundPlay(soundDrop)
-            val intent = Intent(this, MainActivity::class.java)
+            val intent = Intent(this, Level1::class.java)
             startActivity(intent)
             overridePendingTransition(R.anim.open_activity, R.anim.close_activity)
             finish()
@@ -96,10 +96,10 @@ class MainActivity : AppCompatActivity() {
 
     //заполнить лист тагов
     private fun addTagsToList() {
-        for (i in 1..12) {
+        for (i in 1..6) {
             arrayTags.add(i.toString())
         }
-        for (i in 1..12) {
+        for (i in 1..6) {
             arrayTags.add(i.toString())
         }
     }
@@ -114,27 +114,28 @@ class MainActivity : AppCompatActivity() {
         arrayImageViewsButtons.add(bindingClass.idColumn1Image6)
         arrayImageViewsButtons.add(bindingClass.idColumn1Image7)
         arrayImageViewsButtons.add(bindingClass.idColumn1Image8)
+
         arrayImageViewsButtons.add(bindingClass.idColumn2Image1)
         arrayImageViewsButtons.add(bindingClass.idColumn2Image2)
         arrayImageViewsButtons.add(bindingClass.idColumn2Image3)
         arrayImageViewsButtons.add(bindingClass.idColumn2Image4)
-        arrayImageViewsButtons.add(bindingClass.idColumn2Image5)
-        arrayImageViewsButtons.add(bindingClass.idColumn2Image6)
-        arrayImageViewsButtons.add(bindingClass.idColumn2Image7)
-        arrayImageViewsButtons.add(bindingClass.idColumn2Image8)
-        arrayImageViewsButtons.add(bindingClass.idColumn3Image1)
-        arrayImageViewsButtons.add(bindingClass.idColumn3Image2)
-        arrayImageViewsButtons.add(bindingClass.idColumn3Image3)
-        arrayImageViewsButtons.add(bindingClass.idColumn3Image4)
-        arrayImageViewsButtons.add(bindingClass.idColumn3Image5)
-        arrayImageViewsButtons.add(bindingClass.idColumn3Image6)
-        arrayImageViewsButtons.add(bindingClass.idColumn3Image7)
-        arrayImageViewsButtons.add(bindingClass.idColumn3Image8)
+//        arrayImageViewsButtons.add(bindingClass.idImage13)
+//        arrayImageViewsButtons.add(bindingClass.idImage14)
+//        arrayImageViewsButtons.add(bindingClass.idImage15)
+//        arrayImageViewsButtons.add(bindingClass.idImage16)
+//        arrayImageViewsButtons.add(bindingClass.idImage17)
+//        arrayImageViewsButtons.add(bindingClass.idImage18)
+//        arrayImageViewsButtons.add(bindingClass.idImage19)
+//        arrayImageViewsButtons.add(bindingClass.idImage20)
+//        arrayImageViewsButtons.add(bindingClass.idImage21)
+//        arrayImageViewsButtons.add(bindingClass.idImage22)
+//        arrayImageViewsButtons.add(bindingClass.idImage23)
+//        arrayImageViewsButtons.add(bindingClass.idImage24)
     }
 
     //присвоить таги для ImageViews из листа с тагами
     private fun createTagsForImageViews() {
-        for (i in 0..23){
+        for (i in 0..11){
             arrayImageViewsButtons[i]!!.tag = arrayTags[i]
         }
     }
