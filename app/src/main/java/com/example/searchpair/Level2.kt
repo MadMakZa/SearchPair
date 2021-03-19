@@ -13,7 +13,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.searchpair.databinding.ActivityGameFieldBinding
 import java.util.*
 
-class Level1 : AppCompatActivity() {
+class Level2 : AppCompatActivity() {
 
     private lateinit var bindingClass: ActivityGameFieldBinding
 
@@ -87,7 +87,7 @@ class Level1 : AppCompatActivity() {
     private fun startNewGame() {
         btnNewGame!!.setOnClickListener {
             soundPlay(soundDrop)
-            val intent = Intent(this, Level2::class.java)
+            val intent = Intent(this, GameMainActivity::class.java)
             startActivity(intent)
             overridePendingTransition(R.anim.open_activity, R.anim.close_activity)
             finish()
@@ -96,10 +96,10 @@ class Level1 : AppCompatActivity() {
 
     //заполнить лист тагов
     private fun addTagsToList() {
-        for (i in 1..6) {
+        for (i in 1..8) {
             arrayTags.add(i.toString())
         }
-        for (i in 1..6) {
+        for (i in 1..8) {
             arrayTags.add(i.toString())
         }
     }
@@ -119,23 +119,16 @@ class Level1 : AppCompatActivity() {
         arrayImageViewsButtons.add(bindingClass.idColumn2Image2)
         arrayImageViewsButtons.add(bindingClass.idColumn2Image3)
         arrayImageViewsButtons.add(bindingClass.idColumn2Image4)
-//        arrayImageViewsButtons.add(bindingClass.idImage13)
-//        arrayImageViewsButtons.add(bindingClass.idImage14)
-//        arrayImageViewsButtons.add(bindingClass.idImage15)
-//        arrayImageViewsButtons.add(bindingClass.idImage16)
-//        arrayImageViewsButtons.add(bindingClass.idImage17)
-//        arrayImageViewsButtons.add(bindingClass.idImage18)
-//        arrayImageViewsButtons.add(bindingClass.idImage19)
-//        arrayImageViewsButtons.add(bindingClass.idImage20)
-//        arrayImageViewsButtons.add(bindingClass.idImage21)
-//        arrayImageViewsButtons.add(bindingClass.idImage22)
-//        arrayImageViewsButtons.add(bindingClass.idImage23)
-//        arrayImageViewsButtons.add(bindingClass.idImage24)
+        arrayImageViewsButtons.add(bindingClass.idColumn2Image5)
+        arrayImageViewsButtons.add(bindingClass.idColumn2Image6)
+        arrayImageViewsButtons.add(bindingClass.idColumn2Image7)
+        arrayImageViewsButtons.add(bindingClass.idColumn2Image8)
+
     }
 
     //присвоить таги для ImageViews из листа с тагами
     private fun createTagsForImageViews() {
-        for (i in 0..11){
+        for (i in 0..15){
             arrayImageViewsButtons[i]!!.tag = arrayTags[i]
         }
     }
@@ -217,7 +210,7 @@ class Level1 : AppCompatActivity() {
             counterPairs++
             println("counter pairs = $counterPairs")
             //если поле пустое
-            if (counterPairs == 6){
+            if (counterPairs == 8){
                     //показать кнопку новой игры
                 btnNewGame!!.visibility = View.VISIBLE
 
