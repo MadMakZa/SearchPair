@@ -38,48 +38,56 @@
                 android:id="@+id/id_Column1_Image1"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
+                android:visibility="gone"
                 android:background="@drawable/imageshirt" />
 
             <ImageView
                 android:id="@+id/id_Column1_Image2"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
+                android:visibility="gone"
                 android:background="@drawable/imageshirt" />
 
             <ImageView
                 android:id="@+id/id_Column1_Image3"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
+                android:visibility="gone"
                 android:background="@drawable/imageshirt" />
 
             <ImageView
                 android:id="@+id/id_Column1_Image4"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
+                android:visibility="gone"
                 android:background="@drawable/imageshirt" />
 
             <ImageView
                 android:id="@+id/id_Column1_Image5"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
+                android:visibility="gone"
                 android:background="@drawable/imageshirt" />
 
             <ImageView
                 android:id="@+id/id_Column1_Image6"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
+                android:visibility="gone"
                 android:background="@drawable/imageshirt" />
 
             <ImageView
                 android:id="@+id/id_Column1_Image7"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
+                android:visibility="gone"
                 android:background="@drawable/imageshirt" />
 
             <ImageView
                 android:id="@+id/id_Column1_Image8"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
+                android:visibility="gone"
                 android:background="@drawable/imageshirt" />
 
         </LinearLayout>
@@ -95,48 +103,56 @@
                 android:id="@+id/id_Column2_Image1"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
+                android:visibility="gone"
                 android:background="@drawable/imageshirt" />
 
             <ImageView
                 android:id="@+id/id_Column2_Image2"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
+                android:visibility="gone"
                 android:background="@drawable/imageshirt" />
 
             <ImageView
                 android:id="@+id/id_Column2_Image3"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
+                android:visibility="gone"
                 android:background="@drawable/imageshirt" />
 
             <ImageView
                 android:id="@+id/id_Column2_Image4"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
+                android:visibility="gone"
                 android:background="@drawable/imageshirt" />
 
             <ImageView
                 android:id="@+id/id_Column2_Image5"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
+                android:visibility="gone"
                 android:background="@drawable/imageshirt" />
 
             <ImageView
                 android:id="@+id/id_Column2_Image6"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
+                android:visibility="gone"
                 android:background="@drawable/imageshirt" />
 
             <ImageView
                 android:id="@+id/id_Column2_Image7"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
+                android:visibility="gone"
                 android:background="@drawable/imageshirt" />
 
             <ImageView
                 android:id="@+id/id_Column2_Image8"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
+                android:visibility="gone"
                 android:background="@drawable/imageshirt" />
 
         </LinearLayout>
@@ -152,48 +168,56 @@
                 android:id="@+id/id_Column3_Image1"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
+                android:visibility="gone"
                 android:background="@drawable/imageshirt" />
 
             <ImageView
                 android:id="@+id/id_Column3_Image2"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
+                android:visibility="gone"
                 android:background="@drawable/imageshirt" />
 
             <ImageView
                 android:id="@+id/id_Column3_Image3"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
+                android:visibility="gone"
                 android:background="@drawable/imageshirt" />
 
             <ImageView
                 android:id="@+id/id_Column3_Image4"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
+                android:visibility="gone"
                 android:background="@drawable/imageshirt" />
 
             <ImageView
                 android:id="@+id/id_Column3_Image5"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
+                android:visibility="gone"
                 android:background="@drawable/imageshirt" />
 
             <ImageView
                 android:id="@+id/id_Column3_Image6"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
+                android:visibility="gone"
                 android:background="@drawable/imageshirt" />
 
             <ImageView
                 android:id="@+id/id_Column3_Image7"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
+                android:visibility="gone"
                 android:background="@drawable/imageshirt" />
 
             <ImageView
                 android:id="@+id/id_Column3_Image8"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
+                android:visibility="gone"
                 android:background="@drawable/imageshirt" />
 
         </LinearLayout>
@@ -209,48 +233,56 @@
                 android:id="@+id/id_Column4_Image1"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
+                android:visibility="gone"
                 android:background="@drawable/imageshirt" />
 
             <ImageView
                 android:id="@+id/id_Column4_Image2"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
+                android:visibility="gone"
                 android:background="@drawable/imageshirt" />
 
             <ImageView
                 android:id="@+id/id_Column4_Image3"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
+                android:visibility="gone"
                 android:background="@drawable/imageshirt" />
 
             <ImageView
                 android:id="@+id/id_Column4_Image4"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
+                android:visibility="gone"
                 android:background="@drawable/imageshirt" />
 
             <ImageView
                 android:id="@+id/id_Column4_Image5"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
+                android:visibility="gone"
                 android:background="@drawable/imageshirt" />
 
             <ImageView
                 android:id="@+id/id_Column4_Image6"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
+                android:visibility="gone"
                 android:background="@drawable/imageshirt" />
 
             <ImageView
                 android:id="@+id/id_Column4_Image7"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
+                android:visibility="gone"
                 android:background="@drawable/imageshirt" />
 
             <ImageView
                 android:id="@+id/id_Column4_Image8"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
+                android:visibility="gone"
                 android:background="@drawable/imageshirt" />
 
         </LinearLayout>
@@ -266,48 +298,56 @@
                 android:id="@+id/id_Column5_Image1"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
+                android:visibility="gone"
                 android:background="@drawable/imageshirt" />
 
             <ImageView
                 android:id="@+id/id_Column5_Image2"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
+                android:visibility="gone"
                 android:background="@drawable/imageshirt" />
 
             <ImageView
                 android:id="@+id/id_Column5_Image3"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
+                android:visibility="gone"
                 android:background="@drawable/imageshirt" />
 
             <ImageView
                 android:id="@+id/id_Column5_Image4"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
+                android:visibility="gone"
                 android:background="@drawable/imageshirt" />
 
             <ImageView
                 android:id="@+id/id_Column5_Image5"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
+                android:visibility="gone"
                 android:background="@drawable/imageshirt" />
 
             <ImageView
                 android:id="@+id/id_Column5_Image6"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
+                android:visibility="gone"
                 android:background="@drawable/imageshirt" />
 
             <ImageView
                 android:id="@+id/id_Column5_Image7"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
+                android:visibility="gone"
                 android:background="@drawable/imageshirt" />
 
             <ImageView
                 android:id="@+id/id_Column5_Image8"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
+                android:visibility="gone"
                 android:background="@drawable/imageshirt" />
 
         </LinearLayout>
@@ -323,48 +363,56 @@
                 android:id="@+id/id_Column6_Image1"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
+                android:visibility="gone"
                 android:background="@drawable/imageshirt" />
 
             <ImageView
                 android:id="@+id/id_Column6_Image2"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
+                android:visibility="gone"
                 android:background="@drawable/imageshirt" />
 
             <ImageView
                 android:id="@+id/id_Column6_Image3"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
+                android:visibility="gone"
                 android:background="@drawable/imageshirt" />
 
             <ImageView
                 android:id="@+id/id_Column6_Image4"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
+                android:visibility="gone"
                 android:background="@drawable/imageshirt" />
 
             <ImageView
                 android:id="@+id/id_Column6_Image5"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
+                android:visibility="gone"
                 android:background="@drawable/imageshirt" />
 
             <ImageView
                 android:id="@+id/id_Column6_Image6"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
+                android:visibility="gone"
                 android:background="@drawable/imageshirt" />
 
             <ImageView
                 android:id="@+id/id_Column6_Image7"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
+                android:visibility="gone"
                 android:background="@drawable/imageshirt" />
 
             <ImageView
                 android:id="@+id/id_Column6_Image8"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
+                android:visibility="gone"
                 android:background="@drawable/imageshirt" />
 
         </LinearLayout>
