@@ -224,9 +224,10 @@ class Level6 : AppCompatActivity() {
 
     //сравнить открытые картинки
     private fun checkCards() {
+
         if (imageViewFirstCard!!.tag == imageViewTwoCard!!.tag
                 && imageViewThreeCard!!.tag == imageViewFirstCard!!.tag) {
-
+            //уничтожить 3 совпадающие
             soundPlay(soundCrash)
             imageViewFirstCard!!.startAnimation(animation5)
             imageViewTwoCard!!.startAnimation(animation5)
@@ -238,14 +239,61 @@ class Level6 : AppCompatActivity() {
             counterOpenedImages = 0
             counterPairs++
             println("counter pairs = $counterPairs")
-            //если поле пустое
-            if (counterPairs == 6){
-                    //показать кнопку новой игры
-                btnNewGame!!.visibility = View.VISIBLE
+
+        } else {
+            //закрыть все карты если 2 открыты
+            if (counterOpenedImages == 2
+                    && imageViewFirstCard!!.tag != imageViewTwoCard!!.tag) {
+
+                imageViewFirstCard!!.startAnimation(animation3)
+                imageViewTwoCard!!.startAnimation(animation3)
+                imageViewThreeCard!!.startAnimation(animation3)
+                animation3!!.setAnimationListener(object : AnimationListener {
+                    override fun onAnimationStart(animation: Animation) {
+                        soundPlay(soundClose)
+                        blockAllButtons(true)
+                    }
+                    override fun onAnimationEnd(animation: Animation) {
+                        //запуск второй половины анимации
+                        imageViewFirstCard!!.startAnimation(animation4)
+                        imageViewTwoCard!!.startAnimation(animation4)
+                        imageViewThreeCard!!.startAnimation(animation4)
+                        animation4!!.setAnimationListener(object : AnimationListener {
+                            override fun onAnimationStart(animation: Animation) {
+                                imageViewFirstCard!!.setImageResource(R.drawable.imageshirt)
+                                imageViewTwoCard!!.setImageResource(R.drawable.imageshirt)
+                                imageViewThreeCard!!.setImageResource(R.drawable.imageshirt)
+                            }
+                            override fun onAnimationEnd(animation: Animation) {
+                                blockAllButtons(false)
+                                //присвоить ресы по умолчанию
+                                imageViewFirstCard = findViewById(R.id.idImageFirstCard)
+                                imageViewTwoCard = findViewById(R.id.idImageTwoCard)
+                                imageViewThreeCard = findViewById(R.id.idImageThreeCard)
+                                imageViewFirstCard!!.visibility = View.GONE
+                                imageViewTwoCard!!.visibility = View.GONE
+                                imageViewThreeCard!!.visibility = View.GONE
+                                //если поле пустое
+                                if (counterPairs == 6){
+                                    //показать кнопку новой игры
+                                    btnNewGame!!.visibility = View.VISIBLE
+
+                                }
+                            }
+
+                            override fun onAnimationRepeat(animation: Animation) {}
+                        })
+                    }
+                    override fun onAnimationRepeat(animation: Animation) {}
+                })
+
+                counterOpenedImages = 0
+                imageViewFirstCard!!.isClickable = true
+                imageViewTwoCard!!.isClickable = true
+                imageViewThreeCard!!.isClickable = true
 
             }
-        } else {
-            //закрыть все карты
+            //закрыть все карты если 3 открыты
             if (counterOpenedImages == 3) {
                 imageViewFirstCard!!.startAnimation(animation3)
                 imageViewTwoCard!!.startAnimation(animation3)
@@ -275,6 +323,12 @@ class Level6 : AppCompatActivity() {
                                 imageViewFirstCard!!.visibility = View.GONE
                                 imageViewTwoCard!!.visibility = View.GONE
                                 imageViewThreeCard!!.visibility = View.GONE
+                                //если поле пустое
+                                if (counterPairs == 6){
+                                    //показать кнопку новой игры
+                                    btnNewGame!!.visibility = View.VISIBLE
+
+                                }
                             }
 
                             override fun onAnimationRepeat(animation: Animation) {}
