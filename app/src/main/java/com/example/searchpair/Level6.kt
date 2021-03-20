@@ -14,7 +14,7 @@ import com.example.searchpair.databinding.ActivityGameFieldBinding
 import java.util.*
 
 /**
- *  Высокая сложность - найти трио
+ *  Средняя сложность - найти трио
  */
 
 class Level6 : AppCompatActivity() {
@@ -198,12 +198,15 @@ class Level6 : AppCompatActivity() {
                                     if (counterOpenedImages == 1) {
                                         imageViewTwoCard = img
                                         blockAllButtons(false)
+                                        imageViewFirstCard!!.isClickable = false
                                         imageViewTwoCard!!.isClickable = false
                                         println("Clicked two card, TAG = ${imageViewTwoCard!!.getTag()}")
                                     }
                                     if (counterOpenedImages == 2) {
                                         imageViewThreeCard = img
                                         blockAllButtons(false)
+                                        imageViewFirstCard!!.isClickable = false
+                                        imageViewTwoCard!!.isClickable = false
                                         imageViewThreeCard!!.isClickable = false
                                         println("Clicked three card, TAG = ${imageViewThreeCard!!.getTag()}")
                                     }
@@ -247,7 +250,6 @@ class Level6 : AppCompatActivity() {
 
                 imageViewFirstCard!!.startAnimation(animation3)
                 imageViewTwoCard!!.startAnimation(animation3)
-                imageViewThreeCard!!.startAnimation(animation3)
                 animation3!!.setAnimationListener(object : AnimationListener {
                     override fun onAnimationStart(animation: Animation) {
                         soundPlay(soundClose)
@@ -257,28 +259,20 @@ class Level6 : AppCompatActivity() {
                         //запуск второй половины анимации
                         imageViewFirstCard!!.startAnimation(animation4)
                         imageViewTwoCard!!.startAnimation(animation4)
-                        imageViewThreeCard!!.startAnimation(animation4)
                         animation4!!.setAnimationListener(object : AnimationListener {
                             override fun onAnimationStart(animation: Animation) {
                                 imageViewFirstCard!!.setImageResource(R.drawable.imageshirt)
                                 imageViewTwoCard!!.setImageResource(R.drawable.imageshirt)
-                                imageViewThreeCard!!.setImageResource(R.drawable.imageshirt)
+
                             }
                             override fun onAnimationEnd(animation: Animation) {
                                 blockAllButtons(false)
                                 //присвоить ресы по умолчанию
                                 imageViewFirstCard = findViewById(R.id.idImageFirstCard)
                                 imageViewTwoCard = findViewById(R.id.idImageTwoCard)
-                                imageViewThreeCard = findViewById(R.id.idImageThreeCard)
                                 imageViewFirstCard!!.visibility = View.GONE
                                 imageViewTwoCard!!.visibility = View.GONE
-                                imageViewThreeCard!!.visibility = View.GONE
-                                //если поле пустое
-                                if (counterPairs == 6){
-                                    //показать кнопку новой игры
-                                    btnNewGame!!.visibility = View.VISIBLE
 
-                                }
                             }
 
                             override fun onAnimationRepeat(animation: Animation) {}
@@ -293,7 +287,7 @@ class Level6 : AppCompatActivity() {
                 imageViewThreeCard!!.isClickable = true
 
             }
-            //закрыть все карты если 3 открыты
+            //закрыть все карты
             if (counterOpenedImages == 3) {
                 imageViewFirstCard!!.startAnimation(animation3)
                 imageViewTwoCard!!.startAnimation(animation3)
@@ -323,12 +317,6 @@ class Level6 : AppCompatActivity() {
                                 imageViewFirstCard!!.visibility = View.GONE
                                 imageViewTwoCard!!.visibility = View.GONE
                                 imageViewThreeCard!!.visibility = View.GONE
-                                //если поле пустое
-                                if (counterPairs == 6){
-                                    //показать кнопку новой игры
-                                    btnNewGame!!.visibility = View.VISIBLE
-
-                                }
                             }
 
                             override fun onAnimationRepeat(animation: Animation) {}
