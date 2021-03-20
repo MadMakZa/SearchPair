@@ -203,18 +203,24 @@ class Level10 : AppCompatActivity() {
                                     if (counterOpenedImages == 1) {
                                         imageViewTwoCard = img
                                         blockAllButtons(false)
+                                        imageViewFirstCard!!.isClickable = false
                                         imageViewTwoCard!!.isClickable = false
                                         println("Clicked two card, TAG = ${imageViewTwoCard!!.getTag()}")
                                     }
                                     if (counterOpenedImages == 2) {
                                         imageViewThreeCard = img
                                         blockAllButtons(false)
+                                        imageViewFirstCard!!.isClickable = false
+                                        imageViewTwoCard!!.isClickable = false
                                         imageViewThreeCard!!.isClickable = false
                                         println("Clicked three card, TAG = ${imageViewThreeCard!!.getTag()}")
                                     }
                                     if (counterOpenedImages == 3) {
                                         imageViewFourCard = img
                                         blockAllButtons(false)
+                                        imageViewFirstCard!!.isClickable = false
+                                        imageViewTwoCard!!.isClickable = false
+                                        imageViewThreeCard!!.isClickable = false
                                         imageViewFourCard!!.isClickable = false
                                         println("Clicked three card, TAG = ${imageViewFourCard!!.getTag()}")
                                     }
@@ -254,6 +260,12 @@ class Level10 : AppCompatActivity() {
             counterPairs++
             println("counter pairs = $counterPairs")
 
+            //если все пары найдены
+            if (counterPairs == 5){
+                //показать кнопку новой игры
+                btnNewGame!!.visibility = View.VISIBLE
+            }
+
         } else {
             //закрыть все карты если 2 открыты
             if (counterOpenedImages == 2
@@ -261,8 +273,8 @@ class Level10 : AppCompatActivity() {
 
                 imageViewFirstCard!!.startAnimation(animation3)
                 imageViewTwoCard!!.startAnimation(animation3)
-                imageViewThreeCard!!.startAnimation(animation3)
-                imageViewFourCard!!.startAnimation(animation3)
+//                imageViewThreeCard!!.startAnimation(animation3)
+//                imageViewFourCard!!.startAnimation(animation3)
                 animation3!!.setAnimationListener(object : AnimationListener {
                     override fun onAnimationStart(animation: Animation) {
                         soundPlay(soundClose)
@@ -272,32 +284,27 @@ class Level10 : AppCompatActivity() {
                         //запуск второй половины анимации
                         imageViewFirstCard!!.startAnimation(animation4)
                         imageViewTwoCard!!.startAnimation(animation4)
-                        imageViewThreeCard!!.startAnimation(animation4)
-                        imageViewFourCard!!.startAnimation(animation4)
+//                        imageViewThreeCard!!.startAnimation(animation4)
+//                        imageViewFourCard!!.startAnimation(animation4)
                         animation4!!.setAnimationListener(object : AnimationListener {
                             override fun onAnimationStart(animation: Animation) {
                                 imageViewFirstCard!!.setImageResource(R.drawable.imageshirt)
                                 imageViewTwoCard!!.setImageResource(R.drawable.imageshirt)
-                                imageViewThreeCard!!.setImageResource(R.drawable.imageshirt)
-                                imageViewFourCard!!.setImageResource(R.drawable.imageshirt)
+//                                imageViewThreeCard!!.setImageResource(R.drawable.imageshirt)
+//                                imageViewFourCard!!.setImageResource(R.drawable.imageshirt)
                             }
                             override fun onAnimationEnd(animation: Animation) {
                                 blockAllButtons(false)
                                 //присвоить ресы по умолчанию
                                 imageViewFirstCard = findViewById(R.id.idImageFirstCard)
                                 imageViewTwoCard = findViewById(R.id.idImageTwoCard)
-                                imageViewThreeCard = findViewById(R.id.idImageThreeCard)
-                                imageViewFourCard = findViewById(R.id.idImageFourCard)
+//                                imageViewThreeCard = findViewById(R.id.idImageThreeCard)
+//                                imageViewFourCard = findViewById(R.id.idImageFourCard)
                                 imageViewFirstCard!!.visibility = View.GONE
                                 imageViewTwoCard!!.visibility = View.GONE
-                                imageViewThreeCard!!.visibility = View.GONE
-                                imageViewFourCard!!.visibility = View.GONE
+//                                imageViewThreeCard!!.visibility = View.GONE
+//                                imageViewFourCard!!.visibility = View.GONE
 
-                                //если поле пустое (перенести)
-                                if (counterPairs == 5){
-                                    //показать кнопку новой игры
-                                    btnNewGame!!.visibility = View.VISIBLE
-                                }
                             }
 
                             override fun onAnimationRepeat(animation: Animation) {}
@@ -320,7 +327,7 @@ class Level10 : AppCompatActivity() {
                 imageViewFirstCard!!.startAnimation(animation3)
                 imageViewTwoCard!!.startAnimation(animation3)
                 imageViewThreeCard!!.startAnimation(animation3)
-                imageViewFourCard!!.startAnimation(animation3)
+//                imageViewFourCard!!.startAnimation(animation3)
                 animation3!!.setAnimationListener(object : AnimationListener {
                     override fun onAnimationStart(animation: Animation) {
                         soundPlay(soundClose)
@@ -331,13 +338,13 @@ class Level10 : AppCompatActivity() {
                         imageViewFirstCard!!.startAnimation(animation4)
                         imageViewTwoCard!!.startAnimation(animation4)
                         imageViewThreeCard!!.startAnimation(animation4)
-                        imageViewFourCard!!.startAnimation(animation4)
+//                        imageViewFourCard!!.startAnimation(animation4)
                         animation4!!.setAnimationListener(object : AnimationListener {
                             override fun onAnimationStart(animation: Animation) {
                                 imageViewFirstCard!!.setImageResource(R.drawable.imageshirt)
                                 imageViewTwoCard!!.setImageResource(R.drawable.imageshirt)
                                 imageViewThreeCard!!.setImageResource(R.drawable.imageshirt)
-                                imageViewFourCard!!.setImageResource(R.drawable.imageshirt)
+//                                imageViewFourCard!!.setImageResource(R.drawable.imageshirt)
                             }
                             override fun onAnimationEnd(animation: Animation) {
                                 blockAllButtons(false)
@@ -345,17 +352,12 @@ class Level10 : AppCompatActivity() {
                                 imageViewFirstCard = findViewById(R.id.idImageFirstCard)
                                 imageViewTwoCard = findViewById(R.id.idImageTwoCard)
                                 imageViewThreeCard = findViewById(R.id.idImageThreeCard)
-                                imageViewFourCard = findViewById(R.id.idImageFourCard)
+//                                imageViewFourCard = findViewById(R.id.idImageFourCard)
                                 imageViewFirstCard!!.visibility = View.GONE
                                 imageViewTwoCard!!.visibility = View.GONE
                                 imageViewThreeCard!!.visibility = View.GONE
-                                imageViewFourCard!!.visibility = View.GONE
+//                                imageViewFourCard!!.visibility = View.GONE
 
-                                //если поле пустое
-                                if (counterPairs == 5){
-                                    //показать кнопку новой игры
-                                    btnNewGame!!.visibility = View.VISIBLE
-                                }
                             }
 
                             override fun onAnimationRepeat(animation: Animation) {}
@@ -408,11 +410,7 @@ class Level10 : AppCompatActivity() {
                                 imageViewThreeCard!!.visibility = View.GONE
                                 imageViewFourCard!!.visibility = View.GONE
 
-                                //если поле пустое
-                                if (counterPairs == 5){
-                                    //показать кнопку новой игры
-                                    btnNewGame!!.visibility = View.VISIBLE
-                                }
+
                             }
 
                             override fun onAnimationRepeat(animation: Animation) {}
