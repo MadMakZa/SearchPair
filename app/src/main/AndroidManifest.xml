@@ -25,6 +25,7 @@
         <activity android:name=".Level4" />
         <activity android:name=".Level5" />
         <activity android:name=".Level6" />
+        <activity android:name=".Level10" />
     </application>
 
 </manifest>

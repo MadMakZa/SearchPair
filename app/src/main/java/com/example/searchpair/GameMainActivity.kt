@@ -75,6 +75,12 @@ class GameMainActivity : AppCompatActivity() {
             overridePendingTransition(R.anim.open_activity, R.anim.close_activity)
 
         }
+        bindingClass.btnLevel10.setOnClickListener{
+            val intent = Intent(this, Level10::class.java)
+            startActivity(intent)
+            overridePendingTransition(R.anim.open_activity, R.anim.close_activity)
+
+        }
     }
 
 }
