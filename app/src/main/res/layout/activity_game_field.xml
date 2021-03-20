@@ -12,14 +12,14 @@
         android:id="@+id/idImageLogo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/logo" />
+        app:srcCompat="@drawable/select_level_empty" />
 
     <ImageButton
         android:id="@+id/btn_new_game"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:background="@drawable/btn_start_egypt" />
+        android:background="@drawable/btn_next_level" />
 
 
     <GridLayout

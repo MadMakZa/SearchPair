@@ -12,15 +12,22 @@
         android:id="@+id/idImageLogo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/logo" />
+        app:srcCompat="@drawable/logo_name_game" />
 
     <ImageButton
         android:id="@+id/btn_new_game"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="150dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="top|center"
-        android:background="@drawable/btn_start_egypt" />
+        android:background="@drawable/btn_new_game" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="110dp"
+        android:layout_gravity="center"
+        android:background="@drawable/select_level_text"/>
 
     <GridLayout
         android:layout_width="wrap_content"
@@ -30,52 +37,52 @@
 
         <ImageButton
             android:id="@+id/btn_level_1"
-            android:layout_width="75dp"
-            android:layout_height="75dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:tag="btn_level_1"
-            android:background="@drawable/imageshirt"/>
+            android:background="@drawable/btn_select_level_empty"/>
         <ImageButton
             android:id="@+id/btn_level_2"
-            android:layout_width="75dp"
-            android:layout_height="75dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:tag="btn_level_2"
-            android:background="@drawable/imageshirt"/>
+            android:background="@drawable/btn_select_level_pressed"/>
         <ImageButton
             android:id="@+id/btn_level_3"
-            android:layout_width="75dp"
-            android:layout_height="75dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:tag="btn_level_3"
-            android:background="@drawable/imageshirt"/>
+            android:background="@drawable/btn_select_level_empty"/>
         <ImageButton
             android:id="@+id/btn_level_4"
-            android:layout_width="75dp"
-            android:layout_height="75dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:tag="btn_level_4"
-            android:background="@drawable/imageshirt"/>
+            android:background="@drawable/btn_select_level_empty"/>
         <ImageButton
             android:id="@+id/btn_level_5"
-            android:layout_width="75dp"
-            android:layout_height="75dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:tag="btn_level_5"
-            android:background="@drawable/imageshirt"/>
+            android:background="@drawable/btn_select_level_empty"/>
         <ImageButton
             android:id="@+id/btn_level_6"
-            android:layout_width="75dp"
-            android:layout_height="75dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:tag="btn_level_6"
-            android:background="@drawable/imageshirt"/>
+            android:background="@drawable/btn_select_level_empty"/>
         <ImageButton
             android:id="@+id/btn_level_10"
-            android:layout_width="75dp"
-            android:layout_height="75dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:tag="btn_level_10"
-            android:background="@drawable/imageshirt"/>
+            android:background="@drawable/btn_select_level_empty"/>
         <ImageButton
             android:id="@+id/btn_level_16"
-            android:layout_width="75dp"
-            android:layout_height="75dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:tag="btn_level_16"
-            android:background="@drawable/imageshirt"/>
+            android:background="@drawable/btn_select_level_close"/>
 
 
     </GridLayout>

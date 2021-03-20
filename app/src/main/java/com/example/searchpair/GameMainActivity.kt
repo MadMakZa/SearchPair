@@ -34,7 +34,7 @@ class GameMainActivity : AppCompatActivity() {
             val intentStart = Intent(this, Level1::class.java)
             startActivity(intentStart)
             overridePendingTransition(R.anim.open_activity, R.anim.close_activity)
-            finish()
+
         }
     }
     //выбор уровня
