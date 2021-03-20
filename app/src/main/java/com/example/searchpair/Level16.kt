@@ -120,6 +120,7 @@ class Level16 : AppCompatActivity() {
 
     //Заполнение массива с кнопками (для присвоения слушателей нажатий через цикл for-each)
     private fun addToArrayImageViews() {
+        //колонка 1
         arrayImageViewsButtons.add(bindingClass.idColumn1Image1)
         arrayImageViewsButtons.add(bindingClass.idColumn1Image2)
         arrayImageViewsButtons.add(bindingClass.idColumn1Image3)
@@ -128,7 +129,7 @@ class Level16 : AppCompatActivity() {
         arrayImageViewsButtons.add(bindingClass.idColumn1Image6)
         arrayImageViewsButtons.add(bindingClass.idColumn1Image7)
         arrayImageViewsButtons.add(bindingClass.idColumn1Image8)
-
+        //колонка 2
         arrayImageViewsButtons.add(bindingClass.idColumn2Image1)
         arrayImageViewsButtons.add(bindingClass.idColumn2Image2)
         arrayImageViewsButtons.add(bindingClass.idColumn2Image3)
@@ -137,7 +138,7 @@ class Level16 : AppCompatActivity() {
         arrayImageViewsButtons.add(bindingClass.idColumn2Image6)
         arrayImageViewsButtons.add(bindingClass.idColumn2Image7)
         arrayImageViewsButtons.add(bindingClass.idColumn2Image8)
-
+        //колонка 3
         arrayImageViewsButtons.add(bindingClass.idColumn3Image1)
         arrayImageViewsButtons.add(bindingClass.idColumn3Image2)
         arrayImageViewsButtons.add(bindingClass.idColumn3Image3)
@@ -146,7 +147,7 @@ class Level16 : AppCompatActivity() {
         arrayImageViewsButtons.add(bindingClass.idColumn3Image6)
         arrayImageViewsButtons.add(bindingClass.idColumn3Image7)
         arrayImageViewsButtons.add(bindingClass.idColumn3Image8)
-
+        //колонка 4
         arrayImageViewsButtons.add(bindingClass.idColumn4Image1)
         arrayImageViewsButtons.add(bindingClass.idColumn4Image2)
         arrayImageViewsButtons.add(bindingClass.idColumn4Image3)
@@ -155,7 +156,7 @@ class Level16 : AppCompatActivity() {
         arrayImageViewsButtons.add(bindingClass.idColumn4Image6)
         arrayImageViewsButtons.add(bindingClass.idColumn4Image7)
         arrayImageViewsButtons.add(bindingClass.idColumn4Image8)
-
+        //колонка 5
         arrayImageViewsButtons.add(bindingClass.idColumn5Image1)
         arrayImageViewsButtons.add(bindingClass.idColumn5Image2)
         arrayImageViewsButtons.add(bindingClass.idColumn5Image3)
@@ -164,7 +165,7 @@ class Level16 : AppCompatActivity() {
         arrayImageViewsButtons.add(bindingClass.idColumn5Image6)
         arrayImageViewsButtons.add(bindingClass.idColumn5Image7)
         arrayImageViewsButtons.add(bindingClass.idColumn5Image8)
-
+        //колонка 6
         arrayImageViewsButtons.add(bindingClass.idColumn6Image1)
         arrayImageViewsButtons.add(bindingClass.idColumn6Image2)
         arrayImageViewsButtons.add(bindingClass.idColumn6Image3)

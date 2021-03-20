@@ -115,32 +115,23 @@ class Level5 : AppCompatActivity() {
 
     //Заполнение массива с кнопками (для присвоения слушателей нажатий через цикл for-each)
     private fun addToArrayImageViews() {
+        //колонка 1
         arrayImageViewsButtons.add(bindingClass.idColumn1Image1)
         arrayImageViewsButtons.add(bindingClass.idColumn1Image2)
         arrayImageViewsButtons.add(bindingClass.idColumn1Image3)
-        arrayImageViewsButtons.add(bindingClass.idColumn1Image4)
-        arrayImageViewsButtons.add(bindingClass.idColumn1Image5)
-        arrayImageViewsButtons.add(bindingClass.idColumn1Image6)
-        arrayImageViewsButtons.add(bindingClass.idColumn1Image7)
-        arrayImageViewsButtons.add(bindingClass.idColumn1Image8)
-
+        //колонка 2
         arrayImageViewsButtons.add(bindingClass.idColumn2Image1)
         arrayImageViewsButtons.add(bindingClass.idColumn2Image2)
         arrayImageViewsButtons.add(bindingClass.idColumn2Image3)
-        arrayImageViewsButtons.add(bindingClass.idColumn2Image4)
-//        arrayImageViewsButtons.add(bindingClass.idColumn2Image5)
-//        arrayImageViewsButtons.add(bindingClass.idColumn2Image6)
-//        arrayImageViewsButtons.add(bindingClass.idColumn2Image7)
-//        arrayImageViewsButtons.add(bindingClass.idColumn2Image8)
-//
-//        arrayImageViewsButtons.add(bindingClass.idColumn3Image1)
-//        arrayImageViewsButtons.add(bindingClass.idColumn3Image2)
-//        arrayImageViewsButtons.add(bindingClass.idColumn3Image3)
-//        arrayImageViewsButtons.add(bindingClass.idColumn3Image4)
-//        arrayImageViewsButtons.add(bindingClass.idColumn3Image5)
-//        arrayImageViewsButtons.add(bindingClass.idColumn3Image6)
-//        arrayImageViewsButtons.add(bindingClass.idColumn3Image7)
-//        arrayImageViewsButtons.add(bindingClass.idColumn3Image8)
+        //колонка 3
+        arrayImageViewsButtons.add(bindingClass.idColumn3Image1)
+        arrayImageViewsButtons.add(bindingClass.idColumn3Image2)
+        arrayImageViewsButtons.add(bindingClass.idColumn3Image3)
+        //колонка 4
+        arrayImageViewsButtons.add(bindingClass.idColumn4Image1)
+        arrayImageViewsButtons.add(bindingClass.idColumn4Image2)
+        arrayImageViewsButtons.add(bindingClass.idColumn4Image3)
+
     }
 
     //присвоить таги для ImageViews из листа с тагами
