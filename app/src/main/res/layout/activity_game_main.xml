@@ -68,7 +68,13 @@
             android:id="@+id/btn_level_10"
             android:layout_width="75dp"
             android:layout_height="75dp"
-            android:tag="btn_level_6"
+            android:tag="btn_level_10"
+            android:background="@drawable/imageshirt"/>
+        <ImageButton
+            android:id="@+id/btn_level_16"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:tag="btn_level_16"
             android:background="@drawable/imageshirt"/>
 
 
