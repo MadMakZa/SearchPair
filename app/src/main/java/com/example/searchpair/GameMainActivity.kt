@@ -99,6 +99,36 @@ class GameMainActivity : AppCompatActivity() {
             overridePendingTransition(R.anim.open_activity, R.anim.close_activity)
 
         }
+        bindingClass.btnLevel11.setOnClickListener{
+            val intent = Intent(this, Level11::class.java)
+            startActivity(intent)
+            overridePendingTransition(R.anim.open_activity, R.anim.close_activity)
+
+        }
+        bindingClass.btnLevel12.setOnClickListener{
+            val intent = Intent(this, Level12::class.java)
+            startActivity(intent)
+            overridePendingTransition(R.anim.open_activity, R.anim.close_activity)
+
+        }
+        bindingClass.btnLevel13.setOnClickListener{
+            val intent = Intent(this, Level13::class.java)
+            startActivity(intent)
+            overridePendingTransition(R.anim.open_activity, R.anim.close_activity)
+
+        }
+        bindingClass.btnLevel14.setOnClickListener{
+            val intent = Intent(this, Level14::class.java)
+            startActivity(intent)
+            overridePendingTransition(R.anim.open_activity, R.anim.close_activity)
+
+        }
+        bindingClass.btnLevel15.setOnClickListener{
+            val intent = Intent(this, Level15::class.java)
+            startActivity(intent)
+            overridePendingTransition(R.anim.open_activity, R.anim.close_activity)
+
+        }
         bindingClass.btnLevel16.setOnClickListener{
             val intent = Intent(this, Level16::class.java)
             startActivity(intent)
