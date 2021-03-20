@@ -430,6 +430,18 @@
         android:layout_height="60dp"
         android:visibility="gone"
          />
+    <ImageView
+        android:id="@+id/idImageThreeCard"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:visibility="gone"
+        />
+    <ImageView
+        android:id="@+id/idImageFourCard"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:visibility="gone"
+        />
 
 
 
