@@ -65,6 +65,7 @@ class Level10 : AppCompatActivity() {
         soundClose = MediaPlayer.create(this, R.raw.stone_close)
         soundDrop = MediaPlayer.create(this, R.raw.stone_drop)
         soundCrash = MediaPlayer.create(this, R.raw.stone_crash)
+        bindingClass.idSetTextLevel.setText(R.string.name_level_10)
         //заполнение массива + слушатели нажатий
         addToArrayImageViews()
         onClickImageViews()
@@ -262,6 +263,7 @@ class Level10 : AppCompatActivity() {
             if (counterPairs == 5){
                 //показать кнопку новой игры
                 btnNewGame!!.visibility = View.VISIBLE
+                bindingClass.idLevelComplete.visibility = View.VISIBLE
             }
 
         } else {

@@ -63,6 +63,7 @@ class Level6 : AppCompatActivity() {
         soundClose = MediaPlayer.create(this, R.raw.stone_close)
         soundDrop = MediaPlayer.create(this, R.raw.stone_drop)
         soundCrash = MediaPlayer.create(this, R.raw.stone_crash)
+        bindingClass.idSetTextLevel.setText(R.string.name_level_6)
         //заполнение массива + слушатели нажатий
         addToArrayImageViews()
         onClickImageViews()
@@ -240,6 +241,13 @@ class Level6 : AppCompatActivity() {
             counterOpenedImages = 0
             counterPairs++
             println("counter pairs = $counterPairs")
+            //если поле пустое
+            if (counterPairs == 6){
+                //показать кнопку новой игры
+                btnNewGame!!.visibility = View.VISIBLE
+                bindingClass.idLevelComplete.visibility = View.VISIBLE
+
+            }
 
         } else {
             //закрыть все карты если 2 открыты

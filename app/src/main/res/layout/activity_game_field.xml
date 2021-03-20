@@ -10,9 +10,31 @@
 
     <ImageView
         android:id="@+id/idImageLogo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/select_level_empty"/>
+
+    <TextView
+        android:id="@+id/idSetTextLevel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/select_level_empty" />
+        android:text=""
+        android:gravity="center"
+        android:padding="10dp"
+        android:fontFamily="@font/caesar_dressing"
+        android:textColor="@color/colorRedDark"
+        android:textSize="36sp"
+        android:textStyle="bold"
+        />
+
+    <ImageView
+        android:id="@+id/idLevelComplete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="110dp"
+        android:layout_gravity="center"
+        android:visibility="invisible"
+        android:background="@drawable/level_complite"/>
 
     <ImageButton
         android:id="@+id/btn_new_game"
