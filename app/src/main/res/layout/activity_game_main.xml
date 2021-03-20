@@ -16,14 +16,54 @@
 
     <ImageButton
         android:id="@+id/btn_new_game"
+        android:layout_marginTop="100dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
+        android:layout_gravity="top|center"
         android:background="@drawable/btn_start_egypt" />
 
     <GridLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:columnCount="4"
+        android:layout_gravity="center">
+
+        <ImageButton
+            android:id="@+id/btn_level_1"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:tag="btn_level_1"
+            android:background="@drawable/imageshirt"/>
+        <ImageButton
+            android:id="@+id/btn_level_2"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:tag="btn_level_2"
+            android:background="@drawable/imageshirt"/>
+        <ImageButton
+            android:id="@+id/btn_level_3"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:tag="btn_level_3"
+            android:background="@drawable/imageshirt"/>
+        <ImageButton
+            android:id="@+id/btn_level_4"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:tag="btn_level_4"
+            android:background="@drawable/imageshirt"/>
+        <ImageButton
+            android:id="@+id/btn_level_5"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:tag="btn_level_5"
+            android:background="@drawable/imageshirt"/>
+        <ImageButton
+            android:id="@+id/btn_level_6"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:tag="btn_level_6"
+            android:background="@drawable/imageshirt"/>
 
 
     </GridLayout>
