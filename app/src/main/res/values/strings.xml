@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">SearchPair</string>
+    <string name="button_level_1">1</string>
+    <string name="button_level_2">2</string>
+    <string name="button_level_3">3</string>
+    <string name="button_level_4">4</string>
+    <string name="button_level_5">5</string>
+    <string name="button_level_6">6</string>
+    <string name="button_level_7">7</string>
+    <string name="button_level_8">8</string>
+    <string name="button_level_10">10</string>
+    <string name="button_level_16">16</string>
 </resources>

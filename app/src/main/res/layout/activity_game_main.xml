@@ -35,54 +35,95 @@
         android:columnCount="4"
         android:layout_gravity="center">
 
-        <ImageButton
+        <Button
             android:id="@+id/btn_level_1"
-            android:layout_width="wrap_content"
+            android:layout_width="80dp"
             android:layout_height="wrap_content"
+            android:background="@drawable/btn_select_level_empty"
+            android:fontFamily="@font/caesar_dressing"
             android:tag="btn_level_1"
-            android:background="@drawable/btn_select_level_empty"/>
-        <ImageButton
+            android:text="@string/button_level_1"
+            android:textColor="@color/colorRedDark"
+            android:textSize="36sp"
+            android:textStyle="bold" />
+        <Button
             android:id="@+id/btn_level_2"
-            android:layout_width="wrap_content"
+            android:layout_width="80dp"
             android:layout_height="wrap_content"
+            android:background="@drawable/btn_select_level_empty"
+            android:fontFamily="@font/caesar_dressing"
             android:tag="btn_level_2"
-            android:background="@drawable/btn_select_level_pressed"/>
-        <ImageButton
+            android:text="@string/button_level_2"
+            android:textColor="@color/colorRedDark"
+            android:textSize="36sp"
+            android:textStyle="bold" />
+        <Button
             android:id="@+id/btn_level_3"
-            android:layout_width="wrap_content"
+            android:layout_width="80dp"
             android:layout_height="wrap_content"
+            android:background="@drawable/btn_select_level_empty"
+            android:fontFamily="@font/caesar_dressing"
             android:tag="btn_level_3"
-            android:background="@drawable/btn_select_level_empty"/>
-        <ImageButton
+            android:text="@string/button_level_3"
+            android:textColor="@color/colorRedDark"
+            android:textSize="36sp"
+            android:textStyle="bold" />
+        <Button
             android:id="@+id/btn_level_4"
-            android:layout_width="wrap_content"
+            android:layout_width="80dp"
             android:layout_height="wrap_content"
+            android:background="@drawable/btn_select_level_empty"
+            android:fontFamily="@font/caesar_dressing"
             android:tag="btn_level_4"
-            android:background="@drawable/btn_select_level_empty"/>
-        <ImageButton
+            android:text="@string/button_level_4"
+            android:textColor="@color/colorRedDark"
+            android:textSize="36sp"
+            android:textStyle="bold" />
+        <Button
             android:id="@+id/btn_level_5"
-            android:layout_width="wrap_content"
+            android:layout_width="80dp"
             android:layout_height="wrap_content"
+            android:background="@drawable/btn_select_level_empty"
+            android:fontFamily="@font/caesar_dressing"
             android:tag="btn_level_5"
-            android:background="@drawable/btn_select_level_empty"/>
-        <ImageButton
+            android:text="@string/button_level_5"
+            android:textColor="@color/colorRedDark"
+            android:textSize="36sp"
+            android:textStyle="bold" />
+        <Button
             android:id="@+id/btn_level_6"
-            android:layout_width="wrap_content"
+            android:layout_width="80dp"
             android:layout_height="wrap_content"
+            android:background="@drawable/btn_select_level_empty"
+            android:fontFamily="@font/caesar_dressing"
             android:tag="btn_level_6"
-            android:background="@drawable/btn_select_level_empty"/>
-        <ImageButton
+            android:text="@string/button_level_6"
+            android:textColor="@color/colorRedDark"
+            android:textSize="36sp"
+            android:textStyle="bold" />
+        <Button
             android:id="@+id/btn_level_10"
-            android:layout_width="wrap_content"
+            android:layout_width="80dp"
             android:layout_height="wrap_content"
+            android:background="@drawable/btn_select_level_empty"
+            android:fontFamily="@font/caesar_dressing"
             android:tag="btn_level_10"
-            android:background="@drawable/btn_select_level_empty"/>
-        <ImageButton
+            android:text="@string/button_level_10"
+            android:textColor="@color/colorRedDark"
+            android:textSize="36sp"
+            android:textStyle="bold" />
+
+        <Button
             android:id="@+id/btn_level_16"
-            android:layout_width="wrap_content"
+            android:layout_width="80dp"
             android:layout_height="wrap_content"
+            android:background="@drawable/btn_select_level_empty"
+            android:fontFamily="@font/caesar_dressing"
             android:tag="btn_level_16"
-            android:background="@drawable/btn_select_level_close"/>
+            android:text="@string/button_level_16"
+            android:textColor="@color/colorRedDark"
+            android:textSize="36sp"
+            android:textStyle="bold" />
 
 
     </GridLayout>

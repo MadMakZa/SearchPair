@@ -3,7 +3,14 @@
     <color name="colorPrimary">#6200EE</color>
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
-    <color name="colorOrange">#FF9800</color>
     <color name="colorWhite">#FFFFFF</color>
     <color name="colorBlack">#000000</color>
+
+    <color name="colorYellow">#F5D92F</color>
+    <color name="colorGold">#FCCC12</color>
+    <color name="colorBrownLight">#E6AC1C</color>
+    <color name="colorOrange">#FCA812</color>
+    <color name="colorOrange2">#F58C07</color>
+    <color name="colorBrown">#A66005</color>
+    <color name="colorRedDark">#972208</color>
 </resources>
