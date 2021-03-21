@@ -2,6 +2,7 @@
     <string name="app_name">SearchPair</string>
 
     <string name="button_new_game">New Game</string>
+    <string name="button_next_level">Next Level</string>
 
     <string name="button_level_1">1</string>
     <string name="button_level_2">2</string>

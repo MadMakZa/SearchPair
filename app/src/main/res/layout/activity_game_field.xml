@@ -20,9 +20,9 @@
         android:layout_height="wrap_content"
         android:text=""
         android:gravity="center"
-        android:padding="10dp"
         android:fontFamily="@font/caesar_dressing"
         android:textColor="@color/colorRedDark"
+        android:padding="5dp"
         android:textSize="36sp"
         android:textStyle="bold"
         />
@@ -36,12 +36,17 @@
         android:visibility="invisible"
         android:background="@drawable/level_complite"/>
 
-    <ImageButton
+    <Button
         android:id="@+id/btn_new_game"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:background="@drawable/btn_next_level" />
+        android:fontFamily="@font/caesar_dressing"
+        android:text="@string/button_next_level"
+        android:textColor="@color/colorRedDark"
+        android:textSize="36sp"
+        android:textStyle="bold"
+        android:background="@drawable/button_new_game_theme" />
 
 
     <GridLayout

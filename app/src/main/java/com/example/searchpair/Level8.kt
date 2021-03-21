@@ -7,6 +7,7 @@ import android.view.View
 import android.view.animation.Animation
 import android.view.animation.Animation.AnimationListener
 import android.view.animation.AnimationUtils
+import android.widget.Button
 import android.widget.ImageButton
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
@@ -27,7 +28,7 @@ class Level8 : AppCompatActivity() {
     private var imageViewFirstCard: ImageView? = null
     private var imageViewTwoCard: ImageView? = null
     private var imageViewThreeCard: ImageView? = null
-    private lateinit var btnNewGame: ImageButton
+    private lateinit var btnNewGame: Button
     var animation1: Animation? = null
     var animation2: Animation? = null
     var animation3: Animation? = null

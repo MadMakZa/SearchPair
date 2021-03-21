@@ -18,7 +18,6 @@ class SplashScreen : AppCompatActivity() {
         Handler().postDelayed({
         val intent = Intent(this, GameMainActivity::class.java)
         startActivity(intent)
-//        overridePendingTransition(R.anim.open_activity, R.anim.close_activity)
         finish()
         }, 500)
     }

@@ -7,6 +7,7 @@ import android.view.View
 import android.view.animation.Animation
 import android.view.animation.Animation.AnimationListener
 import android.view.animation.AnimationUtils
+import android.widget.Button
 import android.widget.ImageButton
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
@@ -26,7 +27,7 @@ class Level1 : AppCompatActivity() {
 
     private var imageViewFirstCard: ImageView? = null
     private var imageViewTwoCard: ImageView? = null
-    private lateinit var btnNewGame: ImageButton
+//    private lateinit var btnNewGame: Button
     var animation1: Animation? = null
     var animation2: Animation? = null
     var animation3: Animation? = null
@@ -50,7 +51,7 @@ class Level1 : AppCompatActivity() {
         animation3 = AnimationUtils.loadAnimation(this, R.anim.flip_to_middle)
         animation4 = AnimationUtils.loadAnimation(this, R.anim.flip_from_middle)
         animation5 = AnimationUtils.loadAnimation(this, R.anim.anim_scale)
-        btnNewGame = findViewById(R.id.btn_new_game)
+//        btnNewGame = findViewById(R.id.btn_new_game)
         imageViewFirstCard = findViewById(R.id.idImageFirstCard)
         imageViewTwoCard = findViewById(R.id.idImageTwoCard)
         soundOpen = MediaPlayer.create(this, R.raw.stone_open)
@@ -83,12 +84,12 @@ class Level1 : AppCompatActivity() {
         }
         closeAllImages()
         counterPairs = 0
-        btnNewGame!!.visibility = View.INVISIBLE
+        bindingClass.btnNewGame!!.visibility = View.INVISIBLE
     }
 
     //начать новую игру по нажатию на кнопку
     private fun startNewGame() {
-        btnNewGame!!.setOnClickListener {
+        bindingClass.btnNewGame!!.setOnClickListener {
             soundPlay(soundDrop)
             val intent = Intent(this, Level2::class.java)
             startActivity(intent)
@@ -214,7 +215,7 @@ class Level1 : AppCompatActivity() {
             //если поле пустое
             if (counterPairs == 6){
                     //показать кнопку новой игры
-                btnNewGame!!.visibility = View.VISIBLE
+                bindingClass.btnNewGame!!.visibility = View.VISIBLE
                 bindingClass.idLevelComplete.visibility = View.VISIBLE
 
             }
