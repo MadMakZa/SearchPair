@@ -12,6 +12,9 @@ import android.widget.ImageButton
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.searchpair.databinding.ActivityGameFieldBinding
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import java.util.*
 
 class Level1 : AppCompatActivity() {
@@ -71,7 +74,7 @@ class Level1 : AppCompatActivity() {
     }
     //воспроизведение звука
     private fun soundPlay(sound: MediaPlayer){
-        sound.start()
+            sound.start()
     }
 
     //генерация игрового поля (новая игра)
