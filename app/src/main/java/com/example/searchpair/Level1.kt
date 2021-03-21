@@ -16,6 +16,10 @@ import java.util.*
 class Level1 : AppCompatActivity() {
 
     private lateinit var bindingClass: ActivityGameFieldBinding
+    private lateinit var soundOpen: MediaPlayer
+    private lateinit var soundClose: MediaPlayer
+    private lateinit var soundDrop: MediaPlayer
+    private lateinit var soundCrash: MediaPlayer
 
     var arrayImageViewsButtons = ArrayList<ImageView?>() //лист с кнопками
     var arrayTags = ArrayList<String?>() //лист с тагами (за конкретным тагом закреплена конкретная картинка)
@@ -30,10 +34,6 @@ class Level1 : AppCompatActivity() {
     var animation5: Animation? = null
     private var counterOpenedImages = 0
     private var counterPairs = 0;
-    private lateinit var soundOpen: MediaPlayer
-    private lateinit var soundClose: MediaPlayer
-    private lateinit var soundDrop: MediaPlayer
-    private lateinit var soundCrash: MediaPlayer
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,6 +58,7 @@ class Level1 : AppCompatActivity() {
         soundDrop = MediaPlayer.create(this, R.raw.stone_drop)
         soundCrash = MediaPlayer.create(this, R.raw.stone_crash)
         bindingClass.idSetTextLevel.setText(R.string.name_level_1)
+
 
         //заполнение массива + слушатели нажатий
         addToArrayImageViews()

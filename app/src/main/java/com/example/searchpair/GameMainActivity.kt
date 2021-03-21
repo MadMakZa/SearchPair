@@ -1,20 +1,23 @@
 package com.example.searchpair
 
-import android.app.Activity
+
 import android.content.Intent
+import android.media.MediaPlayer
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.ImageButton
-import android.widget.ImageView
+
 import com.example.searchpair.databinding.ActivityGameMainBinding
-import java.util.ArrayList
-import java.util.logging.Level
+
 
 class GameMainActivity : AppCompatActivity() {
 
-    private var arrayImageViewsButtons = ArrayList<ImageView?>()
+
     private lateinit var bindingClass: ActivityGameMainBinding
-    private lateinit var btnNewGame: ImageButton
+    private lateinit var soundOpen: MediaPlayer
+    private lateinit var soundClose: MediaPlayer
+    private lateinit var soundDrop: MediaPlayer
+    private lateinit var soundCrash: MediaPlayer
+
 
 
 
@@ -22,15 +25,25 @@ class GameMainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         bindingClass = ActivityGameMainBinding.inflate(layoutInflater)
         setContentView(bindingClass.root)
+        soundOpen = MediaPlayer.create(this, R.raw.stone_open)
+        soundClose = MediaPlayer.create(this, R.raw.stone_close)
+        soundDrop = MediaPlayer.create(this, R.raw.stone_drop)
+        soundCrash = MediaPlayer.create(this, R.raw.stone_crash)
 
         startNewGame()
         chooseLevel()
 
     }
 
+    //воспроизведение звука
+    private fun soundPlay(sound: MediaPlayer){
+        sound.start()
+    }
+
     //начать новую игру по нажатию на кнопку
     private fun startNewGame() {
         bindingClass.btnNewGame.setOnClickListener {
+            soundPlay(soundDrop)
             val intentStart = Intent(this, Level1::class.java)
             startActivity(intentStart)
             overridePendingTransition(R.anim.open_activity, R.anim.close_activity)
