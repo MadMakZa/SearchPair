@@ -12,6 +12,7 @@
         android:id="@+id/idImageLogo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="top|center"
         android:background="@drawable/select_level_empty"/>
 
     <TextView
