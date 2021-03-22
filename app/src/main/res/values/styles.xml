@@ -6,6 +6,9 @@
         <item name="colorPrimary">#FF9C0B</item>
         <item name="colorPrimaryDark">#F6BA07</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <!-- Off multitouch-->
+        <item name="android:windowEnableSplitTouch">false</item>
+        <item name="android:splitMotionEvents">false</item>
     </style>
     
     <style name="SplashTheme" parent="Theme.AppCompat.Light.NoActionBar">

@@ -37,7 +37,7 @@ class Level1 : AppCompatActivity() {
     var animation4: Animation? = null
     var animation5: Animation? = null
     private var counterOpenedImages = 0
-    private var counterPairs = 0;
+    private var counterPairs = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
