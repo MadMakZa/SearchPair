@@ -11,30 +11,48 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".SplashScreen"
-            android:theme="@style/SplashTheme">
+            android:theme="@style/SplashTheme"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".GameMainActivity"/>
-        <activity android:name=".Level1" />
-        <activity android:name=".Level2" />
-        <activity android:name=".Level3" />
-        <activity android:name=".Level4" />
-        <activity android:name=".Level5" />
-        <activity android:name=".Level6" />
-        <activity android:name=".Level7" />
-        <activity android:name=".Level8" />
-        <activity android:name=".Level9" />
-        <activity android:name=".Level10" />
-        <activity android:name=".Level11" />
-        <activity android:name=".Level12" />
-        <activity android:name=".Level13" />
-        <activity android:name=".Level14" />
-        <activity android:name=".Level15" />
-        <activity android:name=".Level16" />
+        <activity android:name=".GameMainActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".Level1"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Level2"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Level3"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Level4"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Level5"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Level6"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Level7"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Level8"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Level9"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Level10"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Level11"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Level12"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Level13"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Level14"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Level15"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Level16"
+            android:screenOrientation="portrait"/>
 
         <meta-data
             android:name="preloaded_fonts"
