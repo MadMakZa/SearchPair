@@ -28,6 +28,24 @@
         android:textStyle="bold"
         />
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="55dp"
+        android:layout_gravity="center|top">
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="300dp"
+            android:layout_height="20dp"
+            android:progressDrawable="@drawable/custom_progressbar_theme"
+            android:scaleY="1" />
+
+    </LinearLayout>
+
+
+
     <ImageView
         android:id="@+id/idLevelComplete"
         android:layout_width="wrap_content"
@@ -61,6 +79,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:orientation="vertical">
+
 
             <ImageView
                 android:id="@+id/id_Column1_Image1"
