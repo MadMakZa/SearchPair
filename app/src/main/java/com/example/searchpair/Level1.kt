@@ -39,6 +39,7 @@ class Level1 : AppCompatActivity() {
     private var counterOpenedImages = 0
     private var counterPairs = 0
     private var health = 0
+    private var healthMax = 65
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -64,7 +65,7 @@ class Level1 : AppCompatActivity() {
         soundCrash = MediaPlayer.create(this, R.raw.stone_crash)
         bindingClass.idSetTextLevel.setText(R.string.name_level_1)
         //шкала здоровья
-        bindingClass.progressBar.max = 60
+        bindingClass.progressBar.max = healthMax
 
 
         //заполнение массива + слушатели нажатий
@@ -82,7 +83,7 @@ class Level1 : AppCompatActivity() {
                 .setDuration(1000)
                 .start()
         //если шкала заполнилась запустить по-новой уровень
-        if (health > 50){
+        if (health > healthMax){
             soundPlay(soundDrop)
             val intent = Intent(this, Level1::class.java)
             startActivity(intent)
@@ -94,7 +95,7 @@ class Level1 : AppCompatActivity() {
     //восстановить здоровье
     private fun healthRestore(){
         if(health <= 10) health = 0
-        if (health >= 20) health -=20
+        if (health >= 10) health -=10
 
         ObjectAnimator.ofInt(bindingClass.progressBar, "progress", health)
                 .setDuration(1000)

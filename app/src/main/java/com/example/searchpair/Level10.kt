@@ -39,6 +39,7 @@ class Level10 : AppCompatActivity() {
     private var counterOpenedImages = 0
     private var counterPairs = 0
     private var health = 0
+    private var healthMax = 151
     private lateinit var soundOpen: MediaPlayer
     private lateinit var soundClose: MediaPlayer
     private lateinit var soundDrop: MediaPlayer
@@ -69,7 +70,7 @@ class Level10 : AppCompatActivity() {
         soundDrop = MediaPlayer.create(this, R.raw.stone_drop)
         soundCrash = MediaPlayer.create(this, R.raw.stone_crash)
         bindingClass.idSetTextLevel.setText(R.string.name_level_10)
-        bindingClass.progressBar.max = 200
+        bindingClass.progressBar.max = healthMax
         //заполнение массива + слушатели нажатий
         addToArrayImageViews()
         onClickImageViews()
@@ -85,7 +86,7 @@ class Level10 : AppCompatActivity() {
                 .setDuration(1000)
                 .start()
         //если шкала заполнилась запустить по-новой уровень
-        if (health > 200){
+        if (health > healthMax){
             soundPlay(soundDrop)
             val intent = Intent(this, Level10::class.java)
             startActivity(intent)
@@ -96,8 +97,8 @@ class Level10 : AppCompatActivity() {
     }
     //восстановить здоровье
     private fun healthRestore(){
-        if(health < 20) health = 0
-        if (health >= 20) health -=20
+        if(health <= 15) health = 0
+        if (health >= 15) health -=15
 
         ObjectAnimator.ofInt(bindingClass.progressBar, "progress", health)
                 .setDuration(1000)
