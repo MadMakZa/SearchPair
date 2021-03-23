@@ -78,6 +78,13 @@ class Level7 : AppCompatActivity() {
         newGame()
 
     }
+    //сохранение прогресса
+    private fun saveProgress(){
+        getSharedPreferences("Save", MODE_PRIVATE)
+                .edit()
+                .putInt("Level",8)
+                .apply()
+    }
     //получить урон
     private fun healthDamaged(){
         health +=10
@@ -280,6 +287,7 @@ class Level7 : AppCompatActivity() {
             println("counter pairs = $counterPairs")
             //если поле пустое
             if (counterPairs == 8){
+                saveProgress()
                 //показать кнопку новой игры
                 btnNewGame!!.visibility = View.VISIBLE
                 bindingClass.idLevelComplete.visibility = View.VISIBLE

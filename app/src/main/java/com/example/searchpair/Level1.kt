@@ -85,9 +85,7 @@ class Level1 : AppCompatActivity() {
                 .edit()
                 .putInt("Level",2)
                 .apply()
-
     }
-
     //получить урон
     private fun healthDamaged(){
         health +=10

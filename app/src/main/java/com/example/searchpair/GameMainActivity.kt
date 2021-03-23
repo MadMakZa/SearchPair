@@ -86,7 +86,7 @@ class GameMainActivity : AppCompatActivity() {
             }
         }
         if(levelProgress >= 3){
-            bindingClass.btnLevel2.text = "3"
+            bindingClass.btnLevel3.text = "3"
             bindingClass.btnLevel3.setOnClickListener{
                 soundPlay(soundDrop)
                 val intent = Intent(this, Level3::class.java)
@@ -96,7 +96,7 @@ class GameMainActivity : AppCompatActivity() {
             }
         }
         if(levelProgress >= 4){
-            bindingClass.btnLevel2.text = "4"
+            bindingClass.btnLevel4.text = "4"
             bindingClass.btnLevel4.setOnClickListener {
                 soundPlay(soundDrop)
                 val intent = Intent(this, Level4::class.java)
@@ -105,7 +105,7 @@ class GameMainActivity : AppCompatActivity() {
             }
         }
         if(levelProgress >= 5){
-            bindingClass.btnLevel2.text = "5"
+            bindingClass.btnLevel5.text = "5"
             bindingClass.btnLevel5.setOnClickListener {
                 soundPlay(soundDrop)
                 val intent = Intent(this, Level5::class.java)
@@ -114,7 +114,7 @@ class GameMainActivity : AppCompatActivity() {
             }
         }
         if(levelProgress >= 6){
-            bindingClass.btnLevel2.text = "6"
+            bindingClass.btnLevel6.text = "6"
             bindingClass.btnLevel6.setOnClickListener {
                 soundPlay(soundDrop)
                 val intent = Intent(this, Level6::class.java)
@@ -123,7 +123,7 @@ class GameMainActivity : AppCompatActivity() {
             }
         }
         if(levelProgress >= 7){
-            bindingClass.btnLevel2.text = "7"
+            bindingClass.btnLevel7.text = "7"
             bindingClass.btnLevel7.setOnClickListener {
                 soundPlay(soundDrop)
                 val intent = Intent(this, Level7::class.java)
@@ -132,7 +132,7 @@ class GameMainActivity : AppCompatActivity() {
             }
         }
         if(levelProgress >= 8){
-            bindingClass.btnLevel2.text = "8"
+            bindingClass.btnLevel8.text = "8"
             bindingClass.btnLevel8.setOnClickListener {
                 soundPlay(soundDrop)
                 val intent = Intent(this, Level8::class.java)
@@ -141,7 +141,7 @@ class GameMainActivity : AppCompatActivity() {
             }
         }
         if(levelProgress >= 9){
-            bindingClass.btnLevel2.text = "9"
+            bindingClass.btnLevel9.text = "9"
             bindingClass.btnLevel9.setOnClickListener {
                 soundPlay(soundDrop)
                 val intent = Intent(this, Level9::class.java)
@@ -150,7 +150,7 @@ class GameMainActivity : AppCompatActivity() {
             }
         }
         if(levelProgress >= 10){
-            bindingClass.btnLevel2.text = "10"
+            bindingClass.btnLevel10.text = "10"
             bindingClass.btnLevel10.setOnClickListener {
                 soundPlay(soundDrop)
                 val intent = Intent(this, Level10::class.java)
@@ -159,7 +159,7 @@ class GameMainActivity : AppCompatActivity() {
             }
         }
         if(levelProgress >= 11){
-            bindingClass.btnLevel2.text = "11"
+            bindingClass.btnLevel11.text = "11"
             bindingClass.btnLevel11.setOnClickListener {
                 soundPlay(soundDrop)
                 val intent = Intent(this, Level11::class.java)
@@ -168,7 +168,7 @@ class GameMainActivity : AppCompatActivity() {
             }
         }
         if(levelProgress >= 12){
-            bindingClass.btnLevel2.text = "12"
+            bindingClass.btnLevel12.text = "12"
             bindingClass.btnLevel12.setOnClickListener {
                 soundPlay(soundDrop)
                 val intent = Intent(this, Level12::class.java)
@@ -177,7 +177,7 @@ class GameMainActivity : AppCompatActivity() {
             }
         }
         if(levelProgress >= 13){
-            bindingClass.btnLevel2.text = "13"
+            bindingClass.btnLevel13.text = "13"
             bindingClass.btnLevel13.setOnClickListener {
                 soundPlay(soundDrop)
                 val intent = Intent(this, Level13::class.java)
@@ -186,7 +186,7 @@ class GameMainActivity : AppCompatActivity() {
             }
         }
         if(levelProgress >= 14){
-            bindingClass.btnLevel2.text = "14"
+            bindingClass.btnLevel14.text = "14"
             bindingClass.btnLevel14.setOnClickListener {
                 soundPlay(soundDrop)
                 val intent = Intent(this, Level14::class.java)
@@ -195,7 +195,7 @@ class GameMainActivity : AppCompatActivity() {
             }
         }
         if(levelProgress >= 15){
-            bindingClass.btnLevel2.text = "15"
+            bindingClass.btnLevel15.text = "15"
             bindingClass.btnLevel15.setOnClickListener {
                 soundPlay(soundDrop)
                 val intent = Intent(this, Level15::class.java)
@@ -204,7 +204,7 @@ class GameMainActivity : AppCompatActivity() {
             }
         }
         if(levelProgress >= 16){
-            bindingClass.btnLevel2.text = "16"
+            bindingClass.btnLevel16.text = "16"
             bindingClass.btnLevel16.setOnClickListener {
                 soundPlay(soundDrop)
                 val intent = Intent(this, Level16::class.java)

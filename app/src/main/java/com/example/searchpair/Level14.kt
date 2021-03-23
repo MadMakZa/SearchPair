@@ -79,6 +79,13 @@ class Level14 : AppCompatActivity() {
         newGame()
 
     }
+    //сохранение прогресса
+    private fun saveProgress(){
+        getSharedPreferences("Save", MODE_PRIVATE)
+                .edit()
+                .putInt("Level",15)
+                .apply()
+    }
     //получить урон
     private fun healthDamaged(){
         health +=10
@@ -311,6 +318,7 @@ class Level14 : AppCompatActivity() {
 
             //если все пары найдены
             if (counterPairs == 9){
+                saveProgress()
                 //показать кнопку новой игры
                 btnNewGame!!.visibility = View.VISIBLE
                 bindingClass.idLevelComplete.visibility = View.VISIBLE
