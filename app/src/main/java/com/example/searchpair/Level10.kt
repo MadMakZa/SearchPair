@@ -1,5 +1,6 @@
 package com.example.searchpair
 
+import android.animation.ObjectAnimator
 import android.content.Intent
 import android.media.MediaPlayer
 import android.os.Bundle
@@ -36,7 +37,8 @@ class Level10 : AppCompatActivity() {
     var animation4: Animation? = null
     var animation5: Animation? = null
     private var counterOpenedImages = 0
-    private var counterPairs = 0;
+    private var counterPairs = 0
+    private var health = 0
     private lateinit var soundOpen: MediaPlayer
     private lateinit var soundClose: MediaPlayer
     private lateinit var soundDrop: MediaPlayer
@@ -67,6 +69,7 @@ class Level10 : AppCompatActivity() {
         soundDrop = MediaPlayer.create(this, R.raw.stone_drop)
         soundCrash = MediaPlayer.create(this, R.raw.stone_crash)
         bindingClass.idSetTextLevel.setText(R.string.name_level_10)
+        bindingClass.progressBar.max = 200
         //заполнение массива + слушатели нажатий
         addToArrayImageViews()
         onClickImageViews()
@@ -74,6 +77,31 @@ class Level10 : AppCompatActivity() {
 
         newGame()
 
+    }
+    //получить урон
+    private fun healthDamaged(){
+        health +=10
+        ObjectAnimator.ofInt(bindingClass.progressBar, "progress", health)
+                .setDuration(1000)
+                .start()
+        //если шкала заполнилась запустить по-новой уровень
+        if (health > 200){
+            soundPlay(soundDrop)
+            val intent = Intent(this, Level10::class.java)
+            startActivity(intent)
+            overridePendingTransition(R.anim.open_activity, R.anim.close_activity)
+            finish()
+        }
+
+    }
+    //восстановить здоровье
+    private fun healthRestore(){
+        if(health < 20) health = 0
+        if (health >= 20) health -=20
+
+        ObjectAnimator.ofInt(bindingClass.progressBar, "progress", health)
+                .setDuration(1000)
+                .start()
     }
     //воспроизведение звука
     private fun soundPlay(sound: MediaPlayer){
@@ -241,11 +269,11 @@ class Level10 : AppCompatActivity() {
 
     //сравнить открытые картинки
     private fun checkCards() {
-
         if (imageViewFirstCard!!.tag == imageViewTwoCard!!.tag
                 && imageViewThreeCard!!.tag == imageViewFirstCard!!.tag
                 && imageViewFourCard!!.tag == imageViewFirstCard!!.tag) {
             //уничтожить 4 совпадающие
+            healthRestore()
             soundPlay(soundCrash)
             imageViewFirstCard!!.startAnimation(animation5)
             imageViewTwoCard!!.startAnimation(animation5)
@@ -271,7 +299,7 @@ class Level10 : AppCompatActivity() {
             //закрыть все карты если 2 открыты
             if (counterOpenedImages == 2
                     && imageViewFirstCard!!.tag != imageViewTwoCard!!.tag) {
-
+                healthDamaged()
                 imageViewFirstCard!!.startAnimation(animation3)
                 imageViewTwoCard!!.startAnimation(animation3)
 //                imageViewThreeCard!!.startAnimation(animation3)
@@ -324,7 +352,7 @@ class Level10 : AppCompatActivity() {
             //закрыть все карты если 3 открыты
             if (counterOpenedImages == 3
                     && imageViewThreeCard!!.tag != imageViewFirstCard!!.tag) {
-
+                healthDamaged()
                 imageViewFirstCard!!.startAnimation(animation3)
                 imageViewTwoCard!!.startAnimation(animation3)
                 imageViewThreeCard!!.startAnimation(animation3)
@@ -376,7 +404,7 @@ class Level10 : AppCompatActivity() {
             }
             //если 4 карты открыты
             if (counterOpenedImages == 4) {
-
+                healthDamaged()
                 imageViewFirstCard!!.startAnimation(animation3)
                 imageViewTwoCard!!.startAnimation(animation3)
                 imageViewThreeCard!!.startAnimation(animation3)

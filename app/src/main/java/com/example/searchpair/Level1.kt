@@ -31,7 +31,6 @@ class Level1 : AppCompatActivity() {
 
     private var imageViewFirstCard: ImageView? = null
     private var imageViewTwoCard: ImageView? = null
-//    private lateinit var btnNewGame: Button
     var animation1: Animation? = null
     var animation2: Animation? = null
     var animation3: Animation? = null
@@ -65,7 +64,7 @@ class Level1 : AppCompatActivity() {
         soundCrash = MediaPlayer.create(this, R.raw.stone_crash)
         bindingClass.idSetTextLevel.setText(R.string.name_level_1)
         //шкала здоровья
-        bindingClass.progressBar.max = 50
+        bindingClass.progressBar.max = 60
 
 
         //заполнение массива + слушатели нажатий
@@ -82,7 +81,7 @@ class Level1 : AppCompatActivity() {
         ObjectAnimator.ofInt(bindingClass.progressBar, "progress", health)
                 .setDuration(1000)
                 .start()
-        //если шкала заполнилась
+        //если шкала заполнилась запустить по-новой уровень
         if (health > 50){
             soundPlay(soundDrop)
             val intent = Intent(this, Level1::class.java)
@@ -94,14 +93,12 @@ class Level1 : AppCompatActivity() {
     }
     //восстановить здоровье
     private fun healthRestore(){
-        if(health != 0) {
-            health -= 10
-            ObjectAnimator.ofInt(bindingClass.progressBar, "progress", health)
-                    .setDuration(1000)
-                    .start()
-        }
+        if(health <= 10) health = 0
+        if (health >= 20) health -=20
 
-
+        ObjectAnimator.ofInt(bindingClass.progressBar, "progress", health)
+                .setDuration(1000)
+                .start()
     }
     //воспроизведение звука
     private fun soundPlay(sound: MediaPlayer){
