@@ -20,6 +20,7 @@
     <string name="button_level_14">14</string>
     <string name="button_level_15">15</string>
     <string name="button_level_16">16</string>
+    <string name="button_level_close">X</string>
 
     <string name="name_level_1">level 1</string>
     <string name="name_level_2">level 2</string>

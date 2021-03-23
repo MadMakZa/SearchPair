@@ -1,7 +1,9 @@
 package com.example.searchpair
 
 import android.animation.ObjectAnimator
+import android.annotation.SuppressLint
 import android.content.Intent
+import android.content.SharedPreferences
 import android.media.MediaPlayer
 import android.os.Bundle
 import android.view.View
@@ -56,7 +58,7 @@ class Level1 : AppCompatActivity() {
         animation3 = AnimationUtils.loadAnimation(this, R.anim.flip_to_middle)
         animation4 = AnimationUtils.loadAnimation(this, R.anim.flip_from_middle)
         animation5 = AnimationUtils.loadAnimation(this, R.anim.anim_scale)
-//        btnNewGame = findViewById(R.id.btn_new_game)
+
         imageViewFirstCard = findViewById(R.id.idImageFirstCard)
         imageViewTwoCard = findViewById(R.id.idImageTwoCard)
         soundOpen = MediaPlayer.create(this, R.raw.stone_open)
@@ -68,6 +70,7 @@ class Level1 : AppCompatActivity() {
         bindingClass.progressBar.max = healthMax
 
 
+
         //заполнение массива + слушатели нажатий
         addToArrayImageViews()
         onClickImageViews()
@@ -76,6 +79,15 @@ class Level1 : AppCompatActivity() {
         newGame()
 
     }
+    //сохранение прогресса
+    private fun saveProgress(){
+        getSharedPreferences("Save", MODE_PRIVATE)
+                .edit()
+                .putInt("Level",2)
+                .apply()
+
+    }
+
     //получить урон
     private fun healthDamaged(){
         health +=10
@@ -247,7 +259,9 @@ class Level1 : AppCompatActivity() {
             println("counter pairs = $counterPairs")
             //если поле пустое
             if (counterPairs == 6){
-                    //показать кнопку новой игры
+                //сохранить прогресс
+                saveProgress()
+                //показать кнопку новой игры
                 bindingClass.btnNewGame!!.visibility = View.VISIBLE
                 bindingClass.idLevelComplete.visibility = View.VISIBLE
 

@@ -72,6 +72,7 @@ class Level2 : AppCompatActivity() {
         newGame()
 
     }
+
     //получить урон
     private fun healthDamaged(){
         health +=10
