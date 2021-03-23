@@ -79,6 +79,13 @@ class Level16 : AppCompatActivity() {
         newGame()
 
     }
+    //вернуться в меню
+    override fun onBackPressed() {
+        val intent = Intent(this, GameMainActivity::class.java)
+        startActivity(intent)
+        overridePendingTransition(R.anim.open_activity, R.anim.close_activity)
+        finish()
+    }
     //получить урон
     private fun healthDamaged(){
         health +=10

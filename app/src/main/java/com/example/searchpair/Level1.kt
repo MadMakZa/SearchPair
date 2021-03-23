@@ -2,10 +2,12 @@ package com.example.searchpair
 
 import android.animation.ObjectAnimator
 import android.annotation.SuppressLint
+import android.app.Dialog
 import android.content.Intent
 import android.content.SharedPreferences
 import android.media.MediaPlayer
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
 import android.view.animation.Animation
 import android.view.animation.Animation.AnimationListener
@@ -15,6 +17,7 @@ import android.widget.ImageButton
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.searchpair.databinding.ActivityGameFieldBinding
+import com.example.searchpair.databinding.DialogLeaveLevelBinding
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -23,6 +26,7 @@ import java.util.*
 class Level1 : AppCompatActivity() {
 
     private lateinit var bindingClass: ActivityGameFieldBinding
+    private lateinit var bindingClassDialog: Dialog
     private lateinit var soundOpen: MediaPlayer
     private lateinit var soundClose: MediaPlayer
     private lateinit var soundDrop: MediaPlayer
@@ -78,6 +82,13 @@ class Level1 : AppCompatActivity() {
 
         newGame()
 
+    }
+    //вернуться в меню
+    override fun onBackPressed() {
+            val intent = Intent(this, GameMainActivity::class.java)
+            startActivity(intent)
+            overridePendingTransition(R.anim.open_activity, R.anim.close_activity)
+            finish()
     }
     //сохранение прогресса
     private fun saveProgress(){
