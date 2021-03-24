@@ -3,6 +3,9 @@
 
     <string name="button_new_game">New Game</string>
     <string name="button_next_level">Next Level</string>
+    <string name="dialog_reset_progress">Reset progress?</string>
+    <string name="button_reset_progress_yes">Yes</string>
+    <string name="button_reset_progress_no">No</string>
 
     <string name="button_level_1">1</string>
     <string name="button_level_2">2</string>
