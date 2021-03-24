@@ -89,10 +89,15 @@ class Level12 : AppCompatActivity() {
     }
     //сохранение прогресса
     private fun saveProgress(){
-        getSharedPreferences("Save", MODE_PRIVATE)
-                .edit()
-                .putInt("Level",13)
-                .apply()
+        val currentSave = getSharedPreferences("Save", MODE_PRIVATE)
+                .getInt("Level",1)
+
+        if (currentSave < 13) {
+            getSharedPreferences("Save", MODE_PRIVATE)
+                    .edit()
+                    .putInt("Level", 13)
+                    .apply()
+        }
     }
     //получить урон
     private fun healthDamaged(){
