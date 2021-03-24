@@ -39,12 +39,9 @@ class GameMainActivity : AppCompatActivity() {
         save = getSharedPreferences("Save", MODE_PRIVATE) //коробка с сейвами
         levelProgress = save.getInt("Level", 1)
 
-
-
         startNewGame()
         chooseLevel()
 
-        startDialogResetProgress()
 
     }
 
@@ -64,10 +61,13 @@ class GameMainActivity : AppCompatActivity() {
         val buttonNo = dialog.findViewById<Button>(R.id.button_no)
 
         buttonYes.setOnClickListener {
-            soundPlay(soundDrop)
-            val intentStart = Intent(this, Level1::class.java)
-            startActivity(intentStart)
-            overridePendingTransition(R.anim.open_activity, R.anim.close_activity)
+            //обнулить прогресс
+            val save = getSharedPreferences("Save", MODE_PRIVATE) //получить доступ к коробке
+            val editor = save.edit()
+            editor.putInt("Level", 1) //положить в коробку результат
+            editor.apply()          //сохранить
+            //запуск первого уровня
+            startFirstLevel()
         }
         buttonNo.setOnClickListener {
             dialog.dismiss()
@@ -77,22 +77,22 @@ class GameMainActivity : AppCompatActivity() {
     //начать новую игру по нажатию на кнопку
     private fun startNewGame() {
         bindingClass.btnNewGame.setOnClickListener {
-
-
-            //обнулить прогресс
-            val save = getSharedPreferences("Save", MODE_PRIVATE) //получить доступ к коробке
-            val editor = save.edit()
-            editor.putInt("Level", 1) //положить в коробку результат
-            editor.apply()          //сохранить
-
-            soundPlay(soundDrop)
-            val intentStart = Intent(this, Level1::class.java)
-            startActivity(intentStart)
-            overridePendingTransition(R.anim.open_activity, R.anim.close_activity)
-
+            if (levelProgress >= 2) {
+                startDialogResetProgress()
+            }else{
+                //запуск первого уровня
+                startFirstLevel()
+            }
         }
     }
-
+    //старт первого уровня
+    private fun startFirstLevel(){
+        soundPlay(soundDrop)
+        val intentStart = Intent(this, Level1::class.java)
+        startActivity(intentStart)
+        overridePendingTransition(R.anim.open_activity, R.anim.close_activity)
+        finish()
+    }
     //выбор уровня
     private fun chooseLevel() {
 
