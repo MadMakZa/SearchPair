@@ -7,6 +7,7 @@ import android.content.SharedPreferences
 import android.media.MediaPlayer
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 
 import com.example.searchpair.databinding.ActivityGameMainBinding
@@ -22,6 +23,7 @@ class GameMainActivity : AppCompatActivity() {
 
     private lateinit var save: SharedPreferences
     private var levelProgress = 0
+    private var cheatCounter = 0;
 
 
 
@@ -38,8 +40,30 @@ class GameMainActivity : AppCompatActivity() {
 
         startNewGame()
         chooseLevel()
+        activateCheat()
 
 
+    }
+
+    private fun activateCheat(){
+        bindingClass.idTextSelectLevel.setOnClickListener {
+            cheatCounter++
+            if (cheatCounter >= 16){
+                val save = getSharedPreferences("Save", MODE_PRIVATE) //получить доступ к коробке
+                val editor = save.edit()
+                editor.putInt("Level", 16) //положить в коробку результат
+                editor.apply()          //сохранить
+
+                soundPlay(buttonClose)
+                val intentStart = Intent(this, GameMainActivity::class.java)
+                startActivity(intentStart)
+                overridePendingTransition(R.anim.open_activity, R.anim.close_activity)
+                finish()
+
+                cheatCounter = 0
+            }
+
+        }
     }
 
     //воспроизведение звука

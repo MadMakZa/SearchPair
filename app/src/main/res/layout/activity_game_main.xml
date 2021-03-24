@@ -28,6 +28,7 @@
         android:background="@drawable/button_new_game_theme" />
 
     <ImageView
+        android:id="@+id/id_text_select_level"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="110dp"

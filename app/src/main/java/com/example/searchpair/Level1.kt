@@ -13,10 +13,15 @@ import android.view.animation.Animation
 import android.view.animation.Animation.AnimationListener
 import android.view.animation.AnimationUtils
 import android.widget.Button
+import android.widget.FrameLayout
 import android.widget.ImageButton
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.searchpair.databinding.ActivityGameFieldBinding
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 import java.util.*
 
@@ -39,6 +44,7 @@ class Level1 : AppCompatActivity() {
     var animation3: Animation? = null
     var animation4: Animation? = null
     var animation5: Animation? = null
+    var animation777: Animation? = null
     private var counterOpenedImages = 0
     private var counterPairs = 0
     private var health = 0
@@ -59,6 +65,7 @@ class Level1 : AppCompatActivity() {
         animation3 = AnimationUtils.loadAnimation(this, R.anim.flip_to_middle)
         animation4 = AnimationUtils.loadAnimation(this, R.anim.flip_from_middle)
         animation5 = AnimationUtils.loadAnimation(this, R.anim.anim_scale)
+        animation777 = AnimationUtils.loadAnimation(this, R.anim.anim_bonus)
 
         imageViewFirstCard = findViewById(R.id.idImageFirstCard)
         imageViewTwoCard = findViewById(R.id.idImageTwoCard)
@@ -79,7 +86,24 @@ class Level1 : AppCompatActivity() {
 
         newGame()
 
+        startRain()
+
     }
+
+    /**
+     * Победный дождь из картинок
+     */
+    private fun startRain(){
+        bindingClass.idImageLogo.setOnClickListener {
+            val intent = Intent(this, BonusActivity::class.java)
+            startActivity(intent)
+            finish()
+            }
+    }
+
+
+
+
     //вернуться в меню
     override fun onBackPressed() {
             val intent = Intent(this, GameMainActivity::class.java)
