@@ -1,13 +1,16 @@
 package com.example.searchpair
 
 
+import android.app.Dialog
 import android.content.Intent
 import android.content.SharedPreferences
 import android.media.MediaPlayer
-import android.opengl.Visibility
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
+import android.widget.Button
 
 import com.example.searchpair.databinding.ActivityGameMainBinding
 
@@ -24,6 +27,7 @@ class GameMainActivity : AppCompatActivity() {
     private var levelProgress = 0
 
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         bindingClass = ActivityGameMainBinding.inflate(layoutInflater)
@@ -32,13 +36,15 @@ class GameMainActivity : AppCompatActivity() {
         buttonClose = MediaPlayer.create(this, R.raw.close)
         soundDrop = MediaPlayer.create(this, R.raw.stone_drop)
 
-
         save = getSharedPreferences("Save", MODE_PRIVATE) //коробка с сейвами
         levelProgress = save.getInt("Level", 1)
 
 
+
         startNewGame()
         chooseLevel()
+
+        startDialogResetProgress()
 
     }
 
@@ -47,9 +53,32 @@ class GameMainActivity : AppCompatActivity() {
         sound.start()
     }
 
+    //показать диалог
+    private fun startDialogResetProgress(){
+        val dialog = Dialog(this)
+        dialog.setContentView(R.layout.dialog_reset_progress)
+        dialog.setTitle("New Game")
+        dialog.show()
+
+        val buttonYes = dialog.findViewById<Button>(R.id.button_yes)
+        val buttonNo = dialog.findViewById<Button>(R.id.button_no)
+
+        buttonYes.setOnClickListener {
+            soundPlay(soundDrop)
+            val intentStart = Intent(this, Level1::class.java)
+            startActivity(intentStart)
+            overridePendingTransition(R.anim.open_activity, R.anim.close_activity)
+        }
+        buttonNo.setOnClickListener {
+            dialog.dismiss()
+        }
+    }
+
     //начать новую игру по нажатию на кнопку
     private fun startNewGame() {
         bindingClass.btnNewGame.setOnClickListener {
+
+
             //обнулить прогресс
             val save = getSharedPreferences("Save", MODE_PRIVATE) //получить доступ к коробке
             val editor = save.edit()

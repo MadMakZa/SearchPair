@@ -17,16 +17,13 @@ import android.widget.ImageButton
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.searchpair.databinding.ActivityGameFieldBinding
-import com.example.searchpair.databinding.DialogLeaveLevelBinding
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
+
 import java.util.*
 
 class Level1 : AppCompatActivity() {
 
     private lateinit var bindingClass: ActivityGameFieldBinding
-    private lateinit var bindingClassDialog: Dialog
+
     private lateinit var soundOpen: MediaPlayer
     private lateinit var soundClose: MediaPlayer
     private lateinit var soundDrop: MediaPlayer
