@@ -1,10 +1,13 @@
 package com.example.searchpair
 
+import android.content.Intent
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.view.View
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
+import android.widget.RelativeLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import kotlinx.coroutines.Dispatchers
@@ -15,8 +18,9 @@ import java.util.*
 
 class BonusActivity : AppCompatActivity() {
 
-    private var constraintLayout: ConstraintLayout? = null
+    private var relativeLayout: RelativeLayout? = null
     var animationCoin: Animation? = null
+    private lateinit var soundDrop: MediaPlayer
 
 
 
@@ -28,11 +32,24 @@ class BonusActivity : AppCompatActivity() {
     }
 
     private fun init() {
-        constraintLayout = findViewById(R.id.layout)
+        relativeLayout = findViewById(R.id.layout)
         animationCoin = AnimationUtils.loadAnimation(this, R.anim.anim_bonus)
+        soundDrop = MediaPlayer.create(this, R.raw.stone_drop)
 
 
 
+    }
+    //вернуться в меню
+    override fun onBackPressed() {
+        soundPlay(soundDrop)
+        val intent = Intent(this, GameMainActivity::class.java)
+        startActivity(intent)
+        overridePendingTransition(R.anim.open_activity, R.anim.close_activity)
+        finish()
+    }
+    //воспроизведение звука
+    private fun soundPlay(sound: MediaPlayer){
+        sound.start()
     }
 
     //Нажатие на картинку
@@ -54,9 +71,9 @@ class BonusActivity : AppCompatActivity() {
         val randomTag = Random().nextInt(12)
         img.setTag(randomTag).toString()
         openCard(img)
-        constraintLayout!!.addView(img)
-        val params = img.layoutParams as ConstraintLayout.LayoutParams
-        val randomX = Random().nextInt((constraintLayout!!.width)-100)
+        relativeLayout!!.addView(img)
+        val params = img.layoutParams as RelativeLayout.LayoutParams
+        val randomX = Random().nextInt((relativeLayout!!.width)-100)
         params.width = 120
         params.height = 120
         img.layoutParams = params

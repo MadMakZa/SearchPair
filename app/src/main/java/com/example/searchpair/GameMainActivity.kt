@@ -102,6 +102,7 @@ class GameMainActivity : AppCompatActivity() {
     //начать новую игру по нажатию на кнопку
     private fun startNewGame() {
         bindingClass.btnNewGame.setOnClickListener {
+            soundPlay(soundDrop)
             if (levelProgress >= 2) {
                 startDialogResetProgress()
             }else{

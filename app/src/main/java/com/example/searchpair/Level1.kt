@@ -1,27 +1,16 @@
 package com.example.searchpair
 
 import android.animation.ObjectAnimator
-import android.annotation.SuppressLint
-import android.app.Dialog
 import android.content.Intent
-import android.content.SharedPreferences
 import android.media.MediaPlayer
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
 import android.view.animation.Animation
 import android.view.animation.Animation.AnimationListener
 import android.view.animation.AnimationUtils
-import android.widget.Button
-import android.widget.FrameLayout
-import android.widget.ImageButton
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.searchpair.databinding.ActivityGameFieldBinding
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 
 import java.util.*
 
@@ -86,20 +75,8 @@ class Level1 : AppCompatActivity() {
 
         newGame()
 
-        startRain()
-
     }
 
-    /**
-     * Победный дождь из картинок
-     */
-    private fun startRain(){
-        bindingClass.idImageLogo.setOnClickListener {
-            val intent = Intent(this, BonusActivity::class.java)
-            startActivity(intent)
-            finish()
-            }
-    }
 
 
 

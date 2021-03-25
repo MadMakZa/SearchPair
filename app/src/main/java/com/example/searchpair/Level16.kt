@@ -104,6 +104,16 @@ class Level16 : AppCompatActivity() {
 
         }
     }
+    /**
+     * запуск бонусного активити
+     */
+    private fun startRain(){
+        soundPlay(soundDrop)
+        val intent = Intent(this, BonusActivity::class.java)
+        startActivity(intent)
+        finish()
+
+    }
     //вернуться в меню
     override fun onBackPressed() {
         val intent = Intent(this, GameMainActivity::class.java)
@@ -154,14 +164,10 @@ class Level16 : AppCompatActivity() {
         btnNewGame!!.visibility = View.INVISIBLE
     }
 
-    //начать новую игру по нажатию на лого
+    //закночить игру
     private fun startNewGame() {
         btnNewGame!!.setOnClickListener {
-            soundPlay(soundDrop)
-            val intent = Intent(this, GameMainActivity::class.java)
-            startActivity(intent)
-            overridePendingTransition(R.anim.open_activity, R.anim.close_activity)
-            finish()
+            startRain()
         }
     }
 
@@ -355,6 +361,7 @@ class Level16 : AppCompatActivity() {
             //если все пары найдены
             if (counterPairs == 12){
                 //показать кнопку новой игры
+                bindingClass.btnNewGame.text = "Cheers!"
                 btnNewGame!!.visibility = View.VISIBLE
                 bindingClass.idLevelComplete.visibility = View.VISIBLE
             }
