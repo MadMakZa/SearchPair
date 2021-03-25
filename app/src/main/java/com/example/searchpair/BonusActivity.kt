@@ -1,7 +1,9 @@
 package com.example.searchpair
 
 import android.content.Intent
+import android.media.AudioManager
 import android.media.MediaPlayer
+import android.media.SoundPool
 import android.os.Bundle
 import android.view.View
 import android.view.animation.Animation
@@ -20,7 +22,9 @@ class BonusActivity : AppCompatActivity() {
 
     private var relativeLayout: RelativeLayout? = null
     var animationCoin: Animation? = null
-    private lateinit var soundDrop: MediaPlayer
+    //набор звуков с айдишниками
+    private var soundPool: SoundPool? = null
+    private var soundDrop = 2
 
 
 
@@ -34,7 +38,10 @@ class BonusActivity : AppCompatActivity() {
     private fun init() {
         relativeLayout = findViewById(R.id.layout)
         animationCoin = AnimationUtils.loadAnimation(this, R.anim.anim_bonus)
-        soundDrop = MediaPlayer.create(this, R.raw.stone_drop)
+        //загрузка звуков
+        soundPool = SoundPool(6, AudioManager.STREAM_MUSIC, 0)
+        soundPool!!.load(baseContext, R.raw.close, 1)
+        soundPool!!.load(baseContext, R.raw.stone_drop, 1)
 
 
 
@@ -48,8 +55,8 @@ class BonusActivity : AppCompatActivity() {
         finish()
     }
     //воспроизведение звука
-    private fun soundPlay(sound: MediaPlayer){
-        sound.start()
+    private fun soundPlay(id: Int){
+        soundPool?.play(id, 1f, 1f, 0,0,1f)
     }
 
     //Нажатие на картинку

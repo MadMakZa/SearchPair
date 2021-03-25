@@ -39,7 +39,7 @@ class Level13 : AppCompatActivity() {
     private var counterOpenedImages = 0
     private var counterPairs = 0
     private var health = 0
-    private var healthMax = 241
+    private var healthMax = 281
     private var cheatCounter = 0
     private lateinit var soundOpen: MediaPlayer
     private lateinit var soundClose: MediaPlayer

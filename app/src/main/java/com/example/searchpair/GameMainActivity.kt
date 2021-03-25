@@ -4,7 +4,9 @@ package com.example.searchpair
 import android.app.Dialog
 import android.content.Intent
 import android.content.SharedPreferences
+import android.media.AudioManager
 import android.media.MediaPlayer
+import android.media.SoundPool
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -18,13 +20,15 @@ class GameMainActivity : AppCompatActivity() {
 
     private lateinit var bindingClass: ActivityGameMainBinding
 
-    private lateinit var buttonClose: MediaPlayer
-    private lateinit var soundDrop: MediaPlayer
+    //набор звуков с айдишниками
+    private var soundPool: SoundPool? = null
+    private var buttonClose = 1
+    private var soundDrop = 2
+
 
     private lateinit var save: SharedPreferences
     private var levelProgress = 0
-    private var cheatCounter = 0;
-
+    private var cheatCounter = 0
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,8 +36,11 @@ class GameMainActivity : AppCompatActivity() {
         bindingClass = ActivityGameMainBinding.inflate(layoutInflater)
         setContentView(bindingClass.root)
 
-        buttonClose = MediaPlayer.create(this, R.raw.close)
-        soundDrop = MediaPlayer.create(this, R.raw.stone_drop)
+        //загрузка звуков
+        soundPool = SoundPool(6, AudioManager.STREAM_MUSIC, 0)
+        soundPool!!.load(baseContext, R.raw.close, 1)
+        soundPool!!.load(baseContext, R.raw.stone_drop, 1)
+
 
         save = getSharedPreferences("Save", MODE_PRIVATE) //коробка с сейвами
         levelProgress = save.getInt("Level", 1)
@@ -70,8 +77,8 @@ class GameMainActivity : AppCompatActivity() {
     }
 
     //воспроизведение звука
-    private fun soundPlay(sound: MediaPlayer){
-        sound.start()
+    private fun soundPlay(id: Int){
+        soundPool?.play(id, 1f, 1f, 0,0,1f)
     }
 
     //показать диалог
