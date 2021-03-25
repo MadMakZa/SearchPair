@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
+import android.widget.TextView
 
 import com.example.searchpair.databinding.ActivityGameMainBinding
 
@@ -80,7 +81,30 @@ class GameMainActivity : AppCompatActivity() {
     private fun soundPlay(id: Int){
         soundPool?.play(id, 1f, 1f, 0,0,1f)
     }
+    //выйти из игры
+    override fun onBackPressed() {
+        soundPlay(soundDrop)
+        val dialog = Dialog(this)
+        dialog.setContentView(R.layout.dialog_reset_progress)
+        dialog.setTitle("Exit Game")
+        dialog.show()
 
+        val textViewExitGame = dialog.findViewById<TextView>(R.id.questionTextView)
+        val buttonYes = dialog.findViewById<Button>(R.id.button_yes)
+        val buttonNo = dialog.findViewById<Button>(R.id.button_no)
+        textViewExitGame.text = "Exit Game?"
+
+
+        buttonYes.setOnClickListener {
+            soundPlay(soundDrop)
+            super.onBackPressed()
+        }
+        buttonNo.setOnClickListener {
+            soundPlay(soundDrop)
+            dialog.dismiss()
+        }
+
+    }
     //показать диалог
     private fun startDialogResetProgress(){
         val dialog = Dialog(this)
