@@ -22,6 +22,7 @@ class Level1 : AppCompatActivity() {
     private lateinit var soundClose: MediaPlayer
     private lateinit var soundDrop: MediaPlayer
     private lateinit var soundCrash: MediaPlayer
+    private lateinit var buttonClose: MediaPlayer
 
     var arrayImageViewsButtons = ArrayList<ImageView?>() //лист с кнопками
     var arrayTags = ArrayList<String?>() //лист с тагами (за конкретным тагом закреплена конкретная картинка)
@@ -38,6 +39,7 @@ class Level1 : AppCompatActivity() {
     private var counterPairs = 0
     private var health = 0
     private var healthMax = 65
+    private var cheatCounter = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -62,6 +64,7 @@ class Level1 : AppCompatActivity() {
         soundClose = MediaPlayer.create(this, R.raw.stone_close)
         soundDrop = MediaPlayer.create(this, R.raw.stone_drop)
         soundCrash = MediaPlayer.create(this, R.raw.stone_crash)
+        buttonClose = MediaPlayer.create(this, R.raw.close)
         bindingClass.idSetTextLevel.setText(R.string.name_level_1)
         //шкала здоровья
         bindingClass.progressBar.max = healthMax
@@ -75,11 +78,28 @@ class Level1 : AppCompatActivity() {
 
         newGame()
 
+        activateCheatHp()
+
     }
 
+    /**
+     * Чит восполнить здоровье
+     */
+    private fun activateCheatHp(){
+        bindingClass.progressBar.setOnClickListener {
+            cheatCounter++
+            if (cheatCounter >= 20){
+                soundPlay(buttonClose)
+                health = 0
+                ObjectAnimator.ofInt(bindingClass.progressBar, "progress", health)
+                        .setDuration(1000)
+                        .start()
 
+                cheatCounter = 0
+            }
 
-
+        }
+    }
 
     //вернуться в меню
     override fun onBackPressed() {
