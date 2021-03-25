@@ -45,10 +45,13 @@ class GameMainActivity : AppCompatActivity() {
 
     }
 
+    /**
+     * Чит открыть все уровни
+     */
     private fun activateCheat(){
         bindingClass.idTextSelectLevel.setOnClickListener {
             cheatCounter++
-            if (cheatCounter >= 16){
+            if (cheatCounter >= 30){
                 val save = getSharedPreferences("Save", MODE_PRIVATE) //получить доступ к коробке
                 val editor = save.edit()
                 editor.putInt("Level", 16) //положить в коробку результат

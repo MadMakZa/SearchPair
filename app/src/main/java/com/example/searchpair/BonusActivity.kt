@@ -37,10 +37,10 @@ class BonusActivity : AppCompatActivity() {
 
     //Нажатие на картинку
     private fun justClick() {
-        for (num in 0..7) {
+        for (num in 0..5) {
             GlobalScope.launch(Dispatchers.Main) {
-                for (num in 0 until 1000) {
-                    delay(100L)
+                for (num in 0 until 200) {
+                    delay(150L)
                     generateCoin()
                 }
             }
@@ -57,8 +57,8 @@ class BonusActivity : AppCompatActivity() {
         constraintLayout!!.addView(img)
         val params = img.layoutParams as ConstraintLayout.LayoutParams
         val randomX = Random().nextInt((constraintLayout!!.width)-100)
-        params.width = 100
-        params.height = 100
+        params.width = 120
+        params.height = 120
         img.layoutParams = params
         img.x = randomX.toFloat()
         img.y = 0f
