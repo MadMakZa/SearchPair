@@ -84,24 +84,25 @@ class GameMainActivity : AppCompatActivity() {
     //выйти из игры
     override fun onBackPressed() {
         soundPlay(soundDrop)
-        val dialog = Dialog(this)
-        dialog.setContentView(R.layout.dialog_reset_progress)
-        dialog.setTitle("Exit Game")
-        dialog.show()
+        val dialogExit = Dialog(this)
+        dialogExit.setContentView(R.layout.dialog_reset_progress)
+        dialogExit.setTitle("Exit Game")
+        dialogExit.show()
 
-        val textViewExitGame = dialog.findViewById<TextView>(R.id.questionTextView)
-        val buttonYes = dialog.findViewById<Button>(R.id.button_yes)
-        val buttonNo = dialog.findViewById<Button>(R.id.button_no)
+        val textViewExitGame = dialogExit.findViewById<TextView>(R.id.questionTextView)
+        val buttonYes = dialogExit.findViewById<Button>(R.id.button_yes)
+        val buttonNo = dialogExit.findViewById<Button>(R.id.button_no)
         textViewExitGame.text = "Exit Game?"
 
 
         buttonYes.setOnClickListener {
             soundPlay(soundDrop)
+            dialogExit.dismiss()
             super.onBackPressed()
         }
         buttonNo.setOnClickListener {
             soundPlay(soundDrop)
-            dialog.dismiss()
+            dialogExit.dismiss()
         }
 
     }
@@ -121,6 +122,7 @@ class GameMainActivity : AppCompatActivity() {
             val editor = save.edit()
             editor.putInt("Level", 1) //положить в коробку результат
             editor.apply()          //сохранить
+            dialog.dismiss()
             //запуск первого уровня
             startFirstLevel()
         }
@@ -133,8 +135,9 @@ class GameMainActivity : AppCompatActivity() {
     //начать новую игру по нажатию на кнопку
     private fun startNewGame() {
         bindingClass.btnNewGame.setOnClickListener {
-            soundPlay(soundDrop)
+
             if (levelProgress >= 2) {
+                soundPlay(soundDrop)
                 startDialogResetProgress()
             }else{
                 //запуск первого уровня
