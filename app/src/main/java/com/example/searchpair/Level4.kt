@@ -2,7 +2,9 @@ package com.example.searchpair
 
 import android.animation.ObjectAnimator
 import android.content.Intent
+import android.media.AudioManager
 import android.media.MediaPlayer
+import android.media.SoundPool
 import android.os.Bundle
 import android.view.View
 import android.view.animation.Animation
@@ -35,11 +37,13 @@ class Level4 : AppCompatActivity() {
     private var health = 0
     private var healthMax = 125
     private var cheatCounter = 0
-    private lateinit var soundOpen: MediaPlayer
-    private lateinit var soundClose: MediaPlayer
-    private lateinit var soundDrop: MediaPlayer
-    private lateinit var soundCrash: MediaPlayer
-    private lateinit var buttonClose: MediaPlayer
+    //набор звуков с айдишниками
+    private var soundPool: SoundPool? = null
+    private var buttonClose = 1
+    private var soundDrop = 2
+    private var soundCrash = 3
+    private var soundClose = 4
+    private var soundOpen = 5
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,11 +63,14 @@ class Level4 : AppCompatActivity() {
         btnNewGame = findViewById(R.id.btn_new_game)
         imageViewFirstCard = findViewById(R.id.idImageFirstCard)
         imageViewTwoCard = findViewById(R.id.idImageTwoCard)
-        soundOpen = MediaPlayer.create(this, R.raw.stone_open)
-        soundClose = MediaPlayer.create(this, R.raw.stone_close)
-        soundDrop = MediaPlayer.create(this, R.raw.stone_drop)
-        soundCrash = MediaPlayer.create(this, R.raw.stone_crash)
-        buttonClose = MediaPlayer.create(this, R.raw.close)
+        //загрузка звуков
+        soundPool = SoundPool(6, AudioManager.STREAM_MUSIC, 0)
+        soundPool!!.load(baseContext, R.raw.close, 1)       //buttonClose
+        soundPool!!.load(baseContext, R.raw.stone_drop, 1)  //soundDrop
+        soundPool!!.load(baseContext, R.raw.stone_crash, 1) //soundCrash
+        soundPool!!.load(baseContext, R.raw.stone_close, 1) //soundClose
+        soundPool!!.load(baseContext, R.raw.stone_open, 1)  //soundOpen
+
         bindingClass.idSetTextLevel.setText(R.string.name_level_4)
         //шкала здоровья
         bindingClass.progressBar.max = healthMax
@@ -97,6 +104,7 @@ class Level4 : AppCompatActivity() {
     }
     //вернуться в меню
     override fun onBackPressed() {
+        soundPlay(soundDrop)
         val intent = Intent(this, GameMainActivity::class.java)
         startActivity(intent)
         overridePendingTransition(R.anim.open_activity, R.anim.close_activity)
@@ -140,8 +148,8 @@ class Level4 : AppCompatActivity() {
                 .start()
     }
     //воспроизведение звука
-    private fun soundPlay(sound: MediaPlayer){
-        sound.start()
+    private fun soundPlay(id: Int){
+        soundPool?.play(id, 1f, 1f, 0,0,1f)
     }
 
     //генерация игрового поля (новая игра)
