@@ -19,7 +19,7 @@ import java.util.*
  *  Высокая сложность - найти квартет
  */
 
-class Level15 : AppCompatActivity() {
+class Level23 : AppCompatActivity() {
 
     private lateinit var bindingClass: ActivityGameFieldBinding
 
@@ -78,7 +78,7 @@ class Level15 : AppCompatActivity() {
         soundPool!!.load(baseContext, R.raw.stone_close, 1) //soundClose
         soundPool!!.load(baseContext, R.raw.stone_open, 1)  //soundOpen
 
-        bindingClass.idSetTextLevel.setText(R.string.name_level_15)
+        bindingClass.idSetTextLevel.setText(R.string.name_level_23)
         bindingClass.progressBar.max = healthMax
         //заполнение массива + слушатели нажатий
         addToArrayImageViews()
@@ -121,10 +121,10 @@ class Level15 : AppCompatActivity() {
         val currentSave = getSharedPreferences("Save", MODE_PRIVATE)
                 .getInt("Level",1)
 
-        if (currentSave < 16) {
+        if (currentSave < 24) {
             getSharedPreferences("Save", MODE_PRIVATE)
                     .edit()
-                    .putInt("Level", 16)
+                    .putInt("Level", 24)
                     .apply()
         }
     }
@@ -137,7 +137,7 @@ class Level15 : AppCompatActivity() {
         //если шкала заполнилась запустить по-новой уровень
         if (health > healthMax){
             soundPlay(soundDrop)
-            val intent = Intent(this, Level15::class.java)
+            val intent = Intent(this, Level23::class.java)
             startActivity(intent)
             overridePendingTransition(R.anim.open_activity, R.anim.close_activity)
             finish()
@@ -175,7 +175,7 @@ class Level15 : AppCompatActivity() {
     private fun startNewGame() {
         btnNewGame!!.setOnClickListener {
             soundPlay(soundDrop)
-            val intent = Intent(this, Level16::class.java)
+            val intent = Intent(this, Level24::class.java)
             startActivity(intent)
             overridePendingTransition(R.anim.open_activity, R.anim.close_activity)
             finish()

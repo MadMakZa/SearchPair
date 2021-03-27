@@ -167,7 +167,7 @@ class GameMainActivity : AppCompatActivity() {
             bindingClass.btnLevel2.text = "2"
             bindingClass.btnLevel2.setOnClickListener {
                 soundPlay(soundDrop)
-                val intent = Intent(this, Level2::class.java)
+                val intent = Intent(this, Level3::class.java)
                 startActivity(intent)
                 overridePendingTransition(R.anim.open_activity, R.anim.close_activity)
                 finish()
@@ -178,7 +178,7 @@ class GameMainActivity : AppCompatActivity() {
             bindingClass.btnLevel3.text = "3"
             bindingClass.btnLevel3.setOnClickListener{
                 soundPlay(soundDrop)
-                val intent = Intent(this, Level3::class.java)
+                val intent = Intent(this, Level5::class.java)
                 startActivity(intent)
                 overridePendingTransition(R.anim.open_activity, R.anim.close_activity)
                 finish()
@@ -189,7 +189,7 @@ class GameMainActivity : AppCompatActivity() {
             bindingClass.btnLevel4.text = "4"
             bindingClass.btnLevel4.setOnClickListener {
                 soundPlay(soundDrop)
-                val intent = Intent(this, Level4::class.java)
+                val intent = Intent(this, Level7::class.java)
                 startActivity(intent)
                 overridePendingTransition(R.anim.open_activity, R.anim.close_activity)
                 finish()
@@ -201,7 +201,7 @@ class GameMainActivity : AppCompatActivity() {
             bindingClass.btnLevel5.text = "5"
             bindingClass.btnLevel5.setOnClickListener {
                 soundPlay(soundDrop)
-                val intent = Intent(this, Level5::class.java)
+                val intent = Intent(this, Level8::class.java)
                 startActivity(intent)
                 overridePendingTransition(R.anim.open_activity, R.anim.close_activity)
                 finish()
@@ -212,7 +212,7 @@ class GameMainActivity : AppCompatActivity() {
             bindingClass.btnLevel6.text = "6"
             bindingClass.btnLevel6.setOnClickListener {
                 soundPlay(soundDrop)
-                val intent = Intent(this, Level6::class.java)
+                val intent = Intent(this, Level10::class.java)
                 startActivity(intent)
                 overridePendingTransition(R.anim.open_activity, R.anim.close_activity)
                 finish()
@@ -223,7 +223,7 @@ class GameMainActivity : AppCompatActivity() {
             bindingClass.btnLevel7.text = "7"
             bindingClass.btnLevel7.setOnClickListener {
                 soundPlay(soundDrop)
-                val intent = Intent(this, Level7::class.java)
+                val intent = Intent(this, Level12::class.java)
                 startActivity(intent)
                 overridePendingTransition(R.anim.open_activity, R.anim.close_activity)
                 finish()
@@ -234,7 +234,7 @@ class GameMainActivity : AppCompatActivity() {
             bindingClass.btnLevel8.text = "8"
             bindingClass.btnLevel8.setOnClickListener {
                 soundPlay(soundDrop)
-                val intent = Intent(this, Level8::class.java)
+                val intent = Intent(this, Level14::class.java)
                 startActivity(intent)
                 overridePendingTransition(R.anim.open_activity, R.anim.close_activity)
                 finish()
@@ -245,7 +245,7 @@ class GameMainActivity : AppCompatActivity() {
             bindingClass.btnLevel9.text = "9"
             bindingClass.btnLevel9.setOnClickListener {
                 soundPlay(soundDrop)
-                val intent = Intent(this, Level9::class.java)
+                val intent = Intent(this, Level16::class.java)
                 startActivity(intent)
                 overridePendingTransition(R.anim.open_activity, R.anim.close_activity)
                 finish()
@@ -256,7 +256,7 @@ class GameMainActivity : AppCompatActivity() {
             bindingClass.btnLevel10.text = "10"
             bindingClass.btnLevel10.setOnClickListener {
                 soundPlay(soundDrop)
-                val intent = Intent(this, Level10::class.java)
+                val intent = Intent(this, Level18::class.java)
                 startActivity(intent)
                 overridePendingTransition(R.anim.open_activity, R.anim.close_activity)
                 finish()
@@ -267,7 +267,7 @@ class GameMainActivity : AppCompatActivity() {
             bindingClass.btnLevel11.text = "11"
             bindingClass.btnLevel11.setOnClickListener {
                 soundPlay(soundDrop)
-                val intent = Intent(this, Level11::class.java)
+                val intent = Intent(this, Level19::class.java)
                 startActivity(intent)
                 overridePendingTransition(R.anim.open_activity, R.anim.close_activity)
                 finish()
@@ -278,7 +278,7 @@ class GameMainActivity : AppCompatActivity() {
             bindingClass.btnLevel12.text = "12"
             bindingClass.btnLevel12.setOnClickListener {
                 soundPlay(soundDrop)
-                val intent = Intent(this, Level12::class.java)
+                val intent = Intent(this, Level20::class.java)
                 startActivity(intent)
                 overridePendingTransition(R.anim.open_activity, R.anim.close_activity)
                 finish()
@@ -289,7 +289,7 @@ class GameMainActivity : AppCompatActivity() {
             bindingClass.btnLevel13.text = "13"
             bindingClass.btnLevel13.setOnClickListener {
                 soundPlay(soundDrop)
-                val intent = Intent(this, Level13::class.java)
+                val intent = Intent(this, Level21::class.java)
                 startActivity(intent)
                 overridePendingTransition(R.anim.open_activity, R.anim.close_activity)
                 finish()
@@ -300,7 +300,7 @@ class GameMainActivity : AppCompatActivity() {
             bindingClass.btnLevel14.text = "14"
             bindingClass.btnLevel14.setOnClickListener {
                 soundPlay(soundDrop)
-                val intent = Intent(this, Level14::class.java)
+                val intent = Intent(this, Level22::class.java)
                 startActivity(intent)
                 overridePendingTransition(R.anim.open_activity, R.anim.close_activity)
                 finish()
@@ -311,7 +311,7 @@ class GameMainActivity : AppCompatActivity() {
             bindingClass.btnLevel15.text = "15"
             bindingClass.btnLevel15.setOnClickListener {
                 soundPlay(soundDrop)
-                val intent = Intent(this, Level15::class.java)
+                val intent = Intent(this, Level23::class.java)
                 startActivity(intent)
                 overridePendingTransition(R.anim.open_activity, R.anim.close_activity)
                 finish()
@@ -322,7 +322,7 @@ class GameMainActivity : AppCompatActivity() {
             bindingClass.btnLevel16.text = "16"
             bindingClass.btnLevel16.setOnClickListener {
                 soundPlay(soundDrop)
-                val intent = Intent(this, Level16::class.java)
+                val intent = Intent(this, Level25::class.java)
                 startActivity(intent)
                 overridePendingTransition(R.anim.open_activity, R.anim.close_activity)
                 finish()

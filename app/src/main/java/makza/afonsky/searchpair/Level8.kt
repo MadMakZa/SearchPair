@@ -38,7 +38,7 @@ class Level8 : AppCompatActivity() {
     private var counterOpenedImages = 0
     private var counterPairs = 0
     private var health = 0
-    private var healthMax = 201
+    private var healthMax = 66
     private var cheatCounter = 0
     //набор звуков с айдишниками
     private var soundPool: SoundPool? = null
@@ -74,7 +74,6 @@ class Level8 : AppCompatActivity() {
         soundPool!!.load(baseContext, R.raw.stone_crash, 1) //soundCrash
         soundPool!!.load(baseContext, R.raw.stone_close, 1) //soundClose
         soundPool!!.load(baseContext, R.raw.stone_open, 1)  //soundOpen
-
         bindingClass.idSetTextLevel.setText(R.string.name_level_8)
         //шкала здоровья
         bindingClass.progressBar.max = healthMax
@@ -144,8 +143,8 @@ class Level8 : AppCompatActivity() {
     }
     //восстановить здоровье
     private fun healthRestore(){
-        if(health <= 25) health = 0
-        if (health >= 25) health -=25
+        if(health <= 10) health = 0
+        if (health >= 10) health -=10
 
         ObjectAnimator.ofInt(bindingClass.progressBar, "progress", health)
                 .setDuration(1000)
@@ -182,13 +181,13 @@ class Level8 : AppCompatActivity() {
 
     //заполнить лист тагов
     private fun addTagsToList() {
-        for (i in 1..10) {
+        for (i in 1..4) {
             arrayTags.add(i.toString())
         }
-        for (i in 1..10) {
+        for (i in 1..4) {
             arrayTags.add(i.toString())
         }
-        for (i in 1..10) {
+        for (i in 1..4) {
             arrayTags.add(i.toString())
         }
     }
@@ -199,43 +198,24 @@ class Level8 : AppCompatActivity() {
         arrayImageViewsButtons.add(bindingClass.idColumn1Image1)
         arrayImageViewsButtons.add(bindingClass.idColumn1Image2)
         arrayImageViewsButtons.add(bindingClass.idColumn1Image3)
-        arrayImageViewsButtons.add(bindingClass.idColumn1Image4)
-        arrayImageViewsButtons.add(bindingClass.idColumn1Image5)
-        arrayImageViewsButtons.add(bindingClass.idColumn1Image6)
         //колонка 2
         arrayImageViewsButtons.add(bindingClass.idColumn2Image1)
         arrayImageViewsButtons.add(bindingClass.idColumn2Image2)
         arrayImageViewsButtons.add(bindingClass.idColumn2Image3)
-        arrayImageViewsButtons.add(bindingClass.idColumn2Image4)
-        arrayImageViewsButtons.add(bindingClass.idColumn2Image5)
-        arrayImageViewsButtons.add(bindingClass.idColumn2Image6)
         //колонка 3
         arrayImageViewsButtons.add(bindingClass.idColumn3Image1)
         arrayImageViewsButtons.add(bindingClass.idColumn3Image2)
         arrayImageViewsButtons.add(bindingClass.idColumn3Image3)
-        arrayImageViewsButtons.add(bindingClass.idColumn3Image4)
-        arrayImageViewsButtons.add(bindingClass.idColumn3Image5)
-        arrayImageViewsButtons.add(bindingClass.idColumn3Image6)
         //колонка 4
         arrayImageViewsButtons.add(bindingClass.idColumn4Image1)
         arrayImageViewsButtons.add(bindingClass.idColumn4Image2)
         arrayImageViewsButtons.add(bindingClass.idColumn4Image3)
-        arrayImageViewsButtons.add(bindingClass.idColumn4Image4)
-        arrayImageViewsButtons.add(bindingClass.idColumn4Image5)
-        arrayImageViewsButtons.add(bindingClass.idColumn4Image6)
-        //колонка 5
-        arrayImageViewsButtons.add(bindingClass.idColumn5Image1)
-        arrayImageViewsButtons.add(bindingClass.idColumn5Image2)
-        arrayImageViewsButtons.add(bindingClass.idColumn5Image3)
-        arrayImageViewsButtons.add(bindingClass.idColumn5Image4)
-        arrayImageViewsButtons.add(bindingClass.idColumn5Image5)
-        arrayImageViewsButtons.add(bindingClass.idColumn5Image6)
 
     }
 
     //присвоить таги для ImageViews из листа с тагами
     private fun createTagsForImageViews() {
-        for (i in 0..29){
+        for (i in 0..11){
             arrayImageViewsButtons[i]!!.tag = arrayTags[i]
         }
     }
@@ -317,11 +297,9 @@ class Level8 : AppCompatActivity() {
 
     //сравнить открытые картинки
     private fun checkCards() {
-
         if (imageViewFirstCard!!.tag == imageViewTwoCard!!.tag
                 && imageViewThreeCard!!.tag == imageViewFirstCard!!.tag) {
             healthRestore()
-            //уничтожить 3 совпадающие
             soundPlay(soundCrash)
             imageViewFirstCard!!.startAnimation(animation5)
             imageViewTwoCard!!.startAnimation(animation5)
@@ -334,14 +312,13 @@ class Level8 : AppCompatActivity() {
             counterPairs++
             println("counter pairs = $counterPairs")
             //если поле пустое
-            if (counterPairs == 10){
+            if (counterPairs == 4){
                 saveProgress()
-                //показать кнопку новой игры
+                    //показать кнопку новой игры
                 btnNewGame!!.visibility = View.VISIBLE
                 bindingClass.idLevelComplete.visibility = View.VISIBLE
 
             }
-
         } else {
             //закрыть все карты если 2 открыты
             if (counterOpenedImages == 2

@@ -35,19 +35,10 @@
             android:name="makza.afonsky.searchpair.Level1"
             android:screenOrientation="portrait" />
         <activity
-            android:name="makza.afonsky.searchpair.Level2"
-            android:screenOrientation="portrait" />
-        <activity
             android:name="makza.afonsky.searchpair.Level3"
             android:screenOrientation="portrait" />
         <activity
-            android:name="makza.afonsky.searchpair.Level4"
-            android:screenOrientation="portrait" />
-        <activity
             android:name="makza.afonsky.searchpair.Level5"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name="makza.afonsky.searchpair.Level6"
             android:screenOrientation="portrait" />
         <activity
             android:name="makza.afonsky.searchpair.Level7"
@@ -56,28 +47,37 @@
             android:name="makza.afonsky.searchpair.Level8"
             android:screenOrientation="portrait" />
         <activity
-            android:name="makza.afonsky.searchpair.Level9"
-            android:screenOrientation="portrait" />
-        <activity
             android:name="makza.afonsky.searchpair.Level10"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name="makza.afonsky.searchpair.Level11"
             android:screenOrientation="portrait" />
         <activity
             android:name="makza.afonsky.searchpair.Level12"
             android:screenOrientation="portrait" />
         <activity
-            android:name="makza.afonsky.searchpair.Level13"
-            android:screenOrientation="portrait" />
-        <activity
             android:name="makza.afonsky.searchpair.Level14"
             android:screenOrientation="portrait" />
         <activity
-            android:name="makza.afonsky.searchpair.Level15"
+            android:name="makza.afonsky.searchpair.Level16"
             android:screenOrientation="portrait" />
         <activity
-            android:name="makza.afonsky.searchpair.Level16"
+            android:name="makza.afonsky.searchpair.Level18"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="makza.afonsky.searchpair.Level19"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="makza.afonsky.searchpair.Level20"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="makza.afonsky.searchpair.Level21"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="makza.afonsky.searchpair.Level22"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="makza.afonsky.searchpair.Level23"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="makza.afonsky.searchpair.Level25"
             android:screenOrientation="portrait" />
         <activity
             android:name="makza.afonsky.searchpair.BonusActivity"

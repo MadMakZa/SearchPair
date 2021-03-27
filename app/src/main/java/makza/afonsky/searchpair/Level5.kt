@@ -15,10 +15,6 @@ import androidx.appcompat.app.AppCompatActivity
 import makza.afonsky.searchpair.databinding.ActivityGameFieldBinding
 import java.util.*
 
-/**
- *  Средняя сложность - найти трио
- */
-
 class Level5 : AppCompatActivity() {
 
     private lateinit var bindingClass: ActivityGameFieldBinding
@@ -28,7 +24,6 @@ class Level5 : AppCompatActivity() {
 
     private var imageViewFirstCard: ImageView? = null
     private var imageViewTwoCard: ImageView? = null
-    private var imageViewThreeCard: ImageView? = null
     private lateinit var btnNewGame: Button
     var animation1: Animation? = null
     var animation2: Animation? = null
@@ -38,7 +33,7 @@ class Level5 : AppCompatActivity() {
     private var counterOpenedImages = 0
     private var counterPairs = 0
     private var health = 0
-    private var healthMax = 66
+    private var healthMax = 105
     private var cheatCounter = 0
     //набор звуков с айдишниками
     private var soundPool: SoundPool? = null
@@ -66,7 +61,6 @@ class Level5 : AppCompatActivity() {
         btnNewGame = findViewById(R.id.btn_new_game)
         imageViewFirstCard = findViewById(R.id.idImageFirstCard)
         imageViewTwoCard = findViewById(R.id.idImageTwoCard)
-        imageViewThreeCard = findViewById(R.id.idImageThreeCard)
         //загрузка звуков
         soundPool = SoundPool(6, AudioManager.STREAM_MUSIC, 0)
         soundPool!!.load(baseContext, R.raw.close, 1)       //buttonClose
@@ -168,7 +162,7 @@ class Level5 : AppCompatActivity() {
         btnNewGame!!.visibility = View.INVISIBLE
     }
 
-    //начать новую игру по нажатию на лого
+    //начать новую игру по нажатию на кнопку
     private fun startNewGame() {
         btnNewGame!!.setOnClickListener {
             soundPlay(soundDrop)
@@ -181,13 +175,10 @@ class Level5 : AppCompatActivity() {
 
     //заполнить лист тагов
     private fun addTagsToList() {
-        for (i in 1..4) {
+        for (i in 1..10) {
             arrayTags.add(i.toString())
         }
-        for (i in 1..4) {
-            arrayTags.add(i.toString())
-        }
-        for (i in 1..4) {
+        for (i in 1..10) {
             arrayTags.add(i.toString())
         }
     }
@@ -198,24 +189,32 @@ class Level5 : AppCompatActivity() {
         arrayImageViewsButtons.add(bindingClass.idColumn1Image1)
         arrayImageViewsButtons.add(bindingClass.idColumn1Image2)
         arrayImageViewsButtons.add(bindingClass.idColumn1Image3)
+        arrayImageViewsButtons.add(bindingClass.idColumn1Image4)
+        arrayImageViewsButtons.add(bindingClass.idColumn1Image5)
         //колонка 2
         arrayImageViewsButtons.add(bindingClass.idColumn2Image1)
         arrayImageViewsButtons.add(bindingClass.idColumn2Image2)
         arrayImageViewsButtons.add(bindingClass.idColumn2Image3)
+        arrayImageViewsButtons.add(bindingClass.idColumn2Image4)
+        arrayImageViewsButtons.add(bindingClass.idColumn2Image5)
         //колонка 3
         arrayImageViewsButtons.add(bindingClass.idColumn3Image1)
         arrayImageViewsButtons.add(bindingClass.idColumn3Image2)
         arrayImageViewsButtons.add(bindingClass.idColumn3Image3)
+        arrayImageViewsButtons.add(bindingClass.idColumn3Image4)
+        arrayImageViewsButtons.add(bindingClass.idColumn3Image5)
         //колонка 4
         arrayImageViewsButtons.add(bindingClass.idColumn4Image1)
         arrayImageViewsButtons.add(bindingClass.idColumn4Image2)
         arrayImageViewsButtons.add(bindingClass.idColumn4Image3)
+        arrayImageViewsButtons.add(bindingClass.idColumn4Image4)
+        arrayImageViewsButtons.add(bindingClass.idColumn4Image5)
 
     }
 
     //присвоить таги для ImageViews из листа с тагами
     private fun createTagsForImageViews() {
-        for (i in 0..11){
+        for (i in 0..19){
             arrayImageViewsButtons[i]!!.tag = arrayTags[i]
         }
     }
@@ -263,22 +262,11 @@ class Level5 : AppCompatActivity() {
                                         imageViewFirstCard = img
                                         blockAllButtons(false)
                                         imageViewFirstCard!!.isClickable = false
-                                        println("Clicked first card, TAG = ${imageViewFirstCard!!.getTag()}")
                                     }
                                     if (counterOpenedImages == 1) {
                                         imageViewTwoCard = img
                                         blockAllButtons(false)
-                                        imageViewFirstCard!!.isClickable = false
                                         imageViewTwoCard!!.isClickable = false
-                                        println("Clicked two card, TAG = ${imageViewTwoCard!!.getTag()}")
-                                    }
-                                    if (counterOpenedImages == 2) {
-                                        imageViewThreeCard = img
-                                        blockAllButtons(false)
-                                        imageViewFirstCard!!.isClickable = false
-                                        imageViewTwoCard!!.isClickable = false
-                                        imageViewThreeCard!!.isClickable = false
-                                        println("Clicked three card, TAG = ${imageViewThreeCard!!.getTag()}")
                                     }
                                     counterOpenedImages++
                                     checkCards()
@@ -297,22 +285,19 @@ class Level5 : AppCompatActivity() {
 
     //сравнить открытые картинки
     private fun checkCards() {
-        if (imageViewFirstCard!!.tag == imageViewTwoCard!!.tag
-                && imageViewThreeCard!!.tag == imageViewFirstCard!!.tag) {
+        if (imageViewFirstCard!!.tag == imageViewTwoCard!!.tag) {
             healthRestore()
             soundPlay(soundCrash)
             imageViewFirstCard!!.startAnimation(animation5)
             imageViewTwoCard!!.startAnimation(animation5)
-            imageViewThreeCard!!.startAnimation(animation5)
             println("Cards equals")
             imageViewFirstCard!!.visibility = View.INVISIBLE
             imageViewTwoCard!!.visibility = View.INVISIBLE
-            imageViewThreeCard!!.visibility = View.INVISIBLE
             counterOpenedImages = 0
             counterPairs++
             println("counter pairs = $counterPairs")
             //если поле пустое
-            if (counterPairs == 4){
+            if (counterPairs == 10){
                 saveProgress()
                     //показать кнопку новой игры
                 btnNewGame!!.visibility = View.VISIBLE
@@ -320,55 +305,11 @@ class Level5 : AppCompatActivity() {
 
             }
         } else {
-            //закрыть все карты если 2 открыты
-            if (counterOpenedImages == 2
-                    && imageViewFirstCard!!.tag != imageViewTwoCard!!.tag) {
-                healthDamaged()
-                imageViewFirstCard!!.startAnimation(animation3)
-                imageViewTwoCard!!.startAnimation(animation3)
-                animation3!!.setAnimationListener(object : AnimationListener {
-                    override fun onAnimationStart(animation: Animation) {
-                        soundPlay(soundClose)
-                        blockAllButtons(true)
-                    }
-                    override fun onAnimationEnd(animation: Animation) {
-                        //запуск второй половины анимации
-                        imageViewFirstCard!!.startAnimation(animation4)
-                        imageViewTwoCard!!.startAnimation(animation4)
-                        animation4!!.setAnimationListener(object : AnimationListener {
-                            override fun onAnimationStart(animation: Animation) {
-                                imageViewFirstCard!!.setImageResource(R.drawable.imageshirt)
-                                imageViewTwoCard!!.setImageResource(R.drawable.imageshirt)
-
-                            }
-                            override fun onAnimationEnd(animation: Animation) {
-                                blockAllButtons(false)
-                                //присвоить ресы по умолчанию
-                                imageViewFirstCard = findViewById(R.id.idImageFirstCard)
-                                imageViewTwoCard = findViewById(R.id.idImageTwoCard)
-                                imageViewFirstCard!!.visibility = View.GONE
-                                imageViewTwoCard!!.visibility = View.GONE
-
-                            }
-
-                            override fun onAnimationRepeat(animation: Animation) {}
-                        })
-                    }
-                    override fun onAnimationRepeat(animation: Animation) {}
-                })
-
-                counterOpenedImages = 0
-                imageViewFirstCard!!.isClickable = true
-                imageViewTwoCard!!.isClickable = true
-                imageViewThreeCard!!.isClickable = true
-
-            }
             //закрыть все карты
-            if (counterOpenedImages == 3) {
+            if (counterOpenedImages == 2) {
                 healthDamaged()
                 imageViewFirstCard!!.startAnimation(animation3)
                 imageViewTwoCard!!.startAnimation(animation3)
-                imageViewThreeCard!!.startAnimation(animation3)
                 animation3!!.setAnimationListener(object : AnimationListener {
                     override fun onAnimationStart(animation: Animation) {
                         soundPlay(soundClose)
@@ -378,22 +319,18 @@ class Level5 : AppCompatActivity() {
                         //запуск второй половины анимации
                         imageViewFirstCard!!.startAnimation(animation4)
                         imageViewTwoCard!!.startAnimation(animation4)
-                        imageViewThreeCard!!.startAnimation(animation4)
                         animation4!!.setAnimationListener(object : AnimationListener {
                             override fun onAnimationStart(animation: Animation) {
                                 imageViewFirstCard!!.setImageResource(R.drawable.imageshirt)
                                 imageViewTwoCard!!.setImageResource(R.drawable.imageshirt)
-                                imageViewThreeCard!!.setImageResource(R.drawable.imageshirt)
                             }
                             override fun onAnimationEnd(animation: Animation) {
                                 blockAllButtons(false)
                                 //присвоить ресы по умолчанию
                                 imageViewFirstCard = findViewById(R.id.idImageFirstCard)
                                 imageViewTwoCard = findViewById(R.id.idImageTwoCard)
-                                imageViewThreeCard = findViewById(R.id.idImageThreeCard)
                                 imageViewFirstCard!!.visibility = View.GONE
                                 imageViewTwoCard!!.visibility = View.GONE
-                                imageViewThreeCard!!.visibility = View.GONE
                             }
 
                             override fun onAnimationRepeat(animation: Animation) {}
@@ -405,7 +342,6 @@ class Level5 : AppCompatActivity() {
                 counterOpenedImages = 0
                 imageViewFirstCard!!.isClickable = true
                 imageViewTwoCard!!.isClickable = true
-                imageViewThreeCard!!.isClickable = true
 
             }
         }
@@ -430,10 +366,8 @@ class Level5 : AppCompatActivity() {
         }
         imageViewFirstCard!!.isClickable = true
         imageViewTwoCard!!.isClickable = true
-        imageViewThreeCard!!.isClickable = true
         //присвоить ресы по умолчанию
         imageViewFirstCard = findViewById(R.id.idImageFirstCard)
         imageViewTwoCard = findViewById(R.id.idImageTwoCard)
-        imageViewThreeCard = findViewById(R.id.idImageThreeCard)
     }
 }
