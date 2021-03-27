@@ -174,7 +174,7 @@ class Level1 : AppCompatActivity() {
     private fun startNewGame() {
         bindingClass.btnNewGame!!.setOnClickListener {
             soundPlay(soundDrop)
-            val intent = Intent(this, Level3::class.java)
+            val intent = Intent(this, Level2::class.java)
             startActivity(intent)
             overridePendingTransition(R.anim.open_activity, R.anim.close_activity)
             finish()
