@@ -59,7 +59,7 @@ class GameMainActivity : AppCompatActivity() {
             if (cheatCounter >= 30){
                 val save = getSharedPreferences("Save", MODE_PRIVATE) //получить доступ к коробке
                 val editor = save.edit()
-                editor.putInt("Level", 16) //положить в коробку результат
+                editor.putInt("Level", 25) //положить в коробку результат
                 editor.apply()          //сохранить
 
                 soundPlay(buttonClose)
@@ -323,6 +323,114 @@ class GameMainActivity : AppCompatActivity() {
             bindingClass.btnLevel16.setOnClickListener {
                 soundPlay(soundDrop)
                 val intent = Intent(this, Level16::class.java)
+                startActivity(intent)
+                overridePendingTransition(R.anim.open_activity, R.anim.close_activity)
+                finish()
+            }
+
+        }
+        if(levelProgress >= 17){
+            bindingClass.btnLevel17.isClickable
+            bindingClass.btnLevel17.text = "17"
+            bindingClass.btnLevel17.setOnClickListener {
+                soundPlay(soundDrop)
+                val intent = Intent(this, Level17::class.java)
+                startActivity(intent)
+                overridePendingTransition(R.anim.open_activity, R.anim.close_activity)
+                finish()
+            }
+
+        }
+        if(levelProgress >= 18){
+            bindingClass.btnLevel18.isClickable
+            bindingClass.btnLevel18.text = "18"
+            bindingClass.btnLevel18.setOnClickListener {
+                soundPlay(soundDrop)
+                val intent = Intent(this, Level18::class.java)
+                startActivity(intent)
+                overridePendingTransition(R.anim.open_activity, R.anim.close_activity)
+                finish()
+            }
+
+        }
+        if(levelProgress >= 19){
+            bindingClass.btnLevel19.isClickable
+            bindingClass.btnLevel19.text = "19"
+            bindingClass.btnLevel19.setOnClickListener {
+                soundPlay(soundDrop)
+                val intent = Intent(this, Level19::class.java)
+                startActivity(intent)
+                overridePendingTransition(R.anim.open_activity, R.anim.close_activity)
+                finish()
+            }
+
+        }
+        if(levelProgress >= 20){
+            bindingClass.btnLevel20.isClickable
+            bindingClass.btnLevel20.text = "20"
+            bindingClass.btnLevel20.setOnClickListener {
+                soundPlay(soundDrop)
+                val intent = Intent(this, Level20::class.java)
+                startActivity(intent)
+                overridePendingTransition(R.anim.open_activity, R.anim.close_activity)
+                finish()
+            }
+
+        }
+        if(levelProgress >= 21){
+            bindingClass.btnLevel21.isClickable
+            bindingClass.btnLevel21.text = "21"
+            bindingClass.btnLevel21.setOnClickListener {
+                soundPlay(soundDrop)
+                val intent = Intent(this, Level21::class.java)
+                startActivity(intent)
+                overridePendingTransition(R.anim.open_activity, R.anim.close_activity)
+                finish()
+            }
+
+        }
+        if(levelProgress >= 22){
+            bindingClass.btnLevel22.isClickable
+            bindingClass.btnLevel22.text = "22"
+            bindingClass.btnLevel22.setOnClickListener {
+                soundPlay(soundDrop)
+                val intent = Intent(this, Level22::class.java)
+                startActivity(intent)
+                overridePendingTransition(R.anim.open_activity, R.anim.close_activity)
+                finish()
+            }
+
+        }
+        if(levelProgress >= 23){
+            bindingClass.btnLevel23.isClickable
+            bindingClass.btnLevel23.text = "23"
+            bindingClass.btnLevel23.setOnClickListener {
+                soundPlay(soundDrop)
+                val intent = Intent(this, Level23::class.java)
+                startActivity(intent)
+                overridePendingTransition(R.anim.open_activity, R.anim.close_activity)
+                finish()
+            }
+
+        }
+        if(levelProgress >= 24){
+            bindingClass.btnLevel24.isClickable
+            bindingClass.btnLevel24.text = "24"
+            bindingClass.btnLevel24.setOnClickListener {
+                soundPlay(soundDrop)
+                val intent = Intent(this, Level24::class.java)
+                startActivity(intent)
+                overridePendingTransition(R.anim.open_activity, R.anim.close_activity)
+                finish()
+            }
+
+        }
+        if(levelProgress >= 25){
+            bindingClass.btnLevel25.isClickable
+            bindingClass.btnLevel25.text = "25"
+            bindingClass.btnLevel25.setOnClickListener {
+                soundPlay(soundDrop)
+                val intent = Intent(this, Level25::class.java)
                 startActivity(intent)
                 overridePendingTransition(R.anim.open_activity, R.anim.close_activity)
                 finish()
