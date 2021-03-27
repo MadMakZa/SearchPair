@@ -12,6 +12,8 @@ import android.view.animation.AnimationUtils
 import android.widget.Button
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.MobileAds
 import makza.afonsky.searchpair.databinding.ActivityGameFieldBinding
 import java.util.*
 
@@ -52,6 +54,11 @@ class Level8 : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         bindingClass = ActivityGameFieldBinding.inflate(layoutInflater)
         setContentView(bindingClass.root)
+        //реклама
+        MobileAds.initialize(this, "ca-app-pub-3820005456092261~5233012124")
+        val adRequest: AdRequest = AdRequest.Builder().build()
+        bindingClass.adView.loadAd(adRequest)
+
         init()
 
     }

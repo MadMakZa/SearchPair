@@ -13,10 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <!--
-        <meta-data android:name="com.google.android.gms.version"
-            android:value="@integer/google_play_services_version"/>
-            -->
+        <meta-data android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-3820005456092261~5233012124"/>
+
 
         <activity
             android:name="makza.afonsky.searchpair.SplashScreen"
@@ -109,11 +108,10 @@
         <activity
             android:name="makza.afonsky.searchpair.BonusActivity"
             android:screenOrientation="portrait" />
-
-        <!--
+        
         <activity android:name="com.google.android.gms.ads.AdActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"/>
-            -->
+
 
 
         <meta-data

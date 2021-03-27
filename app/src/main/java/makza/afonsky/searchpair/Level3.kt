@@ -12,10 +12,15 @@ import android.view.animation.AnimationUtils
 import android.widget.Button
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdView
+import com.google.android.gms.ads.MobileAds
 import makza.afonsky.searchpair.databinding.ActivityGameFieldBinding
 import java.util.*
 
 class Level3 : AppCompatActivity() {
+
+//    private lateinit var adView: AdView
 
     private lateinit var bindingClass: ActivityGameFieldBinding
 
@@ -47,12 +52,21 @@ class Level3 : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         bindingClass = ActivityGameFieldBinding.inflate(layoutInflater)
         setContentView(bindingClass.root)
+
+        //реклама
+        MobileAds.initialize(this, "ca-app-pub-3820005456092261~5233012124")
+        val adRequest: AdRequest = AdRequest.Builder().build()
+        bindingClass.adView.loadAd(adRequest)
+
         init()
 
     }
 
     //инициализации блок
     private fun init() {
+
+
+
         animation1 = AnimationUtils.loadAnimation(this, R.anim.flip_to_middle)
         animation2 = AnimationUtils.loadAnimation(this, R.anim.flip_from_middle)
         animation3 = AnimationUtils.loadAnimation(this, R.anim.flip_to_middle)
