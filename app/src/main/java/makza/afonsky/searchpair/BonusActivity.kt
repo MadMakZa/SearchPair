@@ -1,4 +1,4 @@
-package com.example.searchpair
+package makza.afonsky.searchpair
 
 import android.content.Intent
 import android.media.AudioManager
@@ -40,7 +40,6 @@ class BonusActivity : AppCompatActivity() {
         soundPool = SoundPool(6, AudioManager.STREAM_MUSIC, 0)
         soundPool!!.load(baseContext, R.raw.close, 1)
         soundPool!!.load(baseContext, R.raw.stone_drop, 1)
-
 
 
     }

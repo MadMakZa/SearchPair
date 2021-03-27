@@ -8,8 +8,8 @@
     android:id="@+id/layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background1"
-    tools:context=".BonusActivity">
+    android:background="@drawable/background_pyramides"
+    tools:context="makza.afonsky.searchpair.BonusActivity">
 
     <ImageView
         android:layout_width="300dp"

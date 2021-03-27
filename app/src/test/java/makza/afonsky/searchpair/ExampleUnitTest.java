@@ -1,4 +1,4 @@
-package com.example.searchpair;
+package makza.afonsky.searchpair;
 
 import org.junit.Test;
 

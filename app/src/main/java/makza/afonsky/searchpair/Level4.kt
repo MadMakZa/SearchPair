@@ -1,4 +1,4 @@
-package com.example.searchpair
+package makza.afonsky.searchpair
 
 import android.animation.ObjectAnimator
 import android.content.Intent
@@ -12,10 +12,10 @@ import android.view.animation.AnimationUtils
 import android.widget.Button
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
-import com.example.searchpair.databinding.ActivityGameFieldBinding
+import makza.afonsky.searchpair.databinding.ActivityGameFieldBinding
 import java.util.*
 
-class Level2 : AppCompatActivity() {
+class Level4 : AppCompatActivity() {
 
     private lateinit var bindingClass: ActivityGameFieldBinding
 
@@ -33,7 +33,7 @@ class Level2 : AppCompatActivity() {
     private var counterOpenedImages = 0
     private var counterPairs = 0
     private var health = 0
-    private var healthMax = 85
+    private var healthMax = 125
     private var cheatCounter = 0
     //набор звуков с айдишниками
     private var soundPool: SoundPool? = null
@@ -69,7 +69,7 @@ class Level2 : AppCompatActivity() {
         soundPool!!.load(baseContext, R.raw.stone_close, 1) //soundClose
         soundPool!!.load(baseContext, R.raw.stone_open, 1)  //soundOpen
 
-        bindingClass.idSetTextLevel.setText(R.string.name_level_2)
+        bindingClass.idSetTextLevel.setText(R.string.name_level_4)
         //шкала здоровья
         bindingClass.progressBar.max = healthMax
         //заполнение массива + слушатели нажатий
@@ -113,10 +113,10 @@ class Level2 : AppCompatActivity() {
         val currentSave = getSharedPreferences("Save", MODE_PRIVATE)
                 .getInt("Level",1)
 
-        if (currentSave < 3) {
+        if (currentSave < 5) {
             getSharedPreferences("Save", MODE_PRIVATE)
                     .edit()
-                    .putInt("Level", 3)
+                    .putInt("Level", 5)
                     .apply()
         }
     }
@@ -129,7 +129,7 @@ class Level2 : AppCompatActivity() {
         //если шкала заполнилась запустить по-новой уровень
         if (health > healthMax){
             soundPlay(soundDrop)
-            val intent = Intent(this, Level2::class.java)
+            val intent = Intent(this, Level4::class.java)
             startActivity(intent)
             overridePendingTransition(R.anim.open_activity, R.anim.close_activity)
             finish()
@@ -163,11 +163,11 @@ class Level2 : AppCompatActivity() {
         btnNewGame!!.visibility = View.INVISIBLE
     }
 
-    //начать новую игру по нажатию на кнопку
+    //начать новую игру по нажатию на лого
     private fun startNewGame() {
         btnNewGame!!.setOnClickListener {
             soundPlay(soundDrop)
-            val intent = Intent(this, Level3::class.java)
+            val intent = Intent(this, Level5::class.java)
             startActivity(intent)
             overridePendingTransition(R.anim.open_activity, R.anim.close_activity)
             finish()
@@ -176,10 +176,10 @@ class Level2 : AppCompatActivity() {
 
     //заполнить лист тагов
     private fun addTagsToList() {
-        for (i in 1..8) {
+        for (i in 1..12) {
             arrayTags.add(i.toString())
         }
-        for (i in 1..8) {
+        for (i in 1..12) {
             arrayTags.add(i.toString())
         }
     }
@@ -191,27 +191,35 @@ class Level2 : AppCompatActivity() {
         arrayImageViewsButtons.add(bindingClass.idColumn1Image2)
         arrayImageViewsButtons.add(bindingClass.idColumn1Image3)
         arrayImageViewsButtons.add(bindingClass.idColumn1Image4)
+        arrayImageViewsButtons.add(bindingClass.idColumn1Image5)
+        arrayImageViewsButtons.add(bindingClass.idColumn1Image6)
         //колонка 2
         arrayImageViewsButtons.add(bindingClass.idColumn2Image1)
         arrayImageViewsButtons.add(bindingClass.idColumn2Image2)
         arrayImageViewsButtons.add(bindingClass.idColumn2Image3)
         arrayImageViewsButtons.add(bindingClass.idColumn2Image4)
+        arrayImageViewsButtons.add(bindingClass.idColumn2Image5)
+        arrayImageViewsButtons.add(bindingClass.idColumn2Image6)
         //колонка 3
         arrayImageViewsButtons.add(bindingClass.idColumn3Image1)
         arrayImageViewsButtons.add(bindingClass.idColumn3Image2)
         arrayImageViewsButtons.add(bindingClass.idColumn3Image3)
         arrayImageViewsButtons.add(bindingClass.idColumn3Image4)
+        arrayImageViewsButtons.add(bindingClass.idColumn3Image5)
+        arrayImageViewsButtons.add(bindingClass.idColumn3Image6)
         //колонка 4
         arrayImageViewsButtons.add(bindingClass.idColumn4Image1)
         arrayImageViewsButtons.add(bindingClass.idColumn4Image2)
         arrayImageViewsButtons.add(bindingClass.idColumn4Image3)
         arrayImageViewsButtons.add(bindingClass.idColumn4Image4)
+        arrayImageViewsButtons.add(bindingClass.idColumn4Image5)
+        arrayImageViewsButtons.add(bindingClass.idColumn4Image6)
 
     }
 
     //присвоить таги для ImageViews из листа с тагами
     private fun createTagsForImageViews() {
-        for (i in 0..15){
+        for (i in 0..23){
             arrayImageViewsButtons[i]!!.tag = arrayTags[i]
         }
     }
@@ -294,7 +302,7 @@ class Level2 : AppCompatActivity() {
             counterPairs++
             println("counter pairs = $counterPairs")
             //если поле пустое
-            if (counterPairs == 8){
+            if (counterPairs == 12){
                 saveProgress()
                     //показать кнопку новой игры
                 btnNewGame!!.visibility = View.VISIBLE

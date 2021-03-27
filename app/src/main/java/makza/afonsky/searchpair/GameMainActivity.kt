@@ -1,4 +1,4 @@
-package com.example.searchpair
+package makza.afonsky.searchpair
 
 
 import android.app.Dialog
@@ -6,12 +6,11 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.media.AudioManager
 import android.media.SoundPool
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
-
-import com.example.searchpair.databinding.ActivityGameMainBinding
+import androidx.appcompat.app.AppCompatActivity
+import makza.afonsky.searchpair.databinding.ActivityGameMainBinding
 
 
 class GameMainActivity : AppCompatActivity() {

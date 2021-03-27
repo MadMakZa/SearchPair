@@ -1,4 +1,4 @@
-package com.example.searchpair
+package makza.afonsky.searchpair
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity

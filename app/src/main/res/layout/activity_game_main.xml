@@ -5,7 +5,7 @@
     android:layout_height="fill_parent"
     android:fromYDelta="100%p" android:toYDelta="0%p"
     android:duration="@android:integer/config_longAnimTime"
-    android:background="@drawable/background1"
+    android:background="@drawable/background_pyramides"
     android:orientation="vertical">
 
     <ImageView
@@ -38,14 +38,14 @@
     <GridLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:columnCount="4"
+        android:columnCount="5"
         android:layout_marginTop="100dp"
         android:layout_gravity="center">
 
         <Button
             android:id="@+id/btn_level_1"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:layout_margin="5dp"
             android:background="@drawable/button_select_level_theme"
             android:fontFamily="@font/caesar_dressing"
@@ -56,8 +56,8 @@
             android:textStyle="bold" />
         <Button
             android:id="@+id/btn_level_2"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:layout_margin="5dp"
             android:background="@drawable/button_select_level_theme"
             android:fontFamily="@font/caesar_dressing"
@@ -69,8 +69,8 @@
             android:clickable="false"/>
         <Button
             android:id="@+id/btn_level_3"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:layout_margin="5dp"
             android:background="@drawable/button_select_level_theme"
             android:fontFamily="@font/caesar_dressing"
@@ -82,8 +82,8 @@
             android:clickable="false"/>
         <Button
             android:id="@+id/btn_level_4"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:layout_margin="5dp"
             android:background="@drawable/button_select_level_theme"
             android:fontFamily="@font/caesar_dressing"
@@ -95,8 +95,8 @@
             android:clickable="false"/>
         <Button
             android:id="@+id/btn_level_5"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:layout_margin="5dp"
             android:background="@drawable/button_select_level_theme"
             android:fontFamily="@font/caesar_dressing"
@@ -108,8 +108,8 @@
             android:clickable="false"/>
         <Button
             android:id="@+id/btn_level_6"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:layout_margin="5dp"
             android:background="@drawable/button_select_level_theme"
             android:fontFamily="@font/caesar_dressing"
@@ -121,8 +121,8 @@
             android:clickable="false"/>
         <Button
             android:id="@+id/btn_level_7"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:layout_margin="5dp"
             android:background="@drawable/button_select_level_theme"
             android:fontFamily="@font/caesar_dressing"
@@ -134,8 +134,8 @@
             android:clickable="false"/>
         <Button
             android:id="@+id/btn_level_8"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:layout_margin="5dp"
             android:background="@drawable/button_select_level_theme"
             android:fontFamily="@font/caesar_dressing"
@@ -147,8 +147,8 @@
             android:clickable="false"/>
         <Button
             android:id="@+id/btn_level_9"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:layout_margin="5dp"
             android:background="@drawable/button_select_level_theme"
             android:fontFamily="@font/caesar_dressing"
@@ -160,8 +160,8 @@
             android:clickable="false"/>
         <Button
             android:id="@+id/btn_level_10"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:layout_margin="5dp"
             android:background="@drawable/button_select_level_theme"
             android:fontFamily="@font/caesar_dressing"
@@ -173,8 +173,8 @@
             android:clickable="false"/>
         <Button
             android:id="@+id/btn_level_11"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:layout_margin="5dp"
             android:background="@drawable/button_select_level_theme"
             android:fontFamily="@font/caesar_dressing"
@@ -186,8 +186,8 @@
             android:clickable="false"/>
         <Button
             android:id="@+id/btn_level_12"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:layout_margin="5dp"
             android:background="@drawable/button_select_level_theme"
             android:fontFamily="@font/caesar_dressing"
@@ -199,8 +199,8 @@
             android:clickable="false"/>
         <Button
             android:id="@+id/btn_level_13"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:layout_margin="5dp"
             android:background="@drawable/button_select_level_theme"
             android:fontFamily="@font/caesar_dressing"
@@ -212,8 +212,8 @@
             android:clickable="false"/>
         <Button
             android:id="@+id/btn_level_14"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:layout_margin="5dp"
             android:background="@drawable/button_select_level_theme"
             android:fontFamily="@font/caesar_dressing"
@@ -225,8 +225,8 @@
             android:clickable="false"/>
         <Button
             android:id="@+id/btn_level_15"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:layout_margin="5dp"
             android:background="@drawable/button_select_level_theme"
             android:fontFamily="@font/caesar_dressing"
@@ -238,12 +238,129 @@
             android:clickable="false"/>
         <Button
             android:id="@+id/btn_level_16"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:layout_margin="5dp"
             android:background="@drawable/button_select_level_theme"
             android:fontFamily="@font/caesar_dressing"
             android:tag="btn_level_16"
+            android:text="@string/button_level_close"
+            android:textColor="@color/colorRedDark"
+            android:textSize="36sp"
+            android:textStyle="bold"
+            android:clickable="false"/>
+        <Button
+            android:id="@+id/btn_level_17"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_margin="5dp"
+            android:background="@drawable/button_select_level_theme"
+            android:fontFamily="@font/caesar_dressing"
+            android:tag="btn_level_17"
+            android:text="@string/button_level_close"
+            android:textColor="@color/colorRedDark"
+            android:textSize="36sp"
+            android:textStyle="bold"
+            android:clickable="false"/>
+        <Button
+            android:id="@+id/btn_level_18"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_margin="5dp"
+            android:background="@drawable/button_select_level_theme"
+            android:fontFamily="@font/caesar_dressing"
+            android:tag="btn_level_18"
+            android:text="@string/button_level_close"
+            android:textColor="@color/colorRedDark"
+            android:textSize="36sp"
+            android:textStyle="bold"
+            android:clickable="false"/>
+        <Button
+            android:id="@+id/btn_level_19"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_margin="5dp"
+            android:background="@drawable/button_select_level_theme"
+            android:fontFamily="@font/caesar_dressing"
+            android:tag="btn_level_19"
+            android:text="@string/button_level_close"
+            android:textColor="@color/colorRedDark"
+            android:textSize="36sp"
+            android:textStyle="bold"
+            android:clickable="false"/>
+        <Button
+            android:id="@+id/btn_level_20"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_margin="5dp"
+            android:background="@drawable/button_select_level_theme"
+            android:fontFamily="@font/caesar_dressing"
+            android:tag="btn_level_20"
+            android:text="@string/button_level_close"
+            android:textColor="@color/colorRedDark"
+            android:textSize="36sp"
+            android:textStyle="bold"
+            android:clickable="false"/>
+        <Button
+            android:id="@+id/btn_level_21"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_margin="5dp"
+            android:background="@drawable/button_select_level_theme"
+            android:fontFamily="@font/caesar_dressing"
+            android:tag="btn_level_21"
+            android:text="@string/button_level_close"
+            android:textColor="@color/colorRedDark"
+            android:textSize="36sp"
+            android:textStyle="bold"
+            android:clickable="false"/>
+        <Button
+            android:id="@+id/btn_level_22"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_margin="5dp"
+            android:background="@drawable/button_select_level_theme"
+            android:fontFamily="@font/caesar_dressing"
+            android:tag="btn_level_22"
+            android:text="@string/button_level_close"
+            android:textColor="@color/colorRedDark"
+            android:textSize="36sp"
+            android:textStyle="bold"
+            android:clickable="false"/>
+        <Button
+            android:id="@+id/btn_level_23"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_margin="5dp"
+            android:background="@drawable/button_select_level_theme"
+            android:fontFamily="@font/caesar_dressing"
+            android:tag="btn_level_23"
+            android:text="@string/button_level_close"
+            android:textColor="@color/colorRedDark"
+            android:textSize="36sp"
+            android:textStyle="bold"
+            android:clickable="false"/>
+        <Button
+            android:id="@+id/btn_level_24"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_margin="5dp"
+            android:background="@drawable/button_select_level_theme"
+            android:fontFamily="@font/caesar_dressing"
+            android:tag="btn_level_24"
+            android:text="@string/button_level_close"
+            android:textColor="@color/colorRedDark"
+            android:textSize="36sp"
+            android:textStyle="bold"
+            android:clickable="false"/>
+        <Button
+            android:id="@+id/btn_level_25"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_margin="5dp"
+            android:background="@drawable/button_select_level_theme"
+            android:fontFamily="@font/caesar_dressing"
+            android:tag="btn_level_25"
             android:text="@string/button_level_close"
             android:textColor="@color/colorRedDark"
             android:textSize="36sp"

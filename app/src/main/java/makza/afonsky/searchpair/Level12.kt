@@ -1,4 +1,4 @@
-package com.example.searchpair
+package makza.afonsky.searchpair
 
 import android.animation.ObjectAnimator
 import android.content.Intent
@@ -12,14 +12,14 @@ import android.view.animation.AnimationUtils
 import android.widget.Button
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
-import com.example.searchpair.databinding.ActivityGameFieldBinding
+import makza.afonsky.searchpair.databinding.ActivityGameFieldBinding
 import java.util.*
 
 /**
  *  Высокая сложность - найти квартет
  */
 
-class Level15 : AppCompatActivity() {
+class Level12 : AppCompatActivity() {
 
     private lateinit var bindingClass: ActivityGameFieldBinding
 
@@ -39,7 +39,7 @@ class Level15 : AppCompatActivity() {
     private var counterOpenedImages = 0
     private var counterPairs = 0
     private var health = 0
-    private var healthMax = 501
+    private var healthMax = 211
     private var cheatCounter = 0
     //набор звуков с айдишниками
     private var soundPool: SoundPool? = null
@@ -48,7 +48,6 @@ class Level15 : AppCompatActivity() {
     private var soundCrash = 3
     private var soundClose = 4
     private var soundOpen = 5
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -78,8 +77,9 @@ class Level15 : AppCompatActivity() {
         soundPool!!.load(baseContext, R.raw.stone_close, 1) //soundClose
         soundPool!!.load(baseContext, R.raw.stone_open, 1)  //soundOpen
 
-        bindingClass.idSetTextLevel.setText(R.string.name_level_15)
+        bindingClass.idSetTextLevel.setText(R.string.name_level_12)
         bindingClass.progressBar.max = healthMax
+
         //заполнение массива + слушатели нажатий
         addToArrayImageViews()
         onClickImageViews()
@@ -121,10 +121,10 @@ class Level15 : AppCompatActivity() {
         val currentSave = getSharedPreferences("Save", MODE_PRIVATE)
                 .getInt("Level",1)
 
-        if (currentSave < 16) {
+        if (currentSave < 13) {
             getSharedPreferences("Save", MODE_PRIVATE)
                     .edit()
-                    .putInt("Level", 16)
+                    .putInt("Level", 13)
                     .apply()
         }
     }
@@ -137,7 +137,7 @@ class Level15 : AppCompatActivity() {
         //если шкала заполнилась запустить по-новой уровень
         if (health > healthMax){
             soundPlay(soundDrop)
-            val intent = Intent(this, Level15::class.java)
+            val intent = Intent(this, Level12::class.java)
             startActivity(intent)
             overridePendingTransition(R.anim.open_activity, R.anim.close_activity)
             finish()
@@ -146,8 +146,8 @@ class Level15 : AppCompatActivity() {
     }
     //восстановить здоровье
     private fun healthRestore(){
-        if(health <= 60) health = 0
-        if (health >= 60) health -=60
+        if(health <= 20) health = 0
+        if (health >= 20) health -=20
 
         ObjectAnimator.ofInt(bindingClass.progressBar, "progress", health)
                 .setDuration(1000)
@@ -175,7 +175,7 @@ class Level15 : AppCompatActivity() {
     private fun startNewGame() {
         btnNewGame!!.setOnClickListener {
             soundPlay(soundDrop)
-            val intent = Intent(this, Level16::class.java)
+            val intent = Intent(this, Level13::class.java)
             startActivity(intent)
             overridePendingTransition(R.anim.open_activity, R.anim.close_activity)
             finish()
@@ -184,16 +184,16 @@ class Level15 : AppCompatActivity() {
 
     //заполнить лист тагов
     private fun addTagsToList() {
-        for (i in 1..10) {
+        for (i in 1..7) {
             arrayTags.add(i.toString())
         }
-        for (i in 1..10) {
+        for (i in 1..7) {
             arrayTags.add(i.toString())
         }
-        for (i in 1..10) {
+        for (i in 1..7) {
             arrayTags.add(i.toString())
         }
-        for (i in 1..10) {
+        for (i in 1..7) {
             arrayTags.add(i.toString())
         }
     }
@@ -208,7 +208,6 @@ class Level15 : AppCompatActivity() {
         arrayImageViewsButtons.add(bindingClass.idColumn1Image5)
         arrayImageViewsButtons.add(bindingClass.idColumn1Image6)
         arrayImageViewsButtons.add(bindingClass.idColumn1Image7)
-        arrayImageViewsButtons.add(bindingClass.idColumn1Image8)
         //колонка 2
         arrayImageViewsButtons.add(bindingClass.idColumn2Image1)
         arrayImageViewsButtons.add(bindingClass.idColumn2Image2)
@@ -217,7 +216,6 @@ class Level15 : AppCompatActivity() {
         arrayImageViewsButtons.add(bindingClass.idColumn2Image5)
         arrayImageViewsButtons.add(bindingClass.idColumn2Image6)
         arrayImageViewsButtons.add(bindingClass.idColumn2Image7)
-        arrayImageViewsButtons.add(bindingClass.idColumn2Image8)
         //колонка 3
         arrayImageViewsButtons.add(bindingClass.idColumn3Image1)
         arrayImageViewsButtons.add(bindingClass.idColumn3Image2)
@@ -226,7 +224,6 @@ class Level15 : AppCompatActivity() {
         arrayImageViewsButtons.add(bindingClass.idColumn3Image5)
         arrayImageViewsButtons.add(bindingClass.idColumn3Image6)
         arrayImageViewsButtons.add(bindingClass.idColumn3Image7)
-        arrayImageViewsButtons.add(bindingClass.idColumn3Image8)
         //колонка 4
         arrayImageViewsButtons.add(bindingClass.idColumn4Image1)
         arrayImageViewsButtons.add(bindingClass.idColumn4Image2)
@@ -235,22 +232,12 @@ class Level15 : AppCompatActivity() {
         arrayImageViewsButtons.add(bindingClass.idColumn4Image5)
         arrayImageViewsButtons.add(bindingClass.idColumn4Image6)
         arrayImageViewsButtons.add(bindingClass.idColumn4Image7)
-        arrayImageViewsButtons.add(bindingClass.idColumn4Image8)
-        //колонка 5
-        arrayImageViewsButtons.add(bindingClass.idColumn5Image1)
-        arrayImageViewsButtons.add(bindingClass.idColumn5Image2)
-        arrayImageViewsButtons.add(bindingClass.idColumn5Image3)
-        arrayImageViewsButtons.add(bindingClass.idColumn5Image4)
-        arrayImageViewsButtons.add(bindingClass.idColumn5Image5)
-        arrayImageViewsButtons.add(bindingClass.idColumn5Image6)
-        arrayImageViewsButtons.add(bindingClass.idColumn5Image7)
-        arrayImageViewsButtons.add(bindingClass.idColumn5Image8)
 
     }
 
     //присвоить таги для ImageViews из листа с тагами
     private fun createTagsForImageViews() {
-        for (i in 0..39){
+        for (i in 0..27){
             arrayImageViewsButtons[i]!!.tag = arrayTags[i]
         }
     }
@@ -362,7 +349,7 @@ class Level15 : AppCompatActivity() {
             println("counter pairs = $counterPairs")
 
             //если все пары найдены
-            if (counterPairs == 10){
+            if (counterPairs == 7){
                 saveProgress()
                 //показать кнопку новой игры
                 btnNewGame!!.visibility = View.VISIBLE

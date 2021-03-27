@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.searchpair">
+    package="makza.afonsky.searchpair">
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 
     <application
         android:allowBackup="true"
@@ -9,8 +12,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+        <!--
+        <meta-data android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version"/>
+            -->
+
         <activity
-            android:name=".SplashScreen"
+            android:name="makza.afonsky.searchpair.SplashScreen"
             android:screenOrientation="portrait"
             android:theme="@style/SplashTheme">
             <intent-filter>
@@ -20,59 +29,64 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".GameMainActivity"
+            android:name="makza.afonsky.searchpair.GameMainActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Level1"
+            android:name="makza.afonsky.searchpair.Level1"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Level2"
+            android:name="makza.afonsky.searchpair.Level2"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Level3"
+            android:name="makza.afonsky.searchpair.Level3"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Level4"
+            android:name="makza.afonsky.searchpair.Level4"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Level5"
+            android:name="makza.afonsky.searchpair.Level5"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Level6"
+            android:name="makza.afonsky.searchpair.Level6"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Level7"
+            android:name="makza.afonsky.searchpair.Level7"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Level8"
+            android:name="makza.afonsky.searchpair.Level8"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Level9"
+            android:name="makza.afonsky.searchpair.Level9"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Level10"
+            android:name="makza.afonsky.searchpair.Level10"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Level11"
+            android:name="makza.afonsky.searchpair.Level11"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Level12"
+            android:name="makza.afonsky.searchpair.Level12"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Level13"
+            android:name="makza.afonsky.searchpair.Level13"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Level14"
+            android:name="makza.afonsky.searchpair.Level14"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Level15"
+            android:name="makza.afonsky.searchpair.Level15"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Level16"
+            android:name="makza.afonsky.searchpair.Level16"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".BonusActivity"
+            android:name="makza.afonsky.searchpair.BonusActivity"
             android:screenOrientation="portrait" />
+
+        <!--
+        <activity android:name="com.google.android.gms.ads.AdActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"/>
+            -->
 
 
         <meta-data

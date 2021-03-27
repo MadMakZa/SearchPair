@@ -1,4 +1,4 @@
-package com.example.searchpair
+package makza.afonsky.searchpair
 
 import android.animation.ObjectAnimator
 import android.content.Intent
@@ -12,14 +12,14 @@ import android.view.animation.AnimationUtils
 import android.widget.Button
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
-import com.example.searchpair.databinding.ActivityGameFieldBinding
+import makza.afonsky.searchpair.databinding.ActivityGameFieldBinding
 import java.util.*
 
 /**
  *  Высокая сложность - найти квартет
  */
 
-class Level10 : AppCompatActivity() {
+class Level11 : AppCompatActivity() {
 
     private lateinit var bindingClass: ActivityGameFieldBinding
 
@@ -39,7 +39,7 @@ class Level10 : AppCompatActivity() {
     private var counterOpenedImages = 0
     private var counterPairs = 0
     private var health = 0
-    private var healthMax = 151
+    private var healthMax = 181
     private var cheatCounter = 0
     //набор звуков с айдишниками
     private var soundPool: SoundPool? = null
@@ -77,8 +77,9 @@ class Level10 : AppCompatActivity() {
         soundPool!!.load(baseContext, R.raw.stone_close, 1) //soundClose
         soundPool!!.load(baseContext, R.raw.stone_open, 1)  //soundOpen
 
-        bindingClass.idSetTextLevel.setText(R.string.name_level_10)
+        bindingClass.idSetTextLevel.setText(R.string.name_level_11)
         bindingClass.progressBar.max = healthMax
+
         //заполнение массива + слушатели нажатий
         addToArrayImageViews()
         onClickImageViews()
@@ -120,10 +121,10 @@ class Level10 : AppCompatActivity() {
         val currentSave = getSharedPreferences("Save", MODE_PRIVATE)
                 .getInt("Level",1)
 
-        if (currentSave < 11) {
+        if (currentSave < 12) {
             getSharedPreferences("Save", MODE_PRIVATE)
                     .edit()
-                    .putInt("Level", 11)
+                    .putInt("Level", 12)
                     .apply()
         }
     }
@@ -136,7 +137,7 @@ class Level10 : AppCompatActivity() {
         //если шкала заполнилась запустить по-новой уровень
         if (health > healthMax){
             soundPlay(soundDrop)
-            val intent = Intent(this, Level10::class.java)
+            val intent = Intent(this, Level11::class.java)
             startActivity(intent)
             overridePendingTransition(R.anim.open_activity, R.anim.close_activity)
             finish()
@@ -174,7 +175,7 @@ class Level10 : AppCompatActivity() {
     private fun startNewGame() {
         btnNewGame!!.setOnClickListener {
             soundPlay(soundDrop)
-            val intent = Intent(this, Level11::class.java)
+            val intent = Intent(this, Level12::class.java)
             startActivity(intent)
             overridePendingTransition(R.anim.open_activity, R.anim.close_activity)
             finish()
@@ -183,16 +184,16 @@ class Level10 : AppCompatActivity() {
 
     //заполнить лист тагов
     private fun addTagsToList() {
-        for (i in 1..5) {
+        for (i in 1..6) {
             arrayTags.add(i.toString())
         }
-        for (i in 1..5) {
+        for (i in 1..6) {
             arrayTags.add(i.toString())
         }
-        for (i in 1..5) {
+        for (i in 1..6) {
             arrayTags.add(i.toString())
         }
-        for (i in 1..5) {
+        for (i in 1..6) {
             arrayTags.add(i.toString())
         }
     }
@@ -205,29 +206,34 @@ class Level10 : AppCompatActivity() {
         arrayImageViewsButtons.add(bindingClass.idColumn1Image3)
         arrayImageViewsButtons.add(bindingClass.idColumn1Image4)
         arrayImageViewsButtons.add(bindingClass.idColumn1Image5)
+        arrayImageViewsButtons.add(bindingClass.idColumn1Image6)
         //колонка 2
         arrayImageViewsButtons.add(bindingClass.idColumn2Image1)
         arrayImageViewsButtons.add(bindingClass.idColumn2Image2)
         arrayImageViewsButtons.add(bindingClass.idColumn2Image3)
         arrayImageViewsButtons.add(bindingClass.idColumn2Image4)
         arrayImageViewsButtons.add(bindingClass.idColumn2Image5)
+        arrayImageViewsButtons.add(bindingClass.idColumn2Image6)
         //колонка 3
         arrayImageViewsButtons.add(bindingClass.idColumn3Image1)
         arrayImageViewsButtons.add(bindingClass.idColumn3Image2)
         arrayImageViewsButtons.add(bindingClass.idColumn3Image3)
         arrayImageViewsButtons.add(bindingClass.idColumn3Image4)
         arrayImageViewsButtons.add(bindingClass.idColumn3Image5)
+        arrayImageViewsButtons.add(bindingClass.idColumn3Image6)
         //колонка 4
         arrayImageViewsButtons.add(bindingClass.idColumn4Image1)
         arrayImageViewsButtons.add(bindingClass.idColumn4Image2)
         arrayImageViewsButtons.add(bindingClass.idColumn4Image3)
         arrayImageViewsButtons.add(bindingClass.idColumn4Image4)
         arrayImageViewsButtons.add(bindingClass.idColumn4Image5)
+        arrayImageViewsButtons.add(bindingClass.idColumn4Image6)
+
     }
 
     //присвоить таги для ImageViews из листа с тагами
     private fun createTagsForImageViews() {
-        for (i in 0..19){
+        for (i in 0..23){
             arrayImageViewsButtons[i]!!.tag = arrayTags[i]
         }
     }
@@ -318,11 +324,12 @@ class Level10 : AppCompatActivity() {
 
     //сравнить открытые картинки
     private fun checkCards() {
+
         if (imageViewFirstCard!!.tag == imageViewTwoCard!!.tag
                 && imageViewThreeCard!!.tag == imageViewFirstCard!!.tag
                 && imageViewFourCard!!.tag == imageViewFirstCard!!.tag) {
-            //уничтожить 4 совпадающие
             healthRestore()
+            //уничтожить 4 совпадающие
             soundPlay(soundCrash)
             imageViewFirstCard!!.startAnimation(animation5)
             imageViewTwoCard!!.startAnimation(animation5)
@@ -338,7 +345,7 @@ class Level10 : AppCompatActivity() {
             println("counter pairs = $counterPairs")
 
             //если все пары найдены
-            if (counterPairs == 5){
+            if (counterPairs == 6){
                 saveProgress()
                 //показать кнопку новой игры
                 btnNewGame!!.visibility = View.VISIBLE
