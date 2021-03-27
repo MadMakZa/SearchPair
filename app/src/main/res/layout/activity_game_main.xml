@@ -52,7 +52,7 @@
             android:tag="btn_level_1"
             android:text="@string/button_level_1"
             android:textColor="@color/colorRedDark"
-            android:textSize="36sp"
+            android:textSize="30sp"
             android:textStyle="bold" />
         <Button
             android:id="@+id/btn_level_2"
@@ -64,7 +64,7 @@
             android:tag="btn_level_2"
             android:text="@string/button_level_close"
             android:textColor="@color/colorRedDark"
-            android:textSize="36sp"
+            android:textSize="30sp"
             android:textStyle="bold"
             android:clickable="false"/>
         <Button
@@ -77,7 +77,7 @@
             android:tag="btn_level_3"
             android:text="@string/button_level_close"
             android:textColor="@color/colorRedDark"
-            android:textSize="36sp"
+            android:textSize="30sp"
             android:textStyle="bold"
             android:clickable="false"/>
         <Button
@@ -90,7 +90,7 @@
             android:tag="btn_level_4"
             android:text="@string/button_level_close"
             android:textColor="@color/colorRedDark"
-            android:textSize="36sp"
+            android:textSize="30sp"
             android:textStyle="bold"
             android:clickable="false"/>
         <Button
@@ -103,7 +103,7 @@
             android:tag="btn_level_5"
             android:text="@string/button_level_close"
             android:textColor="@color/colorRedDark"
-            android:textSize="36sp"
+            android:textSize="30sp"
             android:textStyle="bold"
             android:clickable="false"/>
         <Button
@@ -116,7 +116,7 @@
             android:tag="btn_level_6"
             android:text="@string/button_level_close"
             android:textColor="@color/colorRedDark"
-            android:textSize="36sp"
+            android:textSize="30sp"
             android:textStyle="bold"
             android:clickable="false"/>
         <Button
@@ -129,7 +129,7 @@
             android:tag="btn_level_7"
             android:text="@string/button_level_close"
             android:textColor="@color/colorRedDark"
-            android:textSize="36sp"
+            android:textSize="30sp"
             android:textStyle="bold"
             android:clickable="false"/>
         <Button
@@ -142,7 +142,7 @@
             android:tag="btn_level_8"
             android:text="@string/button_level_close"
             android:textColor="@color/colorRedDark"
-            android:textSize="36sp"
+            android:textSize="30sp"
             android:textStyle="bold"
             android:clickable="false"/>
         <Button
@@ -155,7 +155,7 @@
             android:tag="btn_level_9"
             android:text="@string/button_level_close"
             android:textColor="@color/colorRedDark"
-            android:textSize="36sp"
+            android:textSize="30sp"
             android:textStyle="bold"
             android:clickable="false"/>
         <Button
@@ -168,7 +168,7 @@
             android:tag="btn_level_10"
             android:text="@string/button_level_close"
             android:textColor="@color/colorRedDark"
-            android:textSize="36sp"
+            android:textSize="30sp"
             android:textStyle="bold"
             android:clickable="false"/>
         <Button
@@ -181,7 +181,7 @@
             android:tag="btn_level_11"
             android:text="@string/button_level_close"
             android:textColor="@color/colorRedDark"
-            android:textSize="36sp"
+            android:textSize="30sp"
             android:textStyle="bold"
             android:clickable="false"/>
         <Button
@@ -194,7 +194,7 @@
             android:tag="btn_level_12"
             android:text="@string/button_level_close"
             android:textColor="@color/colorRedDark"
-            android:textSize="36sp"
+            android:textSize="30sp"
             android:textStyle="bold"
             android:clickable="false"/>
         <Button
@@ -207,7 +207,7 @@
             android:tag="btn_level_13"
             android:text="@string/button_level_close"
             android:textColor="@color/colorRedDark"
-            android:textSize="36sp"
+            android:textSize="30sp"
             android:textStyle="bold"
             android:clickable="false"/>
         <Button
@@ -220,7 +220,7 @@
             android:tag="btn_level_14"
             android:text="@string/button_level_close"
             android:textColor="@color/colorRedDark"
-            android:textSize="36sp"
+            android:textSize="30sp"
             android:textStyle="bold"
             android:clickable="false"/>
         <Button
@@ -233,7 +233,7 @@
             android:tag="btn_level_15"
             android:text="@string/button_level_close"
             android:textColor="@color/colorRedDark"
-            android:textSize="36sp"
+            android:textSize="30sp"
             android:textStyle="bold"
             android:clickable="false"/>
         <Button
@@ -246,7 +246,7 @@
             android:tag="btn_level_16"
             android:text="@string/button_level_close"
             android:textColor="@color/colorRedDark"
-            android:textSize="36sp"
+            android:textSize="30sp"
             android:textStyle="bold"
             android:clickable="false"/>
         <Button
@@ -259,7 +259,7 @@
             android:tag="btn_level_17"
             android:text="@string/button_level_close"
             android:textColor="@color/colorRedDark"
-            android:textSize="36sp"
+            android:textSize="30sp"
             android:textStyle="bold"
             android:clickable="false"/>
         <Button
@@ -272,7 +272,7 @@
             android:tag="btn_level_18"
             android:text="@string/button_level_close"
             android:textColor="@color/colorRedDark"
-            android:textSize="36sp"
+            android:textSize="30sp"
             android:textStyle="bold"
             android:clickable="false"/>
         <Button
@@ -285,7 +285,7 @@
             android:tag="btn_level_19"
             android:text="@string/button_level_close"
             android:textColor="@color/colorRedDark"
-            android:textSize="36sp"
+            android:textSize="30sp"
             android:textStyle="bold"
             android:clickable="false"/>
         <Button
@@ -298,7 +298,7 @@
             android:tag="btn_level_20"
             android:text="@string/button_level_close"
             android:textColor="@color/colorRedDark"
-            android:textSize="36sp"
+            android:textSize="30sp"
             android:textStyle="bold"
             android:clickable="false"/>
         <Button
@@ -311,7 +311,7 @@
             android:tag="btn_level_21"
             android:text="@string/button_level_close"
             android:textColor="@color/colorRedDark"
-            android:textSize="36sp"
+            android:textSize="30sp"
             android:textStyle="bold"
             android:clickable="false"/>
         <Button
@@ -324,7 +324,7 @@
             android:tag="btn_level_22"
             android:text="@string/button_level_close"
             android:textColor="@color/colorRedDark"
-            android:textSize="36sp"
+            android:textSize="30sp"
             android:textStyle="bold"
             android:clickable="false"/>
         <Button
@@ -337,7 +337,7 @@
             android:tag="btn_level_23"
             android:text="@string/button_level_close"
             android:textColor="@color/colorRedDark"
-            android:textSize="36sp"
+            android:textSize="30sp"
             android:textStyle="bold"
             android:clickable="false"/>
         <Button
@@ -350,7 +350,7 @@
             android:tag="btn_level_24"
             android:text="@string/button_level_close"
             android:textColor="@color/colorRedDark"
-            android:textSize="36sp"
+            android:textSize="30sp"
             android:textStyle="bold"
             android:clickable="false"/>
         <Button
@@ -363,7 +363,7 @@
             android:tag="btn_level_25"
             android:text="@string/button_level_close"
             android:textColor="@color/colorRedDark"
-            android:textSize="36sp"
+            android:textSize="30sp"
             android:textStyle="bold"
             android:clickable="false"/>
 
