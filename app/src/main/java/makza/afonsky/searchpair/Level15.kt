@@ -196,6 +196,7 @@ class Level15 : AppCompatActivity() {
     //Заполнение массива с кнопками (для присвоения слушателей нажатий через цикл for-each)
     private fun addToArrayImageViews() {
         //колонка 1
+        arrayImageViewsButtons.add(bindingClass.idColumn1Image1)
         arrayImageViewsButtons.add(bindingClass.idColumn1Image2)
         arrayImageViewsButtons.add(bindingClass.idColumn1Image3)
         arrayImageViewsButtons.add(bindingClass.idColumn1Image4)
@@ -213,6 +214,7 @@ class Level15 : AppCompatActivity() {
         arrayImageViewsButtons.add(bindingClass.idColumn3Image1)
         arrayImageViewsButtons.add(bindingClass.idColumn3Image2)
         arrayImageViewsButtons.add(bindingClass.idColumn3Image3)
+        arrayImageViewsButtons.add(bindingClass.idColumn3Image4)
         arrayImageViewsButtons.add(bindingClass.idColumn3Image5)
         arrayImageViewsButtons.add(bindingClass.idColumn3Image6)
         arrayImageViewsButtons.add(bindingClass.idColumn3Image7)
@@ -225,15 +227,12 @@ class Level15 : AppCompatActivity() {
         arrayImageViewsButtons.add(bindingClass.idColumn4Image6)
         arrayImageViewsButtons.add(bindingClass.idColumn4Image7)
         //колонка 5
+        arrayImageViewsButtons.add(bindingClass.idColumn5Image1)
         arrayImageViewsButtons.add(bindingClass.idColumn5Image2)
         arrayImageViewsButtons.add(bindingClass.idColumn5Image3)
         arrayImageViewsButtons.add(bindingClass.idColumn5Image4)
         arrayImageViewsButtons.add(bindingClass.idColumn5Image5)
         arrayImageViewsButtons.add(bindingClass.idColumn5Image6)
-        //колонка 6
-        arrayImageViewsButtons.add(bindingClass.idColumn6Image3)
-        arrayImageViewsButtons.add(bindingClass.idColumn6Image4)
-        arrayImageViewsButtons.add(bindingClass.idColumn6Image5)
 
     }
 

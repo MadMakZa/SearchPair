@@ -209,16 +209,16 @@ class Level17 : AppCompatActivity() {
         arrayImageViewsButtons.add(bindingClass.idColumn2Image2)
         arrayImageViewsButtons.add(bindingClass.idColumn2Image3)
         arrayImageViewsButtons.add(bindingClass.idColumn2Image4)
-        arrayImageViewsButtons.add(bindingClass.idColumn2Image5)
         //колонка 3
+        arrayImageViewsButtons.add(bindingClass.idColumn3Image1)
         arrayImageViewsButtons.add(bindingClass.idColumn3Image2)
         arrayImageViewsButtons.add(bindingClass.idColumn3Image3)
         arrayImageViewsButtons.add(bindingClass.idColumn3Image4)
-        arrayImageViewsButtons.add(bindingClass.idColumn3Image5)
         //колонка 4
+        arrayImageViewsButtons.add(bindingClass.idColumn4Image1)
+        arrayImageViewsButtons.add(bindingClass.idColumn4Image2)
         arrayImageViewsButtons.add(bindingClass.idColumn4Image3)
         arrayImageViewsButtons.add(bindingClass.idColumn4Image4)
-        arrayImageViewsButtons.add(bindingClass.idColumn4Image5)
     }
 
     //присвоить таги для ImageViews из листа с тагами
