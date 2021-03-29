@@ -500,7 +500,6 @@
         android:layout_height="50dp"
         android:layout_marginBottom="6dp"
         android:layout_gravity="bottom|center"
-        android:background="@color/colorBrown"
         android:orientation="horizontal" >
 
         <com.google.android.gms.ads.AdView
@@ -509,7 +508,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             ads:adSize="BANNER"
-            ads:adUnitId="ca-app-pub-3940256099942544/6300978111">
+            ads:adUnitId="ca-app-pub-3820005456092261/2279545723">
         </com.google.android.gms.ads.AdView>
 
     </LinearLayout>
