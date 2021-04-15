@@ -7,7 +7,9 @@ import android.content.SharedPreferences
 import android.media.AudioManager
 import android.media.SoundPool
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import makza.afonsky.searchpair.databinding.ActivityGameMainBinding
@@ -17,6 +19,7 @@ class GameMainActivity : AppCompatActivity() {
 
 
     private lateinit var bindingClass: ActivityGameMainBinding
+    private var buttonLevelsArray = ArrayList<Button?>()
 
     //набор звуков с айдишниками
     private var soundPool: SoundPool? = null
@@ -34,6 +37,7 @@ class GameMainActivity : AppCompatActivity() {
         bindingClass = ActivityGameMainBinding.inflate(layoutInflater)
         setContentView(bindingClass.root)
 
+        addLvlButtonsToArray()
         //загрузка звуков
         soundPool = SoundPool(6, AudioManager.STREAM_MUSIC, 0)
         soundPool!!.load(baseContext, R.raw.close, 1)
@@ -150,20 +154,55 @@ class GameMainActivity : AppCompatActivity() {
         overridePendingTransition(R.anim.open_activity, R.anim.close_activity)
         finish()
     }
+    //добавление кнопок в аррай лист
+    private fun addLvlButtonsToArray(){
+        buttonLevelsArray.add(bindingClass.btnLevel1)
+        buttonLevelsArray.add(bindingClass.btnLevel2)
+        buttonLevelsArray.add(bindingClass.btnLevel3)
+        buttonLevelsArray.add(bindingClass.btnLevel4)
+        buttonLevelsArray.add(bindingClass.btnLevel5)
+        buttonLevelsArray.add(bindingClass.btnLevel6)
+        buttonLevelsArray.add(bindingClass.btnLevel7)
+        buttonLevelsArray.add(bindingClass.btnLevel8)
+        buttonLevelsArray.add(bindingClass.btnLevel9)
+        buttonLevelsArray.add(bindingClass.btnLevel10)
+        buttonLevelsArray.add(bindingClass.btnLevel11)
+        buttonLevelsArray.add(bindingClass.btnLevel12)
+        buttonLevelsArray.add(bindingClass.btnLevel13)
+        buttonLevelsArray.add(bindingClass.btnLevel14)
+        buttonLevelsArray.add(bindingClass.btnLevel15)
+        buttonLevelsArray.add(bindingClass.btnLevel16)
+        buttonLevelsArray.add(bindingClass.btnLevel17)
+        buttonLevelsArray.add(bindingClass.btnLevel18)
+        buttonLevelsArray.add(bindingClass.btnLevel19)
+        buttonLevelsArray.add(bindingClass.btnLevel20)
+        buttonLevelsArray.add(bindingClass.btnLevel21)
+        buttonLevelsArray.add(bindingClass.btnLevel22)
+        buttonLevelsArray.add(bindingClass.btnLevel23)
+        buttonLevelsArray.add(bindingClass.btnLevel24)
+        buttonLevelsArray.add(bindingClass.btnLevel25)
+    }
+    private fun buttonsOnOff(){
+        for (btn in buttonLevelsArray){
+            btn?.isClickable = false
+        }
+    }
     //выбор уровня
     private fun chooseLevel() {
 
         if(levelProgress >= 1) {
+            bindingClass.btnLevel1.isClickable = false
             bindingClass.btnLevel1.setOnClickListener {
                 soundPlay(soundDrop)
                 val intent = Intent(this, Level1::class.java)
                 startActivity(intent)
                 overridePendingTransition(R.anim.open_activity, R.anim.close_activity)
                 finish()
-        }
+            }
         }
         if(levelProgress >= 2) {
             bindingClass.btnLevel2.isClickable
+            bindingClass.btnLevel2.isClickable = false
             bindingClass.btnLevel2.text = "2"
             bindingClass.btnLevel2.setOnClickListener {
                 soundPlay(soundDrop)
@@ -175,6 +214,7 @@ class GameMainActivity : AppCompatActivity() {
         }
         if(levelProgress >= 3){
             bindingClass.btnLevel3.isClickable
+            bindingClass.btnLevel3.isClickable = false
             bindingClass.btnLevel3.text = "3"
             bindingClass.btnLevel3.setOnClickListener{
                 soundPlay(soundDrop)
@@ -186,6 +226,7 @@ class GameMainActivity : AppCompatActivity() {
         }
         if(levelProgress >= 4){
             bindingClass.btnLevel4.isClickable
+            bindingClass.btnLevel4.isClickable = false
             bindingClass.btnLevel4.text = "4"
             bindingClass.btnLevel4.setOnClickListener {
                 soundPlay(soundDrop)
@@ -197,7 +238,7 @@ class GameMainActivity : AppCompatActivity() {
         }
         if(levelProgress >= 5){
             bindingClass.btnLevel5.isClickable
-            bindingClass.btnLevel5.isClickable
+            bindingClass.btnLevel5.isClickable = false
             bindingClass.btnLevel5.text = "5"
             bindingClass.btnLevel5.setOnClickListener {
                 soundPlay(soundDrop)
@@ -209,6 +250,7 @@ class GameMainActivity : AppCompatActivity() {
         }
         if(levelProgress >= 6){
             bindingClass.btnLevel6.isClickable
+            bindingClass.btnLevel6.isClickable = false
             bindingClass.btnLevel6.text = "6"
             bindingClass.btnLevel6.setOnClickListener {
                 soundPlay(soundDrop)
@@ -220,6 +262,7 @@ class GameMainActivity : AppCompatActivity() {
         }
         if(levelProgress >= 7){
             bindingClass.btnLevel7.isClickable
+            bindingClass.btnLevel7.isClickable = false
             bindingClass.btnLevel7.text = "7"
             bindingClass.btnLevel7.setOnClickListener {
                 soundPlay(soundDrop)
@@ -231,6 +274,7 @@ class GameMainActivity : AppCompatActivity() {
         }
         if(levelProgress >= 8){
             bindingClass.btnLevel8.isClickable
+            bindingClass.btnLevel8.isClickable = false
             bindingClass.btnLevel8.text = "8"
             bindingClass.btnLevel8.setOnClickListener {
                 soundPlay(soundDrop)
@@ -242,6 +286,7 @@ class GameMainActivity : AppCompatActivity() {
         }
         if(levelProgress >= 9){
             bindingClass.btnLevel9.isClickable
+            bindingClass.btnLevel9.isClickable = false
             bindingClass.btnLevel9.text = "9"
             bindingClass.btnLevel9.setOnClickListener {
                 soundPlay(soundDrop)
@@ -253,6 +298,7 @@ class GameMainActivity : AppCompatActivity() {
         }
         if(levelProgress >= 10){
             bindingClass.btnLevel10.isClickable
+            bindingClass.btnLevel10.isClickable = false
             bindingClass.btnLevel10.text = "10"
             bindingClass.btnLevel10.setOnClickListener {
                 soundPlay(soundDrop)
@@ -264,6 +310,7 @@ class GameMainActivity : AppCompatActivity() {
         }
         if(levelProgress >= 11){
             bindingClass.btnLevel11.isClickable
+            bindingClass.btnLevel11.isClickable = false
             bindingClass.btnLevel11.text = "11"
             bindingClass.btnLevel11.setOnClickListener {
                 soundPlay(soundDrop)
@@ -275,6 +322,7 @@ class GameMainActivity : AppCompatActivity() {
         }
         if(levelProgress >= 12){
             bindingClass.btnLevel12.isClickable
+            bindingClass.btnLevel12.isClickable = false
             bindingClass.btnLevel12.text = "12"
             bindingClass.btnLevel12.setOnClickListener {
                 soundPlay(soundDrop)
@@ -286,6 +334,7 @@ class GameMainActivity : AppCompatActivity() {
         }
         if(levelProgress >= 13){
             bindingClass.btnLevel13.isClickable
+            bindingClass.btnLevel13.isClickable = false
             bindingClass.btnLevel13.text = "13"
             bindingClass.btnLevel13.setOnClickListener {
                 soundPlay(soundDrop)
@@ -297,6 +346,7 @@ class GameMainActivity : AppCompatActivity() {
         }
         if(levelProgress >= 14){
             bindingClass.btnLevel14.isClickable
+            bindingClass.btnLevel14.isClickable = false
             bindingClass.btnLevel14.text = "14"
             bindingClass.btnLevel14.setOnClickListener {
                 soundPlay(soundDrop)
@@ -308,6 +358,7 @@ class GameMainActivity : AppCompatActivity() {
         }
         if(levelProgress >= 15){
             bindingClass.btnLevel15.isClickable
+            bindingClass.btnLevel15.isClickable = false
             bindingClass.btnLevel15.text = "15"
             bindingClass.btnLevel15.setOnClickListener {
                 soundPlay(soundDrop)
@@ -319,6 +370,7 @@ class GameMainActivity : AppCompatActivity() {
         }
         if(levelProgress >= 16){
             bindingClass.btnLevel16.isClickable
+            bindingClass.btnLevel16.isClickable = false
             bindingClass.btnLevel16.text = "16"
             bindingClass.btnLevel16.setOnClickListener {
                 soundPlay(soundDrop)
@@ -331,6 +383,7 @@ class GameMainActivity : AppCompatActivity() {
         }
         if(levelProgress >= 17){
             bindingClass.btnLevel17.isClickable
+            bindingClass.btnLevel17.isClickable = false
             bindingClass.btnLevel17.text = "17"
             bindingClass.btnLevel17.setOnClickListener {
                 soundPlay(soundDrop)
@@ -343,6 +396,7 @@ class GameMainActivity : AppCompatActivity() {
         }
         if(levelProgress >= 18){
             bindingClass.btnLevel18.isClickable
+            bindingClass.btnLevel18.isClickable = false
             bindingClass.btnLevel18.text = "18"
             bindingClass.btnLevel18.setOnClickListener {
                 soundPlay(soundDrop)
@@ -355,6 +409,7 @@ class GameMainActivity : AppCompatActivity() {
         }
         if(levelProgress >= 19){
             bindingClass.btnLevel19.isClickable
+            bindingClass.btnLevel19.isClickable = false
             bindingClass.btnLevel19.text = "19"
             bindingClass.btnLevel19.setOnClickListener {
                 soundPlay(soundDrop)
@@ -367,6 +422,7 @@ class GameMainActivity : AppCompatActivity() {
         }
         if(levelProgress >= 20){
             bindingClass.btnLevel20.isClickable
+            bindingClass.btnLevel20.isClickable = false
             bindingClass.btnLevel20.text = "20"
             bindingClass.btnLevel20.setOnClickListener {
                 soundPlay(soundDrop)
@@ -379,6 +435,7 @@ class GameMainActivity : AppCompatActivity() {
         }
         if(levelProgress >= 21){
             bindingClass.btnLevel21.isClickable
+            bindingClass.btnLevel21.isClickable = false
             bindingClass.btnLevel21.text = "21"
             bindingClass.btnLevel21.setOnClickListener {
                 soundPlay(soundDrop)
@@ -391,6 +448,7 @@ class GameMainActivity : AppCompatActivity() {
         }
         if(levelProgress >= 22){
             bindingClass.btnLevel22.isClickable
+            bindingClass.btnLevel22.isClickable = false
             bindingClass.btnLevel22.text = "22"
             bindingClass.btnLevel22.setOnClickListener {
                 soundPlay(soundDrop)
@@ -403,6 +461,7 @@ class GameMainActivity : AppCompatActivity() {
         }
         if(levelProgress >= 23){
             bindingClass.btnLevel23.isClickable
+            bindingClass.btnLevel23.isClickable = false
             bindingClass.btnLevel23.text = "23"
             bindingClass.btnLevel23.setOnClickListener {
                 soundPlay(soundDrop)
@@ -415,6 +474,7 @@ class GameMainActivity : AppCompatActivity() {
         }
         if(levelProgress >= 24){
             bindingClass.btnLevel24.isClickable
+            bindingClass.btnLevel24.isClickable = false
             bindingClass.btnLevel24.text = "24"
             bindingClass.btnLevel24.setOnClickListener {
                 soundPlay(soundDrop)
@@ -427,6 +487,7 @@ class GameMainActivity : AppCompatActivity() {
         }
         if(levelProgress >= 25){
             bindingClass.btnLevel25.isClickable
+            bindingClass.btnLevel25.isClickable = false
             bindingClass.btnLevel25.text = "25"
             bindingClass.btnLevel25.setOnClickListener {
                 soundPlay(soundDrop)

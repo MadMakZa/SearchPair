@@ -41,7 +41,7 @@ class Level25 : AppCompatActivity() {
     private var counterOpenedImages = 0
     private var counterPairs = 0
     private var health = 0
-    private var healthMax = 601
+    private var healthMax = 481
     private var cheatCounter = 0
 
     //набор звуков с айдишниками
