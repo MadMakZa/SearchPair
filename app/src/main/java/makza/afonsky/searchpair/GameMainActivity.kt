@@ -26,10 +26,14 @@ class GameMainActivity : AppCompatActivity() {
     private var buttonClose = 1
     private var soundDrop = 2
 
-
+    //сейвы уровней
     private lateinit var save: SharedPreferences
     private var levelProgress = 0
     private var cheatCounter = 0
+    //сейв бонусного восстановления здоровья
+    private lateinit var bonusHealth: SharedPreferences
+    private var bonusesAccumulated = 0
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,9 +47,14 @@ class GameMainActivity : AppCompatActivity() {
         soundPool!!.load(baseContext, R.raw.close, 1)
         soundPool!!.load(baseContext, R.raw.stone_drop, 1)
 
+        //коробка с сейвами
+        save = getSharedPreferences("Save", MODE_PRIVATE)
+        levelProgress = save.getInt("Level", 0)
+        //коробка с аптечками
+        bonusHealth = getSharedPreferences("bonusHealthSave", MODE_PRIVATE)
+        bonusesAccumulated = bonusHealth.getInt("HealthKit", 0)
 
-        save = getSharedPreferences("Save", MODE_PRIVATE) //коробка с сейвами
-        levelProgress = save.getInt("Level", 1)
+
 
         startNewGame()
         chooseLevel()

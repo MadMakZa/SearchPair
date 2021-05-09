@@ -47,6 +47,28 @@
 
     </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/layout_restore_health"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="start|top"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="80dp">
+
+        <ImageView
+            android:id="@+id/btn_watch_adm"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:src="@drawable/watchvideo"/>
+
+
+
+
+
+    </LinearLayout>
+
 
 
     <ImageView
