@@ -1,6 +1,7 @@
 package makza.afonsky.searchpair
 
 import android.animation.ObjectAnimator
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.media.AudioManager
 import android.media.SoundPool
@@ -108,6 +109,7 @@ class Level1 : AppCompatActivity() {
         }
     }
     //Генерация картинок аптечек
+
     private fun generateHealthKit() {
         val img = ImageView(this)
         linearLayout!!.addView(img)
@@ -374,8 +376,8 @@ class Level1 : AppCompatActivity() {
                         imageViewTwoCard!!.startAnimation(animation4)
                         animation4!!.setAnimationListener(object : AnimationListener {
                             override fun onAnimationStart(animation: Animation) {
-                                imageViewFirstCard!!.setImageResource(R.drawable.imageshirt)
-                                imageViewTwoCard!!.setImageResource(R.drawable.imageshirt)
+                                imageViewFirstCard!!.setImageResource(R.drawable.shirtgreen)
+                                imageViewTwoCard!!.setImageResource(R.drawable.shirtgreen)
                             }
                             override fun onAnimationEnd(animation: Animation) {
                                 blockAllButtons(false)
@@ -414,7 +416,7 @@ class Level1 : AppCompatActivity() {
     private fun closeAllImages() {
         for (img in arrayImageViewsButtons) {
             img!!.startAnimation(animation3)
-            img.setImageResource(R.drawable.imageshirt)
+            img.setImageResource(R.drawable.shirtgreen)
             img.isClickable = true
         }
         imageViewFirstCard!!.isClickable = true
