@@ -98,7 +98,7 @@ class Level1 : AppCompatActivity() {
     //показать аптечки на экране
     private fun addHealthKitToBar(){
         //собрано аптечек
-        var bonusesAccumulated = getSharedPreferences("bonusHealthSave", MODE_PRIVATE)
+        val bonusesAccumulated = getSharedPreferences("bonusHealthSave", MODE_PRIVATE)
             .getInt("HealthKit",0)
         //если есть бонусные аптчеки, добавить их на экран
         if (bonusesAccumulated > 0) {
@@ -116,6 +116,22 @@ class Level1 : AppCompatActivity() {
         params.height = 125
         img.setImageResource(R.drawable.restorehealth)
         img.layoutParams = params
+        //при нажатии на аптечку
+        img.setOnClickListener {
+            health -= 20
+            img.visibility = View.GONE
+            ObjectAnimator.ofInt(bindingClass.progressBar, "progress", health)
+                .setDuration(1000)
+                .start()
+            //удалить одну аптечку
+            var countHealthKit = getSharedPreferences("bonusHealthSave", MODE_PRIVATE)
+                .getInt("HealthKit",0)
+            countHealthKit--
+            getSharedPreferences("bonusHealthSave", MODE_PRIVATE)
+                .edit()
+                .putInt("HealthKit", countHealthKit)
+                .apply()
+        }
     }
     /**
      * Чит восполнить здоровье
@@ -148,13 +164,20 @@ class Level1 : AppCompatActivity() {
     private fun saveProgress(){
         val currentSave = getSharedPreferences("Save", MODE_PRIVATE)
         .getInt("Level",1)
-
         if (currentSave < 2) {
             getSharedPreferences("Save", MODE_PRIVATE)
                     .edit()
                     .putInt("Level", 2)
                     .apply()
         }
+        //добавить аптечку на следующий уровень
+        var countHealthKit = getSharedPreferences("bonusHealthSave", MODE_PRIVATE)
+            .getInt("HealthKit",0)
+        countHealthKit++
+        getSharedPreferences("bonusHealthSave", MODE_PRIVATE)
+            .edit()
+            .putInt("HealthKit", countHealthKit)
+            .apply()
     }
     //получить урон
     private fun healthDamaged(){

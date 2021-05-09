@@ -49,7 +49,7 @@ class GameMainActivity : AppCompatActivity() {
 
         //коробка с сейвами
         save = getSharedPreferences("Save", MODE_PRIVATE)
-        levelProgress = save.getInt("Level", 0)
+        levelProgress = save.getInt("Level", 1)
         //коробка с аптечками
         bonusHealth = getSharedPreferences("bonusHealthSave", MODE_PRIVATE)
         bonusesAccumulated = bonusHealth.getInt("HealthKit", 0)

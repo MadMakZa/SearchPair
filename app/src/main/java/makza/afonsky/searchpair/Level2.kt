@@ -10,6 +10,7 @@ import android.view.animation.Animation
 import android.view.animation.Animation.AnimationListener
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
+import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import makza.afonsky.searchpair.databinding.ActivityGameFieldBinding
 import java.util.*
@@ -17,6 +18,8 @@ import java.util.*
 class Level2 : AppCompatActivity() {
 
     private lateinit var bindingClass: ActivityGameFieldBinding
+
+    private var linearLayout: LinearLayout? = null
 
 
     //набор звуков с айдишниками
@@ -76,6 +79,9 @@ class Level2 : AppCompatActivity() {
         bindingClass.progressBar.max = healthMax
 
 
+        linearLayout = findViewById(R.id.layout_restore_health)
+
+
 
         //заполнение массива + слушатели нажатий
         addToArrayImageViews()
@@ -85,9 +91,31 @@ class Level2 : AppCompatActivity() {
         newGame()
 
         activateCheatHp()
+        addHealthKitToBar()
 
     }
-
+    //показать аптечки на экране
+    private fun addHealthKitToBar(){
+        //собрано аптечек
+        var bonusesAccumulated = getSharedPreferences("bonusHealthSave", MODE_PRIVATE)
+            .getInt("HealthKit",0)
+        //если есть бонусные аптчеки, добавить их на экран
+        if (bonusesAccumulated > 0) {
+            for (count in 1..bonusesAccumulated) {
+                generateHealthKit()
+            }
+        }
+    }
+    //Генерация картинок аптечек
+    private fun generateHealthKit() {
+        val img = ImageView(this)
+        linearLayout!!.addView(img)
+        val params = img.layoutParams as LinearLayout.LayoutParams
+        params.width = 125
+        params.height = 125
+        img.setImageResource(R.drawable.restorehealth)
+        img.layoutParams = params
+    }
     /**
      * Чит восполнить здоровье
      */
