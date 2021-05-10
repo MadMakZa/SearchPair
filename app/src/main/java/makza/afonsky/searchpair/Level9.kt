@@ -444,8 +444,8 @@ class Level9 : AppCompatActivity() {
                         imageViewTwoCard!!.startAnimation(animation4)
                         animation4!!.setAnimationListener(object : AnimationListener {
                             override fun onAnimationStart(animation: Animation) {
-                                imageViewFirstCard!!.setImageResource(R.drawable.imageshirt)
-                                imageViewTwoCard!!.setImageResource(R.drawable.imageshirt)
+                                imageViewFirstCard!!.setImageResource(R.drawable.shirtpurple)
+                                imageViewTwoCard!!.setImageResource(R.drawable.shirtpurple)
 
                             }
                             override fun onAnimationEnd(animation: Animation) {
@@ -488,9 +488,9 @@ class Level9 : AppCompatActivity() {
                         imageViewThreeCard!!.startAnimation(animation4)
                         animation4!!.setAnimationListener(object : AnimationListener {
                             override fun onAnimationStart(animation: Animation) {
-                                imageViewFirstCard!!.setImageResource(R.drawable.imageshirt)
-                                imageViewTwoCard!!.setImageResource(R.drawable.imageshirt)
-                                imageViewThreeCard!!.setImageResource(R.drawable.imageshirt)
+                                imageViewFirstCard!!.setImageResource(R.drawable.shirtpurple)
+                                imageViewTwoCard!!.setImageResource(R.drawable.shirtpurple)
+                                imageViewThreeCard!!.setImageResource(R.drawable.shirtpurple)
                             }
                             override fun onAnimationEnd(animation: Animation) {
                                 blockAllButtons(false)
@@ -532,7 +532,7 @@ class Level9 : AppCompatActivity() {
     private fun closeAllImages() {
         for (img in arrayImageViewsButtons) {
             img!!.startAnimation(animation3)
-            img.setImageResource(R.drawable.imageshirt)
+            img.setImageResource(R.drawable.shirtpurple)
             img.isClickable = true
         }
         imageViewFirstCard!!.isClickable = true

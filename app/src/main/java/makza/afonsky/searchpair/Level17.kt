@@ -46,7 +46,7 @@ class Level17 : AppCompatActivity() {
     private var health = 0
     private var healthMax = 131
     private var cheatCounter = 0
-    private var healthKitRegen = 50
+    private var healthKitRegen = 40
     //набор звуков с айдишниками
     private var soundPool: SoundPool? = null
     private var buttonClose = 1
@@ -487,26 +487,18 @@ class Level17 : AppCompatActivity() {
                         //запуск второй половины анимации
                         imageViewFirstCard!!.startAnimation(animation4)
                         imageViewTwoCard!!.startAnimation(animation4)
-//                        imageViewThreeCard!!.startAnimation(animation4)
-//                        imageViewFourCard!!.startAnimation(animation4)
                         animation4!!.setAnimationListener(object : AnimationListener {
                             override fun onAnimationStart(animation: Animation) {
-                                imageViewFirstCard!!.setImageResource(R.drawable.imageshirt)
-                                imageViewTwoCard!!.setImageResource(R.drawable.imageshirt)
-//                                imageViewThreeCard!!.setImageResource(R.drawable.imageshirt)
-//                                imageViewFourCard!!.setImageResource(R.drawable.imageshirt)
+                                imageViewFirstCard!!.setImageResource(R.drawable.shirtgreen)
+                                imageViewTwoCard!!.setImageResource(R.drawable.shirtgreen)
                             }
                             override fun onAnimationEnd(animation: Animation) {
                                 blockAllButtons(false)
                                 //присвоить ресы по умолчанию
                                 imageViewFirstCard = findViewById(R.id.idImageFirstCard)
                                 imageViewTwoCard = findViewById(R.id.idImageTwoCard)
-//                                imageViewThreeCard = findViewById(R.id.idImageThreeCard)
-//                                imageViewFourCard = findViewById(R.id.idImageFourCard)
                                 imageViewFirstCard!!.visibility = View.GONE
                                 imageViewTwoCard!!.visibility = View.GONE
-//                                imageViewThreeCard!!.visibility = View.GONE
-//                                imageViewFourCard!!.visibility = View.GONE
 
                             }
 
@@ -530,7 +522,6 @@ class Level17 : AppCompatActivity() {
                 imageViewFirstCard!!.startAnimation(animation3)
                 imageViewTwoCard!!.startAnimation(animation3)
                 imageViewThreeCard!!.startAnimation(animation3)
-//                imageViewFourCard!!.startAnimation(animation3)
                 animation3!!.setAnimationListener(object : AnimationListener {
                     override fun onAnimationStart(animation: Animation) {
                         soundPlay(soundClose)
@@ -541,13 +532,11 @@ class Level17 : AppCompatActivity() {
                         imageViewFirstCard!!.startAnimation(animation4)
                         imageViewTwoCard!!.startAnimation(animation4)
                         imageViewThreeCard!!.startAnimation(animation4)
-//                        imageViewFourCard!!.startAnimation(animation4)
                         animation4!!.setAnimationListener(object : AnimationListener {
                             override fun onAnimationStart(animation: Animation) {
-                                imageViewFirstCard!!.setImageResource(R.drawable.imageshirt)
-                                imageViewTwoCard!!.setImageResource(R.drawable.imageshirt)
-                                imageViewThreeCard!!.setImageResource(R.drawable.imageshirt)
-//                                imageViewFourCard!!.setImageResource(R.drawable.imageshirt)
+                                imageViewFirstCard!!.setImageResource(R.drawable.shirtgreen)
+                                imageViewTwoCard!!.setImageResource(R.drawable.shirtgreen)
+                                imageViewThreeCard!!.setImageResource(R.drawable.shirtgreen)
                             }
                             override fun onAnimationEnd(animation: Animation) {
                                 blockAllButtons(false)
@@ -555,11 +544,9 @@ class Level17 : AppCompatActivity() {
                                 imageViewFirstCard = findViewById(R.id.idImageFirstCard)
                                 imageViewTwoCard = findViewById(R.id.idImageTwoCard)
                                 imageViewThreeCard = findViewById(R.id.idImageThreeCard)
-//                                imageViewFourCard = findViewById(R.id.idImageFourCard)
                                 imageViewFirstCard!!.visibility = View.GONE
                                 imageViewTwoCard!!.visibility = View.GONE
                                 imageViewThreeCard!!.visibility = View.GONE
-//                                imageViewFourCard!!.visibility = View.GONE
 
                             }
 
@@ -596,10 +583,10 @@ class Level17 : AppCompatActivity() {
                         imageViewFourCard!!.startAnimation(animation4)
                         animation4!!.setAnimationListener(object : AnimationListener {
                             override fun onAnimationStart(animation: Animation) {
-                                imageViewFirstCard!!.setImageResource(R.drawable.imageshirt)
-                                imageViewTwoCard!!.setImageResource(R.drawable.imageshirt)
-                                imageViewThreeCard!!.setImageResource(R.drawable.imageshirt)
-                                imageViewFourCard!!.setImageResource(R.drawable.imageshirt)
+                                imageViewFirstCard!!.setImageResource(R.drawable.shirtgreen)
+                                imageViewTwoCard!!.setImageResource(R.drawable.shirtgreen)
+                                imageViewThreeCard!!.setImageResource(R.drawable.shirtgreen)
+                                imageViewFourCard!!.setImageResource(R.drawable.shirtgreen)
                             }
                             override fun onAnimationEnd(animation: Animation) {
                                 blockAllButtons(false)
@@ -646,7 +633,7 @@ class Level17 : AppCompatActivity() {
     private fun closeAllImages() {
         for (img in arrayImageViewsButtons) {
             img!!.startAnimation(animation3)
-            img.setImageResource(R.drawable.imageshirt)
+            img.setImageResource(R.drawable.shirtgreen)
             img.isClickable = true
         }
         imageViewFirstCard!!.isClickable = true

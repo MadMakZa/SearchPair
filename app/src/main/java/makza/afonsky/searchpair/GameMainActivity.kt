@@ -68,24 +68,29 @@ class GameMainActivity : AppCompatActivity() {
 
     }
     /**
-     * Testing
+     * Чит добавить максимум монет
      */
     private fun addFreeCoins(){
         bindingClass.idImageLogo.setOnClickListener {
-            //сохранить пересчитанные монеты в копилку medium
-            val countHealthKitSmall = getSharedPreferences("bonusHealthSave", MODE_PRIVATE)
-                .getInt("HealthKitSmall",0)
-            getSharedPreferences("bonusHealthSave", MODE_PRIVATE)
-                .edit()
-                .putInt("HealthKitSmall", countHealthKitSmall + 6)
-                .apply()
-            //сохранить пересчитанные монеты в копилку medium
-            val countHealthKitMedium = getSharedPreferences("bonusHealthSave", MODE_PRIVATE)
-                .getInt("HealthKitMedium",0)
-            getSharedPreferences("bonusHealthSave", MODE_PRIVATE)
-                .edit()
-                .putInt("HealthKitMedium", countHealthKitMedium + 6)
-                .apply()
+            cheatCounter++
+            //добавить везде макс количество монет
+            if(cheatCounter >= 35) {
+                soundPlay(buttonClose)
+                getSharedPreferences("bonusHealthSave", MODE_PRIVATE)
+                    .edit()
+                    .putInt("HealthKitSmall", 6)
+                    .apply()
+                getSharedPreferences("bonusHealthSave", MODE_PRIVATE)
+                    .edit()
+                    .putInt("HealthKitMedium", 6)
+                    .apply()
+                getSharedPreferences("bonusHealthSave", MODE_PRIVATE)
+                    .edit()
+                    .putInt("HealthKitBig", 6)
+                    .apply()
+
+                cheatCounter = 0
+            }
         }
     }
     /**

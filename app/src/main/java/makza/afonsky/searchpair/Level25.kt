@@ -11,6 +11,7 @@ import android.view.animation.Animation.AnimationListener
 import android.view.animation.AnimationUtils
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.MobileAds
@@ -24,6 +25,8 @@ import java.util.*
 class Level25 : AppCompatActivity() {
 
     private lateinit var bindingClass: ActivityGameFieldBinding
+
+    private var linearLayout: LinearLayout? = null
 
     var arrayImageViewsButtons = ArrayList<ImageView?>() //лист с кнопками
     var arrayTags = ArrayList<String?>() //лист с тагами (за конкретным тагом закреплена конкретная картинка)
@@ -43,7 +46,7 @@ class Level25 : AppCompatActivity() {
     private var health = 0
     private var healthMax = 481
     private var cheatCounter = 0
-
+    private var healthKitRegen = 40
     //набор звуков с айдишниками
     private var soundPool: SoundPool? = null
     private var buttonClose = 1
@@ -86,6 +89,8 @@ class Level25 : AppCompatActivity() {
         soundPool!!.load(baseContext, R.raw.stone_open, 1)  //soundOpen
         bindingClass.idSetTextLevel.setText(R.string.name_level_25)
         bindingClass.progressBar.max = healthMax
+        //хранилище монеток
+        linearLayout = findViewById(R.id.layout_restore_health)
         //заполнение массива + слушатели нажатий
         addToArrayImageViews()
         onClickImageViews()
@@ -94,7 +99,112 @@ class Level25 : AppCompatActivity() {
         newGame()
 
         activateCheatHp()
+        exchangeCoins()
+        addHealthKitToBar()
 
+    }
+    /**
+     * Аптечки
+     */
+    //обменник валют
+    private fun exchangeCoins(){
+        var exchanged = 0
+        var exchangedDeleteSmall = 0
+        var exchangedDeleteMedium = 0
+        val smallKit = getSharedPreferences("bonusHealthSave", MODE_PRIVATE)
+            .getInt("HealthKitSmall",0)
+        val mediumKit = getSharedPreferences("bonusHealthSave", MODE_PRIVATE)
+            .getInt("HealthKitMedium",0)
+        val bigKit = getSharedPreferences("bonusHealthSave", MODE_PRIVATE)
+            .getInt("HealthKitBig",0)
+        var currentKit = bigKit
+
+        if (currentKit < 6) {
+            //обмен мелких на большие
+            if (smallKit == 6 && currentKit < 6) {
+                exchanged += 1
+                exchangedDeleteSmall = 6
+                currentKit += 1
+            }
+            if (mediumKit == 6 && currentKit < 4) {
+                exchanged += 3
+                exchangedDeleteMedium = 6
+                currentKit += 3
+            }
+            else if (mediumKit in 4..6 && currentKit < 5) {
+                exchanged += 2
+                exchangedDeleteMedium = 4
+                currentKit += 2
+            }
+            else if (mediumKit in 2..6 && currentKit < 6) {
+                exchanged += 1
+                exchangedDeleteMedium = 2
+                currentKit += 1
+            }
+
+            //удалить пересчитанные монеты из копилки small
+            val countHealthKitSmall = getSharedPreferences("bonusHealthSave", MODE_PRIVATE)
+                .getInt("HealthKitSmall", 0)
+            getSharedPreferences("bonusHealthSave", MODE_PRIVATE)
+                .edit()
+                .putInt("HealthKitSmall", countHealthKitSmall - exchangedDeleteSmall)
+                .apply()
+            //удалить пересчитанные монеты из копилки medium
+            val countHealthKitMedium = getSharedPreferences("bonusHealthSave", MODE_PRIVATE)
+                .getInt("HealthKitMedium", 0)
+            getSharedPreferences("bonusHealthSave", MODE_PRIVATE)
+                .edit()
+                .putInt("HealthKitMedium", countHealthKitMedium - exchangedDeleteMedium)
+                .apply()
+            //сохранить пересчитанные монеты в копилку big
+            val countHealthKitBig = getSharedPreferences("bonusHealthSave", MODE_PRIVATE)
+                .getInt("HealthKitBig", 0)
+            getSharedPreferences("bonusHealthSave", MODE_PRIVATE)
+                .edit()
+                .putInt("HealthKitBig", countHealthKitBig + exchanged)
+                .apply()
+        }
+
+    }
+    //показать аптечки на экране
+    private fun addHealthKitToBar(){
+        //собрано аптечек
+        val bonusesAccumulated = getSharedPreferences("bonusHealthSave", MODE_PRIVATE)
+            .getInt("HealthKitBig",0)
+        //если есть бонусные аптчеки, добавить их на экран
+        if (bonusesAccumulated > 0) {
+            for (count in 1..bonusesAccumulated) {
+                generateHealthKit()
+            }
+        }
+    }
+    //Генерация картинок аптечек
+    private fun generateHealthKit() {
+        val img = ImageView(this)
+        linearLayout!!.addView(img)
+        val params = img.layoutParams as LinearLayout.LayoutParams
+        params.width = 125
+        params.height = 125
+        img.setImageResource(R.drawable.restorehealth3)
+        img.layoutParams = params
+        img.startAnimation(animation5)
+        //при нажатии на аптечку
+        img.setOnClickListener {
+            soundPlay(buttonClose)
+            health -= healthKitRegen
+            img.visibility = View.GONE
+            ObjectAnimator.ofInt(bindingClass.progressBar, "progress", health)
+                .setDuration(1000)
+                .start()
+            //удалить одну аптечку
+            var countHealthKit = getSharedPreferences("bonusHealthSave", MODE_PRIVATE)
+                .getInt("HealthKitBig",0)
+            countHealthKit--
+            getSharedPreferences("bonusHealthSave", MODE_PRIVATE)
+                .edit()
+                .putInt("HealthKitBig", countHealthKit)
+                .apply()
+        }
     }
 
     /**
@@ -179,6 +289,20 @@ class Level25 : AppCompatActivity() {
     //закночить игру
     private fun startNewGame() {
         btnNewGame!!.setOnClickListener {
+            //добавить везде макс количество монет
+            getSharedPreferences("bonusHealthSave", MODE_PRIVATE)
+                .edit()
+                .putInt("HealthKitSmall", 6)
+                .apply()
+            getSharedPreferences("bonusHealthSave", MODE_PRIVATE)
+                .edit()
+                .putInt("HealthKitMedium", 6)
+                .apply()
+            getSharedPreferences("bonusHealthSave", MODE_PRIVATE)
+                .edit()
+                .putInt("HealthKitBig", 6)
+                .apply()
+            //запуск бонусного активити
             startRain()
         }
     }
@@ -435,7 +559,6 @@ class Level25 : AppCompatActivity() {
                 imageViewFirstCard!!.startAnimation(animation3)
                 imageViewTwoCard!!.startAnimation(animation3)
                 imageViewThreeCard!!.startAnimation(animation3)
-//                imageViewFourCard!!.startAnimation(animation3)
                 animation3!!.setAnimationListener(object : AnimationListener {
                     override fun onAnimationStart(animation: Animation) {
                         soundPlay(soundClose)
@@ -446,13 +569,11 @@ class Level25 : AppCompatActivity() {
                         imageViewFirstCard!!.startAnimation(animation4)
                         imageViewTwoCard!!.startAnimation(animation4)
                         imageViewThreeCard!!.startAnimation(animation4)
-//                        imageViewFourCard!!.startAnimation(animation4)
                         animation4!!.setAnimationListener(object : AnimationListener {
                             override fun onAnimationStart(animation: Animation) {
                                 imageViewFirstCard!!.setImageResource(R.drawable.shirtblue)
                                 imageViewTwoCard!!.setImageResource(R.drawable.shirtpurple)
                                 imageViewThreeCard!!.setImageResource(R.drawable.shirtgreen)
-//                                imageViewFourCard!!.setImageResource(R.drawable.imageshirt)
                             }
                             override fun onAnimationEnd(animation: Animation) {
                                 blockAllButtons(false)
@@ -460,11 +581,9 @@ class Level25 : AppCompatActivity() {
                                 imageViewFirstCard = findViewById(R.id.idImageFirstCard)
                                 imageViewTwoCard = findViewById(R.id.idImageTwoCard)
                                 imageViewThreeCard = findViewById(R.id.idImageThreeCard)
-//                                imageViewFourCard = findViewById(R.id.idImageFourCard)
                                 imageViewFirstCard!!.visibility = View.GONE
                                 imageViewTwoCard!!.visibility = View.GONE
                                 imageViewThreeCard!!.visibility = View.GONE
-//                                imageViewFourCard!!.visibility = View.GONE
 
                             }
 

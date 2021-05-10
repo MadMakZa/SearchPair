@@ -388,8 +388,8 @@ class Level4 : AppCompatActivity() {
                         imageViewTwoCard!!.startAnimation(animation4)
                         animation4!!.setAnimationListener(object : AnimationListener {
                             override fun onAnimationStart(animation: Animation) {
-                                imageViewFirstCard!!.setImageResource(R.drawable.imageshirt)
-                                imageViewTwoCard!!.setImageResource(R.drawable.imageshirt)
+                                imageViewFirstCard!!.setImageResource(R.drawable.shirtred)
+                                imageViewTwoCard!!.setImageResource(R.drawable.shirtred)
                             }
                             override fun onAnimationEnd(animation: Animation) {
                                 blockAllButtons(false)
@@ -428,7 +428,7 @@ class Level4 : AppCompatActivity() {
     private fun closeAllImages() {
         for (img in arrayImageViewsButtons) {
             img!!.startAnimation(animation3)
-            img.setImageResource(R.drawable.imageshirt)
+            img.setImageResource(R.drawable.shirtred)
             img.isClickable = true
         }
         imageViewFirstCard!!.isClickable = true
