@@ -181,7 +181,7 @@ class Level1 : AppCompatActivity() {
         var countHealthKit = getSharedPreferences("bonusHealthSave", MODE_PRIVATE)
             .getInt("HealthKitSmall",0)
         if (countHealthKit in 0..5) {
-            countHealthKit++
+            countHealthKit +=6 //поменять потом на ++
             getSharedPreferences("bonusHealthSave", MODE_PRIVATE)
                 .edit()
                 .putInt("HealthKitSmall", countHealthKit)

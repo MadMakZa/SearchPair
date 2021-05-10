@@ -98,17 +98,53 @@ class Level8 : AppCompatActivity() {
         newGame()
 
         activateCheatHp()
+        exchangeCoins()
         addHealthKitToBar()
 
     }
     /**
      * Аптечки
      */
+    //обменник валют
+    private fun exchangeCoins(){
+        var exchanged = 0
+        var exchangedDelete = 0
+        val smallKit = getSharedPreferences("bonusHealthSave", MODE_PRIVATE)
+            .getInt("HealthKitSmall",0)
+        val mediumKit = getSharedPreferences("bonusHealthSave", MODE_PRIVATE)
+            .getInt("HealthKitMedium",0)
+        if(smallKit != 0) {
+            if (smallKit in 3..5 && mediumKit < 6){
+                exchanged = 1
+                exchangedDelete = 3
+            }
+            if (smallKit == 6 && mediumKit < 5){
+                exchanged = 2
+                exchangedDelete = 6
+            }
+            //сохранить пересчитанные монеты в копилку medium
+            val countHealthKitMedium = getSharedPreferences("bonusHealthSave", MODE_PRIVATE)
+                .getInt("HealthKitMedium",0)
+            getSharedPreferences("bonusHealthSave", MODE_PRIVATE)
+                .edit()
+                .putInt("HealthKitMedium", countHealthKitMedium + exchanged)
+                .apply()
+            //удалить пересчитанные монеты из копилки small
+            val countHealthKitSmall = getSharedPreferences("bonusHealthSave", MODE_PRIVATE)
+                .getInt("HealthKitSmall",0)
+            getSharedPreferences("bonusHealthSave", MODE_PRIVATE)
+                .edit()
+                .putInt("HealthKitSmall", countHealthKitSmall - exchangedDelete)
+                .apply()
+
+        }
+
+    }
     //показать аптечки на экране
     private fun addHealthKitToBar(){
         //собрано аптечек
         val bonusesAccumulated = getSharedPreferences("bonusHealthSave", MODE_PRIVATE)
-            .getInt("HealthKitSmall",0)
+            .getInt("HealthKitMedium",0)
         //если есть бонусные аптчеки, добавить их на экран
         if (bonusesAccumulated > 0) {
             for (count in 1..bonusesAccumulated) {
@@ -183,12 +219,12 @@ class Level8 : AppCompatActivity() {
         }
         //добавить аптечку на следующий уровень
         var countHealthKit = getSharedPreferences("bonusHealthSave", MODE_PRIVATE)
-            .getInt("HealthKitSmall",0)
+            .getInt("HealthKitMedium",0)
         if (countHealthKit in 0..5) {
             countHealthKit++
             getSharedPreferences("bonusHealthSave", MODE_PRIVATE)
                 .edit()
-                .putInt("HealthKitSmall", countHealthKit)
+                .putInt("HealthKitMedium", countHealthKit)
                 .apply()
         }
     }
