@@ -11,6 +11,7 @@ import android.view.animation.Animation.AnimationListener
 import android.view.animation.AnimationUtils
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.MobileAds
@@ -20,6 +21,8 @@ import java.util.*
 class Level4 : AppCompatActivity() {
 
     private lateinit var bindingClass: ActivityGameFieldBinding
+
+    private var linearLayout: LinearLayout? = null
 
     var arrayImageViewsButtons = ArrayList<ImageView?>() //лист с кнопками
     var arrayTags = ArrayList<String?>() //лист с тагами (за конкретным тагом закреплена конкретная картинка)
@@ -37,6 +40,7 @@ class Level4 : AppCompatActivity() {
     private var health = 0
     private var healthMax = 95
     private var cheatCounter = 0
+    private var healthKitRegen = 10
     //набор звуков с айдишниками
     private var soundPool: SoundPool? = null
     private var buttonClose = 1
@@ -79,6 +83,8 @@ class Level4 : AppCompatActivity() {
         bindingClass.idSetTextLevel.setText(R.string.name_level_4)
         //шкала здоровья
         bindingClass.progressBar.max = healthMax
+        //хранилище монеток
+        linearLayout = findViewById(R.id.layout_restore_health)
         //заполнение массива + слушатели нажатий
         addToArrayImageViews()
         onClickImageViews()
@@ -87,7 +93,51 @@ class Level4 : AppCompatActivity() {
         newGame()
 
         activateCheatHp()
+        addHealthKitToBar()
 
+    }
+    /**
+     * Аптечки
+     */
+    //показать аптечки на экране
+    private fun addHealthKitToBar(){
+        //собрано аптечек
+        val bonusesAccumulated = getSharedPreferences("bonusHealthSave", MODE_PRIVATE)
+            .getInt("HealthKitSmall",0)
+        //если есть бонусные аптчеки, добавить их на экран
+        if (bonusesAccumulated > 0) {
+            for (count in 1..bonusesAccumulated) {
+                generateHealthKit()
+            }
+        }
+    }
+    //Генерация картинок аптечек
+    private fun generateHealthKit() {
+        val img = ImageView(this)
+        linearLayout!!.addView(img)
+        val params = img.layoutParams as LinearLayout.LayoutParams
+        params.width = 125
+        params.height = 125
+        img.setImageResource(R.drawable.restorehealth)
+        img.layoutParams = params
+        img.startAnimation(animation5)
+        //при нажатии на аптечку
+        img.setOnClickListener {
+            soundPlay(buttonClose)
+            health -= healthKitRegen
+            img.visibility = View.GONE
+            ObjectAnimator.ofInt(bindingClass.progressBar, "progress", health)
+                .setDuration(1000)
+                .start()
+            //удалить одну аптечку
+            var countHealthKit = getSharedPreferences("bonusHealthSave", MODE_PRIVATE)
+                .getInt("HealthKitSmall",0)
+            countHealthKit--
+            getSharedPreferences("bonusHealthSave", MODE_PRIVATE)
+                .edit()
+                .putInt("HealthKitSmall", countHealthKit)
+                .apply()
+        }
     }
     /**
      * Чит восполнить здоровье
@@ -125,6 +175,16 @@ class Level4 : AppCompatActivity() {
                     .edit()
                     .putInt("Level", 5)
                     .apply()
+        }
+        //добавить аптечку на следующий уровень
+        var countHealthKit = getSharedPreferences("bonusHealthSave", MODE_PRIVATE)
+            .getInt("HealthKitSmall",0)
+        if (countHealthKit in 0..5) {
+            countHealthKit++
+            getSharedPreferences("bonusHealthSave", MODE_PRIVATE)
+                .edit()
+                .putInt("HealthKitSmall", countHealthKit)
+                .apply()
         }
     }
     //получить урон

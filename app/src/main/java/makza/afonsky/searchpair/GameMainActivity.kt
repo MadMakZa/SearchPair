@@ -32,7 +32,9 @@ class GameMainActivity : AppCompatActivity() {
     private var cheatCounter = 0
     //сейв бонусного восстановления здоровья
     private lateinit var bonusHealth: SharedPreferences
-    private var bonusesAccumulated = 0
+    private var healthKitSmallAccumulated = 0
+    private var healthKitMediumAccumulated = 0
+    private var healthKitBigAccumulated = 0
 
 
 
@@ -52,7 +54,9 @@ class GameMainActivity : AppCompatActivity() {
         levelProgress = save.getInt("Level", 1)
         //коробка с аптечками
         bonusHealth = getSharedPreferences("bonusHealthSave", MODE_PRIVATE)
-        bonusesAccumulated = bonusHealth.getInt("HealthKit", 0)
+        healthKitSmallAccumulated = bonusHealth.getInt("HealthKitSmall", 0)
+        healthKitMediumAccumulated = bonusHealth.getInt("HealthKitMedium", 0)
+        healthKitBigAccumulated = bonusHealth.getInt("HealthKitBig", 0)
 
 
 

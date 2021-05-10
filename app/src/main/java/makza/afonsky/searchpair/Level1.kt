@@ -48,6 +48,7 @@ class Level1 : AppCompatActivity() {
     private var health = 0
     private var healthMax = 65
     private var cheatCounter = 0
+    private var healthKitRegen = 10
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -80,8 +81,7 @@ class Level1 : AppCompatActivity() {
         bindingClass.idSetTextLevel.setText(R.string.name_level_1)
         //шкала здоровья
         bindingClass.progressBar.max = healthMax
-
-
+        //хранилище монеток
         linearLayout = findViewById(R.id.layout_restore_health)
 
 
@@ -96,11 +96,15 @@ class Level1 : AppCompatActivity() {
         addHealthKitToBar()
 
     }
+
+    /**
+     * Аптечки
+     */
     //показать аптечки на экране
     private fun addHealthKitToBar(){
         //собрано аптечек
         val bonusesAccumulated = getSharedPreferences("bonusHealthSave", MODE_PRIVATE)
-            .getInt("HealthKit",0)
+            .getInt("HealthKitSmall",0)
         //если есть бонусные аптчеки, добавить их на экран
         if (bonusesAccumulated > 0) {
             for (count in 1..bonusesAccumulated) {
@@ -109,7 +113,6 @@ class Level1 : AppCompatActivity() {
         }
     }
     //Генерация картинок аптечек
-
     private fun generateHealthKit() {
         val img = ImageView(this)
         linearLayout!!.addView(img)
@@ -118,20 +121,22 @@ class Level1 : AppCompatActivity() {
         params.height = 125
         img.setImageResource(R.drawable.restorehealth)
         img.layoutParams = params
+        img.startAnimation(animation5)
         //при нажатии на аптечку
         img.setOnClickListener {
-            health -= 20
+            soundPlay(buttonClose)
+            health -= healthKitRegen
             img.visibility = View.GONE
             ObjectAnimator.ofInt(bindingClass.progressBar, "progress", health)
                 .setDuration(1000)
                 .start()
             //удалить одну аптечку
             var countHealthKit = getSharedPreferences("bonusHealthSave", MODE_PRIVATE)
-                .getInt("HealthKit",0)
+                .getInt("HealthKitSmall",0)
             countHealthKit--
             getSharedPreferences("bonusHealthSave", MODE_PRIVATE)
                 .edit()
-                .putInt("HealthKit", countHealthKit)
+                .putInt("HealthKitSmall", countHealthKit)
                 .apply()
         }
     }
@@ -174,12 +179,14 @@ class Level1 : AppCompatActivity() {
         }
         //добавить аптечку на следующий уровень
         var countHealthKit = getSharedPreferences("bonusHealthSave", MODE_PRIVATE)
-            .getInt("HealthKit",0)
-        countHealthKit++
-        getSharedPreferences("bonusHealthSave", MODE_PRIVATE)
-            .edit()
-            .putInt("HealthKit", countHealthKit)
-            .apply()
+            .getInt("HealthKitSmall",0)
+        if (countHealthKit in 0..5) {
+            countHealthKit++
+            getSharedPreferences("bonusHealthSave", MODE_PRIVATE)
+                .edit()
+                .putInt("HealthKitSmall", countHealthKit)
+                .apply()
+        }
     }
     //получить урон
     private fun healthDamaged(){
