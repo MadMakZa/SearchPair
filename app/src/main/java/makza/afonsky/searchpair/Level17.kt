@@ -46,7 +46,7 @@ class Level17 : AppCompatActivity() {
     private var health = 0
     private var healthMax = 131
     private var cheatCounter = 0
-    private var healthKitRegen = 30
+    private var healthKitRegen = 50
     //набор звуков с айдишниками
     private var soundPool: SoundPool? = null
     private var buttonClose = 1
@@ -118,41 +118,53 @@ class Level17 : AppCompatActivity() {
             .getInt("HealthKitMedium",0)
         val bigKit = getSharedPreferences("bonusHealthSave", MODE_PRIVATE)
             .getInt("HealthKitBig",0)
-        //обмен мелких на большие
-        if (smallKit == 6 && bigKit < 6){
-            exchanged += 1
-            exchangedDeleteSmall = 6
+        var currentKit = bigKit
+
+        if (currentKit < 6) {
+            //обмен мелких на большие
+            if (smallKit == 6 && currentKit < 6) {
+                exchanged += 1
+                exchangedDeleteSmall = 6
+                currentKit += 1
+            }
+            if (mediumKit == 6 && currentKit < 4) {
+                exchanged += 3
+                exchangedDeleteMedium = 6
+                currentKit += 3
+            }
+            else if (mediumKit in 4..6 && currentKit < 5) {
+                exchanged += 2
+                exchangedDeleteMedium = 4
+                currentKit += 2
+            }
+            else if (mediumKit in 2..6 && currentKit < 6) {
+                exchanged += 1
+                exchangedDeleteMedium = 2
+                currentKit += 1
+            }
+
             //удалить пересчитанные монеты из копилки small
-            val countHealthKitSmall = getSharedPreferences("bonusHealthSave", MODE_PRIVATE)
-                .getInt("HealthKitSmall",0)
-            getSharedPreferences("bonusHealthSave", MODE_PRIVATE)
-                .edit()
-                .putInt("HealthKitSmall", countHealthKitSmall - exchangedDeleteSmall)
-                .apply()
-        }
-        //обмен средних на большие
-        if (smallKit in 3..5 && mediumKit < 6){
-            exchanged = 1
-            exchangedDelete = 3
-        }
-        if (smallKit == 6 && mediumKit < 5){
-            exchanged = 2
-            exchangedDelete = 6
-        }
             val countHealthKitSmall = getSharedPreferences("bonusHealthSave", MODE_PRIVATE)
                 .getInt("HealthKitSmall", 0)
             getSharedPreferences("bonusHealthSave", MODE_PRIVATE)
                 .edit()
-                .putInt("HealthKitSmall", countHealthKitSmall - exchangedDelete)
+                .putInt("HealthKitSmall", countHealthKitSmall - exchangedDeleteSmall)
                 .apply()
-
-        //сохранить пересчитанные монеты в копилку big
-        val countHealthKitBig = getSharedPreferences("bonusHealthSave", MODE_PRIVATE)
-            .getInt("HealthKitBig",0)
-        getSharedPreferences("bonusHealthSave", MODE_PRIVATE)
-            .edit()
-            .putInt("HealthKitBig", countHealthKitBig + exchanged)
-            .apply()
+            //удалить пересчитанные монеты из копилки medium
+            val countHealthKitMedium = getSharedPreferences("bonusHealthSave", MODE_PRIVATE)
+                .getInt("HealthKitMedium", 0)
+            getSharedPreferences("bonusHealthSave", MODE_PRIVATE)
+                .edit()
+                .putInt("HealthKitMedium", countHealthKitMedium - exchangedDeleteMedium)
+                .apply()
+            //сохранить пересчитанные монеты в копилку big
+            val countHealthKitBig = getSharedPreferences("bonusHealthSave", MODE_PRIVATE)
+                .getInt("HealthKitBig", 0)
+            getSharedPreferences("bonusHealthSave", MODE_PRIVATE)
+                .edit()
+                .putInt("HealthKitBig", countHealthKitBig + exchanged)
+                .apply()
+        }
 
     }
     //показать аптечки на экране

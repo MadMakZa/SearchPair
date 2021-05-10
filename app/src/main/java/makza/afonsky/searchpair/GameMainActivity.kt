@@ -63,10 +63,31 @@ class GameMainActivity : AppCompatActivity() {
         startNewGame()
         chooseLevel()
         activateCheat()
+        addFreeCoins()
 
 
     }
-
+    /**
+     * Testing
+     */
+    private fun addFreeCoins(){
+        bindingClass.idImageLogo.setOnClickListener {
+            //сохранить пересчитанные монеты в копилку medium
+            val countHealthKitSmall = getSharedPreferences("bonusHealthSave", MODE_PRIVATE)
+                .getInt("HealthKitSmall",0)
+            getSharedPreferences("bonusHealthSave", MODE_PRIVATE)
+                .edit()
+                .putInt("HealthKitSmall", countHealthKitSmall + 6)
+                .apply()
+            //сохранить пересчитанные монеты в копилку medium
+            val countHealthKitMedium = getSharedPreferences("bonusHealthSave", MODE_PRIVATE)
+                .getInt("HealthKitMedium",0)
+            getSharedPreferences("bonusHealthSave", MODE_PRIVATE)
+                .edit()
+                .putInt("HealthKitMedium", countHealthKitMedium + 6)
+                .apply()
+        }
+    }
     /**
      * Чит открыть все уровни
      */
