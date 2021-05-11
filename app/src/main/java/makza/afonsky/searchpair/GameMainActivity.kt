@@ -26,6 +26,7 @@ class GameMainActivity : AppCompatActivity() {
     private var soundPool: SoundPool? = null
     private var buttonClose = 1
     private var soundDrop = 2
+    private var soundOpenChest = 3
 
     //сейвы уровней
     private lateinit var save: SharedPreferences
@@ -49,6 +50,7 @@ class GameMainActivity : AppCompatActivity() {
         soundPool = SoundPool(6, AudioManager.STREAM_MUSIC, 0)
         soundPool!!.load(baseContext, R.raw.close, 1)
         soundPool!!.load(baseContext, R.raw.stone_drop, 1)
+        soundPool!!.load(baseContext, R.raw.chestopen, 1)
 
         //коробка с сейвами
         save = getSharedPreferences("Save", MODE_PRIVATE)
@@ -188,6 +190,7 @@ class GameMainActivity : AppCompatActivity() {
     //открыть сундук
     private fun openDialogChest(){
         bindingClass.buttonOpenChest.setOnClickListener {
+            soundPlay(soundOpenChest)
             val dialogChest = Dialog(this)
             dialogChest.window?.decorView?.setBackgroundResource(android.R.color.transparent)
             dialogChest.setContentView(R.layout.dialog_chest)
