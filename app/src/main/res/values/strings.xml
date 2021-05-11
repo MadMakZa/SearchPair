@@ -4,6 +4,7 @@
     <string name="button_new_game">New Game</string>
     <string name="button_next_level">Next Level</string>
     <string name="dialog_reset_progress">Reset progress?</string>
+    <string name="dialog_chest_title">Treasury</string>
     <string name="button_reset_progress_yes">Yes</string>
     <string name="button_reset_progress_no">No</string>
     <string name="exit_game">Exit Game?</string>
@@ -51,4 +52,5 @@
     <string name="name_level_23">level 23</string>
     <string name="name_level_24">level 24</string>
     <string name="name_level_25">level 25</string>
+    <string name="see_ads_and_add_coins">See ads and add coins?</string>
 </resources>

@@ -66,6 +66,7 @@ class GameMainActivity : AppCompatActivity() {
         chooseLevel()
         activateCheat()
         addFreeCoins()
+        openDialogChest()
 
 
     }
@@ -122,6 +123,25 @@ class GameMainActivity : AppCompatActivity() {
     //воспроизведение звука
     private fun soundPlay(id: Int){
         soundPool?.play(id, 1f, 1f, 0,0,1f)
+    }
+    //открыть сундук
+    private fun openDialogChest(){
+        bindingClass.buttonOpenChest.setOnClickListener {
+
+            val dialogChest = Dialog(this)
+            dialogChest.window?.decorView?.setBackgroundResource(android.R.color.transparent)
+            dialogChest.setContentView(R.layout.dialog_chest)
+            dialogChest.setTitle("Dialog Chest")
+            dialogChest.show()
+
+            val buttonYes = dialogChest.findViewById<Button>(R.id.button_yes)
+
+            buttonYes.setOnClickListener {
+                //тут добавить запуск рекламы
+
+                dialogChest.dismiss()
+            }
+        }
     }
     //выйти из игры
     override fun onBackPressed() {
