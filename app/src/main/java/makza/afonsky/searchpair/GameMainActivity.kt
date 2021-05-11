@@ -4,6 +4,8 @@ package makza.afonsky.searchpair
 import android.app.Dialog
 import android.content.Intent
 import android.content.SharedPreferences
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.media.AudioManager
 import android.media.SoundPool
 import android.os.Bundle
@@ -125,6 +127,7 @@ class GameMainActivity : AppCompatActivity() {
     override fun onBackPressed() {
         soundPlay(soundDrop)
         val dialogExit = Dialog(this)
+        dialogExit.window?.decorView?.setBackgroundResource(android.R.color.transparent)
         dialogExit.setContentView(R.layout.dialog_reset_progress)
         dialogExit.setTitle("Exit Game")
         dialogExit.show()
@@ -149,6 +152,7 @@ class GameMainActivity : AppCompatActivity() {
     //показать диалог
     private fun startDialogResetProgress(){
         val dialog = Dialog(this)
+        dialog.window?.decorView?.setBackgroundResource(android.R.color.transparent)
         dialog.setContentView(R.layout.dialog_reset_progress)
         dialog.setTitle("New Game")
         dialog.show()
