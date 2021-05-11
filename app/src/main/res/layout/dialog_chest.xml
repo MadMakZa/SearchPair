@@ -10,8 +10,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/dialog_chest"
-        android:layout_width="300dp"
-        android:layout_height="350dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:background="@drawable/dialog_bg"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -36,20 +36,22 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <!-- Хранилище монеток-->
+
         <Button
             android:id="@+id/button_yes"
             android:layout_width="70dp"
             android:layout_height="50dp"
-            android:layout_marginBottom="24dp"
+            android:layout_marginTop="15dp"
             android:background="@drawable/button_dialog_resetprogress_theme"
             android:fontFamily="@font/caesar_dressing"
             android:text="@string/button_reset_progress_yes"
             android:textColor="@color/colorRedDark"
             android:textSize="36sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintHorizontal_bias="0.496"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
 
         <GridLayout
             android:id="@+id/chestContainerLayout"
@@ -65,17 +67,18 @@
         </GridLayout>
 
         <TextView
+            android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
+            android:layout_marginTop="28dp"
             android:fontFamily="@font/caesar_dressing"
             android:text="@string/see_ads_and_add_coins"
             android:textColor="@color/colorRedDark"
             android:textSize="20sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/button_yes"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/chestContainerLayout" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

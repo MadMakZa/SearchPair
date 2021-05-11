@@ -1,18 +1,15 @@
 package makza.afonsky.searchpair
 
 
+import android.animation.ObjectAnimator
 import android.app.Dialog
 import android.content.Intent
 import android.content.SharedPreferences
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.media.AudioManager
 import android.media.SoundPool
 import android.os.Bundle
 import android.view.View
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.TextView
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import makza.afonsky.searchpair.databinding.ActivityGameMainBinding
 
@@ -22,6 +19,8 @@ class GameMainActivity : AppCompatActivity() {
 
     private lateinit var bindingClass: ActivityGameMainBinding
     private var buttonLevelsArray = ArrayList<Button?>()
+
+    private var gridLayout: GridLayout? = null
 
     //набор звуков с айдишниками
     private var soundPool: SoundPool? = null
@@ -62,6 +61,7 @@ class GameMainActivity : AppCompatActivity() {
 
 
 
+
         startNewGame()
         chooseLevel()
         activateCheat()
@@ -69,6 +69,63 @@ class GameMainActivity : AppCompatActivity() {
         openDialogChest()
 
 
+
+    }
+    /**
+     * Аптечки
+     */
+    //показать аптечки на экране
+    private fun addHealthKitToBar(){
+        //собрано аптечек
+        val healKitSmall = getSharedPreferences("bonusHealthSave", MODE_PRIVATE)
+            .getInt("HealthKitSmall",0)
+        val healKitMedium = getSharedPreferences("bonusHealthSave", MODE_PRIVATE)
+            .getInt("HealthKitMedium",0)
+        val healKitBig = getSharedPreferences("bonusHealthSave", MODE_PRIVATE)
+            .getInt("HealthKitBig",0)
+        //если есть бонусные аптчеки, добавить их на экран
+        if (healKitSmall > 0) {
+            for (count in 1..healKitSmall) {
+                generateHealthKitSmall()
+            }
+        }
+        if (healKitMedium > 0) {
+            for (count in 1..healKitMedium) {
+                generateHealthKitMedium()
+            }
+        }
+        if (healKitBig > 0) {
+            for (count in 1..healKitBig) {
+                generateHealthKitBig()
+            }
+        }
+    }
+    //Генерация картинок аптечек
+    private fun generateHealthKitSmall() {
+        val img = ImageView(this)
+        gridLayout!!.addView(img)
+        val params = img.layoutParams
+        params.width = 125
+        params.height = 125
+        img.setImageResource(R.drawable.restorehealth)
+    }
+    //Генерация картинок аптечек
+    private fun generateHealthKitMedium() {
+        val img = ImageView(this)
+        gridLayout!!.addView(img)
+        val params = img.layoutParams
+        params.width = 125
+        params.height = 125
+        img.setImageResource(R.drawable.restorehealth2)
+    }
+    //Генерация картинок аптечек
+    private fun generateHealthKitBig() {
+        val img = ImageView(this)
+        gridLayout!!.addView(img)
+        val params = img.layoutParams
+        params.width = 125
+        params.height = 125
+        img.setImageResource(R.drawable.restorehealth3)
     }
     /**
      * Чит добавить максимум монет
@@ -124,18 +181,23 @@ class GameMainActivity : AppCompatActivity() {
     private fun soundPlay(id: Int){
         soundPool?.play(id, 1f, 1f, 0,0,1f)
     }
+
+    /**
+     * Сундук
+     */
     //открыть сундук
     private fun openDialogChest(){
         bindingClass.buttonOpenChest.setOnClickListener {
-
             val dialogChest = Dialog(this)
             dialogChest.window?.decorView?.setBackgroundResource(android.R.color.transparent)
             dialogChest.setContentView(R.layout.dialog_chest)
+            //хранилище монеток
+            gridLayout = dialogChest.findViewById<View>(R.id.chestContainerLayout) as GridLayout?
             dialogChest.setTitle("Dialog Chest")
             dialogChest.show()
+            addHealthKitToBar()
 
             val buttonYes = dialogChest.findViewById<Button>(R.id.button_yes)
-
             buttonYes.setOnClickListener {
                 //тут добавить запуск рекламы
 
@@ -143,6 +205,7 @@ class GameMainActivity : AppCompatActivity() {
             }
         }
     }
+
     //выйти из игры
     override fun onBackPressed() {
         soundPlay(soundDrop)
