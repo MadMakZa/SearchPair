@@ -59,7 +59,7 @@ class Level12 : AppCompatActivity() {
         bindingClass = ActivityGameFieldBinding.inflate(layoutInflater)
         setContentView(bindingClass.root)
         //реклама
-        MobileAds.initialize(this, "ca-app-pub-3820005456092261~5233012124")
+        MobileAds.initialize(this)
         val adRequest: AdRequest = AdRequest.Builder().build()
         bindingClass.adView.loadAd(adRequest)
 

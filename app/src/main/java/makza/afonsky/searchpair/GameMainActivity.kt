@@ -8,9 +8,15 @@ import android.content.SharedPreferences
 import android.media.AudioManager
 import android.media.SoundPool
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.gms.ads.*
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener
+import com.google.android.gms.ads.rewarded.RewardItem
+import com.google.android.gms.ads.rewarded.RewardedAd
+import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback
 import makza.afonsky.searchpair.databinding.ActivityGameMainBinding
 
 
@@ -21,6 +27,10 @@ class GameMainActivity : AppCompatActivity() {
     private var buttonLevelsArray = ArrayList<Button?>()
 
     private var gridLayout: GridLayout? = null
+
+    //реклама с наградой
+    private var mRewardedAd: RewardedAd? = null
+    private var TAG = "MainActivity"
 
     //набор звуков с айдишниками
     private var soundPool: SoundPool? = null
@@ -63,15 +73,86 @@ class GameMainActivity : AppCompatActivity() {
 
 
 
-
         startNewGame()
         chooseLevel()
         activateCheat()
         addFreeCoins()
         openDialogChest()
 
+        loadRewardedAd()
 
 
+
+
+    }
+    /**
+     * Реклама с вознаграждением
+     */
+    private fun loadRewardedAd(){
+
+        //непосредственно загрузка рекламы
+        val adRequest = AdRequest.Builder().build()
+        RewardedAd.load(this,"ca-app-pub-3940256099942544/5224354917", adRequest, object : RewardedAdLoadCallback() {
+            override fun onAdFailedToLoad(adError: LoadAdError) {
+                Log.d(TAG, adError.message)
+                mRewardedAd = null
+            }
+
+            override fun onAdLoaded(rewardedAd: RewardedAd) {
+                Log.d(TAG, "Ad was loaded.")
+                mRewardedAd = rewardedAd
+
+                mRewardedAd?.fullScreenContentCallback = object: FullScreenContentCallback() {
+                    override fun onAdDismissedFullScreenContent() {
+                        Log.d(TAG, "Ad was dismissed.")
+                    }
+
+                    override fun onAdFailedToShowFullScreenContent(adError: AdError?) {
+                        Log.d(TAG, "Ad failed to show.")
+                    }
+
+                    override fun onAdShowedFullScreenContent() {
+                        Log.d(TAG, "Ad showed fullscreen content.")
+                        // Called when ad is dismissed.
+                        // Don't set the ad reference to null to avoid showing the ad a second time.
+                        screenRewardedAdd()
+                    }
+                }
+
+            }
+        })
+
+    }
+    private fun screenRewardedAdd(){
+        //full screen
+        mRewardedAd?.fullScreenContentCallback = object: FullScreenContentCallback() {
+            override fun onAdDismissedFullScreenContent() {
+                Log.d(TAG, "Ad was dismissed.")
+            }
+
+            override fun onAdFailedToShowFullScreenContent(adError: AdError?) {
+                Log.d(TAG, "Ad failed to show.")
+            }
+
+            override fun onAdShowedFullScreenContent() {
+                Log.d(TAG, "Ad showed fullscreen content.")
+                // Called when ad is dismissed.
+                // Don't set the ad reference to null to avoid showing the ad a second time.
+
+            }
+        }
+    }
+    private fun showDewardedAd(){
+        if (mRewardedAd != null) {
+            mRewardedAd?.show(this, OnUserEarnedRewardListener() {
+
+                Log.d(TAG, "User earned the reward.")
+                //тут запуск метода с наградой
+
+            })
+        } else {
+            Log.d(TAG, "The rewarded ad wasn't ready yet.")
+        }
     }
     /**
      * Аптечки
@@ -200,13 +281,23 @@ class GameMainActivity : AppCompatActivity() {
             dialogChest.show()
             addHealthKitToBar()
 
-            val buttonYes = dialogChest.findViewById<Button>(R.id.button_yes)
-            buttonYes.setOnClickListener {
-                //тут добавить запуск рекламы
 
+            val buttonNo = dialogChest.findViewById<Button>(R.id.button_no)
+            buttonNo.setOnClickListener {
+                soundPlay(soundDrop)
                 dialogChest.dismiss()
             }
+
+            val buttonYes = dialogChest.findViewById<Button>(R.id.button_yes)
+            buttonYes.setOnClickListener {
+                //тут добавить запуск рекламs
+
+                dialogChest.dismiss()
+                showDewardedAd()
+            }
         }
+
+
     }
 
     //выйти из игры
