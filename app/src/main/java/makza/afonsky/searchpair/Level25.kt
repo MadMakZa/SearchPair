@@ -46,7 +46,7 @@ class Level25 : AppCompatActivity() {
     private var health = 0
     private var healthMax = 481
     private var cheatCounter = 0
-    private var healthKitRegen = 40
+    private var healthKitRegen = 35
     //набор звуков с айдишниками
     private var soundPool: SoundPool? = null
     private var buttonClose = 1
@@ -261,8 +261,8 @@ class Level25 : AppCompatActivity() {
     }
     //восстановить здоровье
     private fun healthRestore(){
-        if(health <= 85) health = 0
-        if (health >= 85) health -=85
+        if(health <= 40) health = 0
+        if (health >= 40) health -=40
 
         ObjectAnimator.ofInt(bindingClass.progressBar, "progress", health)
                 .setDuration(1000)
