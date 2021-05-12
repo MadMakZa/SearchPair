@@ -53,6 +53,7 @@ class Level15 : AppCompatActivity() {
     private var soundCrash = 3
     private var soundClose = 4
     private var soundOpen = 5
+    private var soundBum = 6
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -85,6 +86,7 @@ class Level15 : AppCompatActivity() {
         soundPool!!.load(baseContext, R.raw.stone_crash, 1) //soundCrash
         soundPool!!.load(baseContext, R.raw.stone_close, 1) //soundClose
         soundPool!!.load(baseContext, R.raw.stone_open, 1)  //soundOpen
+        soundPool!!.load(baseContext, R.raw.bum, 1)  //soundBum
 
         bindingClass.idSetTextLevel.setText(R.string.name_level_15)
         //шкала здоровья
@@ -237,7 +239,7 @@ class Level15 : AppCompatActivity() {
                 .start()
         //если шкала заполнилась запустить по-новой уровень
         if (health > healthMax){
-            soundPlay(soundDrop)
+            soundPlay(soundBum)
             val intent = Intent(this, Level15::class.java)
             startActivity(intent)
             overridePendingTransition(R.anim.open_activity, R.anim.close_activity)
