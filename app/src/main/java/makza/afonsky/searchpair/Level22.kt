@@ -46,7 +46,7 @@ class Level22 : AppCompatActivity() {
     private var health = 0
     private var healthMax = 361
     private var cheatCounter = 0
-    private var healthKitRegen = 30
+    private var healthKitRegen = 35
     //набор звуков с айдишниками
     private var soundPool: SoundPool? = null
     private var buttonClose = 1
