@@ -47,7 +47,7 @@ class Level2 : AppCompatActivity() {
     private var health = 0
     private var healthMax = 75
     private var cheatCounter = 0
-    private var healthKitRegen = 10
+    private var healthKitRegen = healthMax / 6
 
 
     override fun onCreate(savedInstanceState: Bundle?) {

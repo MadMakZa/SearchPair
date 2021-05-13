@@ -45,7 +45,7 @@ class Level16 : AppCompatActivity() {
     private var health = 0
     private var healthMax = 241
     private var cheatCounter = 0
-    private var healthKitRegen = 20
+    private var healthKitRegen = healthMax / 6
     //набор звуков с айдишниками
     private var soundPool: SoundPool? = null
     private var buttonClose = 1
