@@ -12,8 +12,6 @@ import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.ads.*
-import com.google.android.gms.ads.initialization.InitializationStatus
-import com.google.android.gms.ads.initialization.OnInitializationCompleteListener
 import com.google.android.gms.ads.rewarded.RewardedAd
 import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback
 import makza.afonsky.searchpair.databinding.ActivityGameMainBinding
@@ -29,7 +27,7 @@ class GameMainActivity : AppCompatActivity() {
 
     //реклама с наградой
     private var mRewardedAd: RewardedAd? = null
-    private var TAG = "MainActivity"
+    private var TAG = "GameMainActivity"
 
     //набор звуков с айдишниками
     private var soundPool: SoundPool? = null
@@ -98,7 +96,7 @@ class GameMainActivity : AppCompatActivity() {
     private fun loadRewardedAd(){
         val adRequest = AdRequest.Builder().build()
         //непосредственно загрузка рекламы
-        RewardedAd.load(this,"ca-app-pub-3940256099942544/5224354917", adRequest, object : RewardedAdLoadCallback() {
+        RewardedAd.load(this,"ca-app-pub-3820005456092261/5272972747", adRequest, object : RewardedAdLoadCallback() {
             override fun onAdFailedToLoad(adError: LoadAdError) {
                 Log.d(TAG, adError.message)
                 mRewardedAd = null
@@ -139,7 +137,7 @@ class GameMainActivity : AppCompatActivity() {
                 Log.d(TAG, "User earned the reward.")
 
                 //награда
-                addFreeCoins()
+                rewardCoins()
             }
         } else {
             Log.d(TAG, "The rewarded ad wasn't ready yet.")
@@ -200,6 +198,25 @@ class GameMainActivity : AppCompatActivity() {
         params.width = 125
         params.height = 125
         img.setImageResource(R.drawable.restorehealth3)
+    }
+    /**
+     * Награда за просмотр рекламы (монеты)
+     */
+    private fun rewardCoins(){
+            //добавить везде макс количество монет
+                getSharedPreferences("bonusHealthSave", MODE_PRIVATE)
+                    .edit()
+                    .putInt("HealthKitSmall", 6)
+                    .apply()
+                getSharedPreferences("bonusHealthSave", MODE_PRIVATE)
+                    .edit()
+                    .putInt("HealthKitMedium", 6)
+                    .apply()
+                getSharedPreferences("bonusHealthSave", MODE_PRIVATE)
+                    .edit()
+                    .putInt("HealthKitBig", 6)
+                    .apply()
+
     }
     /**
      * Чит добавить максимум монет
@@ -282,7 +299,7 @@ class GameMainActivity : AppCompatActivity() {
             val buttonYes = dialogChest.findViewById<Button>(R.id.button_yes)
             buttonYes.setOnClickListener {
                 //тут добавить запуск рекламы
-//                dialogChest.dismiss()
+                dialogChest.dismiss()
                 showRewardedAd()
             }
         }
