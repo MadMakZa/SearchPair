@@ -1,7 +1,6 @@
 package makza.afonsky.searchpair
 
 
-import android.animation.ObjectAnimator
 import android.app.Dialog
 import android.content.Intent
 import android.content.SharedPreferences
@@ -13,8 +12,8 @@ import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.ads.*
+import com.google.android.gms.ads.initialization.InitializationStatus
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener
-import com.google.android.gms.ads.rewarded.RewardItem
 import com.google.android.gms.ads.rewarded.RewardedAd
 import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback
 import makza.afonsky.searchpair.databinding.ActivityGameMainBinding
@@ -73,13 +72,17 @@ class GameMainActivity : AppCompatActivity() {
 
 
 
+
         startNewGame()
         chooseLevel()
         activateCheat()
         addFreeCoins()
         openDialogChest()
 
+        //реклама
+        initAd()
         loadRewardedAd()
+
 
 
 
@@ -88,10 +91,13 @@ class GameMainActivity : AppCompatActivity() {
     /**
      * Реклама с вознаграждением
      */
-    private fun loadRewardedAd(){
+    private fun initAd(){
+        MobileAds.initialize(this){}
+    }
 
-        //непосредственно загрузка рекламы
+    private fun loadRewardedAd(){
         val adRequest = AdRequest.Builder().build()
+        //непосредственно загрузка рекламы
         RewardedAd.load(this,"ca-app-pub-3940256099942544/5224354917", adRequest, object : RewardedAdLoadCallback() {
             override fun onAdFailedToLoad(adError: LoadAdError) {
                 Log.d(TAG, adError.message)
@@ -102,6 +108,7 @@ class GameMainActivity : AppCompatActivity() {
                 Log.d(TAG, "Ad was loaded.")
                 mRewardedAd = rewardedAd
 
+                //fullscreen
                 mRewardedAd?.fullScreenContentCallback = object: FullScreenContentCallback() {
                     override fun onAdDismissedFullScreenContent() {
                         Log.d(TAG, "Ad was dismissed.")
@@ -114,8 +121,7 @@ class GameMainActivity : AppCompatActivity() {
                     override fun onAdShowedFullScreenContent() {
                         Log.d(TAG, "Ad showed fullscreen content.")
                         // Called when ad is dismissed.
-                        // Don't set the ad reference to null to avoid showing the ad a second time.
-                        screenRewardedAdd()
+                        mRewardedAd = null
                     }
                 }
 
@@ -123,33 +129,18 @@ class GameMainActivity : AppCompatActivity() {
         })
 
     }
-    private fun screenRewardedAdd(){
-        //full screen
-        mRewardedAd?.fullScreenContentCallback = object: FullScreenContentCallback() {
-            override fun onAdDismissedFullScreenContent() {
-                Log.d(TAG, "Ad was dismissed.")
-            }
 
-            override fun onAdFailedToShowFullScreenContent(adError: AdError?) {
-                Log.d(TAG, "Ad failed to show.")
-            }
-
-            override fun onAdShowedFullScreenContent() {
-                Log.d(TAG, "Ad showed fullscreen content.")
-                // Called when ad is dismissed.
-                // Don't set the ad reference to null to avoid showing the ad a second time.
-
-            }
-        }
-    }
-    private fun showDewardedAd(){
+    private fun showRewardedAd(){
         if (mRewardedAd != null) {
-            mRewardedAd?.show(this, OnUserEarnedRewardListener() {
-
+            mRewardedAd?.show(this
+            ) { rewardItem ->
+                var rewardAmount = rewardItem.amount
+                var rewardType = rewardItem.type
                 Log.d(TAG, "User earned the reward.")
-                //тут запуск метода с наградой
 
-            })
+                //награда
+                addFreeCoins()
+            }
         } else {
             Log.d(TAG, "The rewarded ad wasn't ready yet.")
         }
@@ -290,10 +281,9 @@ class GameMainActivity : AppCompatActivity() {
 
             val buttonYes = dialogChest.findViewById<Button>(R.id.button_yes)
             buttonYes.setOnClickListener {
-                //тут добавить запуск рекламs
-
-                dialogChest.dismiss()
-                showDewardedAd()
+                //тут добавить запуск рекламы
+//                dialogChest.dismiss()
+                showRewardedAd()
             }
         }
 
