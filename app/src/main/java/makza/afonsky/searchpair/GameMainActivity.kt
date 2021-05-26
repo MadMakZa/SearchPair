@@ -279,6 +279,7 @@ class GameMainActivity : AppCompatActivity() {
     //открыть сундук
     private fun openDialogChest(){
         bindingClass.buttonOpenChest.setOnClickListener {
+//            loadRewardedAd() //подгрузка рекламы
             soundPlay(soundOpenChest)
             val dialogChest = Dialog(this)
             dialogChest.window?.decorView?.setBackgroundResource(android.R.color.transparent)
