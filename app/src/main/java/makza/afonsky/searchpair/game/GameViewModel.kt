@@ -63,12 +63,14 @@ class GameViewModel(
 
     private var healthCheatTaps = 0
     private var introJobRunning = false
+    private var matchStreak = 0
 
     init {
         startLevel()
     }
 
     fun startLevel() {
+        matchStreak = 0
         repository.exchangeKitsForLevel(level)
         val kits = repository.getKitCount(config.healthKitTier)
         _uiState.value = GameUiState(
@@ -97,15 +99,34 @@ class GameViewModel(
     }
 
     private suspend fun playIntroSnake() {
-        val order = config.snakeOrder
+        playSnakeAnimation(config.snakeOrder)
+    }
+
+    private suspend fun playHintSnake() {
+        val state = _uiState.value
+        val order = config.snakeOrder.filter { cardId ->
+            val card = state.cards.getOrNull(cardId)
+            card != null && !card.isMatched && !card.isFaceUp
+        }
+        if (order.isNotEmpty()) {
+            playSnakeAnimation(order)
+        }
+    }
+
+    private suspend fun playSnakeAnimation(cardOrder: List<Int>) {
         coroutineScope {
-            order.mapIndexed { index, cardId ->
+            cardOrder.mapIndexed { index, cardId ->
                 async {
                     delay(index * INTRO_STAGGER_MS)
+                    val card = _uiState.value.cards.getOrNull(cardId) ?: return@async
+                    if (card.isMatched) return@async
                     setCardFaceUp(cardId, faceUp = true, durationMs = INTRO_FLIP_MS)
                     delay(INTRO_FLIP_MS.toLong())
-                    setCardFaceUp(cardId, faceUp = false, durationMs = INTRO_FLIP_MS)
-                    delay(INTRO_FLIP_MS.toLong())
+                    val afterFlip = _uiState.value.cards.getOrNull(cardId) ?: return@async
+                    if (!afterFlip.isMatched && afterFlip.isFaceUp) {
+                        setCardFaceUp(cardId, faceUp = false, durationMs = INTRO_FLIP_MS)
+                        delay(INTRO_FLIP_MS.toLong())
+                    }
                 }
             }.awaitAll()
         }
@@ -160,11 +181,20 @@ class GameViewModel(
         val newHealth = MatchEngine.applyHeal(_uiState.value.health, config.healOnMatch)
         val newMatched = _uiState.value.matchedGroups + 1
 
+        matchStreak++
+        var kits = repository.getKitCount(config.healthKitTier)
+        if (matchStreak >= STREAK_KITS_REWARD) {
+            repository.addKit(config.healthKitTier)
+            kits = repository.getKitCount(config.healthKitTier)
+            matchStreak = 0
+        }
+
         _uiState.update { state ->
             state.copy(
                 health = newHealth,
                 matchedGroups = newMatched,
                 openedCardIds = emptyList(),
+                availableKits = kits,
                 cards = state.cards.map { card ->
                     if (opened.contains(card.id)) card.copy(isMatched = true, isFaceUp = false)
                     else card
@@ -194,6 +224,7 @@ class GameViewModel(
             return
         }
 
+        matchStreak = 0
         soundManager.play(GameSound.CARD_CLOSE)
         _uiState.update { state ->
             state.copy(
@@ -265,15 +296,23 @@ class GameViewModel(
         if (state.isInputBlocked || state.availableKits <= 0 || state.phase != GamePhase.PLAYING) return
         if (!repository.consumeKit(config.healthKitTier)) return
 
-        soundManager.play(GameSound.CLOSE)
-        val regen = config.healthMax / 6
-        val newHealth = (state.health - regen).coerceAtLeast(0)
+        blockInput(true)
+        viewModelScope.launch {
+            soundManager.play(GameSound.CLOSE)
+            val regen = config.healthMax / 6
+            val newHealth = (state.health - regen).coerceAtLeast(0)
 
-        _uiState.update {
-            it.copy(
-                health = newHealth,
-                availableKits = repository.getKitCount(config.healthKitTier),
-            )
+            _uiState.update {
+                it.copy(
+                    health = newHealth,
+                    availableKits = repository.getKitCount(config.healthKitTier),
+                )
+            }
+
+            playHintSnake()
+            if (_uiState.value.phase == GamePhase.PLAYING) {
+                blockInput(false)
+            }
         }
     }
 
@@ -308,8 +347,9 @@ class GameViewModel(
     }
 
     companion object {
+        private const val STREAK_KITS_REWARD = 3
         private const val FLIP_DURATION_MS = 300L
-        private const val INTRO_FLIP_MS = 350
+        private const val INTRO_FLIP_MS = 700
         private const val INTRO_STAGGER_MS = 125L
         private const val MATCH_ANIMATION_MS = 400L
         private const val DEFEAT_ANIMATION_MS = 1400L

@@ -22,8 +22,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.launch
 import makza.afonsky.searchpair.data.DifficultyPage
-import makza.afonsky.searchpair.ui.theme.ColorOrange2
-import makza.afonsky.searchpair.ui.theme.ColorRedDark
+import makza.afonsky.searchpair.ui.theme.ColorBrown
+import makza.afonsky.searchpair.ui.theme.ColorBrownLight
+import makza.afonsky.searchpair.ui.theme.ColorGold
 
 @Composable
 fun DifficultyPagerIndicator(
@@ -47,8 +48,8 @@ fun DifficultyPagerIndicator(
                     .clip(CircleShape)
                     .background(
                         when {
-                            isSelected -> ColorRedDark
-                            isUnlocked -> ColorOrange2
+                            isSelected -> ColorGold
+                            isUnlocked -> ColorBrown
                             else -> Color.Gray.copy(alpha = 0.4f)
                         },
                     )

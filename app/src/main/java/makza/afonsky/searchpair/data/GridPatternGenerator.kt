@@ -1,6 +1,8 @@
 package makza.afonsky.searchpair.data
 
 import kotlin.math.abs
+import kotlin.math.ceil
+import kotlin.math.roundToInt
 
 data class GridCell(val row: Int, val col: Int)
 
@@ -13,8 +15,10 @@ data class GridLayout(
 
 object GridPatternGenerator {
 
-    const val MAX_COLUMNS = 8
-    const val MAX_ROWS = 8
+    const val MIN_COLUMNS = 5
+    const val MAX_COLUMNS = 7
+    const val MAX_ROWS = 14
+
     val maxCardSlots: Int get() = MAX_COLUMNS * MAX_ROWS
 
     fun generate(totalCards: Int): GridLayout {
@@ -22,37 +26,53 @@ object GridPatternGenerator {
             "Card count $totalCards exceeds grid capacity $maxCardSlots"
         }
 
-        val centerCol = (MAX_COLUMNS - 1) / 2.0
-        val centerRow = (MAX_ROWS - 1) / 2.0
+        val columns = columnsForCardCount(totalCards)
+        var rows = ceil(totalCards / columns.toDouble()).toInt().coerceAtMost(MAX_ROWS)
+        require(columns * rows >= totalCards) {
+            "Grid capacity ${columns * rows} too small for $totalCards cards"
+        }
+
+        val centerCol = (columns - 1) / 2.0
+        val centerRow = (rows - 1) / 2.0
 
         val allCells = buildList {
-            for (row in 0 until MAX_ROWS) {
-                for (col in 0 until MAX_COLUMNS) {
+            for (row in 0 until rows) {
+                for (col in 0 until columns) {
                     add(GridCell(row, col))
                 }
             }
         }
 
-        val symmetric = allCells
+        val positions = allCells
             .sortedWith(
                 compareBy<GridCell>(
                     { abs(it.col - centerCol) + abs(it.row - centerRow) },
                     { it.row },
-                    { abs(it.col - centerCol) },
+                    { it.col },
                 ),
             )
             .take(totalCards)
 
-        check(symmetric.size == totalCards) {
+        check(positions.size == totalCards) {
             "Grid layout failed for $totalCards cards"
         }
 
         return GridLayout(
-            columns = MAX_COLUMNS,
-            rows = MAX_ROWS,
-            positions = symmetric,
-            snakeOrder = buildSnakeOrder(symmetric),
+            columns = columns,
+            rows = rows,
+            positions = positions,
+            snakeOrder = buildSnakeOrder(positions),
         )
+    }
+
+    /** More cards → wider grid (5 … 7 columns). */
+    private fun columnsForCardCount(totalCards: Int): Int {
+        val minCards = 4
+        val maxCards = 80
+        val progress = ((totalCards - minCards).toFloat() / (maxCards - minCards)).coerceIn(0f, 1f)
+        return (MIN_COLUMNS + progress * (MAX_COLUMNS - MIN_COLUMNS))
+            .roundToInt()
+            .coerceIn(MIN_COLUMNS, MAX_COLUMNS)
     }
 
     private fun buildSnakeOrder(positions: List<GridCell>): List<Int> {

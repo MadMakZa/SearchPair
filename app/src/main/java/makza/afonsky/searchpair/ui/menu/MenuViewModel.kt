@@ -14,6 +14,7 @@ import makza.afonsky.searchpair.data.GameRepository
 
 data class MenuUiState(
     val unlockedLevel: Int = 1,
+    val selectedDifficultyPage: Int = 0,
     val unlockedPages: Set<Int> = setOf(0),
     val kitCounts: GameRepository.KitCounts = GameRepository.KitCounts(0, 0, 0),
     val showResetDialog: Boolean = false,
@@ -38,17 +39,29 @@ class MenuViewModel(
 
     fun refresh() {
         val unlocked = repository.getUnlockedLevel()
+        val selectedPage = repository.getSelectedDifficultyPage()
         val pages = DifficultyPage.entries
             .filter { DifficultyPage.isPageUnlocked(it, unlocked) }
             .map { it.index }
             .toSet()
+        val safePage = if (pages.contains(selectedPage)) {
+            selectedPage
+        } else {
+            pages.maxOrNull() ?: 0
+        }
         _uiState.update {
             it.copy(
                 unlockedLevel = unlocked,
+                selectedDifficultyPage = safePage,
                 unlockedPages = pages,
                 kitCounts = repository.getAllKitCounts(),
             )
         }
+    }
+
+    fun onDifficultyPageChanged(pageIndex: Int) {
+        repository.saveSelectedDifficultyPage(pageIndex)
+        _uiState.update { it.copy(selectedDifficultyPage = pageIndex) }
     }
 
     fun onNewGameClick() {
@@ -92,6 +105,9 @@ class MenuViewModel(
 
     fun onLevelClick(level: Int) {
         soundManager.play(GameSound.DROP)
+        val page = DifficultyPage.fromGlobalLevel(level).index
+        repository.saveSelectedDifficultyPage(page)
+        _uiState.update { it.copy(selectedDifficultyPage = page) }
     }
 
     fun onLogoCheatTap() {

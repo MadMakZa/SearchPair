@@ -9,14 +9,15 @@ enum class DifficultyPage(val index: Int, val matchSize: Int, val healthKitTier:
     val lastLevel: Int get() = (index + 1) * LEVELS_PER_PAGE
 
     companion object {
-        const val LEVELS_PER_PAGE = 12
-        const val TOTAL_LEVELS = 36
+        const val LEVELS_PER_PAGE = 16
+        const val PAGE_COUNT = 3
+        const val TOTAL_LEVELS = LEVELS_PER_PAGE * PAGE_COUNT
         const val GRID_COLUMNS = 4
-        const val GRID_ROWS = 3
+        const val GRID_ROWS = 4
 
         fun fromGlobalLevel(level: Int): DifficultyPage = when {
-            level <= 12 -> PAIRS
-            level <= 24 -> TRIOS
+            level <= PAIRS.lastLevel -> PAIRS
+            level <= TRIOS.lastLevel -> TRIOS
             else -> QUARTETS
         }
 
@@ -28,10 +29,7 @@ enum class DifficultyPage(val index: Int, val matchSize: Int, val healthKitTier:
             return ((globalLevel - 1) % LEVELS_PER_PAGE) + 1
         }
 
-        fun isPageUnlocked(page: DifficultyPage, unlockedLevel: Int): Boolean = when (page) {
-            PAIRS -> true
-            TRIOS -> unlockedLevel >= 13
-            QUARTETS -> unlockedLevel >= 25
-        }
+        fun isPageUnlocked(page: DifficultyPage, unlockedLevel: Int): Boolean =
+            unlockedLevel >= page.firstLevel
     }
 }

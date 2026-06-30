@@ -25,6 +25,16 @@ class GameRepository(context: Context) {
         savePrefs.edit().putInt(KEY_LEVEL, DifficultyPage.TOTAL_LEVELS).apply()
     }
 
+    fun getSelectedDifficultyPage(): Int =
+        savePrefs.getInt(KEY_DIFFICULTY_PAGE, 0)
+            .coerceIn(0, DifficultyPage.PAGE_COUNT - 1)
+
+    fun saveSelectedDifficultyPage(pageIndex: Int) {
+        savePrefs.edit()
+            .putInt(KEY_DIFFICULTY_PAGE, pageIndex.coerceIn(0, DifficultyPage.PAGE_COUNT - 1))
+            .apply()
+    }
+
     fun getKitCount(tier: HealthKitTier): Int = when (tier) {
         HealthKitTier.SMALL -> kitPrefs.getInt(KEY_KIT_SMALL, 0)
         HealthKitTier.MEDIUM -> kitPrefs.getInt(KEY_KIT_MEDIUM, 0)
@@ -75,8 +85,8 @@ class GameRepository(context: Context) {
         if (small == 0) return
 
         val (addMedium, removeSmall) = when {
-            small == 6 && medium < 5 -> 2 to 6
-            small in 3..5 && medium < 6 -> 1 to 3
+            small == 9 && medium < 8 -> 2 to 9
+            small in 4..8 && medium < MAX_KITS -> 1 to 3
             else -> return
         }
 
@@ -95,22 +105,22 @@ class GameRepository(context: Context) {
         var big = getKitCount(HealthKitTier.BIG)
 
         if (big < MAX_KITS) {
-            if (small == 6 && big < MAX_KITS) {
+            if (small == 9 && big < MAX_KITS) {
                 exchanged += 1
-                removeSmall = 6
+                removeSmall = 9
                 big += 1
             }
-            if (medium == 6 && big < 4) {
+            if (medium == 9 && big < 6) {
                 exchanged += 3
-                removeMedium = 6
+                removeMedium = 9
                 big += 3
-            } else if (medium in 4..6 && big < 5) {
+            } else if (medium in 6..9 && big < 7) {
                 exchanged += 2
-                removeMedium = 4
+                removeMedium = 6
                 big += 2
-            } else if (medium in 2..6 && big < MAX_KITS) {
+            } else if (medium in 3..9 && big < MAX_KITS) {
                 exchanged += 1
-                removeMedium = 2
+                removeMedium = 3
                 big += 1
             }
         }
@@ -136,9 +146,10 @@ class GameRepository(context: Context) {
         private const val SAVE_PREFS = "Save"
         private const val KIT_PREFS = "bonusHealthSave"
         private const val KEY_LEVEL = "Level"
+        private const val KEY_DIFFICULTY_PAGE = "DifficultyPage"
         private const val KEY_KIT_SMALL = "HealthKitSmall"
         private const val KEY_KIT_MEDIUM = "HealthKitMedium"
         private const val KEY_KIT_BIG = "HealthKitBig"
-        const val MAX_KITS = 6
+        const val MAX_KITS = 9
     }
 }

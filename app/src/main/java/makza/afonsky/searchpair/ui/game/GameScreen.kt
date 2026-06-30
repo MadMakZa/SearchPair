@@ -13,13 +13,16 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.graphicsLayer
@@ -31,6 +34,7 @@ import androidx.compose.ui.unit.dp
 import makza.afonsky.searchpair.R
 import makza.afonsky.searchpair.audio.GameSound
 import makza.afonsky.searchpair.audio.SoundManager
+import makza.afonsky.searchpair.data.DifficultyBackground
 import makza.afonsky.searchpair.data.DifficultyPage
 import makza.afonsky.searchpair.data.HealthKitTier
 import makza.afonsky.searchpair.game.GameEvent
@@ -40,6 +44,7 @@ import makza.afonsky.searchpair.ui.components.CardGrid
 import makza.afonsky.searchpair.ui.components.GameButton
 import makza.afonsky.searchpair.ui.components.HealthBar
 import makza.afonsky.searchpair.ui.components.HealthKitIcon
+import makza.afonsky.searchpair.ui.components.WinLogoFlash
 import makza.afonsky.searchpair.ui.theme.ColorGold
 import makza.afonsky.searchpair.ui.theme.ColorRedDark
 
@@ -88,7 +93,7 @@ fun GameScreen(
 
     Box(modifier = Modifier.fillMaxSize()) {
         Image(
-            painter = painterResource(R.drawable.background_pyramides),
+            painter = painterResource(DifficultyBackground.forPage(state.config.difficultyPage)),
             contentDescription = null,
             modifier = Modifier.fillMaxSize(),
             contentScale = ContentScale.Crop,
@@ -105,37 +110,40 @@ fun GameScreen(
         ) {
             Text(
                 text = levelTitle(state.config.level, state.config.difficultyPage),
-                style = androidx.compose.material3.MaterialTheme.typography.displayLarge.copy(
+                style = androidx.compose.material3.MaterialTheme.typography.titleLarge.copy(
                     color = ColorGold,
                 ),
                 textAlign = TextAlign.Center,
+                maxLines = 1,
             )
 
-            Spacer(modifier = Modifier.height(8.dp))
+            Spacer(modifier = Modifier.height(4.dp))
 
             HealthBar(
                 health = state.health,
                 healthMax = state.config.healthMax,
                 onCheatTap = viewModel::onHealthBarCheatTap,
-                modifier = Modifier.fillMaxWidth(0.9f),
+                modifier = Modifier.fillMaxWidth(0.92f),
             )
 
-            Spacer(modifier = Modifier.height(8.dp))
+            Spacer(modifier = Modifier.height(4.dp))
 
             Row(
-                modifier = Modifier.fillMaxWidth(),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .heightIn(min = 36.dp, max = 44.dp),
                 horizontalArrangement = Arrangement.Center,
+                verticalAlignment = Alignment.CenterVertically,
             ) {
                 repeat(state.availableKits) {
                     HealthKitIcon(
                         drawableRes = kitDrawable,
                         onClick = viewModel::onHealthKitClick,
-                        modifier = Modifier.padding(horizontal = 4.dp),
+                        modifier = Modifier.padding(horizontal = 2.dp),
+                        size = 34.dp,
                     )
                 }
             }
-
-            Spacer(modifier = Modifier.height(8.dp))
 
             CardGrid(
                 config = state.config,
@@ -189,31 +197,38 @@ private fun WinOverlay(
     isFinalLevel: Boolean,
     onNextClick: () -> Unit,
 ) {
+    var showControls by remember { mutableStateOf(false) }
+
     Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(ColorRedDark.copy(alpha = 0.25f)),
+        modifier = Modifier.fillMaxSize(),
         contentAlignment = Alignment.Center,
     ) {
-        Column(
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.spacedBy(16.dp),
-        ) {
-            Image(
-                painter = painterResource(R.drawable.level_complite),
-                contentDescription = null,
-                modifier = Modifier.fillMaxWidth(0.75f),
-                contentScale = ContentScale.Fit,
+        if (!showControls) {
+            WinLogoFlash(
+                modifier = Modifier.fillMaxWidth(0.85f),
+                onFinished = { showControls = true },
             )
+        } else {
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.spacedBy(16.dp),
+            ) {
+                Image(
+                    painter = painterResource(R.drawable.level_complite),
+                    contentDescription = null,
+                    modifier = Modifier.fillMaxWidth(0.75f),
+                    contentScale = ContentScale.Fit,
+                )
 
-            GameButton(
-                text = if (isFinalLevel) {
-                    "Cheers!"
-                } else {
-                    stringResource(R.string.button_next_level)
-                },
-                onClick = onNextClick,
-            )
+                GameButton(
+                    text = if (isFinalLevel) {
+                        "Cheers!"
+                    } else {
+                        stringResource(R.string.button_next_level)
+                    },
+                    onClick = onNextClick,
+                )
+            }
         }
     }
 }

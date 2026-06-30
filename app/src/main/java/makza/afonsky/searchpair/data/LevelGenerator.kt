@@ -36,13 +36,15 @@ object LevelGenerator {
     }
 
     private fun symbolsForPosition(page: DifficultyPage, positionInTier: Int): Int {
+        val max = maxUniqueSymbols(page.matchSize)
         val base = when (page) {
             DifficultyPage.PAIRS -> 4
             DifficultyPage.TRIOS -> 3
             DifficultyPage.QUARTETS -> 3
         }
-        val requested = base + positionInTier - 1
-        return requested.coerceAtMost(maxUniqueSymbols(page.matchSize))
+        if (positionInTier >= DifficultyPage.LEVELS_PER_PAGE) return max
+        val progress = (positionInTier - 1).toFloat() / (DifficultyPage.LEVELS_PER_PAGE - 1)
+        return (base + (max - base) * progress).toInt().coerceIn(base, max)
     }
 
     private fun healthMaxFor(page: DifficultyPage, positionInTier: Int): Int {

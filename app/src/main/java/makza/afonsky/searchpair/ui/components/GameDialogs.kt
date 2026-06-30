@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -82,46 +83,46 @@ fun ChestDialog(
 
                 Row(
                     modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.SpaceEvenly,
+                    horizontalArrangement = Arrangement.spacedBy(4.dp, Alignment.CenterHorizontally),
                 ) {
                     repeat(kitCounts.small) {
                         Image(
                             painter = painterResource(R.drawable.restorehealth),
                             contentDescription = null,
-                            modifier = Modifier.padding(4.dp),
+                            modifier = Modifier.size(36.dp),
                             contentScale = ContentScale.Fit,
                         )
                     }
                 }
                 Row(
                     modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.SpaceEvenly,
+                    horizontalArrangement = Arrangement.spacedBy(4.dp, Alignment.CenterHorizontally),
                 ) {
                     repeat(kitCounts.medium) {
                         Image(
                             painter = painterResource(R.drawable.restorehealth2),
                             contentDescription = null,
-                            modifier = Modifier.padding(4.dp),
+                            modifier = Modifier.size(36.dp),
                             contentScale = ContentScale.Fit,
                         )
                     }
                 }
                 Row(
                     modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.SpaceEvenly,
+                    horizontalArrangement = Arrangement.spacedBy(4.dp, Alignment.CenterHorizontally),
                 ) {
                     repeat(kitCounts.big) {
                         Image(
                             painter = painterResource(R.drawable.restorehealth3),
                             contentDescription = null,
-                            modifier = Modifier.padding(4.dp),
+                            modifier = Modifier.size(36.dp),
                             contentScale = ContentScale.Fit,
                         )
                     }
                 }
 
                 GameButton(
-                    text = stringResource(R.string.button_reset_progress_no),
+                    text = stringResource(R.string.button_close),
                     onClick = onDismiss,
                 )
             }

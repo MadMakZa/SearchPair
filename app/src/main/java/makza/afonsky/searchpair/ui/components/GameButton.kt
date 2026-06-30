@@ -5,7 +5,8 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.defaultMinSize
+import androidx.compose.foundation.layout.BoxWithConstraints
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
@@ -16,11 +17,18 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import makza.afonsky.searchpair.ui.theme.ButtonBorder
 import makza.afonsky.searchpair.ui.theme.ButtonGradientEnd
 import makza.afonsky.searchpair.ui.theme.ButtonGradientStart
 import makza.afonsky.searchpair.ui.theme.ColorRedDark
+
+private val ButtonShape = RoundedCornerShape(12.dp)
+private val ButtonGradient = Brush.verticalGradient(
+    colors = listOf(ButtonGradientStart, ButtonGradientEnd),
+)
 
 @Composable
 fun GameButton(
@@ -29,17 +37,12 @@ fun GameButton(
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
 ) {
-    val shape = RoundedCornerShape(12.dp)
-    val gradient = Brush.verticalGradient(
-        colors = listOf(ButtonGradientStart, ButtonGradientEnd),
-    )
-
     Box(
         modifier = modifier
-            .defaultMinSize(minWidth = 80.dp, minHeight = 44.dp)
-            .clip(shape)
-            .background(gradient, shape)
-            .border(2.dp, ButtonBorder, shape)
+            .heightIn(min = 48.dp)
+            .clip(ButtonShape)
+            .background(ButtonGradient, ButtonShape)
+            .border(2.dp, ButtonBorder, ButtonShape)
             .clickable(
                 enabled = enabled,
                 interactionSource = remember { MutableInteractionSource() },
@@ -51,9 +54,13 @@ fun GameButton(
     ) {
         Text(
             text = text,
-            style = androidx.compose.material3.MaterialTheme.typography.labelLarge,
+            style = androidx.compose.material3.MaterialTheme.typography.labelLarge.copy(
+                fontSize = 28.sp,
+            ),
             color = ColorRedDark,
             textAlign = TextAlign.Center,
+            maxLines = 1,
+            overflow = TextOverflow.Ellipsis,
         )
     }
 }
@@ -65,10 +72,31 @@ fun LevelButton(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    GameButton(
-        text = if (unlocked) text else "X",
-        onClick = onClick,
-        enabled = unlocked,
-        modifier = modifier,
-    )
+    BoxWithConstraints(
+        modifier = modifier
+            .clip(ButtonShape)
+            .background(ButtonGradient, ButtonShape)
+            .border(2.dp, ButtonBorder, ButtonShape)
+            .clickable(
+                enabled = unlocked,
+                interactionSource = remember { MutableInteractionSource() },
+                indication = null,
+                onClick = onClick,
+            ),
+        contentAlignment = Alignment.Center,
+    ) {
+        val fontSize = (minOf(maxWidth, maxHeight).value * 0.42f)
+            .coerceIn(14f, 28f)
+            .sp
+        Text(
+            text = if (unlocked) text else "X",
+            style = androidx.compose.material3.MaterialTheme.typography.labelLarge.copy(
+                fontSize = fontSize,
+            ),
+            color = ColorRedDark,
+            textAlign = TextAlign.Center,
+            maxLines = 1,
+            overflow = TextOverflow.Clip,
+        )
+    }
 }

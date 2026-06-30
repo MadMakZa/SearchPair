@@ -7,6 +7,7 @@
     <string name="dialog_chest_title">Treasury</string>
     <string name="button_reset_progress_yes">Yes</string>
     <string name="button_reset_progress_no">No</string>
+    <string name="button_close">Close</string>
     <string name="exit_game">Exit Game?</string>
 
     <string name="button_level_1">1</string>

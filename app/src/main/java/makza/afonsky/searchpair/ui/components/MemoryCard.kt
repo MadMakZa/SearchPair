@@ -45,7 +45,7 @@ fun MemoryCard(
     Box(
         modifier = modifier
             .aspectRatio(1f)
-            .padding(3.dp)
+            .padding(1.dp)
             .graphicsLayer {
                 rotationY = rotation
                 cameraDistance = 12f * density
@@ -74,12 +74,13 @@ fun HealthKitIcon(
     drawableRes: Int,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
+    size: androidx.compose.ui.unit.Dp = 40.dp,
 ) {
     Image(
         painter = painterResource(drawableRes),
         contentDescription = null,
         modifier = modifier
-            .size(48.dp)
+            .size(size)
             .clickable(onClick = onClick),
         contentScale = ContentScale.Fit,
     )

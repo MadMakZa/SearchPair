@@ -3,8 +3,10 @@ package makza.afonsky.searchpair.ui.menu
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -19,15 +21,20 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import kotlinx.coroutines.launch
+import makza.afonsky.searchpair.data.DifficultyBackground
 import makza.afonsky.searchpair.R
+import makza.afonsky.searchpair.ui.theme.ColorGold
 import makza.afonsky.searchpair.data.DifficultyPage
 import makza.afonsky.searchpair.ui.components.ChestDialog
 import makza.afonsky.searchpair.ui.components.ConfirmDialog
@@ -45,7 +52,7 @@ fun MenuScreen(
 ) {
     val state by viewModel.uiState.collectAsState()
     val pagerState = rememberDifficultyPagerState(
-        initialPage = DifficultyPage.fromGlobalLevel(state.unlockedLevel).index,
+        initialPage = state.selectedDifficultyPage,
     )
     val scope = rememberCoroutineScope()
 
@@ -53,10 +60,15 @@ fun MenuScreen(
         viewModel.refresh()
     }
 
-    LaunchedEffect(state.unlockedLevel) {
-        val page = DifficultyPage.fromGlobalLevel(state.unlockedLevel).index
-        if (pagerState.currentPage != page) {
-            pagerState.animateScrollToPage(page)
+    LaunchedEffect(state.selectedDifficultyPage) {
+        if (pagerState.currentPage != state.selectedDifficultyPage) {
+            pagerState.scrollToPage(state.selectedDifficultyPage)
+        }
+    }
+
+    LaunchedEffect(pagerState.currentPage) {
+        if (pagerState.currentPage != state.selectedDifficultyPage) {
+            viewModel.onDifficultyPageChanged(pagerState.currentPage)
         }
     }
 
@@ -92,7 +104,7 @@ fun MenuScreen(
 
     Box(modifier = Modifier.fillMaxSize()) {
         Image(
-            painter = painterResource(R.drawable.background_pyramides),
+            painter = painterResource(DifficultyBackground.menu),
             contentDescription = null,
             modifier = Modifier.fillMaxSize(),
             contentScale = ContentScale.Crop,
@@ -101,7 +113,7 @@ fun MenuScreen(
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(horizontal = 10.dp, vertical = 6.dp),
+                .padding(horizontal = 10.dp, vertical = 4.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             Image(
@@ -109,12 +121,15 @@ fun MenuScreen(
                 contentDescription = null,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .heightIn(max = 96.dp)
-                    .clickable { viewModel.onLogoCheatTap() },
+                    .heightIn(max = 72.dp)
+                    .clickable(
+                        interactionSource = remember { MutableInteractionSource() },
+                        indication = null,
+                    ) { viewModel.onLogoCheatTap() },
                 contentScale = ContentScale.FillWidth,
             )
 
-            Spacer(modifier = Modifier.height(12.dp))
+            Spacer(modifier = Modifier.height(6.dp))
 
             GameButton(
                 text = stringResource(R.string.button_new_game),
@@ -127,25 +142,29 @@ fun MenuScreen(
                 modifier = Modifier.fillMaxWidth(0.55f),
             )
 
-            Spacer(modifier = Modifier.height(10.dp))
+            Spacer(modifier = Modifier.height(6.dp))
 
             Image(
                 painter = painterResource(R.drawable.chestclosed),
                 contentDescription = null,
                 modifier = Modifier
-                    .size(56.dp)
+                    .size(48.dp)
                     .clickable { viewModel.onOpenChest() },
                 contentScale = ContentScale.Fit,
             )
 
-            Spacer(modifier = Modifier.weight(1f))
+            Spacer(modifier = Modifier.height(8.dp))
 
             Image(
                 painter = painterResource(R.drawable.select_level_text),
                 contentDescription = null,
                 modifier = Modifier
-                    .fillMaxWidth(0.45f)
-                    .clickable { viewModel.onLevelLabelCheatTap() },
+                    .fillMaxWidth(0.72f)
+                    .heightIn(max = 60.dp)
+                    .clickable(
+                        interactionSource = remember { MutableInteractionSource() },
+                        indication = null,
+                    ) { viewModel.onLevelLabelCheatTap() },
                 contentScale = ContentScale.Fit,
             )
 
@@ -153,28 +172,37 @@ fun MenuScreen(
 
             Text(
                 text = pageTitle(DifficultyPage.entries[pagerState.currentPage]),
-                style = androidx.compose.material3.MaterialTheme.typography.titleMedium,
+                style = androidx.compose.material3.MaterialTheme.typography.titleMedium.copy(
+                    fontSize = 50.sp,
+                    color = ColorGold,
+                ),
+                textAlign = TextAlign.Center,
             )
 
-            Spacer(modifier = Modifier.height(4.dp))
-
-            DifficultyHorizontalPager(
-                pagerState = pagerState,
-                isPageUnlocked = { index ->
-                    DifficultyPage.isPageUnlocked(DifficultyPage.entries[index], state.unlockedLevel)
-                },
+            Box(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .weight(1.2f),
-            ) { page ->
-                LevelPageGrid(
-                    page = page,
-                    unlockedLevel = state.unlockedLevel,
-                    onLevelClick = { level ->
-                        viewModel.onLevelClick(level)
-                        onStartLevel(level)
+                    .weight(1f),
+            ) {
+                DifficultyHorizontalPager(
+                    pagerState = pagerState,
+                    isPageUnlocked = { index ->
+                        DifficultyPage.isPageUnlocked(
+                            DifficultyPage.entries[index],
+                            state.unlockedLevel,
+                        )
                     },
-                )
+                    modifier = Modifier.fillMaxSize(),
+                ) { page ->
+                    LevelPageGrid(
+                        page = page,
+                        unlockedLevel = state.unlockedLevel,
+                        onLevelClick = { level ->
+                            viewModel.onLevelClick(level)
+                            onStartLevel(level)
+                        },
+                    )
+                }
             }
 
             DifficultyPagerIndicator(
@@ -184,7 +212,7 @@ fun MenuScreen(
                 onPageClick = { pageIndex ->
                     scope.launch { pagerState.animateScrollToPage(pageIndex) }
                 },
-                modifier = Modifier.padding(top = 4.dp, bottom = 4.dp),
+                modifier = Modifier.padding(vertical = 4.dp),
             )
         }
     }
@@ -196,24 +224,36 @@ private fun LevelPageGrid(
     unlockedLevel: Int,
     onLevelClick: (Int) -> Unit,
 ) {
-    Column(
+    BoxWithConstraints(
         modifier = Modifier.fillMaxSize(),
-        verticalArrangement = Arrangement.spacedBy(6.dp, Alignment.CenterVertically),
+        contentAlignment = Alignment.Center,
     ) {
-        for (row in 0 until DifficultyPage.GRID_ROWS) {
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.spacedBy(6.dp),
-            ) {
-                for (col in 0 until DifficultyPage.GRID_COLUMNS) {
-                    val positionOnPage = row * DifficultyPage.GRID_COLUMNS + col + 1
-                    val globalLevel = DifficultyPage.globalLevel(page, positionOnPage)
-                    LevelButton(
-                        text = positionOnPage.toString(),
-                        unlocked = globalLevel <= unlockedLevel,
-                        onClick = { onLevelClick(globalLevel) },
-                        modifier = Modifier.weight(1f),
-                    )
+        val spacing = 5.dp
+        val columns = DifficultyPage.GRID_COLUMNS
+        val rows = DifficultyPage.GRID_ROWS
+
+        val cellFromWidth = (maxWidth - spacing * (columns - 1)) / columns
+        val cellFromHeight = (maxHeight - spacing * (rows - 1)) / rows
+        val cellSize = minOf(cellFromWidth, cellFromHeight)
+
+        Column(
+            verticalArrangement = Arrangement.spacedBy(spacing),
+            horizontalAlignment = Alignment.CenterHorizontally,
+        ) {
+            repeat(rows) { row ->
+                Row(
+                    horizontalArrangement = Arrangement.spacedBy(spacing),
+                ) {
+                    repeat(columns) { col ->
+                        val positionOnPage = row * columns + col + 1
+                        val globalLevel = DifficultyPage.globalLevel(page, positionOnPage)
+                        LevelButton(
+                            text = positionOnPage.toString(),
+                            unlocked = globalLevel <= unlockedLevel,
+                            onClick = { onLevelClick(globalLevel) },
+                            modifier = Modifier.size(cellSize),
+                        )
+                    }
                 }
             }
         }
