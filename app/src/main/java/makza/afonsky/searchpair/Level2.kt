@@ -235,6 +235,7 @@ class Level2 : AppCompatActivity() {
     //начать новую игру по нажатию на кнопку
     private fun startNewGame() {
         bindingClass.btnNewGame!!.setOnClickListener {
+            bindingClass.btnNewGame.isClickable = false
             soundPlay(soundDrop)
             val intent = Intent(this, Level3::class.java)
             startActivity(intent)

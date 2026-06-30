@@ -506,24 +506,13 @@
         />
 
     <!-- banner -->
-    <LinearLayout
-        android:id="@+id/container_for_banner"
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:layout_marginBottom="6dp"
-        android:layout_gravity="bottom|center"
-        android:orientation="horizontal" >
-
-        <com.google.android.gms.ads.AdView
-            xmlns:ads="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/adView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            ads:adSize="BANNER"
-            ads:adUnitId="ca-app-pub-3820005456092261/2279545723">
-        </com.google.android.gms.ads.AdView>
-
-    </LinearLayout>
+<!--    <LinearLayout-->
+<!--        android:id="@+id/container_for_banner"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="50dp"-->
+<!--        android:layout_marginBottom="6dp"-->
+<!--        android:layout_gravity="bottom|center"-->
+<!--        android:orientation="horizontal" />-->
 
 
 

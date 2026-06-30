@@ -13,8 +13,6 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
-import com.google.android.gms.ads.AdRequest
-import com.google.android.gms.ads.MobileAds
 import makza.afonsky.searchpair.databinding.ActivityGameFieldBinding
 import java.util.*
 
@@ -55,9 +53,9 @@ class Level6 : AppCompatActivity() {
         bindingClass = ActivityGameFieldBinding.inflate(layoutInflater)
         setContentView(bindingClass.root)
         //реклама
-        MobileAds.initialize(this)
-        val adRequest: AdRequest = AdRequest.Builder().build()
-        bindingClass.adView.loadAd(adRequest)
+//        MobileAds.initialize(this)
+//        val adRequest: AdRequest = AdRequest.Builder().build()
+//        bindingClass.adView.loadAd(adRequest)
 
         init()
 
@@ -234,6 +232,7 @@ class Level6 : AppCompatActivity() {
     //начать новую игру по нажатию на кнопку
     private fun startNewGame() {
         btnNewGame!!.setOnClickListener {
+            bindingClass.btnNewGame.isClickable = false
             soundPlay(soundDrop)
             val intent = Intent(this, Level7::class.java)
             startActivity(intent)

@@ -10,10 +10,7 @@ import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.RelativeLayout
 import androidx.appcompat.app.AppCompatActivity
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 import java.util.*
 
 class BonusActivity : AppCompatActivity() {
@@ -60,7 +57,7 @@ class BonusActivity : AppCompatActivity() {
     private fun justClick() {
         for (num in 0..5) {
             GlobalScope.launch(Dispatchers.Main) {
-                for (num in 0 until 200) {
+                for (n in 0 until 200) {
                     delay(150L)
                     generateCoin()
                 }

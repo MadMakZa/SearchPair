@@ -7,13 +7,9 @@ import android.content.SharedPreferences
 import android.media.AudioManager
 import android.media.SoundPool
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
-import com.google.android.gms.ads.*
-import com.google.android.gms.ads.rewarded.RewardedAd
-import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback
 import makza.afonsky.searchpair.databinding.ActivityGameMainBinding
 
 
@@ -25,9 +21,9 @@ class GameMainActivity : AppCompatActivity() {
 
     private var gridLayout: GridLayout? = null
 
-    //реклама с наградой
-    private var mRewardedAd: RewardedAd? = null
-    private var TAG = "GameMainActivity"
+//    //реклама с наградой
+//    private var mRewardedAd: RewardedAd? = null
+//    private var TAG = "GameMainActivity"
 
     //набор звуков с айдишниками
     private var soundPool: SoundPool? = null
@@ -78,71 +74,71 @@ class GameMainActivity : AppCompatActivity() {
         openDialogChest()
 
         //реклама
-        initAd()
-        loadRewardedAd()
+//        initAd()
+//        loadRewardedAd()
 
 
 
 
 
     }
-    /**
-     * Реклама с вознаграждением
-     */
-    private fun initAd(){
-        MobileAds.initialize(this){}
-    }
+//    /**
+//     * Реклама с вознаграждением
+//     */
+//    private fun initAd(){
+//        MobileAds.initialize(this){}
+//    }
 
-    private fun loadRewardedAd(){
-        val adRequest = AdRequest.Builder().build()
-        //непосредственно загрузка рекламы
-        RewardedAd.load(this,"ca-app-pub-3820005456092261/5272972747", adRequest, object : RewardedAdLoadCallback() {
-            override fun onAdFailedToLoad(adError: LoadAdError) {
-                Log.d(TAG, adError.message)
-                mRewardedAd = null
-            }
-
-            override fun onAdLoaded(rewardedAd: RewardedAd) {
-                Log.d(TAG, "Ad was loaded.")
-                mRewardedAd = rewardedAd
-
-                //fullscreen
-                mRewardedAd?.fullScreenContentCallback = object: FullScreenContentCallback() {
-                    override fun onAdDismissedFullScreenContent() {
-                        Log.d(TAG, "Ad was dismissed.")
-                    }
-
-                    override fun onAdFailedToShowFullScreenContent(adError: AdError?) {
-                        Log.d(TAG, "Ad failed to show.")
-                    }
-
-                    override fun onAdShowedFullScreenContent() {
-                        Log.d(TAG, "Ad showed fullscreen content.")
-                        // Called when ad is dismissed.
-                        mRewardedAd = null
-                    }
-                }
-
-            }
-        })
-
-    }
-
-    private fun showRewardedAd(){
-        if (mRewardedAd != null) {
-            mRewardedAd?.show(this
-            ) { rewardItem ->
-                var rewardAmount = rewardItem.amount
-                var rewardType = rewardItem.type
-                Log.d(TAG, "User earned the reward.")
-
-                //награда
-                rewardCoins()
-            }
-        } else {
-            Log.d(TAG, "The rewarded ad wasn't ready yet.")
-        }
-    }
+//    private fun loadRewardedAd(){
+//        val adRequest = AdRequest.Builder().build()
+//        //непосредственно загрузка рекламы
+//        RewardedAd.load(this,"ca-app-pub-3820005456092261/5272972747", adRequest, object : RewardedAdLoadCallback() {
+//            override fun onAdFailedToLoad(adError: LoadAdError) {
+//                Log.d(TAG, adError.message)
+//                mRewardedAd = null
+//            }
+//
+//            override fun onAdLoaded(rewardedAd: RewardedAd) {
+//                Log.d(TAG, "Ad was loaded.")
+//                mRewardedAd = rewardedAd
+//
+//                //fullscreen
+//                mRewardedAd?.fullScreenContentCallback = object: FullScreenContentCallback() {
+//                    override fun onAdDismissedFullScreenContent() {
+//                        Log.d(TAG, "Ad was dismissed.")
+//                    }
+//
+//                    override fun onAdFailedToShowFullScreenContent(adError: AdError?) {
+//                        Log.d(TAG, "Ad failed to show.")
+//                    }
+//
+//                    override fun onAdShowedFullScreenContent() {
+//                        Log.d(TAG, "Ad showed fullscreen content.")
+//                        // Called when ad is dismissed.
+//                        mRewardedAd = null
+//                    }
+//                }
+//
+//            }
+//        })
+//
+//    }
+//
+//    private fun showRewardedAd(){
+//        if (mRewardedAd != null) {
+//            mRewardedAd?.show(this
+//            ) { rewardItem ->
+//                var rewardAmount = rewardItem.amount
+//                var rewardType = rewardItem.type
+//                Log.d(TAG, "User earned the reward.")
+//
+//                //награда
+//                rewardCoins()
+//            }
+//        } else {
+//            Log.d(TAG, "The rewarded ad wasn't ready yet.")
+//        }
+//    }
     /**
      * Аптечки
      */
@@ -297,12 +293,13 @@ class GameMainActivity : AppCompatActivity() {
                 dialogChest.dismiss()
             }
 
-            val buttonYes = dialogChest.findViewById<Button>(R.id.button_yes)
-            buttonYes.setOnClickListener {
-                //тут добавить запуск рекламы
-                dialogChest.dismiss()
-                showRewardedAd()
-            }
+//            val buttonYes = dialogChest.findViewById<Button>(R.id.button_yes)
+//            buttonYes.visibility = View.INVISIBLE
+//            buttonYes.setOnClickListener {
+//                //тут добавить запуск рекламы
+//                dialogChest.dismiss()
+////                showRewardedAd()
+//            }
         }
 
 

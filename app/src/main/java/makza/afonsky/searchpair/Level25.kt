@@ -13,8 +13,6 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
-import com.google.android.gms.ads.AdRequest
-import com.google.android.gms.ads.MobileAds
 import makza.afonsky.searchpair.databinding.ActivityGameFieldBinding
 import java.util.*
 
@@ -61,9 +59,9 @@ class Level25 : AppCompatActivity() {
         bindingClass = ActivityGameFieldBinding.inflate(layoutInflater)
         setContentView(bindingClass.root)
         //реклама
-        MobileAds.initialize(this)
-        val adRequest: AdRequest = AdRequest.Builder().build()
-        bindingClass.adView.loadAd(adRequest)
+//        MobileAds.initialize(this)
+//        val adRequest: AdRequest = AdRequest.Builder().build()
+//        bindingClass.adView.loadAd(adRequest)
 
         init()
 
@@ -291,6 +289,7 @@ class Level25 : AppCompatActivity() {
     //закночить игру
     private fun startNewGame() {
         btnNewGame!!.setOnClickListener {
+            bindingClass.btnNewGame.isClickable = false
             //добавить везде макс количество монет
             getSharedPreferences("bonusHealthSave", MODE_PRIVATE)
                 .edit()
