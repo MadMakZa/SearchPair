@@ -10,6 +10,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
@@ -39,14 +40,23 @@ fun SplashScreen(
             contentScale = ContentScale.Crop,
         )
 
-        Image(
-            painter = painterResource(R.drawable.splashscreenlogo),
-            contentDescription = null,
+        Box(
             modifier = Modifier
-                .align(Alignment.Center)
-                .fillMaxWidth()
+                .fillMaxSize()
                 .padding(vertical = 32.dp),
-            contentScale = ContentScale.Fit,
-        )
+            contentAlignment = Alignment.Center,
+        ) {
+            Image(
+                painter = painterResource(R.drawable.splashscreenlogo),
+                contentDescription = null,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .graphicsLayer {
+                        scaleX = 2f
+                        scaleY = 2f
+                    },
+                contentScale = ContentScale.Fit,
+            )
+        }
     }
 }

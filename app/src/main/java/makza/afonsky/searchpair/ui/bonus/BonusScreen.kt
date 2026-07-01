@@ -59,15 +59,6 @@ fun BonusScreen(
             contentScale = ContentScale.Crop,
         )
 
-        repeat(PARTICLE_COUNT) { index ->
-            FallingParticle(
-                index = index,
-                maxWidthPx = maxWidthPx,
-                maxHeightPx = maxHeightPx,
-                iconSizePx = iconSizePx,
-            )
-        }
-
         Box(
             modifier = Modifier.fillMaxSize(),
             contentAlignment = Alignment.Center,
@@ -82,6 +73,15 @@ fun BonusScreen(
                         scaleY = 2.5f
                     },
                 contentScale = ContentScale.Fit,
+            )
+        }
+
+        repeat(PARTICLE_COUNT) { index ->
+            FallingParticle(
+                index = index,
+                maxWidthPx = maxWidthPx,
+                maxHeightPx = maxHeightPx,
+                iconSizePx = iconSizePx,
             )
         }
     }

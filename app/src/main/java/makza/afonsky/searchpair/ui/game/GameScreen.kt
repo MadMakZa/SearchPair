@@ -5,6 +5,8 @@ import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -115,6 +117,12 @@ fun GameScreen(
                 ),
                 textAlign = TextAlign.Center,
                 maxLines = 1,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .clickable(
+                        interactionSource = remember { MutableInteractionSource() },
+                        indication = null,
+                    ) { viewModel.onTitleCheatTap() },
             )
 
             Spacer(modifier = Modifier.height(4.dp))
@@ -155,17 +163,6 @@ fun GameScreen(
                 modifier = Modifier
                     .fillMaxWidth()
                     .weight(1f),
-            )
-        }
-
-        // Temporary debug: skip to win
-        if (!state.isWon && state.phase != GamePhase.DEFEAT) {
-            GameButton(
-                text = "WIN",
-                onClick = viewModel::debugForceWin,
-                modifier = Modifier
-                    .align(Alignment.TopEnd)
-                    .padding(12.dp),
             )
         }
 

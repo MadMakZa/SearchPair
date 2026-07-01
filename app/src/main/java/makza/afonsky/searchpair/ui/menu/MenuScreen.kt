@@ -34,7 +34,7 @@ import androidx.compose.ui.unit.sp
 import kotlinx.coroutines.launch
 import makza.afonsky.searchpair.data.DifficultyBackground
 import makza.afonsky.searchpair.R
-import makza.afonsky.searchpair.ui.theme.ColorGold
+import makza.afonsky.searchpair.ui.theme.ColorRedDark
 import makza.afonsky.searchpair.data.DifficultyPage
 import makza.afonsky.searchpair.ui.components.ChestDialog
 import makza.afonsky.searchpair.ui.components.ConfirmDialog
@@ -155,12 +155,29 @@ fun MenuScreen(
 
             Spacer(modifier = Modifier.height(8.dp))
 
+            Text(
+                text = pageTitle(DifficultyPage.entries[pagerState.currentPage]),
+                style = androidx.compose.material3.MaterialTheme.typography.titleMedium.copy(
+                    fontSize = 50.sp,
+                    color = ColorRedDark,
+                ),
+                textAlign = TextAlign.Center,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .clickable(
+                        interactionSource = remember { MutableInteractionSource() },
+                        indication = null,
+                    ) { viewModel.onOtherMenuTap() },
+            )
+
+            Spacer(modifier = Modifier.height(4.dp))
+
             Image(
                 painter = painterResource(R.drawable.select_level_text),
                 contentDescription = null,
                 modifier = Modifier
-                    .fillMaxWidth(0.72f)
-                    .heightIn(max = 60.dp)
+                    .fillMaxWidth()
+                    .heightIn(max = 120.dp)
                     .clickable(
                         interactionSource = remember { MutableInteractionSource() },
                         indication = null,
@@ -169,15 +186,6 @@ fun MenuScreen(
             )
 
             Spacer(modifier = Modifier.height(4.dp))
-
-            Text(
-                text = pageTitle(DifficultyPage.entries[pagerState.currentPage]),
-                style = androidx.compose.material3.MaterialTheme.typography.titleMedium.copy(
-                    fontSize = 50.sp,
-                    color = ColorGold,
-                ),
-                textAlign = TextAlign.Center,
-            )
 
             Box(
                 modifier = Modifier
@@ -210,6 +218,7 @@ fun MenuScreen(
                 currentPage = pagerState.currentPage,
                 unlockedPages = state.unlockedPages,
                 onPageClick = { pageIndex ->
+                    viewModel.onPagerDotClick()
                     scope.launch { pagerState.animateScrollToPage(pageIndex) }
                 },
                 modifier = Modifier.padding(vertical = 4.dp),

@@ -4,7 +4,12 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.LocalIndication
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.LocalRippleConfiguration
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.core.view.WindowCompat
+import makza.afonsky.searchpair.ui.theme.NoPressIndication
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
 import androidx.navigation.compose.rememberNavController
@@ -24,13 +29,19 @@ class MainActivity : ComponentActivity() {
         soundManager = SoundManager(this)
 
         setContent {
-            FindAPairTheme {
-                val navController = rememberNavController()
-                FindAPairNavHost(
-                    navController = navController,
-                    soundManager = soundManager,
-                    onExitApp = { finish() },
-                )
+            @OptIn(ExperimentalMaterial3Api::class)
+            CompositionLocalProvider(
+                LocalIndication provides NoPressIndication,
+                LocalRippleConfiguration provides null,
+            ) {
+                FindAPairTheme {
+                    val navController = rememberNavController()
+                    FindAPairNavHost(
+                        navController = navController,
+                        soundManager = soundManager,
+                        onExitApp = { finish() },
+                    )
+                }
             }
         }
     }

@@ -4,6 +4,13 @@ plugins {
     alias(libs.plugins.kotlin.compose)
 }
 
+def keystorePropertiesFile = rootProject.file('keystore.properties')
+def keystoreProperties = new Properties()
+def hasReleaseKeystore = keystorePropertiesFile.exists()
+if (hasReleaseKeystore) {
+    keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+}
+
 android {
     namespace 'makza.afonsky.searchpair'
     compileSdk 36
@@ -13,9 +20,41 @@ android {
         minSdk 21
         targetSdk 36
         versionCode 5
-        versionName "1.3.1"
+        versionName "2.0.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    signingConfigs {
+        release {
+            if (hasReleaseKeystore) {
+                def storePath = keystoreProperties['storeFile']
+                storeFile storePath ? rootProject.file(storePath) : null
+                storePassword keystoreProperties['storePassword']
+                keyAlias keystoreProperties['keyAlias']
+                keyPassword keystoreProperties['keyPassword']
+            }
+        }
+    }
+
+    buildTypes {
+        // Local testing: debug APK, no R8, debug signing (not for Play Store)
+        debug {
+            debuggable true
+            minifyEnabled false
+            shrinkResources false
+        }
+
+        // Production: R8 + resource shrinking; signed when keystore.properties exists
+        release {
+            debuggable false
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            if (hasReleaseKeystore) {
+                signingConfig signingConfigs.release
+            }
+        }
     }
 
     buildFeatures {
@@ -31,10 +70,12 @@ android {
         jvmTarget = '17'
     }
 
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+    // release/ — prod APK & AAB; debug/ — test APK
+    applicationVariants.configureEach { variant ->
+        variant.outputs.configureEach { output ->
+            def buildLabel = variant.buildType.name
+            def version = variant.versionName
+            output.outputFileName = "FindAPair-${buildLabel}-v${version}.apk"
         }
     }
 }

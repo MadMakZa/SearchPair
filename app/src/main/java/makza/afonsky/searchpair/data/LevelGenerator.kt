@@ -21,6 +21,7 @@ object LevelGenerator {
             rows = grid.rows,
             slotPositions = grid.positions,
             snakeOrder = grid.snakeOrder,
+            snakeOrderSecondary = grid.snakeOrderSecondary,
             healthMax = healthMaxFor(page, positionInTier),
             healOnMatch = healFor(page, positionInTier),
             damageOnMiss = 10,

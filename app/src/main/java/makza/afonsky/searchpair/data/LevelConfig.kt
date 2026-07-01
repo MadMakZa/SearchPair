@@ -35,6 +35,7 @@ data class LevelConfig(
     val rows: Int,
     val slotPositions: List<GridCell>,
     val snakeOrder: List<Int>,
+    val snakeOrderSecondary: List<Int>? = null,
     val healthMax: Int,
     val healOnMatch: Int,
     val damageOnMiss: Int,

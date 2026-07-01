@@ -11,6 +11,7 @@ import makza.afonsky.searchpair.audio.GameSound
 import makza.afonsky.searchpair.audio.SoundManager
 import makza.afonsky.searchpair.data.DifficultyPage
 import makza.afonsky.searchpair.data.GameRepository
+import makza.afonsky.searchpair.game.CheatTapCounter
 
 data class MenuUiState(
     val unlockedLevel: Int = 1,
@@ -30,8 +31,17 @@ class MenuViewModel(
     private val _uiState = MutableStateFlow(MenuUiState())
     val uiState: StateFlow<MenuUiState> = _uiState.asStateFlow()
 
-    private var logoCheatTaps = 0
-    private var levelLabelCheatTaps = 0
+    private val logoCheat = CheatTapCounter(viewModelScope, requiredTaps = 35) {
+        soundManager.play(GameSound.CLOSE)
+        repository.setMaxKits()
+        refresh()
+    }
+
+    private val levelLabelCheat = CheatTapCounter(viewModelScope, requiredTaps = 30) {
+        soundManager.play(GameSound.CLOSE)
+        repository.unlockAllLevels()
+        refresh()
+    }
 
     init {
         refresh()
@@ -60,11 +70,13 @@ class MenuViewModel(
     }
 
     fun onDifficultyPageChanged(pageIndex: Int) {
+        resetAllCheats()
         repository.saveSelectedDifficultyPage(pageIndex)
         _uiState.update { it.copy(selectedDifficultyPage = pageIndex) }
     }
 
     fun onNewGameClick() {
+        resetAllCheats()
         soundManager.play(GameSound.DROP)
         if (repository.getUnlockedLevel() >= 2) {
             _uiState.update { it.copy(showResetDialog = true) }
@@ -78,56 +90,65 @@ class MenuViewModel(
     }
 
     fun onDismissReset() {
+        resetAllCheats()
         soundManager.play(GameSound.DROP)
         _uiState.update { it.copy(showResetDialog = false) }
     }
 
     fun onOpenChest() {
+        resetAllCheats()
         soundManager.play(GameSound.CHEST)
         refresh()
         _uiState.update { it.copy(showChestDialog = true) }
     }
 
     fun onDismissChest() {
+        resetAllCheats()
         soundManager.play(GameSound.DROP)
         _uiState.update { it.copy(showChestDialog = false) }
     }
 
     fun onBackRequest() {
+        resetAllCheats()
         soundManager.play(GameSound.DROP)
         _uiState.update { it.copy(showExitDialog = true) }
     }
 
     fun onDismissExit() {
+        resetAllCheats()
         soundManager.play(GameSound.DROP)
         _uiState.update { it.copy(showExitDialog = false) }
     }
 
     fun onLevelClick(level: Int) {
+        resetAllCheats()
         soundManager.play(GameSound.DROP)
         val page = DifficultyPage.fromGlobalLevel(level).index
         repository.saveSelectedDifficultyPage(page)
         _uiState.update { it.copy(selectedDifficultyPage = page) }
     }
 
+    fun onPagerDotClick() {
+        resetAllCheats()
+    }
+
+    fun onOtherMenuTap() {
+        resetAllCheats()
+    }
+
     fun onLogoCheatTap() {
-        logoCheatTaps++
-        if (logoCheatTaps >= 35) {
-            soundManager.play(GameSound.CLOSE)
-            repository.setMaxKits()
-            refresh()
-            logoCheatTaps = 0
-        }
+        levelLabelCheat.reset()
+        logoCheat.onSecretTap()
     }
 
     fun onLevelLabelCheatTap() {
-        levelLabelCheatTaps++
-        if (levelLabelCheatTaps >= 30) {
-            soundManager.play(GameSound.CLOSE)
-            repository.unlockAllLevels()
-            refresh()
-            levelLabelCheatTaps = 0
-        }
+        logoCheat.reset()
+        levelLabelCheat.onSecretTap()
+    }
+
+    private fun resetAllCheats() {
+        logoCheat.reset()
+        levelLabelCheat.reset()
     }
 
     class Factory(

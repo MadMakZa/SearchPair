@@ -61,9 +61,19 @@ class GameViewModel(
     private val _events = MutableSharedFlow<GameEvent>()
     val events: SharedFlow<GameEvent> = _events.asSharedFlow()
 
-    private var healthCheatTaps = 0
     private var introJobRunning = false
     private var matchStreak = 0
+
+    private val titleCheat = CheatTapCounter(viewModelScope, requiredTaps = 45) {
+        if (!_uiState.value.isWon) {
+            onLevelComplete()
+        }
+    }
+
+    private val healthBarCheat = CheatTapCounter(viewModelScope, requiredTaps = 20) {
+        soundManager.play(GameSound.CLOSE)
+        _uiState.update { it.copy(health = 0) }
+    }
 
     init {
         startLevel()
@@ -99,36 +109,60 @@ class GameViewModel(
     }
 
     private suspend fun playIntroSnake() {
-        playSnakeAnimation(config.snakeOrder)
+        playSnakeAnimation(config.snakeOrder, config.snakeOrderSecondary)
     }
 
     private suspend fun playHintSnake() {
         val state = _uiState.value
-        val order = config.snakeOrder.filter { cardId ->
+        fun unrevealed(cardId: Int): Boolean {
             val card = state.cards.getOrNull(cardId)
-            card != null && !card.isMatched && !card.isFaceUp
+            return card != null && !card.isMatched && !card.isFaceUp
         }
-        if (order.isNotEmpty()) {
-            playSnakeAnimation(order)
+        val primary = config.snakeOrder.filter(::unrevealed)
+        val secondary = config.snakeOrderSecondary?.filter(::unrevealed)?.takeIf { it.isNotEmpty() }
+        if (primary.isNotEmpty() || secondary != null) {
+            playSnakeAnimation(primary, secondary)
         }
     }
 
-    private suspend fun playSnakeAnimation(cardOrder: List<Int>) {
+    private suspend fun playSnakeAnimation(
+        primaryOrder: List<Int>,
+        secondaryOrder: List<Int>? = null,
+    ) {
+        if (secondaryOrder.isNullOrEmpty()) {
+            coroutineScope {
+                primaryOrder.mapIndexed { index, cardId ->
+                    async { playIntroFlipAt(cardId, index * INTRO_STAGGER_MS) }
+                }.awaitAll()
+            }
+            return
+        }
+
+        // Interleave both snakes (A, B, A, B…) so only one card starts per step.
+        val interleaved = buildList {
+            val maxLen = maxOf(primaryOrder.size, secondaryOrder.size)
+            for (i in 0 until maxLen) {
+                primaryOrder.getOrNull(i)?.let(::add)
+                secondaryOrder.getOrNull(i)?.let(::add)
+            }
+        }
         coroutineScope {
-            cardOrder.mapIndexed { index, cardId ->
-                async {
-                    delay(index * INTRO_STAGGER_MS)
-                    val card = _uiState.value.cards.getOrNull(cardId) ?: return@async
-                    if (card.isMatched) return@async
-                    setCardFaceUp(cardId, faceUp = true, durationMs = INTRO_FLIP_MS)
-                    delay(INTRO_FLIP_MS.toLong())
-                    val afterFlip = _uiState.value.cards.getOrNull(cardId) ?: return@async
-                    if (!afterFlip.isMatched && afterFlip.isFaceUp) {
-                        setCardFaceUp(cardId, faceUp = false, durationMs = INTRO_FLIP_MS)
-                        delay(INTRO_FLIP_MS.toLong())
-                    }
-                }
+            interleaved.mapIndexed { index, cardId ->
+                async { playIntroFlipAt(cardId, index * INTRO_STAGGER_MS) }
             }.awaitAll()
+        }
+    }
+
+    private suspend fun playIntroFlipAt(cardId: Int, delayMs: Long) {
+        delay(delayMs)
+        val card = _uiState.value.cards.getOrNull(cardId) ?: return
+        if (card.isMatched) return
+        setCardFaceUp(cardId, faceUp = true, durationMs = INTRO_FLIP_MS)
+        delay(INTRO_FLIP_MS.toLong())
+        val afterFlip = _uiState.value.cards.getOrNull(cardId) ?: return
+        if (!afterFlip.isMatched && afterFlip.isFaceUp) {
+            setCardFaceUp(cardId, faceUp = false, durationMs = INTRO_FLIP_MS)
+            delay(INTRO_FLIP_MS.toLong())
         }
     }
 
@@ -148,6 +182,7 @@ class GameViewModel(
     }
 
     fun onCardClick(cardId: Int) {
+        resetAllCheats()
         val state = _uiState.value
         if (state.isInputBlocked || state.isWon || state.phase != GamePhase.PLAYING) return
 
@@ -292,6 +327,7 @@ class GameViewModel(
     }
 
     fun onHealthKitClick() {
+        resetAllCheats()
         val state = _uiState.value
         if (state.isInputBlocked || state.availableKits <= 0 || state.phase != GamePhase.PLAYING) return
         if (!repository.consumeKit(config.healthKitTier)) return
@@ -316,19 +352,20 @@ class GameViewModel(
         }
     }
 
-    fun onHealthBarCheatTap() {
-        healthCheatTaps++
-        if (healthCheatTaps >= 20) {
-            soundManager.play(GameSound.CLOSE)
-            _uiState.update { it.copy(health = 0) }
-            healthCheatTaps = 0
-        }
+    fun onTitleCheatTap() {
+        if (_uiState.value.isWon) return
+        healthBarCheat.reset()
+        titleCheat.onSecretTap()
     }
 
-    /** Temporary debug: instant win and show next-level overlay. */
-    fun debugForceWin() {
-        if (_uiState.value.isWon) return
-        onLevelComplete()
+    fun onHealthBarCheatTap() {
+        titleCheat.reset()
+        healthBarCheat.onSecretTap()
+    }
+
+    private fun resetAllCheats() {
+        titleCheat.reset()
+        healthBarCheat.reset()
     }
 
     private fun blockInput(blocked: Boolean) {
