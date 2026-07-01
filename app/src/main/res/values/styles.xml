@@ -1,22 +1,9 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <!-- Customize your theme here. -->
-        <item name="android:textAllCaps">false</item>
+    <style name="AppTheme" parent="android:Theme.Material.Light.NoActionBar">
         <item name="android:windowFullscreen">true</item>
-        <item name="colorPrimary">#FF9C0B</item>
-        <item name="colorPrimaryDark">#F6BA07</item>
-        <item name="colorAccent">@color/colorAccent</item>
-        <!-- Off multitouch-->
+        <item name="android:statusBarColor" tools:targetApi="l">#FF9C0B</item>
+        <item name="android:navigationBarColor" tools:targetApi="l">#F6BA07</item>
         <item name="android:windowEnableSplitTouch">false</item>
         <item name="android:splitMotionEvents">false</item>
-        <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimary</item>
     </style>
-    
-    <style name="SplashTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="android:windowFullscreen">true</item>
-        <item name="android:windowBackground">@drawable/splashscreen</item>
-    </style>
-
 </resources>
