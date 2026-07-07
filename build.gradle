@@ -3,3 +3,27 @@ plugins {
     alias(libs.plugins.kotlin.android) apply false
     alias(libs.plugins.kotlin.compose) apply false
 }
+
+tasks.register('testApk') {
+    group = 'build'
+    description = 'Alias for :app:testApk'
+    dependsOn ':app:testApk'
+}
+
+tasks.register('prodApk') {
+    group = 'build'
+    description = 'Alias for :app:prodApk'
+    dependsOn ':app:prodApk'
+}
+
+tasks.register('prodBundle') {
+    group = 'build'
+    description = 'Alias for :app:prodBundle'
+    dependsOn ':app:prodBundle'
+}
+
+tasks.register('prodAll') {
+    group = 'build'
+    description = 'Alias for :app:prodAll'
+    dependsOn ':app:prodAll'
+}
