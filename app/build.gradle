@@ -19,7 +19,7 @@ android {
         applicationId "makza.afonsky.searchpair"
         minSdk 21
         targetSdk 36
-        versionCode 5
+        versionCode 6
         versionName "2.0.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -103,4 +103,29 @@ dependencies {
     androidTestImplementation libs.androidx.compose.ui.test.junit4
     debugImplementation libs.androidx.compose.ui.tooling
     debugImplementation libs.androidx.compose.ui.test.manifest
+}
+
+// Convenience build tasks (run from project root: .\gradlew testApk)
+tasks.register('testApk') {
+    group = 'build'
+    description = 'Test APK: debug, no R8, debug signing (install on device for QA)'
+    dependsOn 'assembleDebug'
+}
+
+tasks.register('prodApk') {
+    group = 'build'
+    description = 'Production APK: R8 + release signing (requires keystore.properties)'
+    dependsOn 'assembleRelease'
+}
+
+tasks.register('prodBundle') {
+    group = 'build'
+    description = 'Production AAB for Google Play: R8 + release signing'
+    dependsOn 'bundleRelease'
+}
+
+tasks.register('prodAll') {
+    group = 'build'
+    description = 'Production APK and AAB together'
+    dependsOn 'prodApk', 'prodBundle'
 }
