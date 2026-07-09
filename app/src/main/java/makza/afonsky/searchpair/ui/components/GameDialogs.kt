@@ -29,6 +29,8 @@ fun ConfirmDialog(
     message: String,
     onConfirm: () -> Unit,
     onDismiss: () -> Unit,
+    confirmLabel: String? = null,
+    dismissLabel: String? = null,
 ) {
     Dialog(onDismissRequest = onDismiss) {
         Box(
@@ -48,11 +50,11 @@ fun ConfirmDialog(
                     horizontalArrangement = Arrangement.spacedBy(16.dp),
                 ) {
                     GameButton(
-                        text = stringResource(R.string.button_reset_progress_yes),
+                        text = confirmLabel ?: stringResource(R.string.button_reset_progress_yes),
                         onClick = onConfirm,
                     )
                     GameButton(
-                        text = stringResource(R.string.button_reset_progress_no),
+                        text = dismissLabel ?: stringResource(R.string.button_reset_progress_no),
                         onClick = onDismiss,
                     )
                 }

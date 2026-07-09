@@ -12,10 +12,15 @@ import androidx.navigation.navArgument
 import makza.afonsky.searchpair.audio.SoundManager
 import makza.afonsky.searchpair.data.GameRepository
 import makza.afonsky.searchpair.game.GameViewModel
+import makza.afonsky.searchpair.multiplayer.MultiplayerGameViewModel
+import makza.afonsky.searchpair.multiplayer.MultiplayerLobbyViewModel
+import makza.afonsky.searchpair.multiplayer.MultiplayerRepository
 import makza.afonsky.searchpair.ui.bonus.BonusScreen
 import makza.afonsky.searchpair.ui.game.GameScreen
 import makza.afonsky.searchpair.ui.menu.MenuScreen
 import makza.afonsky.searchpair.ui.menu.MenuViewModel
+import makza.afonsky.searchpair.ui.multiplayer.MultiplayerGameScreen
+import makza.afonsky.searchpair.ui.multiplayer.MultiplayerLobbyScreen
 import makza.afonsky.searchpair.ui.splash.SplashScreen
 
 @Composable
@@ -26,6 +31,9 @@ fun FindAPairNavHost(
 ) {
     val context = LocalContext.current
     val repository = remember { GameRepository(context) }
+    val multiplayerRepository = remember {
+        MultiplayerRepository(context.applicationContext)
+    }
 
     NavHost(
         navController = navController,
@@ -51,7 +59,43 @@ fun FindAPairNavHost(
                 onStartLevel = { level ->
                     navController.navigate(Routes.game(level))
                 },
+                onMultiplayer = {
+                    navController.navigate(Routes.MULTIPLAYER_LOBBY)
+                },
                 onExitApp = onExitApp,
+            )
+        }
+
+        composable(Routes.MULTIPLAYER_LOBBY) {
+            val lobbyViewModel: MultiplayerLobbyViewModel = viewModel(
+                factory = MultiplayerLobbyViewModel.Factory(
+                    context.applicationContext as android.app.Application,
+                    multiplayerRepository,
+                ),
+            )
+            MultiplayerLobbyScreen(
+                viewModel = lobbyViewModel,
+                onNavigateToGame = {
+                    navController.navigate(Routes.MULTIPLAYER_GAME)
+                },
+                onBack = {
+                    navController.popBackStack()
+                },
+            )
+        }
+
+        composable(Routes.MULTIPLAYER_GAME) {
+            val gameViewModel: MultiplayerGameViewModel = viewModel(
+                factory = MultiplayerGameViewModel.Factory(
+                    context.applicationContext as android.app.Application,
+                    multiplayerRepository,
+                ),
+            )
+            MultiplayerGameScreen(
+                viewModel = gameViewModel,
+                onNavigateToLobby = {
+                    navController.popBackStack(Routes.MULTIPLAYER_LOBBY, inclusive = false)
+                },
             )
         }
 

@@ -8,6 +8,8 @@
     <string name="button_reset_progress_yes">Yes</string>
     <string name="button_reset_progress_no">No</string>
     <string name="button_close">Close</string>
+    <string name="button_ok">OK</string>
+    <string name="button_no">No</string>
     <string name="exit_game">Exit Game?</string>
 
     <string name="button_level_1">1</string>
@@ -60,4 +62,44 @@
     <string name="difficulty_quartets">Quartets</string>
     <string name="level_number">Level %1$d</string>
     <string name="defeat_message">Defeat!</string>
+
+    <string name="button_multiplayer">Multiplayer</string>
+    <string name="multiplayer_title">Multiplayer</string>
+    <string name="multiplayer_nickname_label">Nickname</string>
+    <string name="multiplayer_online_label">Players online</string>
+    <string name="multiplayer_search">Search Game</string>
+    <string name="multiplayer_stop">Stop</string>
+    <string name="multiplayer_game_title">Pairs Online</string>
+    <string name="multiplayer_opponent_turn">Opponent\'s turn</string>
+    <string name="multiplayer_search_again">Search Again</string>
+    <string name="multiplayer_play_again">Play Again</string>
+    <string name="multiplayer_back_menu">Back to Menu</string>
+    <string name="multiplayer_back_lobby">Back to Lobby</string>
+    <string name="multiplayer_ready_you">You: ready ✓</string>
+    <string name="multiplayer_not_ready_you">You: not ready ✕</string>
+    <string name="multiplayer_ready_opponent">%1$s: ready ✓</string>
+    <string name="multiplayer_not_ready_opponent">%1$s: not ready ✕</string>
+    <string name="multiplayer_ready_button">Ready</string>
+    <string name="multiplayer_not_ready_button">Not Ready</string>
+    <string name="multiplayer_partner_left">Player left lobby</string>
+    <string name="multiplayer_field_size_label">Field size</string>
+    <string name="multiplayer_create_lobby">Create Lobby</string>
+    <string name="multiplayer_refresh">Refresh</string>
+    <string name="multiplayer_lobby_list_title">Open lobbies</string>
+    <string name="multiplayer_no_lobbies">No open lobbies</string>
+    <string name="multiplayer_join">Join</string>
+    <string name="multiplayer_room_title">Room — %1$s</string>
+    <string name="multiplayer_waiting_opponent">Waiting for opponent…</string>
+    <string name="multiplayer_countdown">Starting in %1$d…</string>
+    <string name="multiplayer_play">Play</string>
+    <string name="multiplayer_tap_to_ready">Tap your status icon to mark ready</string>
+    <string name="multiplayer_tap_to_unready">Tap your status icon to cancel ready</string>
+    <string name="multiplayer_leave_lobby">Leave Lobby</string>
+    <string name="multiplayer_leave">Leave</string>
+    <string name="multiplayer_difficulty_label">Difficulty</string>
+    <string name="multiplayer_create">Create</string>
+    <string name="multiplayer_surrender">Surrender?</string>
+    <string name="multiplayer_your_turn">Your\nturn</string>
+    <string name="multiplayer_enemy_turn">Turn\n%1$s</string>
+    <string name="multiplayer_turn_timer">Time left: %1$d s</string>
 </resources>

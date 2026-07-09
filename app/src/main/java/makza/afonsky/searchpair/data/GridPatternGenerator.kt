@@ -18,17 +18,18 @@ object GridPatternGenerator {
 
     const val MIN_COLUMNS = 5
     const val MAX_COLUMNS = 7
+    const val MULTIPLAYER_MAX_COLUMNS = 8
     const val MAX_ROWS = 14
     private const val DUAL_SNAKE_THRESHOLD = 30
 
     val maxCardSlots: Int get() = MAX_COLUMNS * MAX_ROWS
 
-    fun generate(totalCards: Int): GridLayout {
+    fun generate(totalCards: Int, maxColumns: Int = MAX_COLUMNS): GridLayout {
         require(totalCards in 1..maxCardSlots) {
             "Card count $totalCards exceeds grid capacity $maxCardSlots"
         }
 
-        val columns = columnsForCardCount(totalCards)
+        val columns = columnsForCardCount(totalCards, maxColumns)
         var rows = ceil(totalCards / columns.toDouble()).toInt().coerceAtMost(MAX_ROWS)
         require(columns * rows >= totalCards) {
             "Grid capacity ${columns * rows} too small for $totalCards cards"
@@ -74,14 +75,14 @@ object GridPatternGenerator {
         )
     }
 
-    /** More cards → wider grid (5 … 7 columns). */
-    private fun columnsForCardCount(totalCards: Int): Int {
+    /** More cards → wider grid (min … maxColumns). */
+    private fun columnsForCardCount(totalCards: Int, maxColumns: Int = MAX_COLUMNS): Int {
         val minCards = 4
         val maxCards = 80
         val progress = ((totalCards - minCards).toFloat() / (maxCards - minCards)).coerceIn(0f, 1f)
-        return (MIN_COLUMNS + progress * (MAX_COLUMNS - MIN_COLUMNS))
+        return (MIN_COLUMNS + progress * (maxColumns - MIN_COLUMNS))
             .roundToInt()
-            .coerceIn(MIN_COLUMNS, MAX_COLUMNS)
+            .coerceIn(MIN_COLUMNS.coerceAtMost(maxColumns), maxColumns)
     }
 
     private fun buildDualSnakeOrders(

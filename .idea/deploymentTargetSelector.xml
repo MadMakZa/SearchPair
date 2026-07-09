@@ -16,7 +16,7 @@
       </SelectionState>
       <SelectionState runConfigName="androidTest">
         <option name="selectionMode" value="DROPDOWN" />
-        <DropdownSelection timestamp="2026-07-01T22:29:21.122161Z">
+        <DropdownSelection timestamp="2026-07-09T13:21:32.822046300Z">
           <Target type="DEFAULT_BOOT">
             <handle>
               <DeviceId pluginId="LocalEmulator" identifier="path=C:\Users\immak\.android\avd\Pixel_3_API_34_440dpi.avd" />

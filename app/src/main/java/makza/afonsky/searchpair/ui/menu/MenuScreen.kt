@@ -48,6 +48,7 @@ import makza.afonsky.searchpair.ui.components.rememberDifficultyPagerState
 fun MenuScreen(
     viewModel: MenuViewModel,
     onStartLevel: (Int) -> Unit,
+    onMultiplayer: () -> Unit,
     onExitApp: () -> Unit,
 ) {
     val state by viewModel.uiState.collectAsState()
@@ -139,6 +140,14 @@ fun MenuScreen(
                         onStartLevel(1)
                     }
                 },
+                modifier = Modifier.fillMaxWidth(0.55f),
+            )
+
+            Spacer(modifier = Modifier.height(6.dp))
+
+            GameButton(
+                text = stringResource(R.string.button_multiplayer),
+                onClick = onMultiplayer,
                 modifier = Modifier.fillMaxWidth(0.55f),
             )
 
